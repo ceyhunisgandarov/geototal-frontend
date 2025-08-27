@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
 export default function RootLayout({ children }) {
+
   if (typeof window === "undefined") {
     if (globalThis?.location?.pathname === "/") {
       redirect("/az");
@@ -8,7 +10,7 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="az">
+    <html lang="az" style={{ backgroundColor: "#fff", color: "#000" }}>
       <body>{children}</body>
     </html>
   );
