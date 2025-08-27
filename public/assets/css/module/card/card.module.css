@@ -1,0 +1,116 @@
+.card {
+  position: relative;
+  border-radius: 10px;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+/* Kayan overlay */
+.overlay {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  border: 10px solid red;
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: rotate(20deg);
+  transition: top 0.3s ease-in-out, right 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+/* Hover'da overlay içeri kayıyor */
+.card:hover .overlay {
+  top: -30px;
+  right: -30px;
+  transform: rotate(0);
+}
+
+/* Text container sabit ama içeriği değişiyor */
+.textContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  /* background-color: antiquewhite; */
+}
+
+.text {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.textHover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.text strong,
+.textHover strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.card:hover .text {
+  opacity: 0;
+}
+
+.card:hover .textHover {
+  opacity: 1;
+}
+
+.shoppingButton {
+  position: absolute;
+  bottom: 20px;
+  padding: 8px 16px;
+  min-width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(42, 42, 42);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.5s ease-in-out, background-color 0.5s ease-in-out,
+    font-weight 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.shoppingButton:hover {
+  box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
+  font-weight: 700;
+  transform: scale(1.03);
+}

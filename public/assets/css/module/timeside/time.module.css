@@ -1,0 +1,27 @@
+.container {
+  width: 100vw;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(39, 39, 39);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.dateTimeContainer {
+  margin-left: 100px;
+}
+
+.emailLink {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  margin-right: 100px;
+}
+
+.emailLink:hover {
+  opacity: 0.7;
+}

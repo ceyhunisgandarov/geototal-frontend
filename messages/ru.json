@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "locale": "ru",
+    "welcome": "Добро пожаловать"
+  },
+
+  "Menu": {
+    "locale": "ru"
+  },
+
+  "Navbar": {
+    "locale": "ru",
+    "aboutus": "О нас",
+    "products": "Продукция",
+    "services": "услуги",
+    "contactus": "связь"
+  }
+}

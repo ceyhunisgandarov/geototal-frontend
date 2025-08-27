@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "locale": "az",
+    "welcome": "Xos gelmisiniz"
+  },
+
+  "Menu": {
+    "locale": "az"
+  },
+
+  "Navbar": {
+    "locale": "az",
+    "aboutus": "Haqqımızda",
+    "products": "məhsullar",
+    "services": "xidmətlər",
+    "contactus": "əlaqə"
+  }
+}

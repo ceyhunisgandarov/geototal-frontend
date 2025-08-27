@@ -1,0 +1,111 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 40px;
+  min-height: 100vh;
+  background: #f9f9f9;
+  flex-wrap: wrap;
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.productImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.textContainer {
+  flex: 1;
+  max-width: 500px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.model {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.details {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.bestseller {
+  display: inline-block;
+  background: #ffe066;
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.shopBtn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.shopBtn:hover {
+  background: #333;
+}
+
+.pdfBtn {
+  background: #e63946;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.pdfBtn:hover {
+  background: #d62828;
+}
+
+/* 📱 Mobil uyumlu */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .textContainer {
+    max-width: 100%;
+  }
+}

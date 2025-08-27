@@ -1,0 +1,85 @@
+.container2 {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.grid2 {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr); /* default 2 kolon */
+}
+
+@media (min-width: 600px) {
+  .grid2 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+  }
+}
+
+.card2 {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+  text-align: center;
+
+  /* Link içerisindeki default stil */
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  user-select: none; /* text seçimi engelle */
+}
+
+.card2:hover {
+  transform: translateY(-5px);
+  color: inherit; /* hover’da renk değişmesin */
+}
+
+.image2 {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.productName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 10px 0 5px;
+}
+
+.desc2 {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #f4f4f4;
+}

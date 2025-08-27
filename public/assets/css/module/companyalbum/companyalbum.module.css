@@ -1,0 +1,194 @@
+.container {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.companyContainer {
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectContainer {
+  width: 100%;
+  margin: 10px auto;
+  display: flex; /* İçerik ortalaması için flex */
+  justify-content: center; /* Yatayda ortala */
+  align-items: center; /* Dikeyde ortala (opsiyonel) */
+}
+
+.projectgrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive 280px’den başlayıp 1fr kadar büyür */
+  gap: 20px;
+  max-width: 1280px; /* Maksimum genişlik, istersen değiştirebilirsin */
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.logoContainer {
+  width: 90%;
+  height: 200px;
+  margin-top: 50px;
+  box-shadow: inset 15px 0 15px -2px rgba(255, 255, 255, 0.2),
+    inset -15px 0 15px -2px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.slideContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex-direction: row;
+  animation: slide 20s linear infinite;
+  width: max-content;
+}
+
+.logoCard {
+  width: 180px;
+  height: 150px;
+  margin: 4px;
+  background-color: rgb(232, 232, 232);
+  border-radius: 5px;
+  box-shadow: 0 0 2px 1px rgb(67, 67, 67, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 80%;
+  height: auto;
+}
+
+.carouselWrapper {
+  width: 100vw;
+  height: auto;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  /* overflow: hidden; */
+  /* background-color: rgb(49, 40, 29); */
+}
+
+.carousel {
+  margin-top: 40px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 400px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transition: all 0.5s ease;
+  transform: translate(-50%, -50%) scale(0.5);
+  z-index: 1;
+  opacity: 0;
+}
+
+.carouselWrapper h1 {
+  position: absolute;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  top: 10px;
+  z-index: 10;
+}
+
+.active {
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+.right {
+  transform: translate(calc(-50% + 300px), -50%) scale(0.7);
+  z-index: 2;
+  opacity: 1;
+}
+
+.left {
+  transform: translate(calc(-50% - 300px), -50%) scale(0.7);
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Responsive davranış */
+@media (max-width: 768px) {
+  .right {
+    transform: translate(calc(-50% + 120px), -50%) scale(0.5);
+  }
+
+  .left {
+    transform: translate(calc(-50% - 120px), -50%) scale(0.5);
+  }
+
+  .card {
+    width: 220px;
+    height: 300px;
+    font-size: 1.5rem;
+  }
+}
+
+.controls {
+  position: absolute;
+  top: 600px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.controls button {
+  font-size: 2rem;
+  margin: 0 20px;
+  padding: 10px 20px;
+}
+
+.hilton {
+  background-image: url("../../../../../public/images/projects/hilton.jpg");
+}
+
+.crescent {
+  background-image: url("../../../../../public/images/projects/crescent.jpg");
+}
+
+.zefer {
+  background-image: url("../../../../../public/images/projects/zefer.jpg");
+}

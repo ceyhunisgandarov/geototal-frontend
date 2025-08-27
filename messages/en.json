@@ -1,0 +1,18 @@
+{
+  "Home": {
+    "locale": "en",
+    "welcome": "Welcome"
+  },
+
+  "Menu": {
+    "locale": "en"
+  },
+
+  "Navbar": {
+    "locale": "en",
+    "aboutus": "about us",
+    "products": "products",
+    "services": "services",
+    "contactus": "contact us"
+  }
+}

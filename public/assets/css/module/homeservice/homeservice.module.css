@@ -1,0 +1,94 @@
+.wrapper {
+  position: relative;
+  background-color: #000;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.videoContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh; /* bu sayede içerik en üstten başlar */
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: rgba(43, 42, 41, 0.75);
+  color: rgb(255, 255, 255);
+  min-height: calc(100vh - 200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* veya space-between, start vs. */
+  align-items: flex-start;
+  gap: 16px; /* kutular arası boşluk */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.serviceTitle {
+  margin: 10px 0;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.serviceText {
+  text-transform: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+.contentElement {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.gridItem:hover {
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}

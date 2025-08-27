@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  height: 550px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.277);
+}
+
+.overlay p {
+  text-transform: uppercase;
+  position: relative;
+  color: white;
+  margin-left: 40px;
+  font-size: 24px;
+  font-weight: 1000;
+}
+
+.underline {
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 100px;
+  height: 10px;
+  background-color: white;
+}

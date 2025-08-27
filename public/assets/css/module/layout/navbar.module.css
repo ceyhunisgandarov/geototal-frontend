@@ -1,0 +1,266 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Üstteki time alanı */
+.time {
+  height: 28px;
+  background-color: #111;
+  padding: 0 100px;
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  align-items: center;
+  color: #f5f5f5;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.date,
+.email {
+  white-space: nowrap;
+}
+
+/* Navbar ana kısmı */
+.navbarMain {
+  height: 92px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  box-sizing: border-box;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 65px;
+  width: auto;
+}
+
+/* Menü */
+.menuContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.menuList {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  list-style: none;
+}
+
+.menuButton a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111111;
+  padding: 10px;
+  transition: color 0.2s ease-in-out;
+}
+
+.menuButton a:hover {
+  color: #797979;
+}
+
+/* Dil seçimi */
+.languageContainer {
+  position: relative;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: border 0.2s ease;
+}
+
+.flag:hover {
+  border-color: #0077cc;
+}
+
+.dropdownLocales {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.flagContainer {
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.flagContainer:hover {
+  background-color: #f0f0f0;
+}
+
+/* Mobil uyum */
+@media (max-width: 1000px) {
+  .time {
+    padding: 0 20px;
+    font-size: 0.75rem;
+  }
+
+  .navbarMain {
+    padding: 0 20px;
+  }
+
+  .menuList {
+    display: none; /* Hamburger menü devreye girebilir */
+  }
+
+  .languageContainer {
+    display: none;
+  }
+}
+
+.hamburgerContainer {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  font-size: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  font-size: inherit;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.hamburgerLine {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  height: 0.125em;
+  border-radius: 0.125em;
+  background: currentColor;
+  transition: inherit;
+}
+
+.hamburgerLine:nth-child(1) {
+  top: 0.125em;
+  width: 0.75em;
+}
+.hamburger.open .hamburgerLine:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotateZ(-135deg);
+  width: 100%;
+}
+.hamburgerLine:nth-child(2) {
+  top: 0.438em;
+}
+.hamburger.open .hamburgerLine:nth-child(2) {
+  right: 50%;
+  width: 0;
+}
+.hamburgerLine:nth-child(3) {
+  top: 0.75em;
+  width: 0.5em;
+}
+.hamburger.open .hamburgerLine:nth-child(3) {
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%) rotateZ(135deg);
+}
+
+/* Hamburger varsayılan: gizli */
+
+.mobileMenuContainer {
+  position: absolute;
+  right: -400px;
+  top: 120px;
+  width: 300px;
+  height: 100vh;
+  min-height: 100vh;
+  background: rgb(43, 42, 41);
+  transition: right 0.5s ease-in-out;
+  z-index: 999;
+}
+
+.open {
+  right: 0;
+}
+
+.menuListt {
+  width: 100%;
+  height: 100%;
+}
+
+.link {
+  all: unset; /* Tüm stilleri sıfırlar */
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: white;
+  display: inline-block;
+  padding: 16px 16px;
+}
+
+.menuButtonn {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+}
+
+/* Hover efekti istersen */
+.menuButtonn:hover {
+  background-color: rgb(228, 29, 45);
+}
+
+/* Media query: 1000px altı görünüm */
+@media (max-width: 1000px) {
+  .primaryMenu {
+    display: none;
+  }
+
+  .hamburgerContainer {
+    display: flex;
+  }
+
+  .languageContainer {
+    display: none;
+  }
+}

@@ -1,0 +1,112 @@
+.container {
+  position: relative;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 800px;
+}
+
+.carouselScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.carouselBody {
+  width: 400%;
+  height: 100%;
+  display: flex;
+}
+
+.carouselStep {
+  position: relative;
+  width: 25%;
+  height: 100%;
+  overflow: hidden; /* kenar boşluğu gizle */
+}
+
+.imageWrapper {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  transform: translateX(0);
+  transition: transform 5s ease-in-out;
+}
+
+.carouselStep.active .imageWrapper {
+  transform: translateX(50px); /* kayma sırasında boşluk olmaz */
+}
+
+.imageWrapper img {
+  object-fit: cover; /* her zaman container dolsun */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  z-index: 1;
+}
+
+.typewriterCursor::after {
+  content: "|";
+  animation: blink 0.5s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.buttonPrev {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.226);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.buttonNext {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.226);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.text {
+  width: 400px;
+  text-align: center;
+  word-wrap: break-word;
+  white-space: normal;
+}

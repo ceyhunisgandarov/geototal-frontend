@@ -1,0 +1,54 @@
+.logoSlider {
+  margin-top: 20px;
+  overflow: hidden;
+  background: #fff;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logoTrack {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.logoItem {
+  flex: 0 0 auto;
+  margin: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+.logoItem img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .logoSlider {
+    height: 90px;
+  }
+  .logoItem img {
+    height: 70px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logoSlider {
+    height: 70px;
+  }
+  .logoItem img {
+    height: 50px;
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

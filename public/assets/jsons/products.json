@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "brand": "Geomax",
+    "model": "Zoom95 Pro",
+    "category": "TS",
+    "bestseller": "yes",
+    "description": "Gelişmiş otomatik hedefleme ve yüksek hassasiyetli total station.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 2,
+    "brand": "Leica",
+    "model": "GS18T Rover",
+    "category": "GNSS",
+    "bestseller": "yes",
+    "description": "Tilt özelliği sayesinde hızlı ve doğru GNSS ölçümleri için geliştirilmiş alıcı.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 3,
+    "brand": "Trimble",
+    "model": "AL300 Plus",
+    "category": "AL",
+    "bestseller": "no",
+    "description": "Otomatik nivelman cihazı, sağlam ve dayanıklı gövde yapısı ile uzun ömürlü kullanım.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 4,
+    "brand": "Gintec",
+    "model": "GNR900X",
+    "category": "GNSS",
+    "bestseller": "yes",
+    "description": "Çoklu uydu desteği ve RTK hassasiyeti ile GNSS çözümleri.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 5,
+    "brand": "Leica",
+    "model": "FlexLine TS07",
+    "category": "TS",
+    "bestseller": "no",
+    "description": "Kolay kullanım ve güvenilir sonuçlar için tasarlanmış total station.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 6,
+    "brand": "Trimble",
+    "model": "DualSmart BAT-5000",
+    "category": "BAT",
+    "bestseller": "no",
+    "description": "Uzun ömürlü Li-ion batarya, sahada kesintisiz güç için geliştirilmiştir.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 7,
+    "brand": "Geomax",
+    "model": "ZAL124",
+    "category": "AL",
+    "bestseller": "yes",
+    "description": "Sağlam gövde yapısı ile zorlu koşullarda güvenilir otomatik nivo.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 8,
+    "brand": "Leica",
+    "model": "GEB242",
+    "category": "BAT",
+    "bestseller": "no",
+    "description": "Leica cihazları için yüksek kapasiteli batarya.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 9,
+    "brand": "Trimble",
+    "model": "TSi120 Pro",
+    "category": "TS",
+    "bestseller": "yes",
+    "description": "Keskin hassasiyet ve modern arayüzlü total station.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 10,
+    "brand": "Gintec",
+    "model": "AL200 EasyLevel",
+    "category": "AL",
+    "bestseller": "no",
+    "description": "Dayanıklı ve pratik kullanım sağlayan otomatik nivo.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 11,
+    "brand": "Geomax",
+    "model": "GNX750 RTK",
+    "category": "GNSS",
+    "bestseller": "no",
+    "description": "RTK teknolojisi ile yüksek doğruluk sağlayan GNSS alıcısı.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 12,
+    "brand": "Leica",
+    "model": "TS13 FlexLine",
+    "category": "TS",
+    "bestseller": "no",
+    "description": "Orta seviye projeler için uygun, güvenilir total station.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 13,
+    "brand": "Trimble",
+    "model": "R12i",
+    "category": "GNSS",
+    "bestseller": "yes",
+    "description": "GNSS ölçümlerinde sektör lideri hassasiyet sunan cihaz.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 14,
+    "brand": "Gintec",
+    "model": "BAT-GN500",
+    "category": "BAT",
+    "bestseller": "no",
+    "description": "GNSS cihazları için uzun süreli batarya çözümü.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 15,
+    "brand": "Geomax",
+    "model": "ZTS360",
+    "category": "TS",
+    "bestseller": "yes",
+    "description": "Hızlı ölçüm ve yüksek doğruluk için tasarlanmış total station.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 16,
+    "brand": "Leica",
+    "model": "NA532",
+    "category": "AL",
+    "bestseller": "no",
+    "description": "Klasik kullanım için dayanıklı ve güvenilir optik nivo.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 17,
+    "brand": "Trimble",
+    "model": "ACC-Pack Pro",
+    "category": "ACC",
+    "bestseller": "yes",
+    "description": "Saha çalışmaları için kapsamlı aksesuar seti.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 18,
+    "brand": "Gintec",
+    "model": "ACC-Mini Tripod",
+    "category": "ACC",
+    "bestseller": "no",
+    "description": "Kompakt tasarımı ile kolay taşınabilir tripod.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 19,
+    "brand": "Geomax",
+    "model": "BAT-ZX200",
+    "category": "BAT",
+    "bestseller": "no",
+    "description": "Geomax cihazları için yüksek kapasiteli batarya.",
+    "image": "/images/product-1.png"
+  },
+  {
+    "id": 20,
+    "brand": "Leica",
+    "model": "ACC-Carbon Pole",
+    "category": "ACC",
+    "bestseller": "yes",
+    "description": "Dayanıklı karbon malzemeden üretilmiş GNSS ölçüm direği.",
+    "image": "/images/product-1.png"
+  }
+]

@@ -1,0 +1,47 @@
+.teamSection {
+  text-align: center;
+  margin: 40px auto;
+  padding: 0 20px;
+  max-width: 1440px;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* default 4 kolon */
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Tablet için (2 kolon) */
+@media (max-width: 1024px) {
+  .teamGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobil için (1 kolon) */
+@media (max-width: 600px) {
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teamCard {
+  background: #f8f8f8;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teamCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.memberImage {
+  width: 100%;
+  aspect-ratio: 1/1; /* kare resim garantisi */
+  object-fit: cover; /* resmi taşmadan kırp */
+  border-radius: 8px; /* köşeleri biraz yuvarlat */
+}
