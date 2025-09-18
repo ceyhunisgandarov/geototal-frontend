@@ -17,8 +17,6 @@ export const metadata = {
 export default async function LocaleLayout({ children, params }) {
   const { locale } = params;
 
-  console.log("sdfaf", locale);
-
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }

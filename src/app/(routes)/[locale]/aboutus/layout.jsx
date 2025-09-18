@@ -1,4 +1,3 @@
-// app/[locale]/aboutus/layout.jsx
 export const metadata = {
   title: "About Us - Geototal"
 };

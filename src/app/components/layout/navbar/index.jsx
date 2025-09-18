@@ -4,6 +4,7 @@ import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
+
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,30 +15,24 @@ function Navbar({ page, locale }) {
 
   const [flag, setFlag] = useState(azflag);
   const [languageMenu, setLanguageMenu] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const dropdown = () => {
-    setLanguageMenu((prev) => !prev);
-  };
+  const dropdown = () => setLanguageMenu((prev) => !prev);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1000) {
-        setMenuOpen(false);
-      }
+      if (window.innerWidth > 1000) setMenuOpen(false);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    if (locale === "az") setFlag(azflag);
-    else if (locale === "en") setFlag(enflag);
-    else if (locale === "ru") setFlag(ruflag);
-    else console.error("Geçersiz dil: ", locale);
-  }, [locale]);
+    if (t("locale") === "az") setFlag(azflag);
+    else if (t("locale") === "en") setFlag(enflag);
+    else if (t("locale") === "ru") setFlag(ruflag);
+    else console.error("Geçersiz dil: ", t("locale"));
+  }, [t("locale")]);
 
   return (
     <div className={style.navbar}>
@@ -45,6 +40,7 @@ function Navbar({ page, locale }) {
         <div className={style.date}>13.08.2025</div>
         <div className={style.email}>office@gmail.com</div>
       </div>
+
       <div className={style.navbarMain}>
         <div className={style.logoContainer}>
           <Link href={`/${t("locale")}/`} className={style.logoLink}>
@@ -53,36 +49,60 @@ function Navbar({ page, locale }) {
               width={300}
               height={300}
               className={style.logo}
-              alt="geototal-logo.png"
+              alt="geototal-logo"
             />
           </Link>
         </div>
+
         <div className={style.menuContainer}>
           <ul className={style.menuList}>
-            <li className={style.menuButton}>
-              <Link href={`/${t("locale")}/`}>Home Page</Link>
+            <li>
+              <Link className={style.menuLink} href={`/${t("locale")}/`} style={{textTransform: "uppercase"}}>
+                Home Page
+              </Link>
             </li>
-            <li className={style.menuButton}>
-              <Link href={`/${t("locale")}/aboutus`}>About Us</Link>
+            <li>
+              <Link
+                className={style.menuLink}
+                href={`/${t("locale")}/aboutus`}
+              >
+                About Us
+              </Link>
             </li>
-            <li className={style.menuButton}>
-              <Link href={`/${t("locale")}/products`}>Products</Link>
+            <li>
+              <Link
+                className={style.menuLink}
+                href={`/${t("locale")}/products`}
+              >
+                Products
+              </Link>
             </li>
-            <li className={style.menuButton}>
-              <Link href={`/${t("locale")}/services`}>Services</Link>
+            <li>
+              <Link
+                className={style.menuLink}
+                href={`/${t("locale")}/services`}
+              >
+                Services
+              </Link>
             </li>
-            <li className={style.menuButton}>
-              <Link href={`/${t("locale")}/contact`}>Contact Us</Link>
+            <li>
+              <Link
+                className={style.menuLink}
+                href={`/${t("locale")}/contact`}
+              >
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
+
         <div className={style.languageContainer} onClick={dropdown}>
           <div className={style.selectedLocale}>
             <Image
               src={flag}
               width={300}
               height={300}
-              alt="flag.png"
+              alt="flag"
               className={style.flag}
             />
           </div>
@@ -124,6 +144,7 @@ function Navbar({ page, locale }) {
             </div>
           )}
         </div>
+
         <div
           className={style.hamburgerContainer}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -134,34 +155,47 @@ function Navbar({ page, locale }) {
             <span className={style.hamburgerLine} />
           </div>
         </div>
+
         <div
           className={`${style.mobileMenuContainer} ${
             menuOpen ? style.open : ""
           }`}
         >
-          <ul className={style.menuListt}>
-            <li className={style.menuButtonn}>
-              <Link href={`/${t("locale")}/`} className={style.link}>
+          <ul className={style.mobileMenuList}>
+            <li className={style.mobileMenuItem}>
+              <Link href={`/${t("locale")}/`} className={style.mobileLink}>
                 Home Page
               </Link>
             </li>
-            <li className={style.menuButtonn}>
-              <Link href={`/${t("locale")}/aboutus`} className={style.link}>
+            <li className={style.mobileMenuItem}>
+              <Link
+                href={`/${t("locale")}/aboutus`}
+                className={style.mobileLink}
+              >
                 About Us
               </Link>
             </li>
-            <li className={style.menuButtonn}>
-              <Link href={`/${t("locale")}/products`} className={style.link}>
+            <li className={style.mobileMenuItem}>
+              <Link
+                href={`/${t("locale")}/products`}
+                className={style.mobileLink}
+              >
                 Products
               </Link>
             </li>
-            <li className={style.menuButtonn}>
-              <Link href={`/${t("locale")}/services`} className={style.link}>
+            <li className={style.mobileMenuItem}>
+              <Link
+                href={`/${t("locale")}/services`}
+                className={style.mobileLink}
+              >
                 Services
               </Link>
             </li>
-            <li className={style.menuButtonn}>
-              <Link href={`/${t("locale")}/contact`} className={style.link}>
+            <li className={style.mobileMenuItem}>
+              <Link
+                href={`/${t("locale")}/contact`}
+                className={style.mobileLink}
+              >
                 Contact Us
               </Link>
             </li>

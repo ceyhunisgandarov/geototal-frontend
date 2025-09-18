@@ -1,0 +1,159 @@
+.wrapper {
+  background: #fff;
+}
+
+.container {
+  /* border: solid 1px rgb(228, 29, 45); */
+  border-radius: 25px;
+  box-shadow: 0 0 20px -10px black;
+  display: flex;
+  max-width: 1440px;
+  margin: 40px;
+  gap: 40px;
+  padding: 60px 80px;
+  justify-content: space-between;
+}
+
+.infoSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(228, 29, 45); /* turuncu arka plan */
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.infoBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.infoBox h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.formSection {
+  flex: 2;
+  padding-inline: 20px;
+  padding-block: 20px;
+}
+
+.smallTitle {
+  color: rgb(228, 29, 45);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.formTitle {
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.row input {
+  flex: 1;
+}
+
+.input,
+.textarea {
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  resize: vertical;
+}
+
+.textarea {
+  min-height: 120px;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: rgb(228, 29, 45);
+}
+
+.submitBtn {
+  background: rgb(228, 29, 45);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background: #a60000;
+}
+
+.mapSection {
+  width: 100%;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 40px 20px;
+    margin: 20px;
+  }
+
+  .infoSection {
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .infoBox {
+    flex: 1;
+  }
+
+  /* form */
+  .row {
+    flex-direction: column;
+  }
+}

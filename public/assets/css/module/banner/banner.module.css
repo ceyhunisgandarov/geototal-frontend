@@ -4,6 +4,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-top: 112px;
 }
 
 .overlay {
@@ -30,4 +31,10 @@
   width: 100px;
   height: 10px;
   background-color: white;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin-top: 92px;
+  }
 }

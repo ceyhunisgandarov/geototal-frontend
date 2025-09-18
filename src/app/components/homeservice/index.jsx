@@ -78,6 +78,7 @@ export default function HomeService() {
               path={`/images/icons/${icon}-icon.svg`}
               name={icon}
               style={style}
+              background="dark"
             />
           ))}
         </div>

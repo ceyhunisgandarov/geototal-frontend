@@ -1,14 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
 import style from "../../../../../public/assets/css/module/layout/newnavbar.module.css";
 import logo from "../../../../../public/images/Geototal_loqo.png";
-import { useEffect, useState } from "react";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
-import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 function NewNavbar({ page, locale }) {
   const t = useTranslations("Navbar");
@@ -16,33 +17,20 @@ function NewNavbar({ page, locale }) {
   const [flag, setFlag] = useState(azflag);
   const [languageMenu, setLanguageMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const dropdown = () => {
-    setLanguageMenu((prev) => !prev);
-  };
+  const toggleDropdown = () => setLanguageMenu((prev) => !prev);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1000) {
-        setMenuOpen(false);
-      }
+      if (window.innerWidth > 1000) setMenuOpen(false);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -51,7 +39,7 @@ function NewNavbar({ page, locale }) {
     if (locale === "az") setFlag(azflag);
     else if (locale === "en") setFlag(enflag);
     else if (locale === "ru") setFlag(ruflag);
-    else console.error("Geçersiz dil: ", locale);
+    else console.error("Geçersiz dil:", locale);
   }, [locale]);
 
   return (
@@ -69,6 +57,7 @@ function NewNavbar({ page, locale }) {
           />
         </Link>
       </div>
+
       <div className={style.right}>
         <div className={style.time}>
           <p>14 JUL 2025, 14:24</p>
@@ -76,77 +65,47 @@ function NewNavbar({ page, locale }) {
             <p>office@geototal.az</p>
           </Link>
         </div>
+
         <div className={style.menu}>
           <div className={style.primaryMenu}>
             <ul>
               <li>
-                <Link href={`/${t("locale")}/`}>Home Page</Link>
-              </li>
-              <li className={style.dropdown}>
-                <Link href={`/${t("locale")}/aboutus`}>About Us</Link>
-                {/* <ul className={style.dropdownMenu}>
-                  <li>
-                    <Link href={`/${t("locale")}/`}>Projects</Link>
-                  </li>
-                  <li>
-                    <Link href={`/${t("locale")}/`}>Sertificates</Link>
-                  </li>
-                </ul> */}
+                <Link href={`/${t("locale")}/`} className={style.linkMenu}>Home Page</Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/products`}>Products</Link>
+                <Link href={`/${t("locale")}/aboutus`} className={style.linkMenu}>About Us</Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/services`}>Services</Link>
+                <Link href={`/${t("locale")}/products`} className={style.linkMenu}>Products</Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/contact`}>Contact Us</Link>
+                <Link href={`/${t("locale")}/services`} className={style.linkMenu}>Services</Link>
+              </li>
+              <li>
+                <Link href={`/${t("locale")}/contact`} className={style.linkMenu}>Contact Us</Link>
               </li>
             </ul>
           </div>
-          <div className={style.languageContainer} onClick={dropdown}>
+
+          <div className={style.languageContainer} onClick={toggleDropdown}>
             <div className={style.selectedLocale}>
-              <Image
-                src={flag}
-                width={300}
-                height={300}
-                alt="flag.png"
-                className={style.flag}
-              />
+              <Image src={flag} alt="flag.png" className={style.flag} />
             </div>
             {languageMenu && (
               <div className={style.dropdownLocales}>
-                <Link href={`/az/${page}`} onClick={dropdown}>
+                <Link href={`/az/${page}`} onClick={toggleDropdown}>
                   <div className={style.flagContainer}>
-                    <Image
-                      src={azflag}
-                      width={300}
-                      height={300}
-                      alt="az-flag"
-                      className={style.flag}
-                    />
+                    <Image src={azflag} alt="az-flag" className={style.flag} />
                   </div>
                 </Link>
-                <Link href={`/en/${page}`} onClick={dropdown}>
+                <Link href={`/en/${page}`} onClick={toggleDropdown}>
                   <div className={style.flagContainer}>
-                    <Image
-                      src={enflag}
-                      width={300}
-                      height={300}
-                      alt="en-flag"
-                      className={style.flag}
-                    />
+                    <Image src={enflag} alt="en-flag" className={style.flag} />
                   </div>
                 </Link>
-                <Link href={`/ru/${page}`} onClick={dropdown}>
+                <Link href={`/ru/${page}`} onClick={toggleDropdown}>
                   <div className={style.flagContainer}>
-                    <Image
-                      src={ruflag}
-                      width={300}
-                      height={300}
-                      alt="ru-flag"
-                      className={style.flag}
-                    />
+                    <Image src={ruflag} alt="ru-flag" className={style.flag} />
                   </div>
                 </Link>
               </div>
@@ -154,6 +113,7 @@ function NewNavbar({ page, locale }) {
           </div>
         </div>
       </div>
+
       <div
         className={style.hamburgerContainer}
         onClick={() => setMenuOpen(!menuOpen)}
@@ -164,6 +124,7 @@ function NewNavbar({ page, locale }) {
           <span className={style.hamburgerLine} />
         </div>
       </div>
+
       <div
         className={`${style.mobileMenuContainer} ${menuOpen ? style.open : ""}`}
       >

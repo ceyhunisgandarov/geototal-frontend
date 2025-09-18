@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.serviceContainer {
+  margin-top: 20px;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* veya space-between, start vs. */
+  align-items: flex-start;
+  gap: 16px; /* kutular arası boşluk */
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}

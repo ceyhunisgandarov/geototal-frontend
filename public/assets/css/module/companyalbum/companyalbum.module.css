@@ -151,8 +151,23 @@
   opacity: 1;
 }
 
-/* Responsive davranış */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
+  .right {
+    transform: translate(calc(-50% + 170px), -50%) scale(0.7);
+  }
+
+  .left {
+    transform: translate(calc(-50% - 170px), -50%) scale(0.7);
+  }
+
+  .card {
+    width: 300px;
+    height: 400px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
   .right {
     transform: translate(calc(-50% + 120px), -50%) scale(0.5);
   }

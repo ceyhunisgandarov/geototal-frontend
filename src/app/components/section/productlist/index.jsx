@@ -3,11 +3,22 @@ import style from "../../../../../public/assets/css/module/products/productpage.
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import ProductService from "@/app/services/ProductService";
 
 function ProductList({ selectedCategory }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const t = useTranslations("Navbar");
+
+  useEffect(() => {
+    ProductService.getProducts()
+      .then((response) => {
+        console.log(response.data.response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     fetch("/assets/jsons/products.json")
@@ -48,6 +59,7 @@ function ProductList({ selectedCategory }) {
               src={product.image}
               alt={product.model}
               className={style.image2}
+              priority
             />
             <h3 className={style.productName}>{product.brand}</h3>
             <p className={style.desc2}>{product.model}</p>

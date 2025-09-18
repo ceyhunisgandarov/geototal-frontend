@@ -2,9 +2,25 @@
   position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
   align-items: center;
-  padding: 40px;
-  gap: 40px;
+  height: auto;
+  background: #f9f9f9;
+  flex-wrap: wrap;
+  background-color: #666;
+  margin-top: 120px;
+}
+
+.productContainer {
+  width: 100%;
+  max-width: 1440px;
+  padding-inline: 50px;
+  padding-block: 50px;
+  background-color: #d62828;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: auto;
   background: #f9f9f9;
   flex-wrap: wrap;
@@ -14,7 +30,6 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  margin-top: 200px;
 }
 
 .productImage {
@@ -101,10 +116,11 @@
 
 /* 📱 Mobil uyumlu */
 @media (max-width: 768px) {
-  .container {
+  .productContainer {
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding-inline: 20px;
+    padding-block: 50px;
   }
 
   .textContainer {

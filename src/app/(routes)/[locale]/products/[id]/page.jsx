@@ -3,8 +3,8 @@ import ProductContainer from "@/app/containers/product";
 import { useParams } from "next/navigation";
 
 export default function ProductPage() {
-  const params = useParams(); // useParams() parametre almaz
-  const { id } = params; // URL’deki [id] buradan geliyor
+  const params = useParams(); 
+  const { id } = params;
 
   return (
     <>

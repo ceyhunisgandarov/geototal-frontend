@@ -11,10 +11,10 @@ function Banner({ page }) {
       bannerHeader = "Products";
       break;
     case "services":
-      bannerHeader = "Products";
+      bannerHeader = "Services";
       break;
     case "contact":
-      bannerHeader = "Products";
+      bannerHeader = "Contact Us";
       break;
     default:
       bannerHeader = "Error";

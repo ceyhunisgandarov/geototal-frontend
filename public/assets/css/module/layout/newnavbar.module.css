@@ -6,12 +6,11 @@
   width: 100vw;
   height: 120px;
   z-index: 999;
-  font-family: Arial, Helvetica, sans-serif;
+font-family: "Fira Code", "Source Code Pro", "Consolas", "Menlo", "Monaco", "Courier New", monospace;
 }
 
-/* Scroll olduğunda eklenecek class */
 .scrolled {
-  background-color: white;
+  background-color: #fff;
   height: 70px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
@@ -20,27 +19,23 @@
 .scrolled .logoWrapper {
   width: 200px;
 }
-
 .scrolled .logo {
-  clip-path: none;
+  position: relative;
   background-color: transparent;
+  clip-path: none;
 }
-
 .scrolled .logoImage {
   width: 90%;
 }
-
-.scrolled .primaryMenu a {
-  color: black;
+.scrolled .linkMenu {
+  color: #000;
 }
-
 .scrolled .time {
   height: 0;
   opacity: 0;
   overflow: hidden;
   transition: all 0.3s ease;
 }
-
 .scrolled .logoShadow {
   display: none;
 }
@@ -53,12 +48,12 @@
 
 .logo {
   position: relative;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
   clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   z-index: 2;
 }
 
@@ -69,84 +64,60 @@
 
 .logoShadow {
   position: absolute;
-  bottom: 15px; /* biraz aşağı kaydır */
-  left: 25px; /* biraz sağa kaydır */
+  bottom: 15px;
+  left: 25px;
   width: 350px;
   height: 100%;
   clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  background-color: rgba(255, 255, 255, 0.6); /* gölge rengi */
+  background-color: rgba(255, 255, 255, 0.6);
   z-index: 2;
   pointer-events: none;
 }
 
 .right {
-  position: relative;
   flex: 1;
   height: 100%;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
-  position: relative;
+  margin-left: -50px;
   z-index: 1;
-  margin-left: -50px; /* buradaki değerle logonun eğimini ört */
 }
 
 .time {
-  position: relative;
-  width: 100%;
-  height: 25px;
-  background-color: black;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 100px;
+  width: 100%;
+  height: 25px;
+  background-color: #000;
+  color: #fff;
 }
 
 .time p {
+  font-size: 14px;
+  font-weight: 600;
   cursor: default;
 }
 
-.time p,
 .linkmail {
+  all: unset;
+  cursor: pointer;
+  color: #fff;
+  display: inline-block;
   font-size: 14px;
   font-weight: 600;
 }
 
-.linkmail p {
-  cursor: pointer;
-}
-
-.linkmail {
-  all: unset; /* Tüm stilleri sıfırlar */
-  cursor: pointer;
-  color: white;
-  display: inline-block;
-}
-
-.link {
-  font-size: 14px;
-  font-weight: 700;
-  width: 100%;
-  height: 100%;
-  padding: 16px 18px;
-  all: unset; /* Tüm stilleri sıfırlar */
-  cursor: pointer;
-  color: white;
-  display: inline-block;
-  text-transform: uppercase;
-}
-
 .menu {
-  position: relative;
-  width: 100%;
-  height: calc(100% - 25px);
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0);
-  overflow: visible; /* dropdown taşarsa görünsün */
+  width: 100%;
+  height: calc(100% - 25px);
+  background: transparent;
+  overflow: visible;
+  height: 100%;
 }
 
 .scrolled .menu {
@@ -154,71 +125,61 @@
 }
 
 .primaryMenu {
-  flex: 1; /* geri kalan tüm alanı al */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  position: relative; /* dropdown için zemin */
+  padding-inline: 1rem;
+  height: 100%;
 }
 
 .primaryMenu ul {
   display: flex;
-  gap: clamp(12px, 4vw, 48px);
+  gap: clamp(12px, 4vw, 24px);
   list-style: none;
   margin: 0;
   padding: 0;
-  position: relative;
 }
 
-.primaryMenu li {
-  position: relative;
-}
-
-.primaryMenu a {
-  color: rgb(255, 255, 255);
+.linkMenu {
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
   padding: 0.5rem 0.75rem;
-  display: block;
   white-space: nowrap;
-  cursor: pointer;
+  display: block;
   transition: box-shadow 0.5s ease-in-out;
+  text-transform: uppercase;
+  border-radius: 5px;
 }
 
-.primaryMenu a:hover {
-  box-shadow: 0 0 10px 2px rgba(107, 107, 107, 0.443);
-}
-
-.secondaryMenu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.linkMenu:hover {
+  background-color: #c3c3c333;
 }
 
 .languageContainer {
   position: relative;
   width: 100px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .dropdownLocales {
   position: absolute;
-  width: 40px;
-  padding: 5px 0;
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: rgb(189, 189, 189);
-  top: calc(50% + 20px);
-  left: calc(50% - 20px);
+  width: 40px;
+  padding: 5px 0;
+  background-color: #bdbdbd;
   border-radius: 8px;
-  z-index: 999;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
 }
 
 .flagContainer {
@@ -228,79 +189,25 @@
 .flag {
   width: 25px;
   height: 25px;
-  border: 1px solid rgb(0, 0, 0, 0);
+  border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
 }
 
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@media (max-width: 1200px) {
-  .navbar {
-    background-color: white;
-    height: 70px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .logoWrapper {
-    width: 200px;
-  }
-
-  .logo {
-    clip-path: none;
-    background-color: transparent;
-  }
-
-  .logoImage {
-    width: 90%;
-  }
-
-  .primaryMenu a {
-    color: black;
-  }
-
-  .time {
-    display: none;
-  }
-
-  .logoShadow {
-    display: none;
-  }
-
-  .menu {
-    height: 100%;
-  }
-}
-/******************************** HAMBURGER ********************************/
-
 .hamburgerContainer {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  font-size: inherit;
-  transition: all 0.3s ease;
-  cursor: pointer;
   display: none;
   align-items: center;
   justify-content: center;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
 }
 
 .hamburger {
   position: relative;
+  font-size: 2rem;
   width: 1em;
   height: 1em;
-  font-size: inherit;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  font-size: 2rem;
 }
 
 .hamburgerLine {
@@ -310,7 +217,7 @@
   height: 0.125em;
   border-radius: 0.125em;
   background: currentColor;
-  transition: inherit;
+  transition: all 0.2s ease;
 }
 
 .hamburgerLine:nth-child(1) {
@@ -318,8 +225,9 @@
 }
 .hamburger.open .hamburgerLine:nth-child(1) {
   top: 50%;
-  transform: translateY(-50%) rotateZ(-135deg);
+  transform: translateY(-50%) rotate(-135deg);
 }
+
 .hamburgerLine:nth-child(2) {
   top: 0.438em;
 }
@@ -327,6 +235,7 @@
   right: 50%;
   width: 0;
 }
+
 .hamburgerLine:nth-child(3) {
   top: 0.75em;
   width: 0.625em;
@@ -334,19 +243,16 @@
 .hamburger.open .hamburgerLine:nth-child(3) {
   top: 50%;
   width: 100%;
-  transform: translateY(-50%) rotateZ(135deg);
+  transform: translateY(-50%) rotate(135deg);
 }
-
-/* Hamburger varsayılan: gizli */
 
 .mobileMenuContainer {
   position: absolute;
-  right: -400px;
   top: 70px;
+  right: -400px;
   width: 300px;
   height: 100vh;
-  min-height: 100vh;
-  background: rgb(43, 42, 41);
+  background: #2b2a29;
   transition: right 0.5s ease-in-out;
   z-index: 999;
 }
@@ -361,42 +267,62 @@
 }
 
 .linkMobile {
-  all: unset; /* Tüm stilleri sıfırlar */
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  color: white;
+  all: unset;
+  color: #fff;
   display: inline-block;
-  padding: 16px 16px;
+  width: 100%;
+  padding: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 .menuButton {
-  color: white;
   font-size: 18px;
-  font-weight: 500;
-  margin: 8px 0;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  text-align: center;
   font-weight: bold;
-  border: none;
+  margin: 8px 0;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.3s ease-in-out;
 }
 
-/* Hover efekti istersen */
 .menuButton:hover {
-  background-color: rgb(228, 29, 45);
+  background: rgb(228, 29, 45);
 }
 
-/* Media query: 1000px altı görünüm */
+@media (max-width: 1200px) {
+  .navbar {
+    background: #fff;
+    height: 70px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .logoWrapper {
+    width: 200px;
+  }
+  .logo {
+    background: transparent;
+    clip-path: none;
+  }
+  .logoImage {
+    width: 90%;
+  }
+  .primaryMenu a {
+    color: #000;
+  }
+  .time,
+  .logoShadow {
+    display: none;
+  }
+}
+
 @media (max-width: 1000px) {
   .primaryMenu {
     display: none;
   }
-
   .hamburgerContainer {
     display: flex;
   }
-
   .languageContainer {
     display: none;
   }
