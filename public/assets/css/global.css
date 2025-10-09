@@ -8,13 +8,26 @@ body, html {
   color: #000;
 }
 
+/* Tüm sayfayı ortalamak için container */
+.wrapper {
+  display: flex;
+  justify-content: center; /* yatay ortala */
+  align-items: center;     /* dikey ortala */
+  min-height: 100vh;       /* ekranın tamamını kapla */
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;  /* içeriğin dikey akışı */
+  text-align: center;      /* metinleri ortala */
+}
 
 .wrapper {
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 15px;
+  width: 100vw;
   box-sizing: border-box;
   overflow: visible;
-  position: relative; /* sticky için iyi olur */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
 }

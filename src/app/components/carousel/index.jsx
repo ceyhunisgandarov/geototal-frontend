@@ -1,117 +1,85 @@
 "use client";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import style from "../../../../public/assets/css/module/carousel/carousel.module.css";
-import { useEffect, useState, useRef } from "react";
+import CarouselService from "@/app/services/CarouselService";
+import { useTranslations } from "next-intl";
+import Banner from "../newbanner";
 
-const carouselSlides = [
-  { id: 1, text: "Drone Works", img: "/images/drone-works.jpeg" },
-  { id: 2, text: "Geodesy and Topography Works", img: "/images/geodesy.jpg" },
-  { id: 3, text: "Mapping and 3D Modelling", img: "/images/mapping.jpg" },
-  { id: 4, text: "Monitoring and Control", img: "/images/monitoring.png" },
+const carouselSlidesLocale = [
+  {
+    id: 1,
+    title: "Drone Works",
+    imageLink: "/images/drone-works.jpeg",
+  },
+  {
+    id: 2,
+    title: "Geodesy and Topography Works",
+    imageLink: "/images/geodesy.jpg",
+  },
+  {
+    id: 3,
+    title: "Mapping and 3D Modelling",
+    imageLink: "/images/mapping.jpg",
+  },
+  {
+    id: 4,
+    title: "Monitoring and Control",
+    imageLink: "/images/monitoring.png",
+  },
 ];
 
 function Carousel() {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
-  const slideRefs = useRef([]);
+  const [carousel, setCarousel] = useState([]);
+  const [carouselIndex, setCarouselIndex] = useState(0); // index ile otomatik ilerleme için
+  const t = useTranslations("Carousel");
 
-  // Typewriter effect
   useEffect(() => {
-    if (charIndex === carouselSlides[carouselIndex].text.length) {
-      const timeout = setTimeout(() => {
-        setCarouselIndex((prev) => (prev + 1) % carouselSlides.length);
-        setCharIndex(0);
-      }, 3000);
-      return () => clearTimeout(timeout);
-    }
-
-    const delay = charIndex === 0 ? 500 : 50;
-
-    const timeout = setTimeout(() => {
-      setDisplayedText(
-        carouselSlides[carouselIndex].text.slice(0, charIndex + 1)
-      );
-      setCharIndex((prev) => prev + 1);
-    }, delay);
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, carouselIndex]);
-
-  // Intersection Observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(style.active);
-          } else {
-            entry.target.classList.remove(style.active);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    slideRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    CarouselService.getCarouselData()
+      .then((response) => {
+        if (response?.data?.status?.code === 200)
+          setCarousel(response.data.response);
+        else setCarousel(carouselSlidesLocale);
+      })
+      .catch(() => setCarousel(carouselSlidesLocale));
   }, []);
 
-  const nextSlide = () => {
-    setCarouselIndex((prev) =>
-      prev < carouselSlides.length - 1 ? prev + 1 : 0
-    );
-    setCharIndex(0);
-    setDisplayedText("");
-  };
+  useEffect(() => {
+    if (carousel.length === 0) return;
+    const timer = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % carousel.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, [carousel]);
 
-  const prevSlide = () => {
-    setCarouselIndex((prev) =>
-      prev > 0 ? prev - 1 : carouselSlides.length - 1
-    );
-    setCharIndex(0);
-    setDisplayedText("");
-  };
+  const nextSlide = () =>
+    setCarouselIndex((prev) => (prev + 1) % carousel.length);
+  const prevSlide = () =>
+    setCarouselIndex((prev) => (prev - 1 + carousel.length) % carousel.length);
+
+  // aktif slide objesini al
+  const currentSlide = carousel[carouselIndex];
 
   return (
     <div className={style.container}>
       <div className={style.carouselScreen}>
         <div className={style.buttonNext} onClick={nextSlide}>
-          &#xf105;
+          &#8680;
         </div>
         <div className={style.buttonPrev} onClick={prevSlide}>
-          &#xf104;
+          <span>&#8678;</span>
         </div>
-        <div
-          className={style.carouselBody}
-          style={{
-            transform: `translateX(-${carouselIndex * 25}%)`,
-            transition: "transform 0.5s ease-in-out",
-          }}
-        >
-          {carouselSlides.map((slide, i) => (
-            <div
-              key={slide.id}
-              ref={(el) => (slideRefs.current[i] = el)}
-              className={style.carouselStep}
-            >
-              <div className={style.imageWrapper}>
-                <Image
-                  src={slide.img}
-                  alt={slide.text}
-                  fill
-                  priority
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className={style.overlay}>
-          <p className={style.text}>{displayedText}</p>
+
+        <div className={style.carouselBody}>
+          <div className={style.carouselBody}>
+            {carousel.map((slide, i) => (
+              <Banner
+                key={slide.id}
+                carousel={slide}
+                t={t}
+                active={i === carouselIndex} // sadece aktif fade
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -6,7 +6,8 @@
   width: 100vw;
   height: 120px;
   z-index: 999;
-font-family: "Fira Code", "Source Code Pro", "Consolas", "Menlo", "Monaco", "Courier New", monospace;
+  font-family: "Fira Code", "Source Code Pro", "Consolas", "Menlo", "Monaco",
+    "Courier New", monospace;
 }
 
 .scrolled {
@@ -60,6 +61,7 @@ font-family: "Fira Code", "Source Code Pro", "Consolas", "Menlo", "Monaco", "Cou
 .logoImage {
   width: 70%;
   height: auto;
+  filter: drop-shadow(1px 1px 0 #0000002b)drop-shadow(2px 2px 0 #0000002b)drop-shadow(3px 3px 0 #0000002b)drop-shadow(4px 4px 0 #0000002b);
 }
 
 .logoShadow {

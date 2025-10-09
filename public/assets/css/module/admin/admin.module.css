@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-width: 1440px;
+    min-height: 500px;
+}
+
+.text {
+    text-transform: capitalize;
+    width: 200px;
+    height: 70px;
+}
+
+.button {
+    width: 200px;
+    height: 70px;
+}

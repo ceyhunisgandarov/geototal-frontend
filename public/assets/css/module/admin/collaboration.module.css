@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  gap: 10px;
+  width: calc(100% - 20px);
+  margin: 10px;
+  background-color: aqua;
+}
+
+.logoBox {
+  margin: 10px;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: #f4f4f4;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.logoBox:hover .actions {
+  opacity: 1;
+}
+
+.actions button {
+  padding: 6px 10px;
+  border: none;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plus {
+  font-size: 32px;
+  font-weight: bold;
+  color: #555;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.modalActions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

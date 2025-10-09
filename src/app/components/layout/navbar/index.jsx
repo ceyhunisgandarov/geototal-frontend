@@ -1,4 +1,5 @@
 "use client";
+import LogoService from "@/app/services/LogoService";
 import style from "../../../../../public/assets/css/module/layout/navbar.module.css";
 import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
@@ -10,14 +11,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
+
 function Navbar({ page, locale }) {
   const t = useTranslations("Navbar");
+
+  const [dateTime, setDateTime] = useState(null); // SSR sırasında null
 
   const [flag, setFlag] = useState(azflag);
   const [languageMenu, setLanguageMenu] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [companyLogo, setCompanyLogo] = useState(logo);
 
   const dropdown = () => setLanguageMenu((prev) => !prev);
+
+  useEffect(() => {
+    LogoService.getLogo()
+      .then((response) => {
+        if (response.data.status.code === 200) {
+          setCompanyLogo(
+            BASE_IMAGE_URL +
+              response.data.response.url
+          );
+        } else {
+          setCompanyLogo(logo);
+        }
+      })
+      .catch((err) => {
+        setCompanyLogo(logo);
+      });
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,6 +48,15 @@ function Navbar({ page, locale }) {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    setDateTime(new Date()); // Client-side başlat
+    const interval = setInterval(() => {
+      setDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -37,7 +69,15 @@ function Navbar({ page, locale }) {
   return (
     <div className={style.navbar}>
       <div className={style.time}>
-        <div className={style.date}>13.08.2025</div>
+        <div>
+          {dateTime ? (
+            <p>
+              {dateTime.toLocaleDateString()}, {dateTime.toLocaleTimeString()}
+            </p>
+          ) : (
+            <p>Loading...</p> // SSR sırasında veya client yüklenene kadar göster
+          )}
+        </div>
         <div className={style.email}>office@gmail.com</div>
       </div>
 
@@ -45,7 +85,7 @@ function Navbar({ page, locale }) {
         <div className={style.logoContainer}>
           <Link href={`/${t("locale")}/`} className={style.logoLink}>
             <Image
-              src={logo}
+              src={companyLogo}
               width={300}
               height={300}
               className={style.logo}
@@ -57,16 +97,17 @@ function Navbar({ page, locale }) {
         <div className={style.menuContainer}>
           <ul className={style.menuList}>
             <li>
-              <Link className={style.menuLink} href={`/${t("locale")}/`} style={{textTransform: "uppercase"}}>
-                Home Page
+              <Link
+                className={style.menuLink}
+                href={`/${t("locale")}/`}
+                style={{ textTransform: "uppercase" }}
+              >
+                {t("home")}
               </Link>
             </li>
             <li>
-              <Link
-                className={style.menuLink}
-                href={`/${t("locale")}/aboutus`}
-              >
-                About Us
+              <Link className={style.menuLink} href={`/${t("locale")}/aboutus`}>
+                {t("aboutus")}
               </Link>
             </li>
             <li>
@@ -74,7 +115,7 @@ function Navbar({ page, locale }) {
                 className={style.menuLink}
                 href={`/${t("locale")}/products`}
               >
-                Products
+                {t("products")}
               </Link>
             </li>
             <li>
@@ -82,15 +123,12 @@ function Navbar({ page, locale }) {
                 className={style.menuLink}
                 href={`/${t("locale")}/services`}
               >
-                Services
+                {t("services")}
               </Link>
             </li>
             <li>
-              <Link
-                className={style.menuLink}
-                href={`/${t("locale")}/contact`}
-              >
-                Contact Us
+              <Link className={style.menuLink} href={`/${t("locale")}/contact`}>
+                {t("contactus")}
               </Link>
             </li>
           </ul>
@@ -164,7 +202,7 @@ function Navbar({ page, locale }) {
           <ul className={style.mobileMenuList}>
             <li className={style.mobileMenuItem}>
               <Link href={`/${t("locale")}/`} className={style.mobileLink}>
-                Home Page
+                {t("home")}
               </Link>
             </li>
             <li className={style.mobileMenuItem}>
@@ -172,7 +210,7 @@ function Navbar({ page, locale }) {
                 href={`/${t("locale")}/aboutus`}
                 className={style.mobileLink}
               >
-                About Us
+                {t("aboutus")}
               </Link>
             </li>
             <li className={style.mobileMenuItem}>
@@ -180,7 +218,7 @@ function Navbar({ page, locale }) {
                 href={`/${t("locale")}/products`}
                 className={style.mobileLink}
               >
-                Products
+                {t("products")}
               </Link>
             </li>
             <li className={style.mobileMenuItem}>
@@ -188,7 +226,7 @@ function Navbar({ page, locale }) {
                 href={`/${t("locale")}/services`}
                 className={style.mobileLink}
               >
-                Services
+                {t("services")}
               </Link>
             </li>
             <li className={style.mobileMenuItem}>
@@ -196,7 +234,7 @@ function Navbar({ page, locale }) {
                 href={`/${t("locale")}/contact`}
                 className={style.mobileLink}
               >
-                Contact Us
+                {t("contactus")}
               </Link>
             </li>
           </ul>

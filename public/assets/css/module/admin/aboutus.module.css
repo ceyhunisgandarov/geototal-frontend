@@ -1,0 +1,152 @@
+.container {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.subContainer {
+  flex: 1 1 45%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.imageWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.modalContent .imageButton {
+  display: block;
+  padding: 8px 16px;
+  background-color: #f30000; /* mavi button rengi */
+  color: #fff; /* yazı rengi */
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: .25rem auto;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.image {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  height: 80%;
+  width: auto;
+}
+
+.itemsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.itemContainer {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  background: #fff;
+}
+
+.locale {
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.mainTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.secondaryTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin: 2px 0;
+}
+
+.description {
+  font-size: 13px;
+  color: #444;
+}
+
+.container button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #0070f3;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.container button:hover {
+  background: #0056c7;
+}
+
+.container button:last-of-type {
+  background: #e63946;
+}
+
+.container button:last-of-type:hover {
+  background: #c62828;
+}
+
+/* ---------- Modal Styles ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.modalContent {
+  position: relative;
+  margin-top: 50px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  min-width: 400px;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent h2 {
+  margin-bottom: 16px;
+}
+
+.modalContent input,
+.modalContent textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Delete confirm text ortalama */
+.modalContent p {
+  font-size: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}

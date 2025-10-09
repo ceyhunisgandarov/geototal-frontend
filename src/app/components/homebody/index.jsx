@@ -2,12 +2,15 @@
 import { useEffect, useRef, useState } from "react";
 import style from "../../../../public/assets/css/module/homebody/homebody.module.css";
 import Card from "../elements/card";
+import ProductService from "@/app/services/ProductService";
 
 const more = {
   id: 999,
   brand: "Get More",
   module: "",
 };
+
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 export default function HomeBody() {
   const [products, setProducts] = useState([]);
@@ -22,6 +25,10 @@ export default function HomeBody() {
     else if (width <= 900) setCardCount(5);
     else setCardCount(7);
   };
+
+  const refreshProduct = () => {
+    ProductService.getProducts()
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,19 +57,6 @@ export default function HomeBody() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (!contentRef.current) return;
-
-  //   const observer = new ResizeObserver(() => {
-  //     if (contentRef.current) {
-  //       setHeight(`${contentRef.current.offsetHeight}px`);
-  //     }
-  //   });
-
-  //   observer.observe(contentRef.current);
-
-  //   return () => observer.disconnect();
-  // }, []);
 
   return (
     <div className={style.wrapper}>

@@ -5,13 +5,12 @@ import Image from "next/image";
 import style from "../../../../public/assets/css/module/test/test.module.css";
 
 const categories = [
-  { name: "Combi", icon: "/images/ts-icon.png", tag: "TS" },
-  { name: "Boiler", icon: "/images/ts-icon.png", tag: "GNSS" },
-  { name: "Pump", icon: "/images/ts-icon.png", tag: "AL" },
-  { name: "Chiller", icon: "/images/ts-icon.png", tag: "ACC" },
-  { name: "AHU", icon: "/images/ts-icon.png", tag: "BAT" },
-  { name: "Spare Parts", icon: "/images/ts-icon.png", tag: "SOFT" },
-  { name: "Extra", icon: "/images/ts-icon.png", tag: "CONT" },
+  { name: "TotalStation", icon: "/images/categories/ts-icon.png", category: "TOTAL_STATION" },
+  { name: "GNSS", icon: "/images/categories/gnss-icon.png", category: "GNSS" },
+  { name: "Auto Level", icon: "/images/categories/al-icon.png", category: "AUTO_LEVEL" },
+  { name: "Controller", icon: "/images/categories/controller-icon.png", category: "CONTROLLER" },
+  { name: "Accesories", icon: "/images/categories/acc-icon.png", category: "ACCESSORIES" },
+  { name: "Software", icon: "/images/categories/soft-icon.png", category: "SOFTWARE" },
 ];
 
 const CategoryCarousel = ({ onSelectedCategory }) => {
@@ -20,7 +19,7 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
   const [translateX, setTranslateX] = useState(0);
   const [visibleCards, setVisibleCards] = useState(5);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeTag, setActiveTag] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   const updateCardWidth = () => {
     if (!carouselRef.current) return;
@@ -62,9 +61,9 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
     trackMouse: true,
   });
 
-  const handleClick = (tag) => {
-    setActiveTag(tag); // aktif efekti için state
-    onSelectedCategory && onSelectedCategory(tag); // callback
+  const handleClick = (category) => {
+    setActiveCategory(category); // aktif efekti için state
+    onSelectedCategory && onSelectedCategory(category); // callback
   };
 
   return (
@@ -86,12 +85,12 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
             <div
               key={i}
               className={`${style.categoryCard} ${
-                activeTag === cat.tag ? style.active : ""
+                activeCategory === cat.category ? style.active : ""
               }`}
               style={{ minWidth: `${cardWidth}px` }}
-              onClick={() => handleClick(cat.tag)}
+              onClick={() => handleClick(cat.category)}
             >
-              <Image src={cat.icon} alt={cat.name} width={80} height={80} />
+              <Image className={style.categoryIcon} src={cat.icon} alt={cat.name} width={80} height={80} />
               <p>{cat.name}</p>
             </div>
           ))}

@@ -1,0 +1,84 @@
+.contactForm {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.contactForm label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.contactForm input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.listInputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.listInputContainer input {
+  flex: 1;
+}
+
+.contactForm button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.contactForm button:hover {
+  opacity: 0.9;
+}
+
+.addButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.removeButton {
+  background-color: #e53935;
+  color: white;
+}
+
+.editButton {
+  background-color: #1976d2;
+  color: white;
+}
+
+.saveButton {
+  background-color: #f57c00;
+  color: white;
+}
+
+/* Mobil uyumlu */
+@media (max-width: 600px) {
+  .listInputContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .listInputContainer button {
+    width: 100%;
+  }
+}

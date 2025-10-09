@@ -1,18 +1,73 @@
 {
   "Home": {
-    "locale": "az",
-    "welcome": "Xos gelmisiniz"
+    "locale": "az"
   },
 
-  "Menu": {
-    "locale": "az"
+  "Carousel": {
+    "locale": "az",
+    "more": "Daha çox"
   },
 
   "Navbar": {
     "locale": "az",
+    "home": "əsas səhİfə",
     "aboutus": "Haqqımızda",
     "products": "məhsullar",
-    "services": "xidmətlər",
+    "services": "xİdmətlər",
     "contactus": "əlaqə"
+  },
+
+  "HomePage": {
+    "locale": "az",
+    "service": "xİdmətlər",
+    "product": "məhsullar",
+    "projects": "İştİrak etdİyİmİz layİhələr"
+  },
+
+  "AboutUs": {
+    "locale": "az",
+    "members": "Komandamız"
+  },
+
+  "Category": {
+    "locale": "az",
+    "ts": "Totalstation",
+    "gnss": "GNSS",
+    "level": "Nivelir",
+    "controller": "Kontroller",
+    "accesories": "Aksesuarlar",
+    "software": "Proqram Təmİnatı"
+  },
+
+  "Banner": {
+    "locale": "az",
+    "about": "Haqqımızda",
+    "products": "Məhsullar",
+    "service": "Xİdmətlər",
+    "contact": "BİZİMLƏ Əlaqə",
+    "project": "Layihələr",
+    "certificate": "Sertifikatlar"
+  },
+
+  "Contact": {
+    "locale": "az",
+    "title": "Bizimlə Əlaqə",
+    "sendMessage": "Bizə mesaj göndərin",
+    "header": "Formu dolduraraq sizinlə əlaqə yaratmağımızı təmin edə bilərsiniz",
+    "location": "Lokasiya",
+    "phones": "Telefon nömrələrimiz",
+    "emails": "Elektron ünvanlarımız",
+    "firstName": "Adınız",
+    "lastName": "Soyadınız",
+    "email": "Elektron Ünvanınız",
+    "phone": "Telefon nömrəniz",
+    "message": "Mesajınız",
+    "send": "Göndər"
+  },
+
+  "NotFound": {
+    "title": "Səhifə tapılmadı",
+    "description": "Üzr istəyirik, axtardığınız səhifə mövcud deyil.",
+    "goHome": "Ana səhifəyə qayıt"
   }
 }

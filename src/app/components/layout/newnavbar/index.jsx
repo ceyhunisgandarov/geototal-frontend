@@ -10,6 +10,9 @@ import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
+import LogoService from "@/app/services/LogoService";
+
+const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 function NewNavbar({ page, locale }) {
   const t = useTranslations("Navbar");
@@ -18,8 +21,37 @@ function NewNavbar({ page, locale }) {
   const [languageMenu, setLanguageMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dateTime, setDateTime] = useState(null); // SSR sırasında null
 
   const toggleDropdown = () => setLanguageMenu((prev) => !prev);
+
+  const [companyLogo, setCompanyLogo] = useState(logo);
+
+
+  useEffect(() => {
+    LogoService.getLogo()
+      .then((response) => {
+        if (response.data.status.code === 200) {
+          setCompanyLogo(
+            BASE_IMAGE_URL + response.data.response.url
+          );
+        } else {
+          setCompanyLogo(logo);
+        }
+      })
+      .catch((err) => {
+        setCompanyLogo(logo);
+      });
+  }, []);
+
+  useEffect(() => {
+    setDateTime(new Date()); // Client-side başlat
+    const interval = setInterval(() => {
+      setDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,7 +80,7 @@ function NewNavbar({ page, locale }) {
         <span className={style.logoShadow}></span>
         <Link href={`/${t("locale")}/`} className={style.logo}>
           <Image
-            src={logo}
+            src={companyLogo}
             alt="logo.jpg"
             width={3700}
             height={1200}
@@ -60,7 +92,15 @@ function NewNavbar({ page, locale }) {
 
       <div className={style.right}>
         <div className={style.time}>
-          <p>14 JUL 2025, 14:24</p>
+          <div>
+            {dateTime ? (
+              <p>
+                {dateTime.toLocaleDateString()}, {dateTime.toLocaleTimeString()}
+              </p>
+            ) : (
+              <p>Loading...</p> // SSR sırasında veya client yüklenene kadar göster
+            )}
+          </div>
           <Link href="mailto:office@geototal.az" className={style.linkmail}>
             <p>office@geototal.az</p>
           </Link>
@@ -70,19 +110,41 @@ function NewNavbar({ page, locale }) {
           <div className={style.primaryMenu}>
             <ul>
               <li>
-                <Link href={`/${t("locale")}/`} className={style.linkMenu}>Home Page</Link>
+                <Link href={`/${t("locale")}/`} className={style.linkMenu}>
+                  {t("home")}
+                </Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/aboutus`} className={style.linkMenu}>About Us</Link>
+                <Link
+                  href={`/${t("locale")}/aboutus`}
+                  className={style.linkMenu}
+                >
+                  {t("aboutus")}
+                </Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/products`} className={style.linkMenu}>Products</Link>
+                <Link
+                  href={`/${t("locale")}/products`}
+                  className={style.linkMenu}
+                >
+                  {t("products")}
+                </Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/services`} className={style.linkMenu}>Services</Link>
+                <Link
+                  href={`/${t("locale")}/services`}
+                  className={style.linkMenu}
+                >
+                  {t("services")}
+                </Link>
               </li>
               <li>
-                <Link href={`/${t("locale")}/contact`} className={style.linkMenu}>Contact Us</Link>
+                <Link
+                  href={`/${t("locale")}/contact`}
+                  className={style.linkMenu}
+                >
+                  {t("contactus")}
+                </Link>
               </li>
             </ul>
           </div>
@@ -131,12 +193,12 @@ function NewNavbar({ page, locale }) {
         <ul className={style.menuList}>
           <li className={style.menuButton}>
             <Link href={`/${t("locale")}/`} className={style.linkMobile}>
-              Home Page
+              {t("home")}
             </Link>
           </li>
           <li className={style.menuButton}>
             <Link href={`/${t("locale")}/aboutus`} className={style.linkMobile}>
-              About Us
+              {t("aboutus")}
             </Link>
           </li>
           <li className={style.menuButton}>
@@ -144,7 +206,7 @@ function NewNavbar({ page, locale }) {
               href={`/${t("locale")}/products`}
               className={style.linkMobile}
             >
-              Products
+              {t("products")}
             </Link>
           </li>
           <li className={style.menuButton}>
@@ -152,12 +214,12 @@ function NewNavbar({ page, locale }) {
               href={`/${t("locale")}/services`}
               className={style.linkMobile}
             >
-              Services
+              {t("services")}
             </Link>
           </li>
           <li className={style.menuButton}>
             <Link href={`/${t("locale")}/contact`} className={style.linkMobile}>
-              Contact Us
+              {t("contactus")}
             </Link>
           </li>
         </ul>

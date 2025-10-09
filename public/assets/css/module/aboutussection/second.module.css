@@ -1,10 +1,11 @@
 .whySection {
+  width: 96%;
   display: flex;
   align-items: center;
   gap: 40px;
+  padding-inline: 2%;
   max-width: 1440px;
   margin: 0 auto; /* Ortalamak için */
-  padding-inline: 100px; /* Sağ ve sol boşluk */
   padding-block: 80px; /* Üst ve alt boşluk */
   background-color: #f6f6f6;
 }
@@ -29,7 +30,7 @@
 .projectCount {
   position: absolute;
   bottom: -20px;
-  left: 20px;
+  right: 20px;
   background: #ff4d30;
   color: white;
   padding: 20px;
@@ -42,6 +43,7 @@
 }
 
 .aboutText h4 {
+  text-transform: uppercase;
   color: #ff4d30;
   font-weight: bold;
   margin-bottom: 10px;
@@ -124,5 +126,58 @@
 
   .servicesGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* === Skeleton Styles === */
+.skeletonImage {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonProject {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  width: 120px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonText {
+  height: 18px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonText.short {
+  width: 30%;
+}
+
+.skeletonText.medium {
+  width: 60%;
+}
+
+.skeletonText.long {
+  width: 90%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

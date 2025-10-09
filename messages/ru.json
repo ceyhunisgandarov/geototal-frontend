@@ -1,18 +1,73 @@
 {
   "Home": {
-    "locale": "ru",
-    "welcome": "Добро пожаловать"
+    "locale": "ru"
   },
 
-  "Menu": {
-    "locale": "ru"
+  "Carousel": {
+    "locale": "ru",
+      "more": "Более"
   },
 
   "Navbar": {
     "locale": "ru",
+    "home": "Главная",
     "aboutus": "О нас",
     "products": "Продукция",
-    "services": "услуги",
-    "contactus": "связь"
+    "services": "Услуги",
+    "contactus": "Контакты"
+  },
+
+  "HomePage": {
+    "locale": "ru",
+    "service": "Услуги",
+    "product": "Продукты",
+    "projects": "Наши проекты"
+  },
+
+  "AboutUs": {
+    "locale": "ru",
+    "members": "Наша команда"
+  },
+
+  "Category": {
+    "locale": "ru",
+    "ts": "Тотальная станция",
+    "gnss": "GNSS",
+    "level": "Нивелир",
+    "controller": "Контроллер",
+    "accesories": "Аксессуары",
+    "software": "Программное обеспечение"
+  },
+
+  "Banner": {
+    "locale": "ru",
+    "about": "О нас",
+    "products": "Продукция",
+    "service": "Услуги",
+    "contact": "Связаться с нами",
+    "project": "Проекты",
+    "certificate": "Сертификаты"
+  },
+
+  "Contact": {
+    "locale": "ru",
+    "title": "Связаться с нами",
+    "sendMessage": "Отправьте нам сообщение",
+    "header": "Заполните форму, чтобы мы могли связаться с вами",
+    "location": "Локация",
+    "phones": "Наши телефоны",
+    "emails": "Наши электронные адреса",
+    "firstName": "Ваше имя",
+    "lastName": "Ваша фамилия",
+    "email": "Ваш email",
+    "phone": "Ваш номер телефона",
+    "message": "Ваше сообщение",
+    "send": "Отправить"
+  },
+
+  "NotFound": {
+    "title": "Страница не найдена",
+    "description": "Извините, страница, которую вы ищете, не существует.",
+    "goHome": "На главную"
   }
 }

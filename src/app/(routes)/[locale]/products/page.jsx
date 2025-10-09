@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 
 function ProductsPage() {
 
-  const t = useTranslations("Menu");
+  const t = useTranslations("Navbar");
 
   return (
     <div>

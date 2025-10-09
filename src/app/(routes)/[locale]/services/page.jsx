@@ -2,7 +2,7 @@ import ServicesContainer from "@/app/containers/services";
 import { useTranslations } from "next-intl";
 
 function ServicesPage() {
-  const t = useTranslations("Menu");
+  const t = useTranslations("Navbar");
 
   return (
     <div>

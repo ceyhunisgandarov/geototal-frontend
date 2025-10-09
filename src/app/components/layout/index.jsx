@@ -5,7 +5,7 @@ import TimeSide from "../time";
 import NewNavbar from "./newnavbar";
 
 function Layout({ children, page, locale }) {
-
+  
   return (
     <>
       <NewNavbar page={page} locale={locale} />

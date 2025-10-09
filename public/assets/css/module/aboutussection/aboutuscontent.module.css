@@ -1,10 +1,11 @@
 .aboutSection {
+  width: 96%;
   display: flex;
   align-items: center;
   gap: 40px;
   max-width: 1440px;
   margin: 0 auto; /* Ortalamak için */
-  padding-inline: 100px; /* Sağ ve sol boşluk */
+  padding-inline: 2%; /* Sağ ve sol boşluk */
   padding-block: 80px; /* Üst ve alt boşluk */
 }
 
@@ -19,9 +20,8 @@
 
 .aboutImage {
   border-radius: 8px;
-  width: 100%;
+  width: 500px;
   height: auto;
-  max-width: 700px;
   border: solid 1px black;
 }
 
@@ -41,6 +41,7 @@
 }
 
 .aboutText h4 {
+  text-transform: uppercase;
   color: #ff4d30;
   font-weight: bold;
   margin-bottom: 10px;
@@ -125,3 +126,59 @@
     grid-template-columns: 1fr;
   }
 }
+
+.skeletonImage {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonProject {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  width: 120px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.aboutSection.skeleton {
+  flex-direction: row-reverse;
+}
+
+.skeletonText {
+  height: 18px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonText.short {
+  width: 30%;
+}
+
+.skeletonText.medium {
+  width: 60%;
+}
+
+.skeletonText.long {
+  width: 90%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+

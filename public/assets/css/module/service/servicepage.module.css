@@ -1,15 +1,111 @@
-.container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Her section genel yapısı */
+.section {
+  position: relative;
+  max-width: 1440px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  padding: 100px 80px;
+  overflow: hidden;
+}
+
+/* Ortadan geçen çizgi */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+}
+
+/* Arka plan renkleri */
+.dark {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1d1d1d;
+  color: #fff;
+}
+
+.gray {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4c4c4c;
+  color: #fff;
+}
+
+/* Sol ve sağ bölümler */
+.left,
+.right {
+  flex: 1;
+  z-index: 1; /* çizginin altında kalmasın */
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Başlık ve metin */
+.left h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.left p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+/* 🔥 Görsel alanı - orantılı sabit ölçü */
+.image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* oran sabit */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Next.js Image için */
+.image :global(img) {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .section {
     flex-direction: column;
+    text-align: center;
+  }
+  .reverse {
+    flex-direction: column;
+  }
+  .section::before {
+    display: none;
+  }
+  .image {
+    scale: 1.5;
+  }
 }
-
-.body {
-    width: 100%;
-    max-width: 1440px;
-    height: auto;
-    min-height: 500px;
-}
-

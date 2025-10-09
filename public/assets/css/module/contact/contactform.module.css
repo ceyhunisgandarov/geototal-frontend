@@ -1,5 +1,10 @@
 .wrapper {
   background: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
@@ -135,7 +140,7 @@
   margin-top: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .container {
     flex-direction: column;
     padding: 40px 20px;
@@ -156,4 +161,23 @@
   .row {
     flex-direction: column;
   }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #f0f0f0;
+  }
+  50% {
+    background-color: #e0e0e0;
+  }
+  100% {
+    background-color: #f0f0f0;
+  }
+}
+
+.skeletonBox {
+  height: 80px;
+  border-radius: 12px;
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+  background-color: #eee;
 }

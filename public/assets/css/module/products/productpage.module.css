@@ -3,6 +3,9 @@
   margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* container içeriği ortalar */
 }
 
 .title2 {
@@ -19,14 +22,11 @@
 
 .grid2 {
   display: grid;
-  gap: 30px;
-  grid-template-columns: repeat(2, 1fr); /* default 2 kolon */
-}
-
-@media (min-width: 600px) {
-  .grid2 {
-    grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
-  }
+  gap: 30px; /* yatay ve dikey boşluk */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center; /* her grid item’ı ortalar */
+  width: 100%;
+  max-width: 1200px; /* geniş ekranlarda container taşmasın */
 }
 
 .card2 {
@@ -36,25 +36,36 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-in-out;
   text-align: center;
-
-  /* Link içerisindeki default stil */
   text-decoration: none;
   color: inherit;
-  display: block;
-  user-select: none; /* text seçimi engelle */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* grid içindeki minmax ile uyumlu */
+  max-width: 300px; /* büyük ekranlarda çok geniş olmasın */
+  box-sizing: border-box; /* padding taşmayı engeller */
 }
 
 .card2:hover {
   transform: translateY(-5px);
-  color: inherit; /* hover’da renk değişmesin */
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* kare şeklinde */
+  margin-bottom: 15px;
 }
 
 .image2 {
-  width: 100%;
-  height: 220px;
   object-fit: contain;
   border-radius: 8px;
-  margin-bottom: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .productName {
@@ -82,4 +93,72 @@
 
 .btn:hover {
   background: #f4f4f4;
+}
+
+/* Card Skeleton */
+.cardSkeleton {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.imageSkeleton {
+  width: 100%;
+  padding-top: 100%; /* kare şeklinde */
+  background: #ddd;
+  border-radius: 8px;
+  animation: pulse 1.5s infinite;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.textSkeleton {
+  width: 100%;
+}
+
+.skelLine {
+  width: 100%;
+  height: 16px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+.skelLineShort {
+  width: 60%;
+  height: 16px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+.skelButton {
+  width: 80px;
+  height: 30px;
+  background: #ddd;
+  border-radius: 20px;
+  animation: pulse 1.5s infinite;
+  margin-top: 10px;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    background-color: #eee;
+  }
+  50% {
+    background-color: #ddd;
+  }
+  100% {
+    background-color: #eee;
+  }
 }

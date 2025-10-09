@@ -1,18 +1,73 @@
 {
   "Home": {
-    "locale": "en",
-    "welcome": "Welcome"
+    "locale": "en"
   },
 
-  "Menu": {
-    "locale": "en"
+  "Carousel": {
+    "locale": "en",
+    "more": "More"
   },
 
   "Navbar": {
     "locale": "en",
-    "aboutus": "about us",
-    "products": "products",
-    "services": "services",
-    "contactus": "contact us"
+    "home": "Home",
+    "aboutus": "About Us",
+    "products": "Products",
+    "services": "Services",
+    "contactus": "Contact Us"
+  },
+
+  "HomePage": {
+    "locale": "en",
+    "service": "Services",
+    "product": "Products",
+    "projects": "Our Projects"
+  },
+
+  "AboutUs": {
+    "locale": "en",
+    "members": "Our Team"
+  },
+
+  "Category": {
+    "locale": "en",
+    "ts": "Total Station",
+    "gnss": "GNSS",
+    "level": "Level",
+    "controller": "Controller",
+    "accesories": "Accessories",
+    "software": "Software"
+  },
+
+  "Banner": {
+    "locale": "en",
+    "about": "About Us",
+    "products": "Products",
+    "service": "Services",
+    "contact": "Contact Us",
+    "project": "Projects",
+    "certificate": "Certificates"
+  },
+
+  "Contact": {
+    "locale": "en",
+    "title": "Get in touch",
+    "sendMessage": "Send us a message",
+    "header": "Fill out the form to let us contact you",
+    "location": "Location",
+    "phones": "Phone Numbers",
+    "emails": "Email Addresses",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Your Email",
+    "phone": "Your Phone Number",
+    "message": "Your Message",
+    "send": "Send"
+  },
+
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "goHome": "Go Home"
   }
 }

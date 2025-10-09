@@ -1,11 +1,12 @@
 .teamSection {
+  width: 90%;
   text-align: center;
   margin: 40px auto;
-  padding: 0 20px;
   max-width: 1440px;
 }
 
 .teamGrid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* default 4 kolon */
   gap: 30px;
@@ -26,6 +27,11 @@
   }
 }
 
+.email {
+  text-decoration: none;
+  color: inherit;
+}
+
 .teamCard {
   background: #f8f8f8;
   padding: 20px;
@@ -44,4 +50,49 @@
   aspect-ratio: 1/1; /* kare resim garantisi */
   object-fit: cover; /* resmi taşmadan kırp */
   border-radius: 8px; /* köşeleri biraz yuvarlat */
+}
+
+/* Skeleton yükleme efekti */
+.skeletonCard {
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.skeletonImage {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+.skeletonText {
+  height: 16px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+.skeletonText.short {
+  width: 60%;
+  margin: 10px auto 0;
+}
+
+.skeletonText.long {
+  width: 80%;
+  margin: 8px auto 0;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
