@@ -5,15 +5,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "192.168.0.114",
-        port: "8080",
-        pathname: "/geototal/user/image/**",
-      },
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8080",
+        protocol: "https",
+        hostname: "geototal-backend-e6f32f49f836.herokuapp.com",
         pathname: "/geototal/user/image/**",
       },
     ],

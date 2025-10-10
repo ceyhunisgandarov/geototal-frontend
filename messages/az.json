@@ -69,5 +69,9 @@
     "title": "Səhifə tapılmadı",
     "description": "Üzr istəyirik, axtardığınız səhifə mövcud deyil.",
     "goHome": "Ana səhifəyə qayıt"
+  },
+
+  "Admin" : {
+    "locale": "az"
   }
 }
