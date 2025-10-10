@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductService from "@/app/services/ProductService";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
@@ -12,6 +13,7 @@ function ProductComponent({ id }) {
   const [product, setProduct] = useState(null); // başlangıçta null yap
   const [loading, setLoading] = useState(true); // loading state
   const router = useRouter();
+  const locale = useLocale(); // artık state ile uğraşmana gerek yok
 
   useEffect(() => {
     setLoading(true);
@@ -78,9 +80,9 @@ function ProductComponent({ id }) {
           <h1 className={style.model}>{product.model}</h1>
 
           <div className={style.details}>
-            <span className={style.category}>Kategori: {product.category}</span>
-            {product.bestseller === "yes" && (
-              <span className={style.bestseller}>⭐ Çok Satan</span>
+            <span className={style.category}>Kategoriya: {product.category}</span>
+            {product.bestseller === true && (
+              <span className={style.bestseller}>⭐ BestSeller</span>
             )}
           </div>
 
@@ -92,20 +94,28 @@ function ProductComponent({ id }) {
               rel="noopener noreferrer"
               className={style.shopBtn}
             >
-              Satın Al
+              Whatsapdan Əlaqə
             </Link>
           </div>
           <Link
-            href={`http://localhost:8080/geototal/user/product/pdf/${product.fileUrl}`}
+            href={`https://geototal-backend-e6f32f49f836.herokuapp.com/geototal/user/product/pdf/${product.fileUrl}`}
             download
             className={style.pdfBtn}
           >
-            📄 Ürün Kataloğu (PDF)
+            📄 Məhsulun broşuru (PDF)
           </Link>
         </div>
       </div>
       <div className={style.descriptionContainer}>
-        <p className={style.description}>{product.descriptionAz}</p>
+        <p className={style.description}>
+          {locale === "az"
+            ? product?.descriptionAz
+            : locale === "en"
+            ? product?.descriptionEn
+            : locale === "ru"
+            ? product?.descriptionRu
+            : product?.descriptionAz}
+        </p>
       </div>
     </main>
   );

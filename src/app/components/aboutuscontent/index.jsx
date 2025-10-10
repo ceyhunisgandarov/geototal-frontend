@@ -37,7 +37,9 @@ function AboutUsContent() {
   }, []); // <-- boş array ekledik
 
   return (
-<section className={`${style.aboutSection} ${loading ? style.skeleton : ""}`}>
+    <section
+      className={`${style.aboutSection} ${loading ? style.skeleton : ""}`}
+    >
       {loading ? (
         <>
           <div className={style.aboutText}>

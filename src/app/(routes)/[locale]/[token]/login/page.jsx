@@ -32,7 +32,6 @@ export default function LoginPage({ params }) {
       });
   }, [token]);
 
-  // Token geçersiz ise yönlendir
   useEffect(() => {
     if (isValid === false) {
       router.push("/404");

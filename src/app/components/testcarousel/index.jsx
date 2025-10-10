@@ -3,17 +3,19 @@ import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import Image from "next/image";
 import style from "../../../../public/assets/css/module/test/test.module.css";
+import { useTranslations } from "next-intl";
 
 const categories = [
-  { name: "TotalStation", icon: "/images/categories/ts-icon.png", category: "TOTAL_STATION" },
-  { name: "GNSS", icon: "/images/categories/gnss-icon.png", category: "GNSS" },
-  { name: "Auto Level", icon: "/images/categories/al-icon.png", category: "AUTO_LEVEL" },
-  { name: "Controller", icon: "/images/categories/controller-icon.png", category: "CONTROLLER" },
-  { name: "Accesories", icon: "/images/categories/acc-icon.png", category: "ACCESSORIES" },
-  { name: "Software", icon: "/images/categories/soft-icon.png", category: "SOFTWARE" },
+  { name: "ts", icon: "/images/categories/ts-icon.png", category: "TOTAL_STATION" },
+  { name: "gnss", icon: "/images/categories/gnss-icon.png", category: "GNSS" },
+  { name: "level", icon: "/images/categories/al-icon.png", category: "AUTO_LEVEL" },
+  { name: "controller", icon: "/images/categories/controller-icon.png", category: "CONTROLLER" },
+  { name: "accesories", icon: "/images/categories/acc-icon.png", category: "ACCESSORIES" },
+  { name: "software", icon: "/images/categories/soft-icon.png", category: "SOFTWARE" },
 ];
 
 const CategoryCarousel = ({ onSelectedCategory }) => {
+  const t = useTranslations("Category")
   const carouselRef = useRef(null);
   const [cardWidth, setCardWidth] = useState(0);
   const [translateX, setTranslateX] = useState(0);
@@ -91,7 +93,7 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
               onClick={() => handleClick(cat.category)}
             >
               <Image className={style.categoryIcon} src={cat.icon} alt={cat.name} width={80} height={80} />
-              <p>{cat.name}</p>
+              <p>{t(cat.name)}</p>
             </div>
           ))}
         </div>
