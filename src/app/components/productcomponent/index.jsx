@@ -7,7 +7,6 @@ import ProductService from "@/app/services/ProductService";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 function ProductComponent({ id }) {
   const [product, setProduct] = useState(null); // başlangıçta null yap
@@ -67,7 +66,7 @@ function ProductComponent({ id }) {
             height={300}
             src={
               product?.images?.length > 0
-                ? `${BASE_IMAGE_URL + product.images[0]}`
+                ? product.images[0]
                 : "/images/admin/question.png"
             }
             alt={product?.model || "Ürün"}

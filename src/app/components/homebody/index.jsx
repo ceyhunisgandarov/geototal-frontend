@@ -10,8 +10,6 @@ const more = {
   module: "",
 };
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 export default function HomeBody() {
   const [products, setProducts] = useState([]);
   const [cardCount, setCardCount] = useState(7);

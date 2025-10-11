@@ -4,8 +4,6 @@ import Image from "next/image";
 import style from "../../../../../../public/assets/css/module/admin/aboutus.module.css";
 import AboutService from "@/app/services/AboutService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function AboutUsAdmin() {
   const [firstContent, setFirstContent] = useState({});
   const [secondContent, setSecondContent] = useState({});
@@ -93,7 +91,7 @@ function AboutUsAdmin() {
           <Image
             src={
               firstContent?.imageUrl
-                ? `${BASE_IMAGE_URL + firstContent.imageUrl}`
+                ? firstContent.imageUrl
                 : "/images/admin/question.png"
             }
             alt="About"

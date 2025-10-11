@@ -11,7 +11,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 function AdminNavbar({ handleClick }) {
   const t = useTranslations("Navbar");
@@ -37,7 +36,7 @@ function AdminNavbar({ handleClick }) {
       .then((res) => {
         const data = res.data.response;
         if (data?.url) {
-          setLogoDb(BASE_IMAGE_URL + data.url);
+          setLogoDb(data.url);
         }
       })
       .catch(console.log);

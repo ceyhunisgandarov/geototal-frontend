@@ -4,7 +4,6 @@ import style from "../../../../../../public/assets/css/module/admin/carousel.mod
 import { useEffect, useState } from "react";
 import CarouselService from "@/app/services/CarouselService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 function AdminCarousel() {
   const [carouselData, setCarouselData] = useState([]);
@@ -112,7 +111,7 @@ function AdminCarousel() {
               <Image
                 src={
                   item.imageLink
-                    ? `${BASE_IMAGE_URL + item.imageLink}`
+                    ? item.imageLink
                     : "/images/admin/question.png"
                 }
                 width={300}

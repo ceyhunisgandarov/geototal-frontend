@@ -12,8 +12,6 @@ import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
 import LogoService from "@/app/services/LogoService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function NewNavbar({ page, locale }) {
   const t = useTranslations("Navbar");
 
@@ -27,14 +25,11 @@ function NewNavbar({ page, locale }) {
 
   const [companyLogo, setCompanyLogo] = useState(logo);
 
-
   useEffect(() => {
     LogoService.getLogo()
       .then((response) => {
         if (response.data.status.code === 200) {
-          setCompanyLogo(
-            BASE_IMAGE_URL + response.data.response.url
-          );
+          setCompanyLogo(response.data.response.url);
         } else {
           setCompanyLogo(logo);
         }

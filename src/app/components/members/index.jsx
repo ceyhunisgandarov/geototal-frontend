@@ -4,8 +4,6 @@ import style from "../../../../public/assets/css/module/aboutussection/members.m
 import { useEffect, useState } from "react";
 import MemberService from "@/app/services/MemberService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 const defaultMembers = [
   {
     fullName: "Michael Smith Mike",
@@ -87,7 +85,7 @@ function Members() {
                 <Image
                   src={
                     member?.imageUrl
-                      ? `${BASE_IMAGE_URL}${member.imageUrl}`
+                      ? member.imageUrl
                       : "/images/default-user.png"
                   }
                   alt={member?.fullName || "Member"}

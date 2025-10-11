@@ -7,8 +7,6 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ProductService from "@/app/services/ProductService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function ProductList({ selectedCategory }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -71,7 +69,7 @@ function ProductList({ selectedCategory }) {
                   <Image
                     src={
                       product.images && product.images[0]
-                        ? `${BASE_IMAGE_URL + product.images[0]}`
+                        ? product.images[0]
                         : "/images/fallback.jpg"
                     }
                     alt={product.model}

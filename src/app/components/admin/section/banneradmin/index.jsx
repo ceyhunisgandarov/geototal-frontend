@@ -4,7 +4,6 @@ import Image from "next/image";
 import style from "../../../../../../public/assets/css/module/admin/banner.module.css";
 import BannerService from "@/app/services/BannerService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 function BannerAdmin({ page }) {
   const [dbImage, setDbImage] = useState("/images/admin/question.png");
@@ -26,7 +25,7 @@ function BannerAdmin({ page }) {
       .then((response) => {
         if (response.data.status.code === 200) {
           const imageUrl = response.data.response.imageUrl;
-          setDbImage(`${BASE_IMAGE_URL + imageUrl}`);
+          setDbImage(imageUrl);
           setId(response.data.response.id);
           setReqBanner({ title: response.data.response.title || "" });
         } else {

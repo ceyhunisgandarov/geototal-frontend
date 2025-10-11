@@ -13,8 +13,6 @@ const defaultInfo = {
   approximatelyProjectsCount: 60,
 };
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function AboutUsContent() {
   const [content, setContent] = useState(defaultInfo);
   const [loading, setLoading] = useState(true);
@@ -59,7 +57,7 @@ function AboutUsContent() {
             <Image
               src={
                 content.imageUrl && content.imageUrl !== defaultInfo.imageUrl
-                  ? `${BASE_IMAGE_URL + content.imageUrl}`
+                  ? content.imageUrl
                   : content.imageUrl || "/images/aboutus.png"
               }
               alt="Construction Workers"

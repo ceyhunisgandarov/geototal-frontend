@@ -4,8 +4,6 @@ import Image from "next/image";
 import style from "../../../../../../public/assets/css/module/admin/members.module.css";
 import MemberService from "@/app/services/MemberService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function MembersAdmin() {
   const [members, setMembers] = useState([]);
   const [modal, setModal] = useState(false);
@@ -86,7 +84,7 @@ function MembersAdmin() {
               <Image
                 src={
                   member.imageUrl
-                    ? `${BASE_IMAGE_URL + member.imageUrl}`
+                    ? member.imageUrl
                     : "/images/admin/question.png"
                 }
                 alt={member.fullName}

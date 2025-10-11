@@ -6,8 +6,6 @@ import CollaborationService from "@/app/services/CollaborationService";
 
 const localLogos = ["NW", "pasha", "sb", "kalyon", "kbt", "alians", "stp"];
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function PartnerLogoCarousel() {
   const [logos, setLogos] = useState([]);
 
@@ -46,7 +44,7 @@ function PartnerLogoCarousel() {
             <Image
               src={
                 logo.imageUrl
-                  ? `${BASE_IMAGE_URL + logo.imageUrl}`
+                  ? logo.imageUrl
                   : `/images/logo/${logo.imageUrl ? logo.name : logo}-logo.png`
               }
               alt={logo.name || `logo-${logo}`}

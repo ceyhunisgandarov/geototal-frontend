@@ -13,8 +13,6 @@ const defaultInfo = {
   approximatelyStaffsCount: 20,
 };
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function SecondAboutUsContent() {
   const [content, setContent] = useState(defaultInfo);
   const [loading, setLoading] = useState(true);
@@ -63,7 +61,7 @@ function SecondAboutUsContent() {
             <Image
               src={
                 content.imageUrl && content.imageUrl !== defaultInfo.imageUrl
-                  ? `${BASE_IMAGE_URL + content.imageUrl}`
+                  ? content.imageUrl
                   : content.imageUrl || "/images/aboutus.png"
               }
               alt="Construction Workers"

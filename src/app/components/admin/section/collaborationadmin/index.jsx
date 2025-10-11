@@ -4,8 +4,6 @@ import style from "../../../../../../public/assets/css/module/admin/collaboratio
 import Image from "next/image";
 import CollaborationService from "@/app/services/CollaborationService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function CollaborationEditSection() {
   const [logos, setLogos] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -93,7 +91,7 @@ function CollaborationEditSection() {
             <Image
               src={
                 logo.imageUrl
-                  ? `${BASE_IMAGE_URL + logo.imageUrl}`
+                  ? logo.imageUrl
                   : "/images/admin/question.png" // fallback
               }
               alt={logo.name}

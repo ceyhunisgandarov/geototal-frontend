@@ -11,8 +11,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function Navbar({ page, locale }) {
   const t = useTranslations("Navbar");
 
@@ -29,10 +27,7 @@ function Navbar({ page, locale }) {
     LogoService.getLogo()
       .then((response) => {
         if (response.data.status.code === 200) {
-          setCompanyLogo(
-            BASE_IMAGE_URL +
-              response.data.response.url
-          );
+          setCompanyLogo(response.data.response.url);
         } else {
           setCompanyLogo(logo);
         }

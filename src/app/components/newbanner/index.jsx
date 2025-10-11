@@ -2,12 +2,11 @@
 import Link from "next/link";
 import styles from "../../../../public/assets/css/module/newbanner/banner.module.css";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
 
 export default function Banner({ carousel, t, active }) {
   console.log(carousel.id + "," + active);
   const imageUrl = carousel?.imageLink
-    ? `${BASE_IMAGE_URL || ""}${carousel.imageLink}`
+    ? carousel.imageLink
     : "/images/drone-works.jpeg";
 
   return (

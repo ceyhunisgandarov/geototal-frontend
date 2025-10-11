@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import ProductService from "@/app/services/ProductService";
 
-const BASE_IMAGE_URL = process.env.NEXT_PUBLIC_BASE_IMAGE_URL;
-
 function ProductsAdmin() {
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -99,7 +97,7 @@ function ProductsAdmin() {
       if (product.images) {
         const imagesWithPreview = product.images.map((img) => ({
           file: null,
-          preview: `${BASE_IMAGE_URL + img}`,
+          preview: img,
           name: img,
         }));
         setImageFiles(imagesWithPreview);
