@@ -12,6 +12,7 @@ import MembersAdmin from "@/app/components/admin/section/members";
 import ProductsAdmin from "@/app/components/admin/section/products";
 import BannerAdmin from "@/app/components/admin/section/banneradmin";
 import ContactInfoSection from "@/app/components/admin/section/contactinfo";
+import ServiceAdmin from "@/app/components/admin/section/service";
 
 function AdminHomePage({ page }) {
   const router = useRouter();
@@ -76,6 +77,7 @@ function AdminHomePage({ page }) {
           id="service"
         >
           <BannerAdmin page="service" />
+          <ServiceAdmin />
         </div>
         <div
           style={{ display: divId === "contact" ? "block" : "none" }}

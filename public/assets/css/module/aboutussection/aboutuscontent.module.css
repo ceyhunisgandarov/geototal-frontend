@@ -20,8 +20,9 @@
 
 .aboutImage {
   border-radius: 8px;
-  width: 500px;
+  width: 100%;
   height: auto;
+  max-width: 700px;
   border: solid 1px black;
 }
 
@@ -181,4 +182,3 @@
     background-position: -200% 0;
   }
 }
-
