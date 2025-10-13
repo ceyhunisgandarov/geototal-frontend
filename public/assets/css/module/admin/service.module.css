@@ -194,3 +194,29 @@
 .modalActions button:last-child:hover {
   background-color: #757575;
 }
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.thumbnailPlaceholder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0f0;
+  cursor: pointer;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+}
+
+.imageUploadLabel {
+  display: inline-block;
+  position: relative;
+}

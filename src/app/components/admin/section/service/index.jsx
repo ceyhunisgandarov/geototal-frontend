@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import style from "../../../../../../public/assets/css/module/admin/service.module.css";
 import ServicesService from "@/app/services/ServicesService";
+import Icon from "@/app/components/elements/icon";
 
 function ServiceAdmin() {
   const [services, setServices] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isAdd, setIsAdd] = useState(true);
+  const [id, setId] = useState(0)
   const [currentService, setCurrentService] = useState({
     serviceName: "",
     serviceNameEn: "",
@@ -116,7 +118,7 @@ function ServiceAdmin() {
       const serviceImage = currentService.serviceImageFile;
 
       // Backend çağrısı
-      const id = isAdd ? null : currentService.id || 0;
+      
 
       const response = await ServicesService.addOrUpdateService(
         reqService,
@@ -149,8 +151,13 @@ function ServiceAdmin() {
       <div className={style.servicesWrap}>
         {services.map((service) => (
           <div key={service.id} className={style.serviceCard}>
-            <p>{service.serviceName}</p>
-            <button onClick={() => openUpdateModal(service)}>Update</button>
+            <Icon
+              path={service.serviceImageUrl}
+              name={service.serviceName}
+              background="light"
+            />
+            <button onClick={() => {openUpdateModal(service); setId(service.id)}}>Update</button>
+            {console.log(service.id)}
           </div>
         ))}
       </div>
@@ -198,6 +205,7 @@ function ServiceAdmin() {
                   }))
                 }
               />
+
               <input
                 type="file"
                 accept=".svg"
@@ -242,16 +250,35 @@ function ServiceAdmin() {
                     updatePartField(index, "serviceTextRu", e.target.value)
                   }
                 />
-                <input
-                  type="file"
-                  onChange={(e) =>
-                    updatePartField(
-                      index,
-                      "serviceImageFile",
-                      e.target.files[0]
-                    )
-                  }
-                />
+                <label className={style.imageUploadLabel}>
+                  {part.serviceImageFile ? (
+                    <img
+                      src={URL.createObjectURL(part.serviceImageFile)}
+                      alt="Service Part"
+                      className={style.thumbnail}
+                    />
+                  ) : part.serviceImageUrl ? (
+                    <img
+                      src={part.serviceImageUrl} // veri tabanından gelen URL
+                      alt="Service Part"
+                      className={style.thumbnail}
+                    />
+                  ) : (
+                    <div className={style.thumbnailPlaceholder}>+</div>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(e) =>
+                      updatePartField(
+                        index,
+                        "serviceImageFile",
+                        e.target.files[0]
+                      )
+                    }
+                  />
+                </label>
                 <button type="button" onClick={() => deletePart(index)}>
                   Delete Part
                 </button>
