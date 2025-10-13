@@ -39,7 +39,7 @@ function Banner({ page }) {
       .then((response) => {
         if (response.data.status.code === 200) {
           const imageUrl = response.data.response.imageUrl;
-          setBannerImage(`url("http://localhost:8080/geototal/user/image/${imageUrl}")`);
+          setBannerImage(`url("${imageUrl}")`);
         } else {
           setBannerImage(`url("/images/banners/${page}.png")`);
         }

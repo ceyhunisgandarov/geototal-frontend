@@ -150,7 +150,7 @@ function AboutUsAdmin() {
           <Image
             src={
               secondContent?.imageUrl
-                ? `http://localhost:8080/geototal/user/image/${secondContent.imageUrl}`
+                ? `${secondContent.imageUrl}`
                 : "/images/admin/question.png"
             }
             alt="About"
