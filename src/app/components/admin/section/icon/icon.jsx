@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
-import style from "../../../../../public/assets/css/module/icon/icon.module.css";
+import style from "../../../../../../public/assets/css/module/admin/icon.module.css";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-function Icon({
+function AdminIcon({
   color = "#E41D2D",
   path,
   width = "150px",
@@ -12,7 +12,6 @@ function Icon({
   name,
   background,
 }) {
-
   const t = useTranslations("Navbar");
 
   const iconRef = useRef(null);
@@ -42,21 +41,17 @@ function Icon({
   }, [color, path, width, height]);
 
   return (
-    <Link href={`/${t("locale")}/services/${name}`}
+    <div
       className={`${style.gridItem} ${
         background === "light" ? style.light : style.dark
       }`}
     >
       <div ref={iconRef}></div>
       <div className={style.contentElement} style={{ zIndex: "2" }}>
-        <p className={style.serviceTitle}>lorem ispum</p>
-        <p className={style.serviceText}>
-          lorem ispum lorem ispum lorem ispumlorem ispum lorem ispum lorem ispum
-          lorem ispum
-        </p>
+        <p className={style.serviceTitle}>{name}</p>
       </div>
-    </Link>
+    </div>
   );
 }
 
-export default Icon;
+export default AdminIcon;

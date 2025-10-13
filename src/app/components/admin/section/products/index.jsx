@@ -133,7 +133,7 @@ function ProductsAdmin() {
               height={200}
               src={
                 product.imageUrl !== null
-                  ? `http://localhost:8080/geototal/user/image/${product.images[0]}`
+                  ? `${product.images[0]}`
                   : "/images/admin/question.png"
               }
               alt={product.model}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import style from "../../../../../../public/assets/css/module/admin/service.module.css";
 import ServicesService from "@/app/services/ServicesService";
 import Icon from "@/app/components/elements/icon";
+import AdminIcon from "../icon/icon";
 
 function ServiceAdmin() {
   const [services, setServices] = useState([]);
@@ -151,7 +152,7 @@ function ServiceAdmin() {
       <div className={style.servicesWrap}>
         {services.map((service) => (
           <div key={service.id} className={style.serviceCard}>
-            <Icon
+            <AdminIcon
               path={service.serviceImageUrl}
               name={service.serviceName}
               background="light"

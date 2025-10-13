@@ -6,8 +6,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "geototal-backend-e6f32f49f836.herokuapp.com",
-        pathname: "/geototal/user/image/**",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "**", // tüm path'lere izin ver
       },
     ],
   },
