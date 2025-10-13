@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import style from "../../../../../../public/assets/css/module/admin/icon.module.css";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 function AdminIcon({
