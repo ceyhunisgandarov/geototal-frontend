@@ -12,8 +12,8 @@ const more = {
 
 export default function HomeBody() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // <-- Skeleton için
   const [cardCount, setCardCount] = useState(7);
-  // const [height, setHeight] = useState("100vh");
 
   const contentRef = useRef(null);
 
@@ -24,49 +24,66 @@ export default function HomeBody() {
     else setCardCount(7);
   };
 
-  const refreshProduct = () => {
-    ProductService.getProducts()
-  }
-
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch("/assets/jsons/products.json"); // public klasöründe olmalı
-        const data = await res.json();
-
-        // sadece bestseller olanları filtrele
-        const filtered = data.filter((p) => p.bestseller === "yes");
-        setProducts(filtered);
-      } catch (err) {
-        console.error("Ürünler yüklenirken hata:", err);
-      }
-    };
-
-    fetchProducts();
+    refreshProduct();
   }, []);
-  
+
+  const refreshProduct = () => {
+    setLoading(true); // Skeleton başlasın
+    ProductService.getProducts().then((response) => {
+      if (response.data.status.code === 200) {
+        const allProducts = response.data.response;
+
+        // 1. Bestseller olanları filtrele
+        const bestsellerProducts = allProducts.filter((p) => p.bestseller);
+
+        // 2. Eğer yeterliyse sadece bestsellerları al
+        if (bestsellerProducts.length >= 7) {
+          setProducts(bestsellerProducts.slice(0, 7));
+        } else {
+          // 3. Eksik sayıyı doldurmak için bestseller olmayanları al
+          const remainingCount = 7 - bestsellerProducts.length;
+          const nonBestsellerProducts = allProducts.filter(
+            (p) => !p.bestseller
+          );
+          const combinedProducts = [
+            ...bestsellerProducts,
+            ...nonBestsellerProducts.slice(0, remainingCount),
+          ];
+          setProducts(combinedProducts);
+        }
+      }
+      setLoading(false); // Yükləndi
+    });
+  };
+
   useEffect(() => {
     updateCount();
 
     window.addEventListener("resize", updateCount);
-
     return () => {
       window.removeEventListener("resize", updateCount);
     };
   }, []);
 
+  const renderSkeleton = () => {
+    return Array.from({ length: cardCount + 1 }).map((_, index) => (
+      <div key={index} className={style.skeletonCard}></div>
+    ));
+  };
 
   return (
     <div className={style.wrapper}>
       <div ref={contentRef} className={style.content}>
         <div className={style.grid}>
-          {products &&
-            products
-              .slice(0, cardCount)
-              .map((product, key) => (
-                <Card product={product} key={key} more={false} />
-              ))}
-          <Card product={more} more={true} />
+          {loading
+            ? renderSkeleton()
+            : products
+                .slice(0, cardCount)
+                .map((product, key) => (
+                  <Card product={product} key={key} more={false} />
+                ))}
+          {!loading && <Card product={more} more={true} />}
         </div>
       </div>
     </div>

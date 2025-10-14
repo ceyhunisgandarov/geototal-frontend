@@ -1,4 +1,5 @@
 "use client";
+import ServicesService from "@/app/services/ServicesService";
 import style from "../../../../public/assets/css/module/homeservice/homeservice.module.css";
 import Icon from "../elements/icon";
 import { useEffect, useRef, useState } from "react";
@@ -9,6 +10,25 @@ export default function HomeService() {
   const videoRef = useRef(null);
   const contentRef = useRef(null);
   const [wrapperHeight, setWrapperHeight] = useState("100vh");
+  const [services, setServices] = useState([]);
+
+  const refreshServices = () => {
+    ServicesService.getServices()
+      .then((response) => {
+        if (response.data.status.code === 200) {
+          setServices(response.data.response);
+        } else {
+          console.log("Something wrong error-", response.data.status.message);
+        }
+      })
+      .catch((error) => {
+        console.log("Something wrong error-", error);
+      });
+  };
+
+  useEffect(() => {
+    refreshServices();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -72,11 +92,11 @@ export default function HomeService() {
 
       <div ref={contentRef} className={style.content}>
         <div className={style.gridContainer}>
-          {icons.map((icon, index) => (
+          {services.map((service, index) => (
             <Icon
               key={index}
-              path={`/images/icons/${icon}-icon.svg`}
-              name={icon}
+              path={service.serviceImageUrl}
+              service={service}
               style={style}
               background="dark"
             />

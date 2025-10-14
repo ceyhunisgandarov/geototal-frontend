@@ -1,30 +1,40 @@
-import Image from "next/image";
+"use client";
 import style from "../../../../public/assets/css/module/servicescards/container.module.css";
 import Icon from "../elements/icon";
-
-const services = [
-  {
-    id: 1,
-    title: "Drone",
-    image: "lidar",
-    locale: "DRONE",
-  },
-];
-
-const icons = ["lidar", "drone-works", "mapping", "geodesy", "geology"];
-
+import { useEffect, useState } from "react";
+import ServicesService from "@/app/services/ServicesService";
 
 function ServiceBody() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    refreshServices();
+  }, []);
+
+  const refreshServices = () => {
+    ServicesService.getServices()
+      .then((response) => {
+        if (response.data.status.code === 200) {
+          setServices(response.data.response);
+        } else {
+          console.log("Something wrong error-", response.data.status.message);
+        }
+      })
+      .catch((error) => {
+        console.log("Something wrong error-", error);
+      });
+  };
+
   return (
     <div className={style.container}>
       <div className={style.serviceContainer}>
         <h1>Services</h1>
         <div className={style.cardContainer}>
-          {icons.map((icon, index) => (
+          {services.map((service, index) => (
             <Icon
               key={index}
-              path={`/images/icons/${icon}-icon.svg`}
-              name={icon}
+              path={service.serviceImageUrl}
+              service={service}
               background="light"
             />
           ))}

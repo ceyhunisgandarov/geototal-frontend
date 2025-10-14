@@ -3,18 +3,11 @@ import Image from "next/image";
 import style from "../../../../public/assets/css/module/aboutussection/second.module.css";
 import { useEffect, useState } from "react";
 import AboutService from "@/app/services/AboutService";
-
-const defaultInfo = {
-  title: "WHY CHOOSE US",
-  secondTitle: "What We Offer Idea For Construction.",
-  description:
-    " There are many variations of passages of Lorem Ipsum available, butthe majority have suffered alteration in some form injected humour.",
-  imageUrl: "/images/aboutus.png",
-  approximatelyStaffsCount: 20,
-};
+import { useTranslations } from "next-intl";
 
 function SecondAboutUsContent() {
-  const [content, setContent] = useState(defaultInfo);
+  const t = useTranslations("AboutUs")
+  const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +27,34 @@ function SecondAboutUsContent() {
       });
   }, []);
 
+  let contentTitle = "";
+  let contentSecond = "";
+  let text = "";
+
+  if (content) {
+    switch (t("locale")) {
+      case "az":
+        contentTitle = content.title;
+        contentSecond = content.secondTitle;
+        text = content.description;
+        break;
+      case "en":
+        contentTitle = content.titleEn;
+        contentSecond = content.secondTitleEn;
+        text = content.descriptionEn;
+        break;
+      case "ru":
+        contentTitle = content.titleRu;
+        contentSecond = content.secondTitleRu;
+        text = content.descriptionRu;
+        break;
+      default:
+        contentTitle = "error";
+        contentSecond = "error";
+        text = "error";
+    }
+  }
+
   return (
     <section className={style.whySection}>
       {loading ? (
@@ -52,15 +73,15 @@ function SecondAboutUsContent() {
       ) : (
         <>
           <div className={style.aboutText}>
-            <h4>{content.title}</h4>
-            <h2>{content.secondTitle}</h2>
-            <p>{content.description}</p>
+            <h4>{contentTitle}</h4>
+            <h2>{contentSecond}</h2>
+            <p>{text}</p>
           </div>
 
           <div className={style.imageWrapper}>
             <Image
               src={
-                content.imageUrl && content.imageUrl !== defaultInfo.imageUrl
+                content.imageUrl && content.imageUrl
                   ? content.imageUrl
                   : content.imageUrl || "/images/aboutus.png"
               }

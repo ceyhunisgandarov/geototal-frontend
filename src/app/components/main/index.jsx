@@ -4,9 +4,8 @@ import Carousel from "../carousel";
 import HomeBody from "../homebody";
 import HomeService from "../homeservice";
 import CompanyAlbum from "../companyalbum";
-import Banner from "../newbanner";
 
-export default function ScrollSections({ page, locale }) {
+export default function MainSection({ page, locale }) {
   return (
     <Layout page={page} locale={locale}>
       <Carousel />

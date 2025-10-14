@@ -7,7 +7,7 @@
   max-width: 1440px;
   margin: 0 auto; /* Ortalamak için */
   padding-block: 80px; /* Üst ve alt boşluk */
-  background-color: #f6f6f6;
+  background-color: #ececec;
 }
 
 .imageWrapper {
@@ -57,6 +57,8 @@
 
 .aboutText p {
   color: #666;
+  text-align: justify;
+  line-height: 20px;
   margin-bottom: 20px;
 }
 

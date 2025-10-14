@@ -56,7 +56,9 @@
 
 .aboutText p {
   color: #666;
+  text-align: justify;
   margin-bottom: 20px;
+  line-height: 20px;
 }
 
 .services {

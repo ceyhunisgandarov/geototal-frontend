@@ -33,6 +33,7 @@
   margin: 10px;
   text-decoration: none;
   color: black;
+  background-color: rgba(128, 128, 128, 0.3);
 }
 
 .light.gridItem {

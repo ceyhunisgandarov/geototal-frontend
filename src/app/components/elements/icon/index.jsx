@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "../../../../../public/assets/css/module/icon/icon.module.css";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -9,11 +9,24 @@ function Icon({
   path,
   width = "150px",
   height = "150px",
-  name,
+  service,
   background,
 }) {
+  const [serviceName, setServiceName] = useState("");
 
   const t = useTranslations("Navbar");
+
+  useEffect(() => {
+    if (t("locale") === "az") {
+      setServiceName(service.serviceName);
+    } else if (t("locale") === "en") {
+      setServiceName(service.serviceNameEn);
+    } else if (t("locale") === "ru") {
+      setServiceName(service.serviceNameRu);
+    } else {
+      setServiceName("");
+    }
+  });
 
   const iconRef = useRef(null);
 
@@ -42,18 +55,15 @@ function Icon({
   }, [color, path, width, height]);
 
   return (
-    <Link href={`/${t("locale")}/services/${name}`}
+    <Link
+      href={`/${t("locale")}/services/${service.pathName}`}
       className={`${style.gridItem} ${
         background === "light" ? style.light : style.dark
       }`}
     >
       <div ref={iconRef}></div>
       <div className={style.contentElement} style={{ zIndex: "2" }}>
-        <p className={style.serviceTitle}>lorem ispum</p>
-        <p className={style.serviceText}>
-          lorem ispum lorem ispum lorem ispumlorem ispum lorem ispum lorem ispum
-          lorem ispum
-        </p>
+        <p className={style.serviceTitle}>{serviceName}</p>
       </div>
     </Link>
   );

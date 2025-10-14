@@ -6,7 +6,7 @@ function Card({ product, more }) {
   return (
     <div className={style.card}>
       <Image
-        src={`/images/product-${product.id}.png`}
+        src={product?.images?.[0] ?? "/images/product-999.png"}
         width={1200}
         height={1200}
         alt="product"
@@ -24,7 +24,12 @@ function Card({ product, more }) {
         <strong>{product.brand}</strong>
         <br />
         {product.model}
-        <Link  href={more ? "/az/products" : `/az/products/${product.id}`} className={style.shoppingButton}>İNDİ SİFARİŞ ET</Link>
+        <Link
+          href={more ? "/az/products" : `/az/products/${product.id}`}
+          className={style.shoppingButton}
+        >
+          İNDİ SİFARİŞ ET
+        </Link>
       </div>
     </div>
   );

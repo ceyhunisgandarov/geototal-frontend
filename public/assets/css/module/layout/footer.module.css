@@ -1,139 +1,105 @@
 .footer {
-  background: #f5f5f5; /* açık gri-beyaz */
-  color: #222;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #0f172a; /* dark blue-gray */
+  color: #f1f5f9; /* light gray */
+  padding: 40px 20px 20px;
+  font-family: "Inter", sans-serif;
 }
 
-.footerContainer {
-  width: 100%;
-  max-width: 1440px;
-  padding-inline: 40px;
-  padding-block: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.footerTop {
+.container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.brand {
+  flex: 1 1 250px;
   margin-bottom: 20px;
 }
 
-.footerCol {
-  min-width: 150px;
-  flex: 1;
+.brand h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #38bdf8;
 }
 
-.footerLogo {
+.brand p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.links {
+  flex: 2 1 400px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.linkGroup h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #38bdf8;
+}
+
+.linkGroup a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.linkGroup a:hover {
+  color: #38bdf8;
+}
+
+.social {
+  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start; /* masaüstünde sola hizalı */
-  flex: 0 0 auto; /* genişliği sabit */
+  margin-bottom: 20px;
 }
 
-.logo {
-  width: 180px; /* logo boyutu küçültüldü */
-  height: auto;
-  margin-bottom: 10px;
-}
-
-.slogan {
-  font-size: 14px;
-  color: #555;
-}
-
-.footerColsWrapper {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding-inline: 20px;
-}
-
-.footerCol ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.footerCol ul li {
-  margin-bottom: 8px;
-}
-
-.footerCol ul li a {
+.social a {
+  color: #cbd5e1;
   text-decoration: none;
-  color: #555;
+  margin-bottom: 5px;
   transition: color 0.3s;
 }
 
-.footerCol ul li a:hover {
-  color: #000;
+.social a:hover {
+  color: #38bdf8;
 }
 
-.divider {
-  border: 0;
-  border-top: 1px solid #000000;
-  margin: 20px 0;
-  width: 90%;
-}
-
-.footerBottom {
+.bottom {
   text-align: center;
-  color: #444;
+  padding-top: 15px;
+  border-top: 1px solid #334155;
+  font-size: 0.85rem;
+  color: #94a3b8;
 }
 
-.socialIcons {
-  margin-bottom: 15px;
-}
-
-.socialIcons a {
-  margin: 0 8px;
-  color: #555;
-  font-size: 18px;
-  transition: color 0.3s;
-}
-
-.socialIcons a:hover {
-  color: #000;
-}
-
-/* 📱 Responsive */
-@media (max-width: 650px) {
-  .footerTop {
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
-  .footerLogo {
-    align-items: center; /* mobilde logo ortaya gelsin */
+  .links {
+    flex-direction: column;
+  }
+
+  .linkGroup {
     margin-bottom: 20px;
   }
 
-  .footerColsWrapper {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .footerCol {
-    width: 100%;
-    text-align: center;
+  .social {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
   }
 }
-
-/************************************************************************/
-
-/* Logo ve slogan */
-
-/* Diğer sütunlar */
-
-/* Mobil */

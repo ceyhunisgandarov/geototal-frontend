@@ -14,97 +14,39 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className={style.footer}>
-      <div className={style.footerContainer}>
-      <div className={style.footerTop}>
-        <div className={style.footerLogo}>
-          <Image
-            src={logo}
-            width={300}
-            height={300}
-            alt="logo"
-            priority
-            className={style.logo}
-          />
-          <p className={style.slogan}>SOLOGAN COMPANY</p>
+      <div className={style.container}>
+        {/* Logo və Qısa Tanıtım */}
+        <div className={style.brand}>
+          <h2>GeoTotal</h2>
+          <p>Geodeziya və topoqrafik həllər üzrə lider şirkət.</p>
         </div>
-        <div className={style.footerColsWrapper}>
-          <div className={style.footerCol}>
-            <ul>
-              <li>
-                <Link href="#">Weebly Themes</Link>
-              </li>
-              <li>
-                <Link href="#">Pre-sale FAQs</Link>
-              </li>
-              <li>
-                <Link href="#">Submit a Ticket</Link>
-              </li>
-            </ul>
+
+        {/* Linklər */}
+        <div className={style.links}>
+          <div className={style.linkGroup}>
+            <h4>Company</h4>
+            <Link href="/about">About Us</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/contact">Contact</Link>
           </div>
-          <div className={style.footerCol}>
-            <ul>
-              <li>
-                <Link href="#">Services</Link>
-              </li>
-              <li>
-                <Link href="#">Theme Tweak</Link>
-              </li>
-            </ul>
+          <div className={style.linkGroup}>
+            <h4>Support</h4>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Service</Link>
           </div>
-          <div className={style.footerCol}>
-            <ul>
-              <li>
-                <Link href="#">Showcase</Link>
-              </li>
-              <li>
-                <Link href="#">Widgetkit</Link>
-              </li>
-              <li>
-                <Link href="#">Support</Link>
-              </li>
-            </ul>
-          </div>
-          <div className={style.footerCol}>
-            <ul>
-              <li>
-                <Link href="#">About Us</Link>
-              </li>
-              <li>
-                <Link href="#">Contact Us</Link>
-              </li>
-              <li>
-                <Link href="#">Affiliates</Link>
-              </li>
-              <li>
-                <Link href="#">Resources</Link>
-              </li>
-            </ul>
-          </div>
+        </div>
+
+        {/* Sosial Media */}
+        <div className={style.social}>
+          <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
 
-      <hr className={style.divider} />
-
-      <div className={style.footerBottom}>
-        <div className={style.socialIcons}>
-          <Link href="#">
-            <FaFacebookF />
-          </Link>
-          <Link href="#">
-            <FaTwitter />
-          </Link>
-          <Link href="#">
-            <FaRss />
-          </Link>
-          <Link href="#">
-            <FaGooglePlusG />
-          </Link>
-          <Link href="#">
-            <FaFlickr />
-          </Link>
-        </div>
-        <p>© Copyright. All rights reserved.</p>
-      </div>
+      <div className={style.bottom}>
+        &copy; {new Date().getFullYear()} GeoTotal. All rights reserved.
       </div>
     </footer>
   );

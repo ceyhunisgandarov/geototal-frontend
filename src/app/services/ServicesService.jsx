@@ -5,10 +5,9 @@ const getServices = () => {
   return createAxiosInstance().get(`user/service/get-list`);
 };
 
-const getService = (id) => {
-  return createAxiosInstance().get(`user/service/get/${id}`);
+const getService = (pathName) => {
+  return createAxiosInstance().get(`user/service/get/${pathName}`);
 };
-
 
 const addOrUpdateService = (reqService, serviceImage, reqServiceParts, servicePartImages, id) => {
   const token = Cookies.get("Authorization");

@@ -1,88 +1,87 @@
+"use client";
 import { useEffect, useState } from "react";
-import style from "../../../../../public/assets/css/module/service/servicepage.module.css";
+import style from "../../../../../public/assets/css/module/service/servicepage.module.css"; // public-altından çıxardıq
 import Image from "next/image";
+import ServicesService from "@/app/services/ServicesService";
+import { useLocale } from "next-intl";
 
-export default function ServicesSection() {
+export default function ServicesSection({ service }) {
+  const [aService, setAService] = useState(null);
+  const locale = useLocale();
+
+  useEffect(() => {
+    refreshService();
+  }, []);
+
+  const refreshService = async () => {
+    try {
+      const response = await ServicesService.getService("lidar");
+      if (response.data.status.code === 200) {
+        setAService(response.data.response);
+      } else {
+        console.log("Something went wrong:", response.data.status.message);
+      }
+    } catch (error) {
+      console.log("Something went wrong:", error);
+    }
+  };
+
+  if (!aService || !aService.serviceParts) {
+    return <div>Loading...</div>;
+  }
+
+  const serviceName =
+    locale === "az"
+      ? aService.serviceName
+      : locale === "en"
+      ? aService.serviceNameEn
+      : aService.serviceNameRu;
+
   return (
     <div className={style.wrapper}>
-      {/* 1. Section - Black */}
-      <div className={style.dark}>
-        <section className={`${style.section} ${style.dark}`}>
-          <div className={style.left}>
-            <h2>PHOTOGRAMMETRY SOFTWARE AND GEOSPATIAL SERVICES</h2>
-            <p>
-              DroneMapper provides two licensed versions of its desktop
-              photogrammetry software, REMOTE EXPERT and RAPID, as Windows
-              applications. REMOTE EXPERT generates Orthomosaics and DEMs at
-              selectable imagery resolutions processing up to 10,000 images per
-              project. RAPID provides the same functionality as REMOTE EXPERT
-              and is limited to 250 images per project. Both versions are easily
-              licensed either perpetually for REMOTE EXPERT or yearly for RAPID.
-            </p>
-          </div>
-          <div className={style.right}>
-            <Image
-              src="/images/services/photo.png"
-              alt="Photogrammetry software"
-              width={600}
-              height={400}
-              className={style.image}
-            />
-          </div>
-        </section>
-      </div>
+      <h2>{serviceName}</h2>
 
-      <div className={style.gray}>
-        <section className={`${style.section} ${style.gray} ${style.reverse}`}>
-          <div className={style.left}>
-            <h2>
-              GEOREFERENCED ORTHOMOSAIC, DEM, DTM, NDVI AND POINT CLOUD
-              GENERATION
-            </h2>
-            <p>
-              Derived from our photogrammetry products, we provide precision
-              georeferenced contours, orthomosaic planimetrics, accurate
-              volumetrics for stockpiles or reservoir capacity, radiometrically
-              calibrated multi-band vegetation indices, biomass estimation, crop
-              health maps and more.
-            </p>
-          </div>
-          <div className={style.right}>
-            <Image
-              src="/images/services/geo.png"
-              alt="Georeferenced orthomosaic"
-              width={600}
-              height={400}
-              className={style.image}
-            />
-          </div>
-        </section>
-      </div>
+      {aService.serviceParts.map((part, index) => {
+        if (!part) return null;
 
-      <div className={style.dark}>
-        {/* 3. Section - Black */}
-        <section className={`${style.section} ${style.dark}`}>
-          <div className={style.left}>
-            <h2>PRECISION AGRICULTURE AND ENTERPRISE SOLUTIONS</h2>
-            <p>
-              Large Areas of Interest (AOIs) can require billions of pixels
-              processed at the highest resolution, and these files can get huge.
-              We handle these big data issues on our cloud servers and provide
-              automated data analytics for extracting and illustrating critical
-              parameters of interest.
-            </p>
+        // Dil seçimi
+        const textKey =
+          locale === "az"
+            ? "serviceTextAz"
+            : locale === "en"
+            ? "serviceTextEn"
+            : "serviceTextRu";
+
+        const partText = part[textKey] || ""; // null-safe
+
+        const imageSrc = part.serviceImageUrl || "/placeholder.png"; // null varsa placeholder istifadə et
+
+        const sectionClass = index % 2 === 0 ? style.dark : style.gray;
+
+        return (
+          <div key={part.id || index} className={sectionClass}>
+            <section
+              className={`${style.section} ${index % 2 !== 0 ? style.reverse : ""}`}
+            >
+              <div className={style.left}>
+                <h2>{part.partName || "No Name"}</h2>
+                <p>{partText}</p>
+              </div>
+              <div className={style.right}>
+                {imageSrc ? (
+                  <Image
+                    src={imageSrc}
+                    alt={part.partName || "Service Part"}
+                    width={600}
+                    height={400}
+                    className={style.image}
+                  />
+                ) : null}
+              </div>
+            </section>
           </div>
-          <div className={style.right}>
-            <Image
-              src="/images/services/agri.png"
-              alt="Precision agriculture"
-              width={600}
-              height={400}
-              className={style.image}
-            />
-          </div>
-        </section>
-      </div>
+        );
+      })}
     </div>
   );
 }
