@@ -118,6 +118,7 @@ function AdminCarousel() {
                 height={300}
                 priority
                 alt={item.title || "carousel"}
+                className={style.bannerImage}
               />
             </div>
 
