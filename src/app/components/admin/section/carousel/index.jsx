@@ -78,9 +78,9 @@ function AdminCarousel() {
 
     if (name === "image") {
       const file = files[0];
-      if (file && file.size > 1024 * 1024) {
+      if (file && file.size > 5 * 1024 * 1024) {
         // 1MB = 1024*1024 byte
-        alert("Resim boyutu en fazla 1MB olabilir!");
+        alert("Resim boyutu en fazla 5MB olabilir!");
         return;
       }
       setCarouselImage(file);
