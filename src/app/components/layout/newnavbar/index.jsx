@@ -20,6 +20,7 @@ function NewNavbar({ page, locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dateTime, setDateTime] = useState(null); // SSR sırasında null
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
   const toggleDropdown = () => setLanguageMenu((prev) => !prev);
 
@@ -70,156 +71,239 @@ function NewNavbar({ page, locale }) {
   }, [locale]);
 
   return (
-    <div className={`${style.navbar} ${scrolled ? style.scrolled : ""}`}>
-      <div className={style.logoWrapper}>
-        <span className={style.logoShadow}></span>
-        <Link href={`/${t("locale")}/`} className={style.logo}>
-          <Image
-            src={companyLogo}
-            alt="logo.jpg"
-            width={3700}
-            height={1200}
-            priority
-            className={style.logoImage}
-          />
+    <nav className={style.nav}>
+      <div className={style.time}>
+        <div>
+          {dateTime ? (
+            <p>
+              {dateTime.toLocaleDateString()}, {dateTime.toLocaleTimeString()}
+            </p>
+          ) : (
+            <p>Loading...</p> // SSR sırasında veya client yüklenene kadar göster
+          )}
+        </div>
+        <Link href="mailto:office@geototal.az" className={style.linkmail}>
+          <p>office@geototal.az</p>
         </Link>
       </div>
 
-      <div className={style.right}>
-        <div className={style.time}>
-          <div>
-            {dateTime ? (
-              <p>
-                {dateTime.toLocaleDateString()}, {dateTime.toLocaleTimeString()}
-              </p>
-            ) : (
-              <p>Loading...</p> // SSR sırasında veya client yüklenene kadar göster
-            )}
-          </div>
-          <Link href="mailto:office@geototal.az" className={style.linkmail}>
-            <p>office@geototal.az</p>
+      <div className={`${style.navbar} ${scrolled ? style.scrolled : ""}`}>
+        <div className={style.logoWrapper}>
+          <span className={style.logoShadow}></span>
+          <Link href={`/${t("locale")}/`} className={style.logo}>
+            <Image
+              src={companyLogo}
+              alt="logo.jpg"
+              width={3700}
+              height={1200}
+              priority
+              className={style.logoImage}
+            />
           </Link>
         </div>
 
-        <div className={style.menu}>
-          <div className={style.primaryMenu}>
-            <ul>
-              <li>
-                <Link href={`/${t("locale")}/`} className={style.linkMenu}>
-                  {t("home")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${t("locale")}/aboutus`}
-                  className={style.linkMenu}
-                >
-                  {t("aboutus")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${t("locale")}/products`}
-                  className={style.linkMenu}
-                >
-                  {t("products")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${t("locale")}/services`}
-                  className={style.linkMenu}
-                >
-                  {t("services")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${t("locale")}/contact`}
-                  className={style.linkMenu}
-                >
-                  {t("contactus")}
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className={style.right}>
+          <div className={style.menu}>
+            <div className={style.primaryMenu}>
+              <ul>
+                <li>
+                  <Link href={`/${t("locale")}/`} className={style.linkMenu}>
+                    {t("home")}
+                  </Link>
+                </li>
+                <li className={style.dropdownWrapper}>
+                  <Link
+                    href={`/${t("locale")}/aboutus`}
+                    className={style.linkMenu}
+                  >
+                    {t("aboutus")}
+                  </Link>
 
-          <div className={style.languageContainer} onClick={toggleDropdown}>
-            <div className={style.selectedLocale}>
-              <Image src={flag} alt="flag.png" className={style.flag} />
+                  {/* Dropdown */}
+                  <ul className={style.dropdownMenu}>
+                    <li>
+                      <Link
+                        href={`/${t("locale")}/aboutus`}
+                        className={style.dropdownLink}
+                      >
+                        {t("company")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${t("locale")}/aboutus/references`}
+                        className={style.dropdownLink}
+                      >
+                        {t("references")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${t("locale")}/aboutus/certificates`}
+                        className={style.dropdownLink}
+                      >
+                        {t("certificates")}
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <Link
+                    href={`/${t("locale")}/products`}
+                    className={style.linkMenu}
+                  >
+                    {t("products")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`/${t("locale")}/services`}
+                    className={style.linkMenu}
+                  >
+                    {t("services")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`/${t("locale")}/contact`}
+                    className={style.linkMenu}
+                  >
+                    {t("contactus")}
+                  </Link>
+                </li>
+              </ul>
             </div>
-            {languageMenu && (
-              <div className={style.dropdownLocales}>
-                <Link href={`/az/${page}`} onClick={toggleDropdown}>
-                  <div className={style.flagContainer}>
-                    <Image src={azflag} alt="az-flag" className={style.flag} />
-                  </div>
-                </Link>
-                <Link href={`/en/${page}`} onClick={toggleDropdown}>
-                  <div className={style.flagContainer}>
-                    <Image src={enflag} alt="en-flag" className={style.flag} />
-                  </div>
-                </Link>
-                <Link href={`/ru/${page}`} onClick={toggleDropdown}>
-                  <div className={style.flagContainer}>
-                    <Image src={ruflag} alt="ru-flag" className={style.flag} />
-                  </div>
-                </Link>
+
+            <div className={style.languageContainer} onClick={toggleDropdown}>
+              <div className={style.selectedLocale}>
+                <Image src={flag} alt="flag.png" className={style.flag} />
               </div>
-            )}
+              {languageMenu && (
+                <div className={style.dropdownLocales}>
+                  <Link href={`/az/${page}`} onClick={toggleDropdown}>
+                    <div className={style.flagContainer}>
+                      <Image
+                        src={azflag}
+                        alt="az-flag"
+                        className={style.flag}
+                      />
+                    </div>
+                  </Link>
+                  <Link href={`/en/${page}`} onClick={toggleDropdown}>
+                    <div className={style.flagContainer}>
+                      <Image
+                        src={enflag}
+                        alt="en-flag"
+                        className={style.flag}
+                      />
+                    </div>
+                  </Link>
+                  <Link href={`/ru/${page}`} onClick={toggleDropdown}>
+                    <div className={style.flagContainer}>
+                      <Image
+                        src={ruflag}
+                        alt="ru-flag"
+                        className={style.flag}
+                      />
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        className={style.hamburgerContainer}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <div className={`${style.hamburger} ${menuOpen ? style.open : ""}`}>
-          <span className={style.hamburgerLine} />
-          <span className={style.hamburgerLine} />
-          <span className={style.hamburgerLine} />
+        <div
+          className={style.hamburgerContainer}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <div className={`${style.hamburger} ${menuOpen ? style.open : ""}`}>
+            <span className={style.hamburgerLine} />
+            <span className={style.hamburgerLine} />
+            <span className={style.hamburgerLine} />
+          </div>
+        </div>
+
+        <div
+          className={`${style.mobileMenuContainer} ${
+            menuOpen ? style.open : ""
+          }`}
+        >
+          <ul className={style.menuList}>
+            <li className={style.menuButton}>
+              <Link href={`/${t("locale")}/`} className={style.linkMobile}>
+                {t("home")}
+              </Link>
+            </li>
+            <li
+              className={style.menuButton}
+              onClick={() => setMobileAboutOpen((prev) => !prev)}
+              onMouseEnter={() => setMobileAboutOpen(true)}
+              onMouseLeave={() => setMobileAboutOpen(false)}
+            >
+              <p className={style.linkMobile}>{t("aboutus")}</p>
+
+              {/* Dropdown */}
+              <ul
+                className={`${style.dropdownMenuMobile} ${
+                  mobileAboutOpen ? style.mobileDropdownOpen : ""
+                }`}
+              >
+                <li>
+                  <Link
+                    href={`/${t("locale")}/aboutus`}
+                    className={style.dropdownLinkMobile}
+                  >
+                    {t("company")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`/${t("locale")}/aboutus/references`}
+                    className={style.dropdownLinkMobile}
+                  >
+                    {t("references")}
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={`/${t("locale")}/aboutus/certificates`}
+                    className={style.dropdownLinkMobile}
+                  >
+                    {t("certificates")}
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className={style.menuButton}>
+              <Link
+                href={`/${t("locale")}/products`}
+                className={style.linkMobile}
+              >
+                {t("products")}
+              </Link>
+            </li>
+            <li className={style.menuButton}>
+              <Link
+                href={`/${t("locale")}/services`}
+                className={style.linkMobile}
+              >
+                {t("services")}
+              </Link>
+            </li>
+            <li className={style.menuButton}>
+              <Link
+                href={`/${t("locale")}/contact`}
+                className={style.linkMobile}
+              >
+                {t("contactus")}
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <div
-        className={`${style.mobileMenuContainer} ${menuOpen ? style.open : ""}`}
-      >
-        <ul className={style.menuList}>
-          <li className={style.menuButton}>
-            <Link href={`/${t("locale")}/`} className={style.linkMobile}>
-              {t("home")}
-            </Link>
-          </li>
-          <li className={style.menuButton}>
-            <Link href={`/${t("locale")}/aboutus`} className={style.linkMobile}>
-              {t("aboutus")}
-            </Link>
-          </li>
-          <li className={style.menuButton}>
-            <Link
-              href={`/${t("locale")}/products`}
-              className={style.linkMobile}
-            >
-              {t("products")}
-            </Link>
-          </li>
-          <li className={style.menuButton}>
-            <Link
-              href={`/${t("locale")}/services`}
-              className={style.linkMobile}
-            >
-              {t("services")}
-            </Link>
-          </li>
-          <li className={style.menuButton}>
-            <Link href={`/${t("locale")}/contact`} className={style.linkMobile}>
-              {t("contactus")}
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </nav>
   );
 }
 

@@ -1,13 +1,15 @@
-.navbar {
+.nav {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 999;
+}
+
+.navbar {
   display: flex;
   width: 100vw;
   height: 120px;
-  z-index: 999;
-  font-family: "Fira Code", "Source Code Pro", "Consolas", "Menlo", "Monaco",
-    "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif, "Courier New", monospace;
 }
 
 .scrolled {
@@ -26,7 +28,7 @@
   clip-path: none;
 }
 .scrolled .logoImage {
-  width: 90%;
+  width: 95%;
 }
 .scrolled .linkMenu {
   color: #000;
@@ -54,44 +56,32 @@
   align-items: center;
   height: 100%;
   clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  background-color: #fff;
   z-index: 2;
 }
 
 .logoImage {
   width: 70%;
   height: auto;
-  filter: drop-shadow(1px 1px 0 #0000002b)drop-shadow(2px 2px 0 #0000002b)drop-shadow(3px 3px 0 #0000002b)drop-shadow(4px 4px 0 #0000002b);
-}
-
-.logoShadow {
-  position: absolute;
-  bottom: 15px;
-  left: 25px;
-  width: 350px;
-  height: 100%;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 2;
-  pointer-events: none;
+  filter: drop-shadow(1px 1px 0 #0000002b) drop-shadow(2px 2px 0 #0000002b)
+    drop-shadow(3px 3px 0 #0000002b) drop-shadow(4px 4px 0 #0000002b);
 }
 
 .right {
-  flex: 1;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: -50px;
   z-index: 1;
 }
 
 .time {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 100px;
-  width: 100%;
+  justify-content: space-between;
+  padding-left: 100px;
+  padding-right: 100px;
+  width: calc(100% - 200px);
   height: 25px;
   background-color: #000;
   color: #fff;
@@ -108,8 +98,8 @@
   cursor: pointer;
   color: #fff;
   display: inline-block;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .menu {
@@ -145,7 +135,7 @@
 
 .linkMenu {
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   padding: 0.5rem 0.75rem;
@@ -306,6 +296,11 @@
     background: transparent;
     clip-path: none;
   }
+
+  .linkMenu {
+    font-size: 14px;
+  }
+
   .logoImage {
     width: 90%;
   }
@@ -328,4 +323,99 @@
   .languageContainer {
     display: none;
   }
+}
+
+/* ABOUT US DROPDOWN — REPLACEMENT */
+.dropdownWrapper {
+  position: relative;
+}
+
+/* hidden by default using visibility+opacity for smooth animation */
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  padding: 6px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* start hidden */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease,
+    visibility 0ms linear 180ms;
+  z-index: 999;
+}
+
+/* only apply hover behavior on devices that actually support hover */
+@media (hover: hover) and (pointer: fine) {
+  .dropdownWrapper:hover .dropdownMenu,
+  .dropdownWrapper:focus-within .dropdownMenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition-delay: 0ms;
+  }
+}
+
+/* fallback for non-hover devices: keep dropdown closed until explicit click (optional) */
+@media (hover: none) {
+  .dropdownWrapper:hover .dropdownMenu {
+    /* prevent accidental touch-triggered hover from showing it */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+.dropdownLink {
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+  display: block;
+}
+
+.dropdownLink:hover {
+  background-color: #f2f2f2;
+}
+
+/* MOBIL DROPDOWN */
+.dropdownMenuMobile {
+  max-height: 0;
+  overflow: hidden;
+  background: #3a3938;
+  transition: max-height 0.3s ease;
+}
+
+.mobileDropdownOpen {
+  max-height: 300px;
+}
+
+.dropdownLinkMobile {
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.18s ease;
+  display: block;
+}
+
+.dropdownLinkMobile:hover {
+  background-color: #f2f2f2;
+  color: black;
 }
