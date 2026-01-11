@@ -1,6 +1,7 @@
 .wrapper {
   position: relative;
   background-color: rgb(249, 249, 249);
+  padding: 100px 0;
 }
 
 .content {
@@ -9,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: auto;
 }
 
@@ -29,6 +31,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, auto);
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Card */
@@ -71,3 +74,31 @@
     background-position: -200% 0;
   }
 }
+
+.sectionTitle {
+  max-width: 600px;
+  text-align: center;
+}
+
+.sectionTitle h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.sectionTitle p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.icon {
+  display: inline-block;
+  margin: 10px 0 20px;
+  height: auto;
+}
+
+.iconImg {
+  object-fit: contain;
+  width: 40px;  
+  height: 40px; 
+}
+

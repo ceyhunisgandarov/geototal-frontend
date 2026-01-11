@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import style from "../../../../../public/assets/css/module/icon/icon.module.css";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 function Icon({
   color = "#E41D2D",
@@ -61,7 +62,7 @@ function Icon({
         background === "light" ? style.light : style.dark
       }`}
     >
-      <div ref={iconRef}></div>
+      <Image src={service.serviceImageUrl} width={200} height={200}/>
       <div className={style.contentElement} style={{ zIndex: "2" }}>
         <p className={style.serviceTitle}>{serviceName}</p>
       </div>

@@ -1,47 +1,78 @@
 "use client";
 import { useEffect, useState } from "react";
-import style from "../../../../public/assets/css/module/product/product.module.css";
+import styles from "../../../../public/assets/css/module/product/product.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import ProductService from "@/app/services/ProductService";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
-
+import { useLocale, useTranslations } from "next-intl";
 
 function ProductComponent({ id }) {
-  const [product, setProduct] = useState(null); // başlangıçta null yap
-  const [loading, setLoading] = useState(true); // loading state
+  const t = useTranslations("Product");
+  const [product, setProduct] = useState(null);
+  const [activeImage, setActiveImage] = useState("");
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const locale = useLocale(); // artık state ile uğraşmana gerek yok
 
   useEffect(() => {
     setLoading(true);
     ProductService.getProduct(id)
       .then((response) => {
         if (response.data.status.code === 200) {
-          setProduct(response.data.response);
+          const data = response.data.response;
+          setProduct(data);
+
+          // 👇 ilk resmi aktif yap
+          if (data.images && data.images.length > 0) {
+            setActiveImage(data.images[0]);
+          }
         } else {
           router.replace("/404");
         }
       })
-      .catch((error) => {
-        console.log("something went wrong-", error);
-        router.replace("/404"); // hata durumunda da 404
-      })
+      .catch(() => router.replace("/404"))
       .finally(() => setLoading(false));
   }, [id, router]);
 
+  const getCategoryKey = (category) => {
+    switch (category) {
+      case "TOTAL_STATION":
+        return "ts";
+
+      case "GNSS":
+        return "gnss";
+
+      case "AUTO_LEVEL":
+        return "level";
+
+      case "ACCESSORIES":
+        return "accesories";
+
+      case "CONTROLLER":
+        return "controller";
+
+      case "SOFTWARE":
+        return "software";
+
+      case "LASER_SCANNER":
+        return "laser";
+
+      default:
+        return "products";
+    }
+  };
+
   if (loading) {
     return (
-      <main className={style.container}>
-        <div className={style.productContainer}>
-          <div className={style.imageSkeleton}></div>
-          <div className={style.textSkeleton}>
-            <div className={style.skelLine}></div>
-            <div className={style.skelLine}></div>
-            <div className={style.skelLine}></div>
-            <div className={style.skelLineShort}></div>
-            <div className={style.skelButton}></div>
+      <main className={styles.container}>
+        <div className={styles.productContainer}>
+          <div className={styles.imageSkeleton}></div>
+          <div className={styles.textSkeleton}>
+            <div className={styles.skelLine}></div>
+            <div className={styles.skelLine}></div>
+            <div className={styles.skelLine}></div>
+            <div className={styles.skelLineShort}></div>
+            <div className={styles.skelButton}></div>
           </div>
         </div>
       </main>
@@ -58,65 +89,61 @@ function ProductComponent({ id }) {
   )}`;
 
   return (
-    <main className={style.container}>
-      <div className={style.productContainer}>
-        <div className={style.imageContainer}>
+    <div className={styles.container}>
+      <div className={styles.productMain}>
+        <div className={styles.productGallery}>
           <Image
-            width={300}
-            height={300}
-            src={
-              product?.images?.length > 0
-                ? product.images[0]
-                : "/images/admin/question.png"
-            }
-            alt={product?.model || "Ürün"}
-            className={style.image2}
-            priority
+            src={activeImage}
+            alt={product.model}
+            width={600}
+            height={600}
+            className={styles.mainImg}
           />
+          <div className={styles.thumbnails}>
+            {product.images &&
+              product.images.map((image, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={`${styles.thumb} ${
+                    activeImage === image ? styles.activeThumb : ""
+                  }`}
+                  onClick={() => setActiveImage(image)}
+                >
+                  <Image
+                    src={image}
+                    alt={product.model}
+                    width={100}
+                    height={100}
+                    className={styles.thumbImg}
+                  />
+                </button>
+              ))}
+          </div>
         </div>
-        <div className={style.textContainer}>
-          <h2 className={style.brand}>{product.brand}</h2>
-          <h1 className={style.model}>{product.model}</h1>
 
-          <div className={style.details}>
-            <span className={style.category}>Kategoriya: {product.category}</span>
-            {product.bestseller === true && (
-              <span className={style.bestseller}>⭐ BestSeller</span>
-            )}
-          </div>
-
-          <div className={style.actions}>
-            {/* WhatsApp Satın Al Butonu */}
-            <Link
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={style.shopBtn}
-            >
-              Whatsapdan Əlaqə
-            </Link>
-          </div>
-          <Link
-            href={`https://geototal-backend-e6f32f49f836.herokuapp.com/geototal/user/product/pdf/${product.fileUrl}`}
-            download
-            className={style.pdfBtn}
-          >
-            📄 Məhsulun broşuru (PDF)
-          </Link>
+        <div className={styles.productInfo}>
+          <nav className={styles.breadcrumb}>
+            {t("home")} &gt; {t("products")} &gt;{" "}
+            {t(getCategoryKey(product.category))}
+          </nav>
+          <h1 className={styles.title}>{product.brand}</h1>
+          <h2 className={styles.title2}>{product.model}</h2>
+          <button className={styles.btnAdd}>{t("get")}</button>
         </div>
       </div>
-      <div className={style.descriptionContainer}>
-        <p className={style.description}>
-          {locale === "az"
-            ? product?.descriptionAz
-            : locale === "en"
-            ? product?.descriptionEn
-            : locale === "ru"
-            ? product?.descriptionRu
-            : product?.descriptionAz}
-        </p>
+
+      <div className={styles.productBottomDetails}>
+        <div className={styles.detailSection}>
+          <h3>{t("description")}</h3>
+          <p className={styles.description}>{product.descriptionAz}</p>
+        </div>
+        <div className={styles.broschure}>
+          <button className={styles.download}>&#8659;</button>
+          <p>{t("broschure")}</p>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
 

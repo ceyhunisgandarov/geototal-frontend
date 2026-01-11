@@ -12,7 +12,9 @@
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 50px;
+  padding: 30px 50px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 /* Her section genel yapısı */
@@ -22,8 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 60px;
-  padding: 100px 80px;
+  gap: 30px;
   overflow: hidden;
 }
 
@@ -61,6 +62,8 @@
 /* Sol ve sağ bölümler */
 .left,
 .right {
+  padding: 20px;
+  box-sizing: border-box;
   flex: 1;
   z-index: 1; /* çizginin altında kalmasın */
 }
@@ -70,17 +73,21 @@
 }
 
 /* Başlık ve metin */
-.left h2 {
-  font-size: 1.8rem;
+.left h3 {
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 20px;
   text-transform: uppercase;
+  padding: 10px;
 }
 
 .left p {
+  width: 100%;
   font-size: 1rem;
   line-height: 1.7;
   color: #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: justify;
 }
 
 /* 🔥 Görsel alanı - orantılı sabit ölçü */
@@ -113,8 +120,5 @@
   }
   .section::before {
     display: none;
-  }
-  .image {
-    scale: 1.5;
   }
 }

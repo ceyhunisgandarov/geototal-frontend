@@ -1,0 +1,153 @@
+.blogArea {
+  padding: 100px 20px;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px auto;
+}
+
+.sectionHeader h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.sectionHeader span {
+  display: inline-block;
+  margin: 10px 0 20px;
+}
+
+.sectionHeader p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.blogImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .blogGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .blogGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blogCard {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blogCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.blogImage {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.blogImage img {
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+.blogCard:hover .blogImage img {
+  transform: scale(1.05);
+}
+
+.blogText {
+  padding: 24px;
+  text-align: center;
+}
+
+.blogText span {
+  cursor: default;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #999;
+  font-size: 14px;
+}
+
+.blogText h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.blogText h4 {
+  text-decoration: none;
+  cursor: default;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.blogText h4 a:hover {
+  color: #614a3d;
+}
+
+.blogText p {
+  cursor: default;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.blogText {
+  color: #614a3d;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.blogText .link:hover {
+  color: #ffb400;
+}
+
+.link {
+  all: unset;
+  cursor: pointer;
+}
+
+.button {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffb400;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #fff;
+  border: 1px solid #ffb400;
+  color: #ffb400;
+}

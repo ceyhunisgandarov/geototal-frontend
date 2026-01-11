@@ -24,9 +24,9 @@ function AboutUsContent() {
         console.log("something went wrong-", error);
       })
       .finally(() => {
-        setTimeout(() => setLoading(false), 100); // smooth geçiş
+        setTimeout(() => setLoading(false), 100);
       });
-  }, []); // <-- boş array ekledik
+  }, []);
 
   let contentTitle = "";
   let contentSecond = "";
@@ -77,11 +77,7 @@ function AboutUsContent() {
         <>
           <div className={style.imageWrapper}>
             <Image
-              src={
-                content.imageUrl && content.imageUrl
-                  ? content.imageUrl
-                  : content.imageUrl || "/images/aboutus.png"
-              }
+              src={content.imageUrl ?? "/images/aboutus.png"}
               alt="Construction Workers"
               width={500}
               height={500}
@@ -89,7 +85,7 @@ function AboutUsContent() {
             />
             <div className={style.projectCount}>
               <h2>{content.approximatelyProjectsCount}+</h2>
-              <p>Project Complete</p>
+              <p>Project</p>
             </div>
           </div>
           <div className={style.aboutText}>

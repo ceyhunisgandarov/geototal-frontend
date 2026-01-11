@@ -1,13 +1,13 @@
-import LayoutSecond from "@/app/components/layout/layoutsecond";
+import Layout from "@/app/components/layout";
 import Banner from "@/app/components/section/banner";
 import ServicePageContainer from "@/app/components/section/servicepage";
 
 function ServiceContainer({ page, service }) {
   return (
-    <LayoutSecond page={page}>
+    <Layout page={page}>
       <Banner page="services" />
       <ServicePageContainer service={service} />
-    </LayoutSecond>
+    </Layout>
   );
 }
 

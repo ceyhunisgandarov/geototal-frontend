@@ -47,6 +47,7 @@
 
 .memberImage {
   width: 100%;
+  height: auto;
   aspect-ratio: 1/1; /* kare resim garantisi */
   object-fit: cover; /* resmi taşmadan kırp */
   border-radius: 8px; /* köşeleri biraz yuvarlat */

@@ -5,8 +5,8 @@
   gap: 40px;
   max-width: 1440px;
   margin: 0 auto; /* Ortalamak için */
-  padding-inline: 2%; /* Sağ ve sol boşluk */
-  padding-block: 80px; /* Üst ve alt boşluk */
+  padding: 100px;
+  box-sizing: border-box; /* Üst ve alt boşluk */
 }
 
 .imageWrapper {
@@ -20,9 +20,9 @@
 
 .aboutImage {
   border-radius: 8px;
-  width: 100%;
-  height: auto;
-  max-width: 700px;
+  width: 100%; /* və ya istədiyin pixel */
+  height: auto; /* aspect ratio qorunur */
+  object-fit: cover; /* lazımdırsa şəkili kəsib sığdırmaq üçün */
   border: solid 1px black;
 }
 

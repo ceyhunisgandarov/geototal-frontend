@@ -1,15 +1,15 @@
-import AboutUsContainer from "@/app/containers/aboutus";
+import ReferencesContainer from "@/app/containers/references";
 import { useTranslations } from "next-intl";
 
-function AboutUsPage() {
+function ReferencesPage() {
 
   const t = useTranslations("Navbar")
 
   return (
     <div>
-      <AboutUsContainer page="aboutus" locale={t("locale")} />
+      <ReferencesContainer page="aboutus/references" locale={t("locale")} />
     </div>
   );
 }
 
-export default AboutUsPage;
+export default ReferencesPage;

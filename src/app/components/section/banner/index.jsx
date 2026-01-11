@@ -23,10 +23,13 @@ function Banner({ page }) {
       bannerHeader = t("contact");
       break;
     case "projects":
-      bannerHeader = t("project");
+      bannerHeader = t("projects");
       break;
-    case "certificate":
+    case "aboutus/certificate":
       bannerHeader = t("certificate");
+      break;
+    case "aboutus/references":
+      bannerHeader = t("references");
       break;
     default:
       bannerHeader = "Error";

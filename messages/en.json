@@ -16,6 +16,7 @@
     "references": "References",
     "certificates": "Certificates",
     "products": "Products",
+    "projects": "Projects",
     "services": "Services",
     "contactus": "Contact Us"
   },
@@ -27,9 +28,52 @@
     "projects": "Our Projects"
   },
 
+  "HomeService": {
+    "locale": "en",
+    "title": "Services for You",
+    "description": "Scroll down to discover the geodesy and topography service that best fits your project.",
+    "more": "More"
+  },
+
+  "ServiceForm": {
+    "locale": "en",
+    "contactTitle": "Let’s Get in Touch",
+    "contactDesc": "Fill out the form to receive detailed information about our services, and our team will contact you shortly.",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "choose": "Select a service",
+    "submit": "Submit",
+    "successMessage": "Your request has been sent successfully. We will contact you shortly.",
+    "errorMessage": "An error occurred while sending your request. Please try again."
+  },
+
+  "Advertise": {
+    "locale": "en",
+    "title": "Precision Made Visible",
+    "description": "Data generated from topographic surveys is transformed into realistic project models.",
+    "explore": "Discover geodesy equipment",
+    "secondTitle": "Simplify geodesy measurements using new technologies",
+    "get": "GET"
+  },
+
+  "Products": {
+    "title": "Professional Surveying Instruments",
+    "description": "We provide modern surveying products that ensure precision and reliability in geodesy and topography."
+  },
+
+  "ProjectsHome": {
+    "locale": "en",
+    "title": "Projects We Participate In",
+    "more": "More",
+    "description": "We are actively involved in a variety of infrastructure and construction projects in geodesy and topography, ensuring high precision and quality."
+  },
+
   "AboutUs": {
     "locale": "en",
-    "members": "Our Team"
+    "members": "Our Team",
+    "more": "More"
   },
 
   "Category": {
@@ -42,14 +86,29 @@
     "software": "Software"
   },
 
+  "Product": {
+    "home": "Home",
+    "products": "Products",
+    "get": "Get",
+    "description": "Product description",
+    "ts": "Total Station",
+    "gnss": "GNSS",
+    "level": "Level",
+    "controller": "Controller",
+    "accesories": "Accessories",
+    "software": "Software",
+    "broschure": "Brochure"
+  },
+
   "Banner": {
     "locale": "en",
     "about": "About Us",
     "products": "Products",
     "service": "Services",
     "contact": "Contact Us",
-    "project": "Projects",
-    "certificate": "Certificates"
+    "projects": "Projects",
+    "certificate": "Certificates",
+    "references": "References"
   },
 
   "Contact": {
@@ -74,7 +133,29 @@
     "goHome": "Go Home"
   },
 
-  "Admin" : {
+  "Admin": {
     "locale": "en"
+  },
+
+  "Projects": {
+    "locale": "en",
+    "projets": "PROJECTS",
+    "all": "View all projects"
+  },
+
+  "Footer": {
+    "aboutus": "About Us",
+    "description": "We specialize in topographic surveys and geodesy services.",
+    "descriptionSecond": "Providing accurate and fast solutions for your projects.",
+    "contactus": "Contact",
+    "address": "Narimanov Dist., Ahmad Rəcəbli St., 27b",
+    "openhours": "Opening Hours",
+    "openhoursdesc": "We are at your service throughout the workweek",
+    "weekdays": "Mon - Fri: 09:00 - 18:00",
+    "saturday": "Saturday: 09:00 - 17:00",
+    "sunday": "Sunday: Closed",
+    "newsletter": "Newsletter",
+    "yourmail": "Enter your email",
+    "send": "Send"
   }
 }

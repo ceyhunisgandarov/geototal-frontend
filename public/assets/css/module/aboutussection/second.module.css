@@ -1,13 +1,20 @@
+.mainSection {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  background-color: #ececec;
+}
+
 .whySection {
   width: 96%;
   display: flex;
   align-items: center;
   gap: 40px;
-  padding-inline: 2%;
   max-width: 1440px;
   margin: 0 auto; /* Ortalamak için */
-  padding-block: 80px; /* Üst ve alt boşluk */
-  background-color: #ececec;
+  padding: 100px;
+  box-sizing: border-box; /* Üst ve alt boşluk */
 }
 
 .imageWrapper {
@@ -23,7 +30,7 @@
   border-radius: 8px;
   width: 100%;
   height: auto;
-  max-width: 700px;
+  object-fit: cover;
   border: solid 1px black;
 }
 

@@ -10,10 +10,11 @@
 
   "Navbar": {
     "locale": "az",
-    "home": "əsas səhİfə",
+    "home": "əsas səhifə",
     "aboutus": "Haqqımızda",
+    "projects": "Layihələr",
     "products": "məhsullar",
-    "services": "xİdmətlər",
+    "services": "xidmətlər",
     "contactus": "əlaqə",
     "company": "Şirkət",
     "references": "Referanslar",
@@ -27,9 +28,52 @@
     "projects": "İştİrak etdİyİmİz layİhələr"
   },
 
+  "HomeService": {
+    "locale": "az",
+    "title": "Sizə Uygun Xidmətlər",
+    "description": "Aşağıdan layihənizə ən uyğun geodeziya və topoqrafiya xidmətimizi görə bilərsiniz.",
+    "more": "Daha çox"
+  },
+
+  "ServiceForm": {
+    "locale": "az",
+    "contactTitle": "Sizinlə Əlaqə Saxlayaq",
+    "contactDesc": "Xidmətlərimiz haqqında əlavə və ətraflı məlumat almaq üçün formu doldurun, komandamız sizinlə qısa zamanda əlaqə saxlasın.",
+    "firstname": "Ad",
+    "lastname": "Soyad",
+    "email": "E-poçt",
+    "phone": "Telefon",
+    "choose": "Xidməti seçin",
+    "submit": "Göndər",
+    "successMessage": "Sorğunuz uğurla göndərildi. Tezliklə sizinlə əlaqə saxlanılacaq.",
+    "errorMessage": "Sorğunu göndərərkən xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin."
+  },
+
+  "Advertise": {
+    "title": "Dəqiqliyin Görünən Forması",
+    "description": "Topoqrafik ölçmələr əsasında formalaşan məlumatlar, real layihə modellərinə çevrilir."
+  },
+
   "AboutUs": {
     "locale": "az",
-    "members": "Komandamız"
+    "members": "Komandamız",
+    "more": "Daha çox"
+  },
+
+  "Products": {
+    "locale": "az",
+    "title": "Peşəkar Ölçmə Avadanlıqları",
+    "description": "Geodeziya və topoqrafiya sahəsində dəqiqlik və etibarlılığı təmin edən müasir ölçmə məhsulları təqdim edirik.",
+    "explore": "Geodeziya avadanlıqlarını kəşf et",
+    "secondTitle": "Yeni texnologiyalar əldə edərək geodeziya ölçmələrini asanlaşdır",
+    "get": "Əldə et"
+  },
+
+  "ProjectsHome": {
+    "locale": "az",
+    "title": "İştirak Etdiyimiz Layihələr",
+    "description": "Geodeziya və topoqrafiya sahəsində müxtəlif infrastruktur və inşaat layihələrində aktiv iştirak edirik, yüksək dəqiqlik və keyfiyyət təmin edirik.",
+    "more": "Daha çox"
   },
 
   "Category": {
@@ -42,14 +86,29 @@
     "software": "Proqram Təmİnatı"
   },
 
+  "Product": {
+    "home": "Əsas səhifə",
+    "ts": "Totalstation",
+    "gnss": "GNSS",
+    "level": "Nivelir",
+    "controller": "Kontroller",
+    "accesories": "Aksesuarlar",
+    "software": "Proqram Təmİnatı",
+    "products": "Məhsullar",
+    "get": "Əldə et",
+    "description": "Məhsul haqqında",
+    "broschure": "Broşür"
+  },
+
   "Banner": {
     "locale": "az",
     "about": "Haqqımızda",
     "products": "Məhsullar",
     "service": "Xİdmətlər",
     "contact": "BİZİMLƏ Əlaqə",
-    "project": "Layihələr",
-    "certificate": "Sertifikatlar"
+    "projects": "Layİhələr",
+    "certificate": "Sertİfİkatlar",
+    "references": "Referanslar"
   },
 
   "Contact": {
@@ -76,5 +135,27 @@
 
   "Admin": {
     "locale": "az"
+  },
+
+  "Projects": {
+    "locale": "az",
+    "projets": "LAYİHƏLƏR",
+    "all": "Bütün layihələri gör"
+  },
+
+  "Footer": {
+    "aboutus": "Haqqımızda",
+    "description": "Biz topoqrafik ölçmələr və geodeziya xidmətləri üzrə ixtisaslaşmışıq.",
+    "descriptionSecond": "Layihələriniz üçün dəqiq və sürətli həllər təqdim edirik.",
+    "contactus": "Əlaqə",
+    "address": "Nərimanov r., Əhməd Rəcəbli küç., 27b",
+    "openhours": "İş saatları",
+    "openhoursdesc": "Həftənin bütün iş günləri xidmətinizdəyik",
+    "weekdays": "B.e. - C.e.: 09:00 - 18:00",
+    "saturday": "Şənbə: 09:00 - 17:00",
+    "sunday": "Bazar: Bağlıdır",
+    "newsletter": "Yenİlİklər",
+    "yourmail": "Emailinizi daxil edin",
+    "send": "Göndər"
   }
 }

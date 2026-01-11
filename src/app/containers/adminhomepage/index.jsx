@@ -13,6 +13,8 @@ import ProductsAdmin from "@/app/components/admin/section/products";
 import BannerAdmin from "@/app/components/admin/section/banneradmin";
 import ContactInfoSection from "@/app/components/admin/section/contactinfo";
 import ServiceAdmin from "@/app/components/admin/section/service";
+import CertificatesAdmin from "@/app/components/admin/section/certificates";
+import ProjectsAdmin from "@/app/components/admin/section/projects";
 
 function AdminHomePage({ page }) {
   const router = useRouter();
@@ -64,6 +66,14 @@ function AdminHomePage({ page }) {
           <BannerAdmin page="aboutus" />
           <AboutUsAdmin />
           <MembersAdmin />
+          <CertificatesAdmin />
+        </div>
+        <div
+          style={{ display: divId === "projects" ? "block" : "none"}}
+          id="projects"
+        >
+          <BannerAdmin page="aboutus" />
+          <ProjectsAdmin />
         </div>
         <div
           style={{ display: divId === "product" ? "block" : "none" }}

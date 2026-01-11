@@ -1,0 +1,304 @@
+/* ===================== */
+/* BASE */
+/* ===================== */
+
+.sliderArea {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.singleSlide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ===================== */
+/* VIDEO */
+/* ===================== */
+
+
+/* ===================== */
+/* CONTENT CENTER */
+/* ===================== */
+
+.bannerContent {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+}
+
+.bannerContentContainer,
+.bannerContentRow,
+.bannerContentCol,
+.textContentWrapper,
+.textContent {
+  height: 100%;
+}
+
+.textContentWrapper {
+  display: table;
+  width: 100%;
+}
+
+.textContent {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ===================== */
+/* TEXT */
+/* ===================== */
+
+.bannerContent h3 {
+  font-family: "Courgette", cursive;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.bannerContent h1 {
+  font-size: 60px;
+  margin-bottom: 25px;
+}
+
+.bannerContent p {
+  font-size: 16px;
+  margin-bottom: 35px;
+  padding: 0 40px;
+}
+
+/* ===================== */
+/* BUTTON */
+/* ===================== */
+
+.bannerBtn {
+  display: block;
+}
+
+.bannerLink {
+  background: #fff;
+  color: #614a3d;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 44px;
+  padding: 0 28px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s;
+  text-decoration: none;
+}
+
+.bannerLink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #614a3d;
+  opacity: 0;
+  transform: scale(0.5, 1);
+  transition: 0.4s;
+  z-index: 1;
+}
+
+.bannerLink span {
+  position: relative;
+  z-index: 2;
+}
+
+.bannerLink:hover span {
+  color: #fff;
+}
+
+.bannerLink:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+/* ===================== */
+/* NAV BUTTONS */
+/* ===================== */
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 10;
+}
+
+.prev {
+  left: -50px;
+}
+
+.next {
+  right: -50px;
+}
+
+.sliderArea:hover .navBtn {
+  opacity: 1;
+}
+
+.sliderArea:hover .prev {
+  left: 20px;
+}
+
+.sliderArea:hover .next {
+  right: 20px;
+}
+
+.navBtn:hover {
+  background: #614a3d;
+  color: #fff;
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .sliderArea {
+    height: 70vh;
+  }
+
+  .bannerContent h1 {
+    font-size: 46px;
+  }
+
+  .bannerContent h3 {
+    font-size: 32px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+
+
+  /* MOBİLDE OKLARI GİZLE */
+  .navBtn {
+    display: none;
+  }
+}
+
+
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* ===============================
+   SLIDER AREA
+================================ */
+
+.sliderArea {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: rgb(11, 69, 120);
+}
+
+/* ===============================
+   SINGLE SLIDE
+================================ */
+
+.singleSlide {
+  position: relative;
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===============================
+   BACKGROUND VIDEO
+================================ */
+
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* ===============================
+   CONTENT OVER VIDEO
+================================ */
+
+.bannerContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.textContent {
+  padding: 120px 15px;
+  text-align: center;
+  color: #fff;
+}
+
+/* ===============================
+   OPTIONAL OVERLAY (İSTEĞE BAĞLI)
+================================ */
+
+.singleSlide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* ===============================
+   TABLET
+================================ */
+
+@media (max-width: 1024px) {
+  .sliderArea {
+    min-height: 70vh;
+  }
+
+  .singleSlide {
+    min-height: 70vh;
+  }
+
+  .textContent {
+    padding: 100px 20px;
+  }
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+
+
+/* ===============================
+   SMALL MOBILE
+================================ */
+
+

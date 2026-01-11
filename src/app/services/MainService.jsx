@@ -8,8 +8,13 @@ const checkMagicLink = (token) => {
   return createAxiosInstance().post(`user/check/magic-link?token=${token}`);
 };
 
+const sendMailAboutService = (reqMail) => {
+  return createAxiosInstance().post(`user/service/mail`, reqMail, {})
+}
+
 export default {
   getMagicLink,
-  checkMagicLink
+  checkMagicLink,
+  sendMailAboutService
 };
 

@@ -11,7 +11,7 @@ function ProductList({ selectedCategory }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true); // loading state
-  const t = useTranslations("Navbar");
+  const t = useTranslations("Products");
 
   useEffect(() => {
     setLoading(true);
@@ -41,9 +41,9 @@ function ProductList({ selectedCategory }) {
 
   return (
     <div className={style.container2}>
-      <h1 className={style.title2}>Explore Geodesy Product</h1>
+      <h1 className={style.title2}>{t("explore")}</h1>
       <p className={style.subtitle}>
-        New Technology in construction measurements
+        {t("secondTitle")}
       </p>
 
       <div className={style.grid2}>
@@ -73,13 +73,14 @@ function ProductList({ selectedCategory }) {
                         : "/images/fallback.jpg"
                     }
                     alt={product.model}
-                    fill
-                    style={{ objectFit: "contain" }}
+                    width={300}
+                    height={300}
+                    className={style.productImage}
                   />
                 </div>
                 <h3 className={style.productName}>{product.brand}</h3>
                 <p className={style.desc2}>{product.model}</p>
-                <button className={style.btn}>Add to cart</button>
+                <button className={style.btn}>{t("get")}</button>
               </Link>
             ))}
       </div>

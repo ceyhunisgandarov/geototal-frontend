@@ -11,7 +11,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 
-
 function AdminNavbar({ handleClick }) {
   const t = useTranslations("Navbar");
   const locale = useLocale();
@@ -117,27 +116,50 @@ function AdminNavbar({ handleClick }) {
         <div className={style.menuContainer}>
           <ul className={style.menuList}>
             <li>
-              <div className={style.menuLink} onClick={() => handleClick("home")}>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("home")}
+              >
                 Home Page
               </div>
             </li>
             <li>
-              <div className={style.menuLink} onClick={() => handleClick("about")}>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("about")}
+              >
                 About Us
               </div>
             </li>
             <li>
-              <div className={style.menuLink} onClick={() => handleClick("product")}>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("product")}
+              >
                 Products
               </div>
             </li>
             <li>
-              <div className={style.menuLink} onClick={() => handleClick("service")}>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("projects")}
+              >
+                Projects
+              </div>
+            </li>
+            <li>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("service")}
+              >
                 Services
               </div>
             </li>
             <li>
-              <div className={style.menuLink} onClick={() => handleClick("contact")}>
+              <div
+                className={style.menuLink}
+                onClick={() => handleClick("contact")}
+              >
                 Contact Us
               </div>
             </li>

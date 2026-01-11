@@ -1,0 +1,215 @@
+/* ===============================
+   SECTION
+================================ */
+.aboutArea {
+  padding: 70px 0 100px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.aboutSection {
+  width: 96%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1440px;
+  margin: 0 auto; /* Ortalamak için */
+  padding: 100px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   CONTAINER
+================================ */
+.container {
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   ROW
+================================ */
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row-reverse; /* desktop için ters sıra */
+}
+
+/* ===============================
+   COLUMNS
+================================ */
+.colImage,
+.colContent {
+  flex: 1 1 50%; /* 2 sütun %50 genişlik */
+  max-width: 50%;
+  min-width: 300px; /* daraldığında alt satıra geçmesini sağlar */
+  box-sizing: border-box;
+}
+
+.aboutImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===============================
+   IMAGE
+================================ */
+.image {
+  width: 95%;
+  max-width: 95%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* ===============================
+   TEXT
+================================ */
+
+.colContent {
+  padding: 20px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.aboutText {
+  width: 95%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.aboutText h3 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.aboutText p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: #555;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.defaultBtn {
+  display: inline-block;
+  padding: 12px 34px;
+  background-color: #6f4e37;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.defaultBtn:hover {
+  background-color: #543827;
+}
+
+/* ===============================
+   TABLET
+================================ */
+@media (max-width: 991px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .colImage,
+  .colContent {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .aboutText h3 {
+    font-size: 30px;
+  }
+
+  .aboutText p {
+    text-align: justify;
+  }
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 767px) {
+  .aboutText h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .aboutText p {
+    font-size: 14px;
+  }
+
+  .defaultBtn {
+    width: 130px;
+  }
+}
+
+.skeletonImage {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonProject {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  width: 120px;
+  height: 70px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.aboutSection.skeleton {
+  flex-direction: row-reverse;
+}
+
+.skeletonText {
+  height: 18px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeletonText.short {
+  width: 30%;
+}
+
+.skeletonText.medium {
+  width: 60%;
+}
+
+.skeletonText.long {
+  width: 90%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 45%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+}

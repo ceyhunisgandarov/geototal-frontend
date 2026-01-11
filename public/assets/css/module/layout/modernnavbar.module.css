@@ -1,0 +1,273 @@
+/* header.module.css */
+
+/* Ortak header */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 0;
+  background: transparent;
+  z-index: 99;
+  transition: all 0.3s ease;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  width: 155px;
+  max-width: 220px;
+  height: auto;
+  transition: all 0.3s ease;
+  /* filter: drop-shadow(1px 1px 0 #ffffff2b) drop-shadow(2px 2px 0 #ffffff2b)
+    drop-shadow(3px 3px 0 #ffffff2b) drop-shadow(4px 4px 0 #ffffff2b); */
+}
+
+/* Desktop sticky */
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* Menü desktop */
+.menu {
+  display: flex;
+  gap: 10px;
+}
+
+.menuLink {
+  position: relative;
+}
+
+.mainLink {
+  color: #fff;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
+  padding: 0 10px;
+  line-height: 40px;
+}
+
+.menuLink:hover .mainLink {
+  color: #6f5342;
+}
+
+/* Hamburger & mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #000;
+  transition: 0.3s;
+}
+
+/* Mobil menü */
+.mobileMenu {
+  position: fixed;
+  top: 64px;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  padding: 50px 20px;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mobileMenu.open {
+  right: 0;
+}
+
+.mobileMenu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.mobileMenu a:hover {
+  color: #6f5342; /* Koyu kahve */
+}
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Dil secimi */
+.languageContainer {
+  position: relative;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: border 0.2s ease;
+}
+
+.flag:hover {
+  border-color: #0077cc;
+}
+
+.dropdownLocales {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.flagContainer {
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.flagContainer:hover {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 900px) {
+  .logoImage {
+    max-width: 120px;
+  }
+
+  .mainLink {
+    font-size: 14px;
+  }
+}
+
+/* Mobil görünürlük */
+@media (max-width: 768px) {
+  .header {
+    position: fixed; /* Hep üstte sabit */
+    background: #fff; /* Arkası beyaz */
+    padding: 10px 15px; /* Daha ince */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  .menu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .logoImage {
+    max-width: 120px;
+  }
+}
+
+/* Sticky olduğunda menu linkleri siyah */
+.sticky .menuLink .mainLink {
+  color: #000; /* Siyah */
+}
+
+/* Sticky + hover: koyu kahve */
+.sticky .menuLink:hover .mainLink {
+  color: #6f5342; /* Koyu kahve */
+}
+
+/* ===============================
+   ABOUT US DROPDOWN
+================================ */
+
+.menuLink {
+  position: relative;
+}
+
+/* Dropdown kutusu */
+.dropDown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 200px;
+  padding: 10px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 999;
+}
+
+/* Hover ile açılma */
+.menuLink:hover .dropDown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Liste sıfırlama */
+.unOrderedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tek satır */
+.dropDownMenu {
+  padding: 8px 20px;
+}
+
+.header.transparent {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.header.sticky {
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}

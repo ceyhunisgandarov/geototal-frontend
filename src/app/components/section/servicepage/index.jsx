@@ -15,7 +15,7 @@ export default function ServicesSection({ service }) {
 
   const refreshService = async () => {
     try {
-      const response = await ServicesService.getService("lidar");
+      const response = await ServicesService.getService(service);
       if (response.data.status.code === 200) {
         setAService(response.data.response);
       } else {
@@ -64,7 +64,7 @@ export default function ServicesSection({ service }) {
               className={`${style.section} ${index % 2 !== 0 ? style.reverse : ""}`}
             >
               <div className={style.left}>
-                <h2>{part.partName || "No Name"}</h2>
+                <h3>{part.partName || "No Name"}</h3>
                 <p>{partText}</p>
               </div>
               <div className={style.right}>

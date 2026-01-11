@@ -1,17 +1,25 @@
 "use client";
 import Layout from "../layout";
-import Carousel from "../carousel";
 import HomeBody from "../homebody";
-import HomeService from "../homeservice";
-import CompanyAlbum from "../companyalbum";
+import ModernCarousel from "../moderncarousel";
+import ModernService from "../modernservice";
+import ModernContact from "../moderncontact";
+import AdvertiseArea from "../advertising";
+import ClientArea from "../modernclients";
+import Projects from "../projects";
+import AboutSection from "../modernabout";
 
 export default function MainSection({ page, locale }) {
   return (
     <Layout page={page} locale={locale}>
-      <Carousel />
-      <HomeService />
+      <ModernCarousel />
+      <AboutSection />
+      <ModernService />
+      <ModernContact />
+      <AdvertiseArea />
       <HomeBody />
-      <CompanyAlbum />
+      <ClientArea />
+      <Projects />
     </Layout>
   );
 }

@@ -4,9 +4,5 @@ import HomeContainer from "@/app/containers/homepage";
 
 export default function HomePage() {
   const t = useTranslations("Home");
-  return (
-    <div>
-      <HomeContainer page="" locale={`${t("locale")}`} />
-    </div>
-  );
+  return <HomeContainer page="" locale={`${t("locale")}`} />;
 }

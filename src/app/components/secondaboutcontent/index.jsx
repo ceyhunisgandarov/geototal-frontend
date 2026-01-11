@@ -56,9 +56,9 @@ function SecondAboutUsContent() {
   }
 
   return (
-    <section className={style.whySection}>
+    <section className={style.mainSection}>
       {loading ? (
-        <>
+        <div className={style.whySection}>
           <div className={style.aboutText}>
             <div className={`${style.skeletonText} ${style.short}`}></div>
             <div className={`${style.skeletonText} ${style.medium}`}></div>
@@ -69,9 +69,9 @@ function SecondAboutUsContent() {
             <div className={style.skeletonImage}></div>
             <div className={style.skeletonProject}></div>
           </div>
-        </>
+        </div>
       ) : (
-        <>
+        <div className={style.whySection}>
           <div className={style.aboutText}>
             <h4>{contentTitle}</h4>
             <h2>{contentSecond}</h2>
@@ -95,7 +95,7 @@ function SecondAboutUsContent() {
               <p>Total Staff</p>
             </div>
           </div>
-        </>
+        </div>
       )}
     </section>
   );

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import style from "../../../../public/assets/css/module/homebody/homebody.module.css";
 import Card from "../elements/card";
 import ProductService from "@/app/services/ProductService";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const more = {
   id: 999,
@@ -15,6 +17,7 @@ export default function HomeBody() {
   const [loading, setLoading] = useState(true); // <-- Skeleton için
   const [cardCount, setCardCount] = useState(7);
 
+  const t = useTranslations("Products")
   const contentRef = useRef(null);
 
   const updateCount = () => {
@@ -75,6 +78,21 @@ export default function HomeBody() {
   return (
     <div className={style.wrapper}>
       <div ref={contentRef} className={style.content}>
+        <div className={style.sectionTitle}>
+          <h1>{t("title")}</h1>
+          <span className={style.icon}>
+            <Image
+              src="/images/icons/products-icon.png"
+              alt="koffee"
+              width={40}
+              height={40}
+              className={style.iconImg}
+            />
+          </span>
+          <p>
+            {t("description")}
+          </p>
+        </div>
         <div className={style.grid}>
           {loading
             ? renderSkeleton()

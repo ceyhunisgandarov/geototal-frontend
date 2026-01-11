@@ -212,7 +212,7 @@ function ServiceAdmin() {
 
               <input
                 type="file"
-                accept=".svg"
+                accept=".svg, .png, .jpg"
                 onChange={(e) => setCurrentService((prev) => ({ ...prev, serviceImageFile: e.target.files[0] }))}
               />
             </div>

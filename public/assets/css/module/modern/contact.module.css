@@ -1,0 +1,135 @@
+/* BookingArea.module.css */
+.bookingArea {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.sectionTitle {
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTitle h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.sectionTitle p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.icon {
+  display: inline-block;
+  margin: 10px 0 20px;
+}
+
+.form {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form input {
+  width: 100%;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form input:focus {
+  border-color: #ffb400;
+  box-shadow: 0 0 0 3px rgba(255, 180, 0, 0.15);
+}
+
+.submitWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.button {
+  border-radius: 10px;
+  border: none;
+  background: #ffb400;
+  color: #000;
+  padding: 14px 30px;
+  box-sizing: border-box;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form select {
+  width: 100%;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  outline: none;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+
+  /* default arrow'u gizleyip custom görünüm */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* sağda ok için boşluk */
+  padding-right: 40px;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form select:focus {
+  border-color: #ffb400;
+  box-shadow: 0 0 0 3px rgba(255, 180, 0, 0.15);
+}
+
+.form select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23999' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+}
+
+.form option {
+  font-size: 15px;
+  padding: 10px;
+}

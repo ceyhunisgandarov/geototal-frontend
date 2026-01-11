@@ -1,0 +1,43 @@
+/* AdvertiseArea.module.css */
+.advertiseArea {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(
+      lab(0% 0 0 / 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url('/images/bg/advertise.jpg') center / cover no-repeat;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.text {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+.text h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.text p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 576px) {
+  .advertiseArea {
+    padding: 70px 0;
+  }
+}
