@@ -56,7 +56,8 @@ export default function ModernFooter() {
 
       {/* BOTTOM */}
       <div className={styles.footerBottom}>
-        <p>© {new Date().getFullYear()} Koffee. Made with ❤️ by HasThemes</p>
+        <p>© {new Date().getFullYear()} Geototal LLC. All rights reserved.
+</p>
       </div>
     </footer>
   );

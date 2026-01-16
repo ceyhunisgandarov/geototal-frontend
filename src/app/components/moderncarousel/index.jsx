@@ -45,24 +45,24 @@ export default function ModernCarousel() {
   }, []);
 
   const carouselElement = carousel[carouselIndex]
-  ? {
-      az: {
-        title: carousel[carouselIndex].title,
-        slogan: carousel[carouselIndex].slogan,
-        description: carousel[carouselIndex].description
-      },
-      en: {
-        title: carousel[carouselIndex].titleEn,
-        slogan: carousel[carouselIndex].sloganEn,
-        description: carousel[carouselIndex].descriptionEn
-      },
-      ru: {
-        title: carousel[carouselIndex].titleRu,
-        slogan: carousel[carouselIndex].sloganRu,
-        description: carousel[carouselIndex].descriptionRu
-      },
-    }
-  : {};
+    ? {
+        az: {
+          title: carousel[carouselIndex].title,
+          slogan: carousel[carouselIndex].slogan,
+          description: carousel[carouselIndex].description,
+        },
+        en: {
+          title: carousel[carouselIndex].titleEn,
+          slogan: carousel[carouselIndex].sloganEn,
+          description: carousel[carouselIndex].descriptionEn,
+        },
+        ru: {
+          title: carousel[carouselIndex].titleRu,
+          slogan: carousel[carouselIndex].sloganRu,
+          description: carousel[carouselIndex].descriptionRu,
+        },
+      }
+    : {};
 
   return (
     <section className={styles.sliderArea}>
@@ -82,20 +82,36 @@ export default function ModernCarousel() {
             <div className={styles.bannerContentRow}>
               <div className={styles.bannerContentCol}>
                 <div className={styles.textContentWrapper}>
-                  {carousel &&
-                    carousel.map((carouselItem) => (
-                      <div className={styles.textContent} key={carouselItem.id}>
+                  {/* {carousel && 
+                    // carousel.map((carouselItem) => (
+                    //   <div className={styles.textContent} key={carouselItem.id}>
+                    //     <h3>{carouselElement[t("locale")]?.title}</h3>
+                    //     <h1>{carouselElement[t("locale")]?.slogan}</h1>
+                    //     <p>{carouselElement[t("locale")]?.description}</p>
+
+                    //     <div className={styles.bannerBtn}>
+                    //       <Link className={styles.bannerLink} href={`${t("locale")}/${carouselItem.link}`}>
+                    //         <span>{t("more")}</span>
+                    //       </Link>
+                    //     </div>
+                    //   </div> */}
+                  {carousel.map((item, index) =>
+                    index === carouselIndex ? (
+                      <div className={styles.textContent} key={item.id}>
                         <h3>{carouselElement[t("locale")]?.title}</h3>
                         <h1>{carouselElement[t("locale")]?.slogan}</h1>
                         <p>{carouselElement[t("locale")]?.description}</p>
-
                         <div className={styles.bannerBtn}>
-                          <Link className={styles.bannerLink} href={`${t("locale")}/${carouselItem.link}`}>
+                          <Link
+                            className={styles.bannerLink}
+                            href={`${t("locale")}/${item.link}`}
+                          >
                             <span>{t("more")}</span>
                           </Link>
                         </div>
                       </div>
-                    ))}
+                    ) : null
+                  )}
                 </div>
               </div>
             </div>

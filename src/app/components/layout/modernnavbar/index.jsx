@@ -74,7 +74,7 @@ export default function ModernNavbar({ page }) {
       >
         <div className={styles.container}>
           <div className={styles.logo}>
-            <Link href="/">
+            <Link href={`/${t('locale')}/`}>
               <Image
                 className={styles.logoImage}
                 src={logo}
