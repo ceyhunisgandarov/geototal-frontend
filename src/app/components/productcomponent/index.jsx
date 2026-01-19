@@ -129,7 +129,18 @@ function ProductComponent({ id }) {
           </nav>
           <h1 className={styles.title}>{product.brand}</h1>
           <h2 className={styles.title2}>{product.model}</h2>
-          <button className={styles.btnAdd}>{t("get")}</button>
+          <button
+            className={styles.btnAdd}
+            onClick={() => {
+              const phone = "994501234567"; // WhatsApp nömrəsi (ölkə kodu ilə, + olmadan)
+              const message = encodeURIComponent(
+                "Salam, Geototal MMC xidmətləri haqqında məlumat almaq istəyirəm."
+              );
+              window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+            }}
+          >
+            {t("get")}
+          </button>
         </div>
       </div>
 
@@ -138,10 +149,10 @@ function ProductComponent({ id }) {
           <h3>{t("description")}</h3>
           <p className={styles.description}>{product.descriptionAz}</p>
         </div>
-        <div className={styles.broschure}>
+        <Link href={product.fileUrl} className={styles.broschure}>
           <button className={styles.download}>&#8659;</button>
           <p>{t("broschure")}</p>
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,179 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Başlıq */
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+/* Alt hissə */
+.contentWrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Sol content */
+.textContent {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Sağ image */
+.imageWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* vertical alignment */
+  min-height: 200px; /* lazım gələrsə */
+  max-width: 100%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: solid gray 1px;
+}
+
+/* 🔥 RESPONSIVE */
+@media (max-width: 1000px) {
+  .title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .contentWrapper {
+    flex-direction: column-reverse;
+  }
+
+  .imageWrapper {
+    width: 80%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .textContent {
+    text-align: justify;
+  }
+}
+
+.textContent ul {
+  padding-left: 20px;
+}
+
+.textContent li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  list-style-type: disc;
+}
+
+.textContent h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.feedback {
+  display: flex;
+  align-items: stretch;
+}
+
+.feedback span {
+  width: 3px;
+  background-color: coral;
+  margin-right: 20px;
+}
+
+.feedback span {
+  border-radius: 4px;
+}
+
+.feedback p {
+  font-size: 16px;
+}
+
+/**** SKELETON *****/
+
+/* 🔥 SKELETON BASE */
+.skeleton {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes pulse {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeletonTitle,
+.skeletonLine,
+.skeletonLineShort,
+.skeletonImage {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 37%, #e0e0e0 63%);
+  background-size: 400% 100%;
+  animation: pulse 1.4s ease infinite;
+  border-radius: 8px;
+}
+
+/* Title */
+.skeletonTitle {
+  width: 40%;
+  height: 36px;
+  margin: 0 auto 40px;
+}
+
+/* Content wrapper */
+.skeletonContentWrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Text */
+.skeletonText {
+  flex: 1;
+}
+
+.skeletonLine {
+  height: 16px;
+  margin-bottom: 14px;
+}
+
+.skeletonLineShort {
+  width: 60%;
+  height: 16px;
+}
+
+/* Image */
+.skeletonImage {
+  flex: 1;
+  height: 280px;
+  border-radius: 12px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 1000px) {
+  .skeletonContentWrapper {
+    flex-direction: column-reverse;
+  }
+
+  .skeletonImage {
+    width: 80%;
+    height: 240px;
+  }
+
+  .skeletonTitle {
+    width: 70%;
+  }
+}

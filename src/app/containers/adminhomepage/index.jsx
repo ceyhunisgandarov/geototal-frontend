@@ -72,7 +72,7 @@ function AdminHomePage({ page }) {
           style={{ display: divId === "projects" ? "block" : "none"}}
           id="projects"
         >
-          <BannerAdmin page="aboutus" />
+          <BannerAdmin page="projects" />
           <ProjectsAdmin />
         </div>
         <div

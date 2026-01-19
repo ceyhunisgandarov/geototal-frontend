@@ -69,26 +69,30 @@ export default function Projects() {
         </div>
 
         <div className={styles.blogGrid}>
-          {randomProjects && randomProjects.map((project) => (
-            <div key={project.id} className={styles.blogCard}>
-              <div  className={styles.blogImage}>
-                <Image
-                  src={project.imageUrl}
-                  alt={project.projectName}
-                  className={styles.blogImage}
-                  width={300}
-                  height={300}
-                />
+          {randomProjects &&
+            randomProjects.map((project) => (
+              <div key={project.id} className={styles.blogCard}>
+                <div className={styles.blogImage}>
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.projectName}
+                    fill
+                    className={styles.image}
+                  />
+                </div>
+
+                <div className={styles.blogText}>
+                  <span>{project.workDate}</span>
+                  <h4>{project.projectName}</h4>
+                  <Link
+                    href={`/${t("locale")}/projects/${project.path}`}
+                    className={styles.link}
+                  >
+                    <button className={styles.button}>{t("more")}</button>
+                  </Link>
+                </div>
               </div>
-              <div className={styles.blogText}>
-                <span>{project.workDate}</span>
-                <h4>
-                 {project.projectName}
-                </h4>
-                <Link href={`/${t("locale")}/projects/${project.path}`} className={styles.link}><button className={styles.button}>{t("more")}</button></Link>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>

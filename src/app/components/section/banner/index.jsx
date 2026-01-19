@@ -42,6 +42,7 @@ function Banner({ page }) {
       .then((response) => {
         if (response.data.status.code === 200) {
           const imageUrl = response.data.response.imageUrl;
+          console.log(response.data.response, "image")
           setBannerImage(`url("${imageUrl}")`);
         } else {
           setBannerImage(`url("/images/banners/${page}.png")`);

@@ -105,9 +105,9 @@ export default function ModernNavbar({ page }) {
                     <li className={styles.dropDownMenu}>
                       <Link
                         className={styles.mainLink}
-                        href={`/${t("locale")}/aboutus/references`}
+                        href={`/${t("locale")}/aboutus`}
                       >
-                        {t("references")}
+                        {t("company")}
                       </Link>
                     </li>
                     <li className={styles.dropDownMenu}>
@@ -284,12 +284,6 @@ export default function ModernNavbar({ page }) {
               onClick={() => setMenuOpen(false)}
             >
               {t("aboutus")}
-            </Link>{" "}
-            <Link
-              className={styles.mainLink}
-              href={`/${t("locale")}/aboutus/references`}
-            >
-              {t("references")}
             </Link>
             <Link
               className={styles.mainLink}

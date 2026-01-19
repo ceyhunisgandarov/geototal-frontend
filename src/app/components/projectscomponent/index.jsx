@@ -29,26 +29,7 @@ function ProjectsComponent() {
     fetchProjects();
   }, []);
 
-  const getDescriptionByLocale = (project) => {
-    const locale = t("locale"); // örn: "az", "en", "ru"
-
-    let desc = "";
-
-    switch (locale) {
-      case "en":
-        desc = project.worksDescriptionEn;
-        break;
-      case "ru":
-        desc = project.worksDescriptionRu;
-        break;
-      default:
-        desc = project.worksDescription;
-    }
-
-    if (!desc) return "";
-
-    return desc.length > 120 ? desc.substring(0, 120) + "..." : desc;
-  };
+  
 
   return (
     <main className={styles.container}>
@@ -79,7 +60,6 @@ function ProjectsComponent() {
                   </div>
                   <div className={styles.projectInfo}>
                     <h3>{project.projectName}</h3>
-                    <p>{getDescriptionByLocale(project)}</p>
                   </div>
                 </article>
               </Link>

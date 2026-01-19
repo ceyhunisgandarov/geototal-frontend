@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ProjectService from "@/app/services/ProjectService";
 import styles from "../../../../../../public/assets/css/module/admin/project.module.css";
 import ProjectForm from "./form";
+import Image from "next/image";
 
 export default function ProjectsAdmin() {
   const [projects, setProjects] = useState([]);
@@ -61,7 +62,7 @@ export default function ProjectsAdmin() {
         {projects.map((project) => (
           <div className={styles.projectCard} key={project.id}>
             <div className={styles.projectImage}>
-              <img src={project.imageUrl} alt={project.projectName} />
+              <Image src={project.imageUrl} alt={project.projectName} width={300} height={300} className={styles.image}/>
             </div>
             <h3>{project.projectName}</h3>
             <div className={styles.projectActions}>

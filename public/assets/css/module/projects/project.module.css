@@ -42,16 +42,18 @@
   overflow: hidden;
   box-shadow: 0 0 5px 1px rgb(0, 0, 0, 0.4);
   box-sizing: border-box;
-
-  /* Yeni əlavə: sabit hündürlük */
-  height: 350px; /* istədiyin hündürlüyü ver */
+  height: 350px;
   display: flex;
   flex-direction: column;
 }
 
+.projectCard:hover {
+  opacity: 80%;
+}
+
 .projectImage {
   width: 100%;
-  height: 70%; /* kartın %60-ı şəkil üçün */
+  height: 80%; /* kartın %60-ı şəkil üçün */
   overflow: hidden;
 }
 
@@ -63,7 +65,7 @@
 
 .projectInfo {
   padding: 10px 20px;
-  height: 30%; /* kartın qalan %40-ı info üçün */
+  height: 20%; /* kartın qalan %40-ı info üçün */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -86,7 +88,7 @@
 
 
 .projectInfo h3 {
-  font-size: 14px;
+  font-size: 18px;
   color: #1a1a1a;
   margin-bottom: 8px;
   letter-spacing: 0.5px;
