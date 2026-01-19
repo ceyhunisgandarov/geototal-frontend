@@ -129,18 +129,9 @@ function ProductComponent({ id }) {
           </nav>
           <h1 className={styles.title}>{product.brand}</h1>
           <h2 className={styles.title2}>{product.model}</h2>
-          <button
-            className={styles.btnAdd}
-            onClick={() => {
-              const phone = "994501234567"; // WhatsApp nömrəsi (ölkə kodu ilə, + olmadan)
-              const message = encodeURIComponent(
-                "Salam, Geototal MMC xidmətləri haqqında məlumat almaq istəyirəm."
-              );
-              window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-            }}
-          >
-            {t("get")}
-          </button>
+          <Link href={whatsappLink} className={styles.link}>
+            <button className={styles.btnAdd}>{t("get")}</button>
+          </Link>
         </div>
       </div>
 
