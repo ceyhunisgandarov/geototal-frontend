@@ -4,7 +4,6 @@ import Image from "next/image";
 import style from "../../../../../../public/assets/css/module/admin/banner.module.css";
 import BannerService from "@/app/services/BannerService";
 
-
 function BannerAdmin({ page }) {
   const [dbImage, setDbImage] = useState("/images/admin/question.png");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,6 +11,7 @@ function BannerAdmin({ page }) {
   const [bannerImage, setBannerImage] = useState(null);
   const [id, setId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [path, setPath] = useState("");
 
   const buttonText =
     dbImage && dbImage !== "/images/admin/question.png" ? "Change" : "Add";
@@ -21,7 +21,12 @@ function BannerAdmin({ page }) {
   }, []);
 
   const refreshBanner = () => {
-    BannerService.getBanner(page)
+    if (page.includes("aboutus/certificates")) {
+      setPath("certificates");
+    } else {
+      setPath(page);
+    }
+    BannerService.getBanner(path)
       .then((response) => {
         if (response.data.status.code === 200) {
           const imageUrl = response.data.response.imageUrl;

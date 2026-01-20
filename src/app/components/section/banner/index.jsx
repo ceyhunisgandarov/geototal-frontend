@@ -1,13 +1,15 @@
 "use client";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/banner/banner.module.css";
 import BannerService from "@/app/services/BannerService";
 import { useTranslations } from "next-intl";
 
 function Banner({ page }) {
-  const [bannerImage, setBannerImage] = useState(`url("/images/banners/${page}.png")`);
+  const [bannerImage, setBannerImage] = useState(""); // Başlanğıcda boş
+  const [path, setPath] = useState("");
   const [loading, setLoading] = useState(true);
-  const t = useTranslations("Banner")
+  const t = useTranslations("Banner");
+
   let bannerHeader = "";
   switch (page) {
     case "aboutus":
@@ -25,7 +27,7 @@ function Banner({ page }) {
     case "projects":
       bannerHeader = t("projects");
       break;
-    case "aboutus/certificate":
+    case "aboutus/certificates":
       bannerHeader = t("certificate");
       break;
     case "aboutus/references":
@@ -38,18 +40,21 @@ function Banner({ page }) {
 
   useEffect(() => {
     setLoading(true);
-    BannerService.getBanner(page)
+    const currentPath = page.includes("aboutus/certificates") ? "certificates" : page;
+    setPath(currentPath);
+
+    BannerService.getBanner(currentPath)
       .then((response) => {
         if (response.data.status.code === 200) {
           const imageUrl = response.data.response.imageUrl;
-          console.log(response.data.response, "image")
           setBannerImage(`url("${imageUrl}")`);
         } else {
-          setBannerImage(`url("/images/banners/${page}.png")`);
+          // DB-də nəticə gəlmədikdə belə, shimmer göstərəcəyik
+          setBannerImage(""); 
         }
       })
       .catch(() => {
-        setBannerImage(`url("/images/banners/${page}.png")`);
+        setBannerImage(""); // Error olsa da shimmer göstər
       })
       .finally(() => {
         setLoading(false);
@@ -60,10 +65,10 @@ function Banner({ page }) {
     <div
       className={style.container}
       style={{
-        backgroundImage: !loading ? bannerImage : "none",
+        backgroundImage: !loading && bannerImage ? bannerImage : "none",
       }}
     >
-      {loading ? (
+      {loading || !bannerImage ? (
         <div className={style.shimmer}></div>
       ) : (
         <div className={style.overlay}>

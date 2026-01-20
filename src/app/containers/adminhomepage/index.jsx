@@ -67,9 +67,10 @@ function AdminHomePage({ page }) {
           <AboutUsAdmin />
           <MembersAdmin />
           <CertificatesAdmin />
+          <BannerAdmin page="aboutus/certificates" />
         </div>
         <div
-          style={{ display: divId === "projects" ? "block" : "none"}}
+          style={{ display: divId === "projects" ? "block" : "none" }}
           id="projects"
         >
           <BannerAdmin page="projects" />
