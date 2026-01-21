@@ -1,0 +1,99 @@
+.container {
+  padding: 30px;
+}
+
+.addBtn {
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 210 / 297;
+  background: #fff;
+  border: 2px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.actions button {
+  padding: 6px 10px;
+}
+
+.delete {
+  background: #e53935;
+  color: white;
+}
+
+.form {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+}
+
+.formActions {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel {
+  background: #9e9e9e;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.error {
+  background: #ffebee;
+  color: #c62828;
+}

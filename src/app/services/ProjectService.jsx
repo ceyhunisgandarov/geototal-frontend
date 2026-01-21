@@ -34,9 +34,8 @@ const getProject = (path) => {
 const deleteProject = (path) => {
   const token = Cookies.get("Authorization");
 
-  return createAxiosInstance().put(
+  return createAxiosInstance().delete(
     `admin/project/delete/${path}`,
-    {},
     {
       headers: {
         Authorization: `Bearer ${token}`,

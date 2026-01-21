@@ -28,7 +28,7 @@ function MembersAdmin() {
           response.data.status.code === 404
         ) {
           setMembers(response.data.response);
-          setMemberImage(null)
+          setMemberImage(null);
         }
       })
       .catch((error) => {
@@ -77,58 +77,57 @@ function MembersAdmin() {
 
   return (
     <div className={style.container}>
-      {members &&
-        members.map((member) => (
-          <div className={style.memberContainer} key={member.id}>
-            <div className={style.imageContainer}>
-              <Image
-                src={
-                  member.imageUrl
-                    ? member.imageUrl
-                    : "/images/admin/question.png"
-                }
-                alt={member.fullName}
-                width={80}
-                height={80}
-                className={style.image}
-              />
-              {console.log(member.imageUrl)}
+      <div className={style.membersContainer}>
+        {members &&
+          members.map((member) => (
+            <div className={style.memberContainer} key={member.id}>
+              <div className={style.imageContainer}>
+                <Image
+                  src={
+                    member.imageUrl
+                      ? member.imageUrl
+                      : "/images/admin/question.png"
+                  }
+                  alt={member.fullName}
+                  width={80}
+                  height={80}
+                  className={style.image}
+                />
+              </div>
+              <div className={style.dataContainer}>
+                <p>{member.email}</p>
+                <p>{member.fullName}</p>
+                <p>{member.jobTitle}</p>
+              </div>
+              <div className={style.buttonContainer}>
+                <button
+                  className={style.blueButton}
+                  onClick={() => {
+                    setModal(true);
+                    setUpdateId(member.id);
+                    setReqMember({
+                      email: member.email,
+                      fullName: member.fullName,
+                      jobTitle: member.jobTitle,
+                    });
+                  }}
+                >
+                  Change
+                </button>
+                <button
+                  className={style.deleteButton}
+                  onClick={() => handleDelete(member.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className={style.dataContainer}>
-              <p>{member.email}</p>
-              <p>{member.fullName}</p>
-              <p>{member.jobTitle}</p>
-            </div>
-            <div className={style.buttonContainer}>
-              <button
-                className={style.blueButton}
-                onClick={() => {
-                  setModal(true);
-                  setUpdateId(member.id);
-                  setReqMember({
-                    email: member.email,
-                    fullName: member.fullName,
-                    jobTitle: member.jobTitle,
-                  });
-                }}
-              >
-                Change
-              </button>
-              <button
-                className={style.deleteButton}
-                onClick={() => handleDelete(member.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-
-      <div className={style.memberContainer}>
-        <button className={style.addButton} onClick={() => setModal(true)}>
-          ADD NEW MEMBER
-        </button>
+          ))}
       </div>
+
+      <button className={style.addButton} onClick={() => setModal(true)}>
+        ADD NEW MEMBER
+      </button>
 
       {modal && (
         <div className={style.modalOverlay}>

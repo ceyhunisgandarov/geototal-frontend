@@ -15,6 +15,7 @@ import ContactInfoSection from "@/app/components/admin/section/contactinfo";
 import ServiceAdmin from "@/app/components/admin/section/service";
 import CertificatesAdmin from "@/app/components/admin/section/certificates";
 import ProjectsAdmin from "@/app/components/admin/section/projects";
+import CertificateAdmin from "@/app/components/admin/section/certificate";
 
 function AdminHomePage({ page }) {
   const router = useRouter();
@@ -68,6 +69,7 @@ function AdminHomePage({ page }) {
           <MembersAdmin />
           <CertificatesAdmin />
           <BannerAdmin page="aboutus/certificates" />
+          <CertificateAdmin />
         </div>
         <div
           style={{ display: divId === "projects" ? "block" : "none" }}
