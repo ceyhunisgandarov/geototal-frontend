@@ -37,11 +37,18 @@ export default function ServicesSection({ service }) {
       ? aService.serviceNameEn
       : aService.serviceNameRu;
 
+  const sortedParts = [...aService.serviceParts].sort((a, b) => {
+    // id yoxdursa index-ə görə
+    if (!a.id) return 1;
+    if (!b.id) return -1;
+    return a.id - b.id;
+  });
+
   return (
     <div className={style.wrapper}>
       <h2>{serviceName}</h2>
 
-      {aService.serviceParts.map((part, index) => {
+      {sortedParts.map((part, index) => {
         if (!part) return null;
 
         // Dil seçimi
@@ -61,7 +68,9 @@ export default function ServicesSection({ service }) {
         return (
           <div key={part.id || index} className={sectionClass}>
             <section
-              className={`${style.section} ${index % 2 !== 0 ? style.reverse : ""}`}
+              className={`${style.section} ${
+                index % 2 !== 0 ? style.reverse : ""
+              }`}
             >
               <div className={style.left}>
                 <h3>{part.partName || "No Name"}</h3>
