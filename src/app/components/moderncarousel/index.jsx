@@ -1,135 +1,199 @@
 "use client";
+
 import Link from "next/link";
 import styles from "../../../../public/assets/css/module/carousel/modern.module.css";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "use-intl";
+import { useTranslations } from "next-intl";
 import CarouselService from "@/app/services/CarouselService";
+import Image from "next/image";
 
 export default function ModernCarousel() {
   const t = useTranslations("Carousel");
   const videoRef = useRef(null);
 
   const [carousel, setCarousel] = useState([]);
-  const [carouselIndex, setCarouselIndex] = useState(0); // index ile otomatik ilerleme için
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    // Fonksiyon: ekran boyutunu kontrol eder
+    const handleResize = () => {
+      setMobile(window.innerWidth <= 762);
+    };
+
+    // İlk renderda kontrol et
+    handleResize();
+
+    // Resize eventini dinle
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup: component unmount olunca eventi kaldır
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     CarouselService.getCarouselData()
-      .then((response) => {
-        if (response?.data?.status?.code === 200)
-          setCarousel(response.data.response);
-        else setCarousel(carouselSlidesLocale);
+      .then((res) => {
+        if (res?.data?.status?.code === 200) {
+          setCarousel(res.data.response);
+        }
       })
-      .catch(() => setCarousel(carouselSlidesLocale));
+      .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    if (carousel.length === 0) return;
-    const timer = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % carousel.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [carousel]);
-
-  const nextSlide = () =>
-    setCarouselIndex((prev) => (prev + 1) % carousel.length);
-  const prevSlide = () =>
-    setCarouselIndex((prev) => (prev - 1 + carousel.length) % carousel.length);
-
-  // aktif slide objesini al
-  const currentSlide = carousel[carouselIndex];
+  const handleVideoEnd = () => {
+    setCarouselIndex(1);
+  };
 
   useEffect(() => {
-    if (videoRef.current) {
+    if (!carousel.length) return;
+    if (carouselIndex === 0) return;
+
+    const timer = setTimeout(() => {
+      setCarouselIndex((prev) => (prev + 1 < carousel.length ? prev + 1 : 0));
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [carouselIndex, carousel]);
+
+  useEffect(() => {
+    if (carouselIndex === 0 && videoRef.current) {
+      videoRef.current.load();
       videoRef.current.playbackRate = 0.8;
+      videoRef.current.play();
     }
-  }, []);
+  }, [carouselIndex]);
 
-  const carouselElement = carousel[carouselIndex]
-    ? {
-        az: {
-          title: carousel[carouselIndex].title,
-          slogan: carousel[carouselIndex].slogan,
-          description: carousel[carouselIndex].description,
-        },
-        en: {
-          title: carousel[carouselIndex].titleEn,
-          slogan: carousel[carouselIndex].sloganEn,
-          description: carousel[carouselIndex].descriptionEn,
-        },
-        ru: {
-          title: carousel[carouselIndex].titleRu,
-          slogan: carousel[carouselIndex].sloganRu,
-          description: carousel[carouselIndex].descriptionRu,
-        },
-      }
-    : {};
+  const locale = t("locale");
 
   return (
-    <section className={styles.sliderArea}>
-      <div className={`${styles.singleSlide} ${styles.active}`}>
-        <video
-          ref={videoRef}
-          className={styles.bgVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          src="/images/bg-videoo.mp4"
-        />
-        <div className={styles.bannerContent}>
-          <div className={styles.bannerContentContainer}>
-            <div className={styles.bannerContentRow}>
-              <div className={styles.bannerContentCol}>
-                <div className={styles.textContentWrapper}>
-                  {/* {carousel && 
-                    // carousel.map((carouselItem) => (
-                    //   <div className={styles.textContent} key={carouselItem.id}>
-                    //     <h3>{carouselElement[t("locale")]?.title}</h3>
-                    //     <h1>{carouselElement[t("locale")]?.slogan}</h1>
-                    //     <p>{carouselElement[t("locale")]?.description}</p>
+    <section
+      className={styles.sliderArea}
+      style={{
+        backgroundImage: `url(/images/sayt-screenbg.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {carousel.map((slide, index) => {
+        const carouselElement = {
+          az: {
+            title: slide.title,
+            slogan: slide.slogan,
+            description: slide.description,
+          },
+          en: {
+            title: slide.titleEn,
+            slogan: slide.sloganEn,
+            description: slide.descriptionEn,
+          },
+          ru: {
+            title: slide.titleRu,
+            slogan: slide.sloganRu,
+            description: slide.descriptionRu,
+          },
+        };
 
-                    //     <div className={styles.bannerBtn}>
-                    //       <Link className={styles.bannerLink} href={`${t("locale")}/${carouselItem.link}`}>
-                    //         <span>{t("more")}</span>
-                    //       </Link>
-                    //     </div>
-                    //   </div> */}
-                  {carousel.map((item, index) =>
-                    index === carouselIndex ? (
-                      <div className={styles.textContent} key={item.id}>
-                        <h3>{carouselElement[t("locale")]?.title}</h3>
-                        <h1>{carouselElement[t("locale")]?.slogan}</h1>
-                        <p>{carouselElement[t("locale")]?.description}</p>
-                        <div className={styles.bannerBtn}>
-                          <Link
-                            className={styles.bannerLink}
-                            href={`${t("locale")}/${item.link}`}
-                          >
-                            <span>{t("more")}</span>
-                          </Link>
-                        </div>
-                      </div>
-                    ) : null
-                  )}
+        const isActive = index === carouselIndex;
+
+        return (
+          <div
+            key={slide.id}
+            className={`${styles.singleSlide} ${isActive ? styles.active : ""}`}
+            style={
+              index !== 0 && slide.image
+                ? {
+                    backgroundImage: `url("/images/sayt-screenbg.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }
+                : {}
+            }
+          >
+            {/* VIDEO ONLY FIRST SLIDE */}
+            {index === 0 && (
+              <video
+                ref={isActive ? videoRef : null}
+                className={styles.bgVideo}
+                autoPlay={isActive}
+                muted
+                playsInline
+                preload="auto"
+                onEnded={handleVideoEnd}
+              >
+                <source src="/images/bg-videoo.mp4" type="video/mp4" />
+              </video>
+            )}
+
+            {/* IMAGE FOR OTHER SLIDES */}
+            {/* IMAGE FOR OTHER SLIDES */}
+            {index !== 0 && (
+              <Image
+                src={
+                  mobile
+                    ? "/images/bg/mobile-screen.jpg"
+                    : "/images/bg/big-screen.jpg"
+                }
+                width={1500}
+                height={500}
+                className={styles.bgVideo}
+                alt={slide.title}
+              />
+            )}
+
+            {/* CONTENT */}
+            <div
+              className={`${
+                carouselIndex === 1
+                  ? styles.secondBannerContent
+                  : styles.bannerContent
+              }`}
+            >
+              <div className={styles.textContent}>
+                <h3>{carouselElement[locale]?.title}</h3>
+                <h1>{carouselElement[locale]?.slogan}</h1>
+                <div className={styles.pContent}>
+                  <p>{carouselElement[locale]?.description}</p>
+                </div>
+                <div className={styles.bannerBtn}>
+                  <Link
+                    className={styles.bannerLink}
+                    href={`${locale}/${slide.link}`}
+                  >
+                    <span>{t("more")}</span>
+                  </Link>
                 </div>
               </div>
             </div>
+
+            {/* NAV */}
+            <button
+              className={`${styles.navBtn} ${styles.prev}`}
+              onClick={() =>
+                setCarouselIndex(
+                  carouselIndex === 0 ? carousel.length - 1 : carouselIndex - 1
+                )
+              }
+            >
+              ‹
+            </button>
+
+            <button
+              className={`${styles.navBtn} ${styles.next}`}
+              onClick={() =>
+                setCarouselIndex(
+                  carouselIndex + 1 < carousel.length ? carouselIndex + 1 : 0
+                )
+              }
+            >
+              ›
+            </button>
           </div>
-        </div>
-        <button
-          className={`${styles.navBtn} ${styles.prev}`}
-          onClick={prevSlide}
-        >
-          ‹
-        </button>
-        <button
-          className={`${styles.navBtn} ${styles.next}`}
-          onClick={nextSlide}
-        >
-          ›
-        </button>
-      </div>
+        );
+      })}
     </section>
   );
 }

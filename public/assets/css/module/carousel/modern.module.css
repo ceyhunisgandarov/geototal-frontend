@@ -8,12 +8,17 @@
   height: 100vh;
   min-height: 700px;
   overflow: hidden;
+  background-color: rgb(174, 174, 174);
 }
 
 .singleSlide {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
 }
 
@@ -21,6 +26,27 @@
 /* VIDEO */
 /* ===================== */
 
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===================== */
+/* OPTIONAL OVERLAY */
+/* ===================== */
+
+.singleSlide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
 /* ===================== */
 /* CONTENT CENTER */
@@ -28,31 +54,33 @@
 
 .bannerContent {
   position: relative;
-  z-index: 5;
-  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.bannerContentContainer,
-.bannerContentRow,
-.bannerContentCol,
-.textContentWrapper,
+.secondBannerContent {
+  position: absolute;
+  left: 5%;
+  bottom: 8%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .textContent {
-  height: 100%;
-}
-
-.textContentWrapper {
-  display: table;
-  width: 100%;
-}
-
-.textContent {
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  justify-content: center;
   color: #fff;
-  padding: 0 20px;
+  padding: 50px;
   max-width: 900px;
-  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ===================== */
@@ -66,16 +94,37 @@
 }
 
 .bannerContent h1 {
-  font-size: 60px;
+  font-size: 50px;
   margin-bottom: 25px;
 }
 
-.bannerContent p {
-  font-size: 16px;
-  margin-bottom: 35px;
-  padding: 0 40px;
+.pContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20%;
+  height: auto;
 }
 
+.pContent p {
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 35px;
+  padding: 0 auto;
+}
+
+.secondBannerContent p {
+  line-height: 20px;
+  font-size: 16px;
+  margin-bottom: 35px;
+  padding: 0 auto;
+}
+
+.secondBannerContent h3 {
+  font-family: "Courgette", cursive;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
 /* ===================== */
 /* BUTTON */
 /* ===================== */
@@ -97,6 +146,20 @@
   overflow: hidden;
   transition: 0.4s;
   text-decoration: none;
+}
+
+.secondBannerContent .bannerLink {
+  border-radius: 5px;
+  color: rgb(90, 55, 124);
+}
+
+.secondBannerContent .bannerLink:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.secondBannerContent .bannerLink:hover::before {
+  background: #5a5a5a;
 }
 
 .bannerLink::before {
@@ -140,15 +203,17 @@
   cursor: pointer;
   opacity: 0;
   transition: all 0.4s ease;
-  z-index: 10;
+  z-index: 3;
 }
 
 .prev {
   left: -50px;
+  border-radius: 5px;
 }
 
 .next {
   right: -50px;
+  border-radius: 5px;
 }
 
 .sliderArea:hover .navBtn {
@@ -169,17 +234,37 @@
 }
 
 /* ===================== */
+/* IMAGE SLIDE */
+/* ===================== */
+
+.imageWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===================== */
 /* RESPONSIVE */
 /* ===================== */
 
 /* TABLET */
 @media (max-width: 1024px) {
   .sliderArea {
-    height: 70vh;
+    height: 80vh;
+    min-height: 80vh;
   }
 
   .bannerContent h1 {
-    font-size: 46px;
+    font-size: 30px;
   }
 
   .bannerContent h3 {
@@ -189,117 +274,74 @@
 
 /* MOBILE */
 @media (max-width: 768px) {
-
-
-
-  /* MOBİLDE OKLARI GİZLE */
   .navBtn {
     display: none;
   }
+
+  .pContent {
+    padding: 0 20px;
+  }
 }
-
-
-.bgVideo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-/* ===============================
-   SLIDER AREA
-================================ */
-
-.sliderArea {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: rgb(174, 174, 174);
-}
-
-/* ===============================
-   SINGLE SLIDE
-================================ */
 
 .singleSlide {
-  position: relative;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: inherit;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+}
+
+.singleSlide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Modern.module.css */
+
+/* Skeleton */
+.skeletonSlide {
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background: linear-gradient(-90deg, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%);
+  background-size: 400% 400%;
+  animation: shimmer 1.5s ease-in-out infinite;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ===============================
-   BACKGROUND VIDEO
-================================ */
-
-.bgVideo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-/* ===============================
-   CONTENT OVER VIDEO
-================================ */
-
-.bannerContent {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-}
-
-.textContent {
-  padding: 120px 15px;
-  text-align: center;
-  color: #fff;
-}
-
-/* ===============================
-   OPTIONAL OVERLAY (İSTEĞE BAĞLI)
-================================ */
-
-.singleSlide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-/* ===============================
-   TABLET
-================================ */
-
-@media (max-width: 1024px) {
-  .sliderArea {
-    min-height: 70vh;
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
   }
-
-  .singleSlide {
-    min-height: 70vh;
-  }
-
-  .textContent {
-    padding: 100px 20px;
+  100% {
+    background-position: -200% 0;
   }
 }
 
-/* ===============================
-   MOBILE
-================================ */
+.skeletonText {
+  width: 60%;
+  height: 30px;
+  background-color: #ccc;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
 
+.skeletonTitle {
+  width: 40%;
+  height: 50px;
+  background-color: #bbb;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
 
-
-/* ===============================
-   SMALL MOBILE
-================================ */
-
-
+.skeletonBtn {
+  width: 120px;
+  height: 40px;
+  background-color: #999;
+  border-radius: 5px;
+}

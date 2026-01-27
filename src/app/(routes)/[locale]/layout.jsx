@@ -5,14 +5,11 @@ import { routing } from "@/i18n/routing";
 import "../../../../public/assets/css/reset.css";
 import "../../../../public/assets/css/global.css";
 import Script from "next/script";
+import Head from "next/head";
 
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-};
-
-export const metadata = {
-  title: "Main Page - Geototal"
 };
 
 export default async function LocaleLayout({ children, params }) {
@@ -26,6 +23,10 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <html>
+      <Head>
+        <title>Main Page - Geototal</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body>
         <Script
           src="//code.jivosite.com/widget/efpa9Si5gR"
