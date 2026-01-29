@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import style from "../../../../../../public/assets/css/module/admin/icon.module.css";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 function AdminIcon({
   color = "#E41D2D",
@@ -45,7 +46,7 @@ function AdminIcon({
         background === "light" ? style.light : style.dark
       }`}
     >
-      <div ref={iconRef}></div>
+      <div><Image src={path} width={300} height={300}/></div>
       <div className={style.contentElement} style={{ zIndex: "2" }}>
         <p className={style.serviceTitle}>{name}</p>
       </div>
