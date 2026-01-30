@@ -44,10 +44,10 @@ export default function ModernFooter() {
               </form>
 
               <div className={styles.socials}>
-                <a href="#"><FaFacebook/></a>
-                <a href="#"><FaInstagram/></a>
-                <a href="#"><FaYoutube/></a>
-                <a href="#"><FaTiktok/></a>
+                <a href="https://www.facebook.com/geosurveyservice/?locale=az_AZ"><FaFacebook/></a>
+                <a href="https://www.instagram.com/geototal_mmc/"><FaInstagram/></a>
+                <a href=""><FaYoutube/></a>
+                <a href="https://www.tiktok.com/@geototal.az"><FaTiktok/></a>
               </div>
             </div>
           </div>
