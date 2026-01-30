@@ -8,7 +8,7 @@ function AboutUsSection() {
     <section className={style.container}>
       <AboutUsContent />
       <SecondAboutUsContent />
-      <Members />
+      {/* <Members /> */}
     </section>
   );
 }

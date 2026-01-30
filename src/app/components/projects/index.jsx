@@ -82,7 +82,7 @@ export default function Projects() {
                 </div>
 
                 <div className={styles.blogText}>
-                  <span>{project.workDate}</span>
+                  <span>{project.workDate.split("-")[0]}</span>
                   <h4>{project.projectName}</h4>
                   <Link
                     href={`/${t("locale")}/projects/${project.path}`}

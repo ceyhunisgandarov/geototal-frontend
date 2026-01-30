@@ -61,7 +61,10 @@
 
   "Products": {
     "title": "Professional Surveying Instruments",
-    "description": "We provide modern surveying products that ensure precision and reliability in geodesy and topography."
+    "description": "We provide modern surveying products that ensure precision and reliability in geodesy and topography.",
+    "explore": "Discover geodesy equipment",
+    "secondTitle": "Simplify geodesy measurements using new technologies",
+    "get": "GET"
   },
 
   "ProjectsHome": {
