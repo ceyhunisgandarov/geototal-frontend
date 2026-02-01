@@ -289,7 +289,7 @@ export default function ModernNavbar({ page }) {
               className={styles.mainLink}
               href={`/${t("locale")}/aboutus/references`}
             >
-              {t("certificates")}
+              {t("references")}
             </Link>
             <Link
               className={styles.mainLink}

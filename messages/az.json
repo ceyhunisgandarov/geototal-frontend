@@ -67,7 +67,8 @@
     "description": "Geodeziya və topoqrafiya sahəsində dəqiqlik və etibarlılığı təmin edən müasir ölçmə məhsulları təqdim edirik.",
     "explore": "Geodeziya avadanlıqlarını kəşf et",
     "secondTitle": "Yeni texnologiyalar əldə edərək geodeziya ölçmələrini asanlaşdır",
-    "get": "Əldə et"
+    "get": "Əldə et",
+    "more": "Daha çox"
   },
 
   "ProjectsHome": {
@@ -79,6 +80,7 @@
 
   "Category": {
     "locale": "az",
+    "categories": "KATEGORİYALAR",
     "ts": "Totalstation",
     "gnss": "GNSS",
     "level": "Nivelir",

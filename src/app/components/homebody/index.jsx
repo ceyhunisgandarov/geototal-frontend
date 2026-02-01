@@ -99,9 +99,9 @@ export default function HomeBody() {
             : products
                 .slice(0, cardCount)
                 .map((product, key) => (
-                  <Card product={product} key={key} more={false} />
+                  <Card product={product} key={key} more={false} locale={t("locale")}/>
                 ))}
-          {!loading && <Card product={more} more={true} />}
+          {!loading && <Card product={more} more={true} moreText={t("more")} locale={t("locale")}/>}
         </div>
       </div>
     </div>

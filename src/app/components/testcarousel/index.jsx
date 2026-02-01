@@ -70,7 +70,7 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
 
   return (
     <div className={style.container}>
-      <h1>Categories</h1>
+      <h1>{t("categories")}</h1>
       {currentIndex > 0 && (
         <button className={`${style.arrow} ${style.left}`} onClick={toPrev}>
           ◀

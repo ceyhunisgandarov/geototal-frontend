@@ -13,33 +13,24 @@ export default function ModernCarousel() {
 
   const [carousel, setCarousel] = useState([]);
   const [carouselIndex, setCarouselIndex] = useState(0);
-
   const [mobile, setMobile] = useState(false);
 
+  // SWIPE için refs
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const isDragging = useRef(false);
+
   useEffect(() => {
-    // Fonksiyon: ekran boyutunu kontrol eder
-    const handleResize = () => {
-      setMobile(window.innerWidth <= 762);
-    };
-
-    // İlk renderda kontrol et
+    const handleResize = () => setMobile(window.innerWidth <= 762);
     handleResize();
-
-    // Resize eventini dinle
     window.addEventListener("resize", handleResize);
-
-    // Cleanup: component unmount olunca eventi kaldır
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     CarouselService.getCarouselData()
       .then((res) => {
-        if (res?.data?.status?.code === 200) {
-          setCarousel(res.data.response);
-        }
+        if (res?.data?.status?.code === 200) setCarousel(res.data.response);
       })
       .catch(() => {});
   }, []);
@@ -48,6 +39,7 @@ export default function ModernCarousel() {
     setCarouselIndex(1);
   };
 
+  // Otomatik geçiş
   useEffect(() => {
     if (!carousel.length) return;
     if (carouselIndex === 0) return;
@@ -59,6 +51,7 @@ export default function ModernCarousel() {
     return () => clearTimeout(timer);
   }, [carouselIndex, carousel]);
 
+  // Video oynatma
   useEffect(() => {
     if (carouselIndex === 0 && videoRef.current) {
       videoRef.current.load();
@@ -69,6 +62,33 @@ export default function ModernCarousel() {
 
   const locale = t("locale");
 
+  // TOUCH / MOUSE SWIPE HANDLER
+  const handleTouchStart = (e) => {
+    isDragging.current = true;
+    touchStartX.current = e.touches ? e.touches[0].clientX : e.clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging.current) return;
+    touchEndX.current = e.touches ? e.touches[0].clientX : e.clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+
+    const distance = touchStartX.current - touchEndX.current;
+    const threshold = 50; // minimum kaydırma mesafesi
+
+    if (distance > threshold) {
+      // sola kaydır → next
+      setCarouselIndex((prev) => (prev + 1 < carousel.length ? prev + 1 : 0));
+    } else if (distance < -threshold) {
+      // sağa kaydır → prev
+      setCarouselIndex((prev) => (prev === 0 ? carousel.length - 1 : prev - 1));
+    }
+  };
+
   return (
     <section
       className={styles.sliderArea}
@@ -77,6 +97,13 @@ export default function ModernCarousel() {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleTouchStart}
+      onMouseMove={handleTouchMove}
+      onMouseUp={handleTouchEnd}
+      onMouseLeave={handleTouchEnd} // mouse kaybolunca swipe sonlansın
     >
       {carousel.map((slide, index) => {
         const carouselElement = {
@@ -128,7 +155,6 @@ export default function ModernCarousel() {
               </video>
             )}
 
-            {/* IMAGE FOR OTHER SLIDES */}
             {/* IMAGE FOR OTHER SLIDES */}
             {index !== 0 && (
               <Image

@@ -53,10 +53,7 @@
   "Advertise": {
     "locale": "en",
     "title": "Precision Made Visible",
-    "description": "Data generated from topographic surveys is transformed into realistic project models.",
-    "explore": "Discover geodesy equipment",
-    "secondTitle": "Simplify geodesy measurements using new technologies",
-    "get": "GET"
+    "description": "Data generated from topographic surveys is transformed into realistic project models."
   },
 
   "Products": {
@@ -64,7 +61,8 @@
     "description": "We provide modern surveying products that ensure precision and reliability in geodesy and topography.",
     "explore": "Discover geodesy equipment",
     "secondTitle": "Simplify geodesy measurements using new technologies",
-    "get": "GET"
+    "get": "GET",
+    "more": "More"
   },
 
   "ProjectsHome": {
@@ -82,6 +80,7 @@
 
   "Category": {
     "locale": "en",
+    "categories": "CATEGORIES",
     "ts": "Total Station",
     "gnss": "GNSS",
     "level": "Level",

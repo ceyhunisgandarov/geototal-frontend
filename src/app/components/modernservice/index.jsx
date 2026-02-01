@@ -48,7 +48,7 @@ export default function ModernService() {
         </div>
       </div>
 
-      <div className={styles.fluid}>
+      <div className={styles.gridWrapper}>
         <div className={styles.grid}>
           {services &&
             services.map((item) => (

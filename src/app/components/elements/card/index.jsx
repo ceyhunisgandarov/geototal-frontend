@@ -2,9 +2,12 @@ import Image from "next/image";
 import style from "../../../../../public/assets/css/module/card/card.module.css";
 import Link from "next/link";
 
-function Card({ product, more }) {
+function Card({ product, more, moreText, locale }) {
   return (
-    <div className={style.card}>
+    <Link
+      className={style.card}
+      href={more ? `/${locale}/products` : `/${locale}/products/${product.id}`}
+    >
       <Image
         src={product?.images?.[0] ?? "/images/product-999.png"}
         width={1200}
@@ -15,23 +18,17 @@ function Card({ product, more }) {
       <div className={style.overlay}></div>
       <div className={style.textContainer}>
         <p className={style.text}>
-          <strong>{product.brand}</strong>
+          <strong>{more ? moreText : product.brand}</strong>
           <br />
           {product.model}
         </p>
       </div>
       <div className={style.textHover}>
-        <strong>{product.brand}</strong>
+        <strong>{more ? moreText : product.brand}</strong>
         <br />
         {product.model}
-        <Link
-          href={more ? "/az/products" : `/az/products/${product.id}`}
-          className={style.shoppingButton}
-        >
-          İNDİ SİFARİŞ ET
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 }
 
