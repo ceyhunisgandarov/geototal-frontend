@@ -21,8 +21,8 @@ function BannerAdmin({ page }) {
   }, []);
 
   const refreshBanner = () => {
-    if (page.includes("aboutus/certificates")) {
-      setPath("certificates");
+    if (page.includes("aboutus/references")) {
+      setPath("references");
     } else {
       setPath(page);
     }

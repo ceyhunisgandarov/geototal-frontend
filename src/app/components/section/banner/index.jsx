@@ -40,7 +40,7 @@ function Banner({ page }) {
 
   useEffect(() => {
     setLoading(true);
-    const currentPath = page.includes("aboutus/certificates") ? "certificates" : page;
+    const currentPath = page.includes("aboutus/references") ? "references" : page;
     setPath(currentPath);
 
     BannerService.getBanner(currentPath)

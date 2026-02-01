@@ -6,7 +6,7 @@ function CertificatePage() {
   const t = useTranslations("Navbar");
 
   return (
-    <CertificateContainer page="aboutus/certificates" locale={t("locale")} />
+    <CertificateContainer page="aboutus/references" locale={t("locale")} />
   );
 }
 

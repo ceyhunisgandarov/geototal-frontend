@@ -68,7 +68,7 @@ function AdminHomePage({ page }) {
           <AboutUsAdmin />
           <MembersAdmin />
           <CertificatesAdmin />
-          <BannerAdmin page="aboutus/certificates" />
+          <BannerAdmin page="aboutus/references" />
           <CertificateAdmin />
         </div>
         <div

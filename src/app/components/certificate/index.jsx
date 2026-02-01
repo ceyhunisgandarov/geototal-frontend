@@ -4,6 +4,7 @@ import styles from "../../../../public/assets/css/module/aboutussection/certific
 import { useEffect, useState } from "react";
 import CertificateService from "@/app/services/CertificateService";
 import Image from "next/image";
+import ImageLightbox from "../lightbox";
 
 export default function CertificateSection() {
   const [certificates, setCertificates] = useState([]);
@@ -29,12 +30,12 @@ export default function CertificateSection() {
 
   return (
     <div className={styles.page}>
-      <h3>{t("certificates")}</h3>
+      <h3>{t("references")}</h3>
       <div className={styles.grid}>
         {certificates.map((cert) => (
           <div key={cert.id} className={styles.certificateWrapper}>
             <div className={styles.imageWrapper}>
-              <Image src={cert.imageUrl} alt={cert.title} width={300} height={300}  className={styles.image}/>
+              <ImageLightbox src={cert.imageUrl} style={styles.image} />
             </div>
             <p className={styles.name}>{cert.description}</p>
           </div>
