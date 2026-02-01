@@ -3,8 +3,10 @@ import style from "../../../../public/assets/css/module/servicescards/container.
 import Icon from "../elements/icon";
 import { useEffect, useState } from "react";
 import ServicesService from "@/app/services/ServicesService";
+import { useTranslations } from "next-intl";
 
 function ServiceBody() {
+  const t = useTranslations("Navbar")
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ function ServiceBody() {
   return (
     <div className={style.container}>
       <div className={style.serviceContainer}>
-        <h1>Services</h1>
+        <h1>{t("serv")}</h1>
         <div className={style.cardContainer}>
           {services.map((service, index) => (
             <Icon

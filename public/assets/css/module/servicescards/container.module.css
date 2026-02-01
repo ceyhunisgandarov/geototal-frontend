@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+.serviceContainer h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 
 .cardContainer {
   display: flex;
