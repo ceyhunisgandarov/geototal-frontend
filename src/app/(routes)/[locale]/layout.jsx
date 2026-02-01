@@ -6,6 +6,7 @@ import "../../../../public/assets/css/reset.css";
 import "../../../../public/assets/css/global.css";
 import Script from "next/script";
 import Head from "next/head";
+import WhatsappButton from "@/app/components/whatsapp";
 
 export const viewport = {
   width: "device-width",
@@ -28,13 +29,10 @@ export default async function LocaleLayout({ children, params }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body>
-        <Script
-          src="//code.jivosite.com/widget/efpa9Si5gR"
-          strategy="afterInteractive"
-        />
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <WhatsappButton />
       </body>
     </html>
   );

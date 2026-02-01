@@ -8,6 +8,7 @@ import AdvertiseArea from "../advertising";
 import ClientArea from "../modernclients";
 import Projects from "../projects";
 import AboutSection from "../modernabout";
+import WhatsappButton from "../whatsapp";
 
 export default function MainSection({ page, locale }) {
   return (
@@ -20,6 +21,7 @@ export default function MainSection({ page, locale }) {
       <HomeBody />
       <ClientArea />
       <Projects />
+      <WhatsappButton />
     </Layout>
   );
 }

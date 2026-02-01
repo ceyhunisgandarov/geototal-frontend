@@ -71,7 +71,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h4>{t("location")}:</h4>
-                  <p>{contactInfo.address || "Not provided"}</p>
+                  <p className={styles.textLineHeight}>{contactInfo.address || "Not provided"}</p>
                 </div>
               </div>
 
@@ -83,7 +83,9 @@ export default function ContactForm() {
                   <h4>{t("phones")}:</h4>
                   {contactInfo.phoneNumbers?.length ? (
                     contactInfo.phoneNumbers.map((number, idx) => (
-                      <p key={idx}>{number}</p>
+                      <p className={styles.textLineHeight} key={idx}>
+                        {number}
+                      </p>
                     ))
                   ) : (
                     <p>Not provided</p>
@@ -99,7 +101,7 @@ export default function ContactForm() {
                   <h4>{t("emails")}:</h4>
                   {contactInfo.emailAddress?.length ? (
                     contactInfo.emailAddress.map((email, idx) => (
-                      <p key={idx}>{email}</p>
+                      <p className={styles.textLineHeight} key={idx}>{email}</p>
                     ))
                   ) : (
                     <p>Not provided</p>

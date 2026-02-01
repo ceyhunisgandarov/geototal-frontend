@@ -181,3 +181,8 @@
   animation: skeleton-loading 1.2s infinite ease-in-out;
   background-color: #eee;
 }
+
+.textLineHeight {
+  line-height: 20px;
+  color: #777;
+}
