@@ -130,7 +130,9 @@
 /* ===================== */
 
 .bannerBtn {
+  position: relative;
   display: block;
+  z-index: 300;
 }
 
 .bannerLink {
