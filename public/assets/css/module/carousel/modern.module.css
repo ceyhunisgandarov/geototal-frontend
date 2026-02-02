@@ -355,3 +355,15 @@
 .bgVideo {
   pointer-events: none;
 }
+
+.sliderArea {
+  touch-action: pan-y;
+}
+
+.bannerContent,
+.secondBannerContent,
+.bannerBtn,
+.bannerLink {
+  position: relative;
+  z-index: 10;
+}
