@@ -64,6 +64,9 @@ export default function ModernCarousel() {
 
   // TOUCH / MOUSE SWIPE HANDLER
   const handleTouchStart = (e) => {
+    // Eğer butona / linke basıldıysa swipe başlatma
+    if (e.target.closest("a, button")) return;
+
     isDragging.current = true;
     touchStartX.current = e.touches ? e.touches[0].clientX : e.clientX;
   };
