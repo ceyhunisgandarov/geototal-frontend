@@ -18,7 +18,6 @@ export default function ImageLightbox({ src, style }) {
         style={{ cursor: "pointer" }}
         onClick={() => setOpen(true)}
       />
-
       <Lightbox open={open} close={() => setOpen(false)} slides={[{ src }]} />
     </>
   );

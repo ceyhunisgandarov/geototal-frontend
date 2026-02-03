@@ -1,5 +1,6 @@
 import Layout from "@/app/components/layout";
 import Banner from "@/app/components/section/banner";
+import CertificateGermany from "@/app/components/section/certificate";
 import ServicePageContainer from "@/app/components/section/servicepage";
 
 function ServiceContainer({ page, service }) {
@@ -7,6 +8,7 @@ function ServiceContainer({ page, service }) {
     <Layout page={page}>
       <Banner page="services" />
       <ServicePageContainer service={service} />
+      {service==="calibration" ? <CertificateGermany/> : ""}
     </Layout>
   );
 }

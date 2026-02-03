@@ -18,7 +18,7 @@ export default function ModernService() {
     ServicesService.getServices()
       .then((response) => {
         if (response.data.status.code === 200) {
-          setServices(response.data.response);
+          setServices(response.data.response.slice(0, 4));
         } else {
           console.log("Something wrong error-", response.data.status.message);
         }

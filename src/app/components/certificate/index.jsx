@@ -41,7 +41,7 @@ export default function CertificateSection() {
           </div>
         ))}
       </div>
-      <button>{t("more")}</button>
+      {/* <button>{t("more")}</button> */}
     </div>
   );
 }
