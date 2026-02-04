@@ -140,10 +140,18 @@ function ProductComponent({ id }) {
           <h3>{t("description")}</h3>
           <p className={styles.description}>{product.descriptionAz}</p>
         </div>
-        <Link href={product.fileUrl} className={styles.broschure}>
-          <button className={styles.download}>&#8659;</button>
+        <a
+          href={product.fileUrl}
+          download={
+            `${product.brand}-${product.model}`.replace(/\s+/g, "-") + ".pdf"
+          }
+          className={styles.broschure}
+        >
+          <button type="button" className={styles.download}>
+            &#8659;
+          </button>
           <p>{t("broschure")}</p>
-        </Link>
+        </a>
       </div>
     </div>
   );

@@ -284,14 +284,33 @@ function ProductsAdmin() {
                   })
                 }
               />
-              <label className={style.fileLabel}>
-                Upload PDF:
+              <label
+                className={`${style.fileLabel} ${
+                  pdfFile ? style.fileSelected : ""
+                }`}
+              >
+                <Image
+                  src={
+                    pdfFile
+                      ? "/images/icons/file-success.png" // seçiləndə
+                      : "/images/icons/file-icon.png" // default
+                  }
+                  alt="file-image"
+                  width={200}
+                  height={200}
+                  className={style.iconImage}
+                />
+
+                {/* <span>{pdfFile ? pdfFile.name : "Upload Brochure PDF"}</span> */}
+
                 <input
                   type="file"
                   accept="application/pdf"
+                  style={{ display: "none" }}
                   onChange={(e) => setPdfFile(e.target.files[0])}
                 />
               </label>
+
               {/* Image Preview & Add */}
               {/* Image Preview & Add */}
               <div className={style.imagePreviewContainer}>
@@ -350,7 +369,13 @@ function ProductsAdmin() {
                         document.getElementById("addImageInput").click()
                       }
                     >
-                      +
+                      <Image
+                        src="/images/icons/image-icon.png"
+                        alt="image-icon"
+                        className={style.iconImage}
+                        width={200}
+                        height={200}
+                      />
                     </div>
                     <input
                       id="addImageInput"
