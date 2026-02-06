@@ -84,6 +84,17 @@ export default function ProjectForm({ path = "new" }) {
           />
         </div>
 
+        {/* Customer */}
+        <div className={styles.field}>
+          <label className={styles.label}>Customer</label>
+          <input
+            className={styles.input}
+            name="customer"
+            value={form.customer}
+            onChange={handleChange}
+          />
+        </div>
+
         {/* Description AZ */}
         <div className={styles.fieldFull}>
           <label className={styles.label}>Description (AZ)</label>

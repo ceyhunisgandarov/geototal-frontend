@@ -59,7 +59,7 @@ function ProjectsComponent() {
                     />
                   </div>
                   <div className={styles.projectInfo}>
-                    <h3>{project.projectName}</h3>
+                    <h3>{project.projectName} {project.customer && `- ${project.customer}`}</h3>
                   </div>
                 </article>
               </Link>

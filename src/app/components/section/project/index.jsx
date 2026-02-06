@@ -5,11 +5,13 @@ import styles from "../../../../../public/assets/css/module/projects/aproject.mo
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ReferenceLetter from "../reference";
+import { redirect } from "next/dist/server/api-utils";
+import { notFound, useRouter } from "next/navigation";
 
 function ProjectSection({ project }) {
   const t = useTranslations("Projects");
   const [projectContent, setProjectContent] = useState({});
-
+  const router = useRouter()
   let contentFromDb = projectContent.worksDescription;
 
   const isLoading = !projectContent || !projectContent.projectName;
@@ -26,6 +28,8 @@ function ProjectSection({ project }) {
         if (response.data.status.code === 200) {
           console.log(response.data.response);
           setProjectContent(response.data.response);
+        } else if (response.data.status.code === 404) {
+          router.replace("/404")
         } else {
           console.log("Something went wrong: ", response.data.status.message);
         }
@@ -60,7 +64,10 @@ function ProjectSection({ project }) {
         </div>
       ) : (
         <>
-          <h1 className={styles.title}>{projectContent.projectName}</h1>
+          <h1 className={styles.title}>
+            {projectContent.projectName}{" "}
+            {projectContent.customer && ` - ${projectContent.customer}`}
+          </h1>
 
           <div className={styles.contentWrapper}>
             <div
@@ -89,8 +96,8 @@ function ProjectSection({ project }) {
           )}
         </>
       )}
-      {project.referenceLetter && (
-        <ReferenceLetter src={project.referenceLetter} />
+      {projectContent.referenceLetter && (
+        <ReferenceLetter src={projectContent.referenceLetter} />
       )}
     </div>
   );

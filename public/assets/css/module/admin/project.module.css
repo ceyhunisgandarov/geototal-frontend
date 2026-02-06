@@ -1,31 +1,70 @@
 .pageWrapper {
-max-width: 1200px;
-margin: 40px auto;
-padding: 0 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
 .header {
-margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .header h1 {
-font-size: 28px;
-font-weight: 600;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .header p {
-color: #6b7280;
-font-size: 14px;
+  color: #6b7280;
+  font-size: 14px;
 }
 
-.card {
-background: #ffffff;
-border-radius: 12px;
-padding: 30px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+.projectCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
 }
 
 .image {
-    width: 300px;
-    height: auto;
+  width: 300px;
+  height: auto;
+}
+
+.addButton,
+.deleteBtn,
+.updateBtn {
+  all: unset;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.addButton {
+  color: white;
+  background-color: #28a745;
+}
+
+.addButton:hover {
+  background-color: #218838;
+}
+
+.deleteBtn {
+  color: white;
+  background-color: #dc3545;
+}
+
+.deleteBtn:hover {
+  background-color: #c82333;
+}
+
+.updateBtn {
+  color: white;
+  background-color: #007bff;
+}
+
+.updateBtn:hover {
+  background-color: #0069d9;
 }
