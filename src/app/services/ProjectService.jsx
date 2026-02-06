@@ -9,7 +9,7 @@ const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
   const token = Cookies.get("Authorization");
   const formData = new FormData();
 
-  const { id, imageUrl, ...cleanReqProject } = reqProject;
+  const { id, imageUrl, referenceLetter, ...cleanReqProject } = reqProject;
   formData.append("reqProject", JSON.stringify(cleanReqProject));
 
   if (imageFile) {
