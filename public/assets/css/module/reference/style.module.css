@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(37, 37, 37);
+  box-sizing: border-box;
+}
+
+.subContainer {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Wrapper: overlay bunun üstündə olacaq */
+.certificateWrap {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+/* ImageLightbox içindəki img-i tut (CSS Modules üçün) */
+.certificate {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Overlay */
+.certificateWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.22); /* çox tünd deyil */
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none; /* klik lightbox-a mane olmasın */
+}
+
+.certificateWrap:hover::after {
+  opacity: 1;
+}

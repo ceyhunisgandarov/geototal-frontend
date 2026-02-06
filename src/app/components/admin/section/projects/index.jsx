@@ -40,8 +40,14 @@ export default function ProjectsAdmin() {
   };
 
   const handleDelete = (project) => {
-    if (confirm('Are you sure you want to delete this project?')) {
-      ProjectService.deleteProject(project.path).then(() => projectList());
+    if (confirm("Are you sure you want to delete this project?")) {
+      ProjectService.deleteProject(project.id).then((response) => {
+        if (response.data.status.code === 200) {
+          projectList();
+        } else {
+          console.log("Something went wrong", response.data.status.message);
+        }
+      });
     }
   };
 
@@ -62,14 +68,26 @@ export default function ProjectsAdmin() {
         {projects.map((project) => (
           <div className={styles.projectCard} key={project.id}>
             <div className={styles.projectImage}>
-              <Image src={project.imageUrl} alt={project.projectName} width={300} height={300} className={styles.image}/>
+              <Image
+                src={project.imageUrl}
+                alt={project.projectName}
+                width={300}
+                height={300}
+                className={styles.image}
+              />
             </div>
             <h3>{project.projectName}</h3>
             <div className={styles.projectActions}>
-              <button onClick={() => handleUpdate(project)} className={styles.updateBtn}>
+              <button
+                onClick={() => handleUpdate(project)}
+                className={styles.updateBtn}
+              >
                 Update
               </button>
-              <button onClick={() => handleDelete(project)} className={styles.deleteBtn}>
+              <button
+                onClick={() => handleDelete(project)}
+                className={styles.deleteBtn}
+              >
                 Delete
               </button>
             </div>
@@ -87,7 +105,9 @@ export default function ProjectsAdmin() {
             <button className={styles.modalClose} onClick={handleCloseForm}>
               ×
             </button>
-            <ProjectForm path={selectedProject ? selectedProject.path : "new"} />
+            <ProjectForm
+              path={selectedProject ? selectedProject.path : "new"}
+            />
           </div>
         </div>
       )}

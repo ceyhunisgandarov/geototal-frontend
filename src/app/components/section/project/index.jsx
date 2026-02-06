@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "../../../../../public/assets/css/module/projects/aproject.module.css";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import ReferenceLetter from "../reference";
 
 function ProjectSection({ project }) {
   const t = useTranslations("Projects");
@@ -23,6 +24,7 @@ function ProjectSection({ project }) {
     ProjectService.getProject(project)
       .then((response) => {
         if (response.data.status.code === 200) {
+          console.log(response.data.response);
           setProjectContent(response.data.response);
         } else {
           console.log("Something went wrong: ", response.data.status.message);
@@ -86,6 +88,9 @@ function ProjectSection({ project }) {
             </>
           )}
         </>
+      )}
+      {project.referenceLetter && (
+        <ReferenceLetter src={project.referenceLetter} />
       )}
     </div>
   );

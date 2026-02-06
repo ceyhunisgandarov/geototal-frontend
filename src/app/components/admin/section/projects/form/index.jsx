@@ -21,6 +21,7 @@ export default function ProjectForm({ path = "new" }) {
   });
 
   const [imageFile, setImageFile] = useState(null);
+  const [referenceLetter, setReferenceLetter] = useState(null);
 
   // Eğer path yeni değilse projeyi yükle
   useEffect(() => {
@@ -45,7 +46,12 @@ export default function ProjectForm({ path = "new" }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await ProjectService.addOrUpdateProject(form, imageFile, path);
+      await ProjectService.addOrUpdateProject(
+        form,
+        imageFile,
+        path,
+        referenceLetter
+      );
       alert("Project saved successfully!");
     } catch (err) {
       console.error("Project save error:", err);
@@ -188,6 +194,16 @@ export default function ProjectForm({ path = "new" }) {
             name="feedBackRu"
             value={form.feedBackRu}
             onChange={handleChange}
+          />
+        </div>
+
+        {/****** Reference letter image ******/}
+        <div className={styles.field}>
+          <label className={styles.label}>Reference Letter</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setReferenceLetter(e.target.files[0] || null)}
           />
         </div>
       </div>

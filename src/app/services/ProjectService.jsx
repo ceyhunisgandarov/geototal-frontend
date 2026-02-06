@@ -5,14 +5,19 @@ const getProjects = () => {
   return createAxiosInstance().get("user/project/list");
 };
 
-const addOrUpdateProject = (reqProject, imageFile, path) => {
+const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
   const token = Cookies.get("Authorization");
   const formData = new FormData();
 
-  formData.append("reqProject", JSON.stringify(reqProject));
+  const { id, imageUrl, ...cleanReqProject } = reqProject;
+  formData.append("reqProject", JSON.stringify(cleanReqProject));
 
   if (imageFile) {
     formData.append("projectImage", imageFile);
+  }
+
+  if (referenceLetter) {
+    formData.append("referenceLetter", referenceLetter);
   }
 
   return createAxiosInstance().put(
@@ -31,17 +36,14 @@ const getProject = (path) => {
   return createAxiosInstance().get(`user/project/${path}`);
 };
 
-const deleteProject = (path) => {
+const deleteProject = (id) => {
   const token = Cookies.get("Authorization");
 
-  return createAxiosInstance().delete(
-    `admin/project/delete/${path}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  return createAxiosInstance().delete(`admin/delete/project/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default {

@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/banner/banner.module.css";
 import BannerService from "@/app/services/BannerService";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 function Banner({ page }) {
-  const [bannerImage, setBannerImage] = useState(""); // Başlanğıcda boş
+  const [bannerImage, setBannerImage] = useState("");
   const [path, setPath] = useState("");
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Banner");
@@ -73,7 +74,7 @@ function Banner({ page }) {
       ) : (
         <div className={style.overlay}>
           <p>
-            {bannerHeader}
+            <Link href={`/${t("locale")}/${page}` } style={{all: "unset", cursor: "pointer" }}>{bannerHeader}</Link>
             <span className={style.underline}></span>
           </p>
         </div>
