@@ -5,8 +5,7 @@ import styles from "../../../../../public/assets/css/module/projects/aproject.mo
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ReferenceLetter from "../reference";
-import { redirect } from "next/dist/server/api-utils";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function ProjectSection({ project }) {
   const t = useTranslations("Projects");

@@ -17,15 +17,19 @@
   box-sizing: border-box;
 }
 
-/* Her section genel yapısı */
+/* ===== Section (REAL LAYOUT) ===== */
 .section {
   position: relative;
+  width: 100%;
   max-width: 1440px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Ortadan geçen çizgi */
@@ -38,6 +42,7 @@
   width: 1px;
   background-color: rgba(255, 255, 255, 0.2);
   transform: translateX(-50%);
+  z-index: 0;
 }
 
 /* Arka plan renkleri */
@@ -64,8 +69,15 @@
 .right {
   padding: 20px;
   box-sizing: border-box;
+
   flex: 1;
-  z-index: 1; /* çizginin altında kalmasın */
+  min-width: 0;      /* flex overflow fix */
+  z-index: 1;        /* çizginin üstündə */
+}
+
+.right {
+  display: flex;
+  justify-content: center;
 }
 
 .reverse {
@@ -90,12 +102,12 @@
   text-align: justify;
 }
 
-/* 🔥 Görsel alanı - orantılı sabit ölçü */
+/* Görsel alanı (real image wrapper) */
 .image {
   position: relative;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; /* oran sabit */
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
@@ -105,11 +117,11 @@
 .image :global(img) {
   object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 900px) {
   .section {
     flex-direction: column;
@@ -120,5 +132,105 @@
   }
   .section::before {
     display: none;
+  }
+  .right {
+    justify-content: flex-start;
+  }
+}
+
+/* ===== Skeleton ===== */
+.skelBlock {
+  width: 100%;
+  padding: 60px 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Skeleton title (h2 yerinə) */
+.skelTitle {
+  width: 260px;
+  height: 28px;
+  border-radius: 8px;
+  margin: 10px 0 25px 0;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+/* Skeleton heading (h3 yerinə) */
+.skelH3 {
+  width: 60%;
+  min-width: 220px;
+  height: 20px;
+  border-radius: 8px;
+  margin: 10px;
+  margin-bottom: 14px;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+/* Skeleton lines (p yerinə) */
+.skelLine {
+  width: 100%;
+  min-width: 180px;
+  height: 14px;
+  border-radius: 8px;
+  margin: 0 10px 10px 10px;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.skelLineShort {
+  width: 70%;
+  min-width: 200px;
+  height: 14px;
+  border-radius: 8px;
+  margin: 0 10px 10px 10px;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+/* Skeleton image (real .image kimi 16/9 olsun) */
+.skelImage {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;   /* ✅ real image ilə eyni */
+  height: auto;           /* ✅ fixed 400px YOX */
+  border-radius: 12px;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+/* Shimmer */
+.skelTitle::after,
+.skelH3::after,
+.skelLine::after,
+.skelLineShort::after,
+.skelImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.25s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
 }

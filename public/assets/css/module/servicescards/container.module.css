@@ -32,3 +32,70 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* ===== Skeleton Loading (5 cards) ===== */
+.skeletonCard {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover olmasın (skeletonda) */
+.skeletonCard:hover {
+  box-shadow: none !important;
+  cursor: default;
+}
+
+/* Shimmer effect */
+.skeletonCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.25s infinite;
+  pointer-events: none;
+}
+
+/* Image placeholder (Icon <Image width=200 height=200 /> ilə uyğun) */
+.skeletonImage {
+  width: 200px;
+  height: 200px;
+  background: #e5e7eb;
+  border-radius: 10px;
+}
+
+/* Title placeholder */
+.skeletonTitle {
+  width: 65%;
+  height: 16px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  transition: box-shadow 0.2s ease-in-out;
+  border-radius: 10px;
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  border: solid 1px rgb(121, 121, 121);
+}

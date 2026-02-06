@@ -9,9 +9,6 @@ const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
   const token = Cookies.get("Authorization");
   const formData = new FormData();
 
-  const { id, imageUrl, referenceLetter, ...cleanReqProject } = reqProject;
-  formData.append("reqProject", JSON.stringify(cleanReqProject));
-
   if (imageFile) {
     formData.append("projectImage", imageFile);
   }
@@ -19,6 +16,9 @@ const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
   if (referenceLetter) {
     formData.append("referenceLetter", referenceLetter);
   }
+
+  const { id, imageUrl, ...cleanReqProject } = reqProject;
+  formData.append("reqProject", JSON.stringify(cleanReqProject));
 
   return createAxiosInstance().put(
     `admin/addOrUpdate/project/${path}`,

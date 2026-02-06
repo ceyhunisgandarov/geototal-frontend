@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import style from "../../../../../public/assets/css/module/service/servicepage.module.css"; // public-altından çıxardıq
-import Image from "next/image";
+import style from "../../../../../public/assets/css/module/service/servicepage.module.css";
 import ServicesService from "@/app/services/ServicesService";
 import { useLocale } from "next-intl";
 
 export default function ServicesSection({ service }) {
   const [aService, setAService] = useState(null);
+  const [loading, setLoading] = useState(true);
   const locale = useLocale();
 
   useEffect(() => {
@@ -23,11 +23,40 @@ export default function ServicesSection({ service }) {
       }
     } catch (error) {
       console.log("Something went wrong:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!aService || !aService.serviceParts) {
-    return <div>Loading...</div>;
+  // ✅ Skeleton (minimum 2 part)
+  if (loading || !aService || !aService.serviceParts) {
+    return (
+      <div className={style.wrapper}>
+        <div className={style.skelTitle} />
+
+        {[0, 1].map((i) => {
+          const sectionClass = i % 2 === 0 ? style.dark : style.gray;
+          return (
+            <div key={i} className={`${sectionClass} ${style.skelBlock}`}>
+              <section
+                className={`${style.section} ${i % 2 !== 0 ? style.reverse : ""}`}
+              >
+                <div className={style.left}>
+                  <div className={style.skelH3} />
+                  <div className={style.skelLine} />
+                  <div className={style.skelLine} />
+                  <div className={style.skelLineShort} />
+                </div>
+
+                <div className={style.right}>
+                  <div className={style.skelImage} />
+                </div>
+              </section>
+            </div>
+          );
+        })}
+      </div>
+    );
   }
 
   const serviceName =
@@ -38,7 +67,6 @@ export default function ServicesSection({ service }) {
       : aService.serviceNameRu;
 
   const sortedParts = [...aService.serviceParts].sort((a, b) => {
-    // id yoxdursa index-ə görə
     if (!a.id) return 1;
     if (!b.id) return -1;
     return a.id - b.id;
@@ -51,7 +79,6 @@ export default function ServicesSection({ service }) {
       {sortedParts.map((part, index) => {
         if (!part) return null;
 
-        // Dil seçimi
         const textKey =
           locale === "az"
             ? "serviceTextAz"
@@ -59,10 +86,8 @@ export default function ServicesSection({ service }) {
             ? "serviceTextEn"
             : "serviceTextRu";
 
-        const partText = part[textKey] || ""; // null-safe
-
-        const imageSrc = part.serviceImageUrl || "/placeholder.png"; // null varsa placeholder istifadə et
-
+        const partText = part[textKey] || "";
+        const imageSrc = part.serviceImageUrl || "/placeholder.png";
         const sectionClass = index % 2 === 0 ? style.dark : style.gray;
 
         return (
@@ -78,11 +103,9 @@ export default function ServicesSection({ service }) {
               </div>
               <div className={style.right}>
                 {imageSrc ? (
-                  <Image
+                  <img
                     src={imageSrc}
                     alt={part.partName || "Service Part"}
-                    width={600}
-                    height={400}
                     className={style.image}
                   />
                 ) : null}

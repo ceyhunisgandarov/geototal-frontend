@@ -3,18 +3,14 @@ import { useTranslations } from "next-intl";
 import styles from "../../../../public/assets/css/module/aboutussection/certificate.module.css";
 import { useEffect, useState } from "react";
 import CertificateService from "@/app/services/CertificateService";
-import Image from "next/image";
 import ImageLightbox from "../lightbox";
 
 export default function CertificateSection() {
   const [certificates, setCertificates] = useState([]);
+  const [loading, setLoading] = useState(true);
   const t = useTranslations("Navbar");
 
   useEffect(() => {
-    refreshCertificates();
-  }, []);
-
-  const refreshCertificates = () => {
     CertificateService.getCertificateList()
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -25,23 +21,33 @@ export default function CertificateSection() {
       })
       .catch((error) => {
         console.log("Server error: ", error);
-      });
-  };
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <div className={styles.page}>
       <h3>{t("references")}</h3>
+
       <div className={styles.grid}>
-        {certificates.map((cert) => (
-          <div key={cert.id} className={styles.certificateWrapper}>
-            <div className={styles.imageWrapper}>
-              <ImageLightbox src={cert.imageUrl} style={styles.image} />
-            </div>
-            <p className={styles.name}>{cert.description}</p>
-          </div>
-        ))}
+        {loading
+          ? Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className={styles.certificateWrapper} aria-hidden="true">
+                <div className={`${styles.imageWrapper} ${styles.skeletonImageWrapper}`}>
+                  <div className={styles.skeletonShimmer} />
+                </div>
+                <div className={styles.skeletonName} />
+              </div>
+            ))
+          : certificates.map((cert) => (
+              <div key={cert.id} className={styles.certificateWrapper}>
+                <div className={styles.imageWrapper}>
+                  <ImageLightbox src={cert.imageUrl} style={styles.image} />
+                </div>
+                <p className={styles.name}>{cert.description}</p>
+              </div>
+            ))}
       </div>
-      {/* <button>{t("more")}</button> */}
     </div>
   );
 }
