@@ -22,6 +22,7 @@
   max-width: 1440px;
   padding: 50px;
   box-sizing: border-box;
+  justify-items: center;
 }
 
 .certificateWrapper {
@@ -85,5 +86,20 @@
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@media (max-width: 500px) {
+  .page {
+    padding: 0 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .certificateWrapper {
+    max-width: 500px;
   }
 }

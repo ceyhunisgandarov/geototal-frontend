@@ -28,9 +28,10 @@
   justify-content: center; /* veya space-between, start vs. */
   align-items: flex-start;
   gap: 16px; /* kutular arası boşluk */
-  padding: 20px;
+  padding: 10px;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ===== Skeleton Loading (5 cards) ===== */
