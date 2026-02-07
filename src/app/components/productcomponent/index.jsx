@@ -88,6 +88,30 @@ function ProductComponent({ id }) {
     `Salam, mən ${product.brand} ${product.model} məhsulunu əldə etmək istiyirəm. Zəhmət olmasa ətraflı məlumat verərdiniz.`
   )}`;
 
+  const downloadPdf = async (url, filename = "brochure.pdf") => {
+    try {
+      const res = await fetch(url);
+
+      if (!res.ok) throw new Error("Download failed");
+
+      const blob = await res.blob();
+
+      const pdfBlob = new Blob([blob], { type: "application/pdf" });
+
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(pdfBlob);
+      a.download = filename.endsWith(".pdf") ? filename : `${filename}.pdf`;
+
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(a.href);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.productMain}>
@@ -140,18 +164,22 @@ function ProductComponent({ id }) {
           <h3>{t("description")}</h3>
           <p className={styles.description}>{product.descriptionAz}</p>
         </div>
-        <a
-          href={product.fileUrl}
-          download={
-            `${product.brand}-${product.model}`.replace(/\s+/g, "-") + ".pdf"
-          }
-          className={styles.broschure}
-        >
-          <button type="button" className={styles.download}>
+        <div className={styles.broschure}>
+          <button
+            type="button"
+            className={styles.download}
+            onClick={() =>
+              downloadPdf(
+                product.fileUrl,
+                `${product.brand}-${product.model}`.replace(/\s+/g, "-") +
+                  ".pdf"
+              )
+            }
+          >
             &#8659;
           </button>
           <p>{t("broschure")}</p>
-        </a>
+        </div>
       </div>
     </div>
   );
