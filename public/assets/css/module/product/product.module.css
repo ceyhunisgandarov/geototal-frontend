@@ -1,41 +1,59 @@
-/* ProductPage.module.css */
+/* ===== Container ===== */
 .container {
   max-width: 1200px;
   margin: 80px auto 20px;
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 12px;
 }
 
 .productMain {
   display: flex;
   flex-wrap: wrap;
+  gap: 30px;
 }
 
 .productGallery {
+  position: relative;
   flex: 1;
   min-width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 50px;
+
+  display: grid;
+  grid-template-rows: 1fr auto; /* ✅ üst: image alanı, alt: thumbnails */
+  align-items: stretch;
+
+  padding: 10px;
   box-sizing: border-box;
   background: #eee;
   border-radius: 8px;
-  min-height: 520px; /* sabitlə */
+  min-height: 520px;
 }
+
 
 .mainImg {
-  height: 80%;
-  width: auto;
+  align-self: center;     /* ✅ grid içində vertikal mərkəz */
+  justify-self: center;   /* ✅ horizontal mərkəz */
+
+  width: 100%;
+  height: auto;
+  max-height: 320px;
   object-fit: contain;
+  margin-top: 0;          /* ✅ artıq ehtiyac yoxdur */
 }
 
+
 .thumbnails {
+  position: static;       /* ✅ absolute sil */
+  transform: none;        /* ✅ sil */
+  left: auto;             /* ✅ sil */
+  bottom: auto;           /* ✅ sil */
+
   display: flex;
   gap: 10px;
-  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding: 10px 0 0;      /* ✅ altda səliqə */
 }
 
 .thumb {
@@ -43,15 +61,32 @@
   height: 60px;
   background: #ddd;
   border-radius: 4px;
+  border: 1px solid #bbb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.thumb:hover {
+  border-color: #ff7e20;
+}
+
+.activeThumb {
+  border: 2px solid #ff7e20;
 }
 
 .thumbImg {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
+/* ===== Product Info ===== */
 .productInfo {
   flex: 1;
   min-width: 300px;
@@ -78,11 +113,6 @@
   font-weight: 700;
 }
 
-.title3 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: rgb(162, 162, 162);
-}
 .price {
   font-size: 32px;
   font-weight: bold;
@@ -96,6 +126,7 @@
   color: #999;
 }
 
+/* ===== Button ===== */
 .btnAdd {
   width: 100%;
   padding: 15px;
@@ -114,6 +145,7 @@
   background: #e66d10;
 }
 
+/* ===== Bottom Section ===== */
 .productBottomDetails {
   margin-top: 50px;
   border-top: 1px solid #eee;
@@ -131,27 +163,6 @@
   padding-left: 10px;
 }
 
-.detailSection ul {
-  list-style: none;
-  padding: 0;
-}
-
-.detailSection li {
-  padding: 8px 0;
-  border-bottom: 1px dashed #eee;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .productMain {
-    flex-direction: column;
-  }
-
-  .container {
-    padding: 15px;
-  }
-}
-
 .description {
   font-size: 16px;
   line-height: 1.5rem;
@@ -159,6 +170,7 @@
   color: #333;
 }
 
+/* ===== Brochure ===== */
 .broschure {
   all: unset;
   display: flex;
@@ -187,4 +199,103 @@
   border: 3px solid black;
   font-size: 35px;
   font-weight: 700;
+}
+
+/* ===== Skeleton ===== */
+
+.productContainer {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.imageSkeleton {
+  flex: 1;
+  min-width: 300px;
+  min-height: 520px;
+  border-radius: 8px;
+
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.textSkeleton {
+  flex: 1;
+  min-width: 300px;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.skelLine,
+.skelLineShort,
+.skelButton {
+  background: #e5e7eb;
+  border-radius: 8px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.skelLine {
+  height: 18px;
+  width: 100%;
+}
+
+.skelLineShort {
+  height: 18px;
+  width: 70%;
+}
+
+.skelButton {
+  height: 52px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* Shimmer */
+.imageSkeleton::after,
+.skelLine::after,
+.skelLineShort::after,
+.skelButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .productMain {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .productGallery {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .textSkeleton {
+    padding: 15px;
+  }
 }

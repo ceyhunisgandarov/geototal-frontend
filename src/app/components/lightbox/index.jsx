@@ -18,7 +18,20 @@ export default function ImageLightbox({ src, style }) {
         style={{ cursor: "pointer" }}
         onClick={() => setOpen(true)}
       />
-      <Lightbox open={open} close={() => setOpen(false)} slides={[{ src }]} />
+
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={[{ src }]}
+        controller={{
+          swipe: false,
+          drag: false,
+        }}
+        render={{
+          buttonPrev: () => null,
+          buttonNext: () => null,
+        }}
+      />
     </>
   );
 }
