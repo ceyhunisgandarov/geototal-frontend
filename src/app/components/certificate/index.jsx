@@ -32,8 +32,14 @@ export default function CertificateSection() {
       <div className={styles.grid}>
         {loading
           ? Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={styles.certificateWrapper} aria-hidden="true">
-                <div className={`${styles.imageWrapper} ${styles.skeletonImageWrapper}`}>
+              <div
+                key={i}
+                className={styles.certificateWrapper}
+                aria-hidden="true"
+              >
+                <div
+                  className={`${styles.imageWrapper} ${styles.skeletonImageWrapper}`}
+                >
                   <div className={styles.skeletonShimmer} />
                 </div>
                 <div className={styles.skeletonName} />
@@ -41,10 +47,10 @@ export default function CertificateSection() {
             ))
           : certificates.map((cert) => (
               <div key={cert.id} className={styles.certificateWrapper}>
+                <p className={styles.name}>{cert.description}</p>
                 <div className={styles.imageWrapper}>
                   <ImageLightbox src={cert.imageUrl} style={styles.image} />
                 </div>
-                <p className={styles.name}>{cert.description}</p>
               </div>
             ))}
       </div>
