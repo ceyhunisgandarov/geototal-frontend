@@ -10,6 +10,10 @@ function CertificateGermany() {
             src="/images/certificate/germany.jpg"
             style={styles.certificate}
           />
+          <ImageLightbox
+            src="/images/certificate/germany.jpg"
+            style={styles.certificate}
+          />
         </div>
       </div>
     </div>
