@@ -177,7 +177,7 @@ export default function ModernCarousel() {
               <Image
                 src={
                   mobile
-                    ? "/images/bg/mobile-screen.jpg"
+                    ? "/images/bg/mobile-geomax.jpg"
                     : "/images/bg/big-screen-geo.jpg"
                 }
                 width={1500}

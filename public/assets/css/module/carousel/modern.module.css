@@ -204,7 +204,6 @@
   background: goldenrod;
 }
 
-
 .bannerLink::before {
   content: "";
   position: absolute;
@@ -331,7 +330,8 @@
     object-fit: cover;
   }
 
-  .secondBannerContent, .thirdBannerContent {
+  .secondBannerContent,
+  .thirdBannerContent {
     left: 0;
     bottom: 0;
     width: 100%;
@@ -339,8 +339,14 @@
     background-color: black;
   }
 
-  .secondBannerContent p, .thirdBannerContent p {
+  .secondBannerContent p,
+  .thirdBannerContent p {
     display: none;
+  }
+
+  .secondBannerContent h3,
+  .thirdBannerContent h3 {
+    font-size: 28px;
   }
 }
 
