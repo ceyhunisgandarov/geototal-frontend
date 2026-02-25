@@ -22,6 +22,15 @@
   z-index: 1;
 }
 
+.bgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
 /* ===================== */
 /* VIDEO */
 /* ===================== */
@@ -76,6 +85,17 @@
   flex-direction: column;
 }
 
+.thirdBannerContent {
+  position: absolute;
+  left: 5%;
+  bottom: 8%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .textContent {
   display: flex;
   flex-direction: column;
@@ -117,14 +137,16 @@
   padding: 0 auto;
 }
 
-.secondBannerContent p {
+.secondBannerContent p,
+.thirdBannerContent p {
   line-height: 20px;
   font-size: 16px;
   margin-bottom: 35px;
   padding: 0 auto;
 }
 
-.secondBannerContent h3 {
+.secondBannerContent h3,
+.thirdBannerContent h3 {
   font-family: "Courgette", cursive;
   font-size: 40px;
   margin-bottom: 20px;
@@ -159,14 +181,29 @@
   color: rgb(90, 55, 124);
 }
 
+.thirdBannerContent .bannerLink {
+  border-radius: 5px;
+  color: goldenrod;
+}
+
 .secondBannerContent .bannerLink:hover {
   transform: translateY(-3px);
   box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
-.secondBannerContent .bannerLink:hover::before {
-  background: #5a5a5a;
+.thirdBannerContent .bannerLink:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2);
 }
+
+.secondBannerContent .bannerLink:hover::before {
+  background: rgb(90, 55, 124);
+}
+
+.thirdBannerContent .bannerLink:hover::before {
+  background: goldenrod;
+}
+
 
 .bannerLink::before {
   content: "";
@@ -287,6 +324,24 @@
   .pContent {
     padding: 0 20px;
   }
+
+  .bgImg {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+  }
+
+  .secondBannerContent, .thirdBannerContent {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+    background-color: black;
+  }
+
+  .secondBannerContent p, .thirdBannerContent p {
+    display: none;
+  }
 }
 
 .singleSlide {
@@ -361,7 +416,6 @@
 }
 
 .bannerContent,
-.secondBannerContent,
 .bannerBtn,
 .bannerLink {
   position: relative;

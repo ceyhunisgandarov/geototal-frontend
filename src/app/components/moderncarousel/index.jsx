@@ -46,7 +46,7 @@ export default function ModernCarousel() {
 
     const timer = setTimeout(() => {
       setCarouselIndex((prev) => (prev + 1 < carousel.length ? prev + 1 : 0));
-    }, 8000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [carouselIndex, carousel]);
@@ -55,7 +55,7 @@ export default function ModernCarousel() {
   useEffect(() => {
     if (carouselIndex === 0 && videoRef.current) {
       videoRef.current.load();
-      videoRef.current.playbackRate = 0.8;
+      videoRef.current.playbackRate = 1.5;
       videoRef.current.play();
     }
   }, [carouselIndex]);
@@ -159,12 +159,26 @@ export default function ModernCarousel() {
             )}
 
             {/* IMAGE FOR OTHER SLIDES */}
-            {index !== 0 && (
+            {index === 1 && (
+              <Image
+                src={
+                  mobile
+                    ? "/images/bg/mobile-gintec.png"
+                    : "/images/bg/big-screen.jpg"
+                }
+                width={1500}
+                height={500}
+                className={styles.bgImg}
+                alt={slide.title}
+              />
+            )}
+
+            {index === 2 && (
               <Image
                 src={
                   mobile
                     ? "/images/bg/mobile-screen.jpg"
-                    : "/images/bg/big-screen.jpg"
+                    : "/images/bg/big-screen-geo.jpg"
                 }
                 width={1500}
                 height={500}
@@ -178,6 +192,8 @@ export default function ModernCarousel() {
               className={`${
                 carouselIndex === 1
                   ? styles.secondBannerContent
+                  : carouselIndex === 2
+                  ? styles.thirdBannerContent
                   : styles.bannerContent
               }`}
             >
