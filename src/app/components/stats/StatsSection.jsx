@@ -8,7 +8,7 @@ export default function StatsSection({ locale = "az" }) {
       items: [
         { value: "15+", label: "il təcrübə" },
         { value: "30+", label: "layihə" },
-        { value: "5000 ha+", label: "dron çəkilişi" },
+        { value: "5000 ha+", label: "PUA ilə aerofotogrammetrik ölçmə" },
       ],
     },
     en: {
