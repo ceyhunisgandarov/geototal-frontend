@@ -20,7 +20,7 @@
     "references": "Referanslar",
     "certificates": "Sertifikatlar",
     "more": "Daha çox",
-    "serv" : "xİdmətlər"
+    "serv": "xİdmətlər"
   },
 
   "HomePage": {
@@ -68,7 +68,7 @@
     "description": "Geodeziya və topoqrafiya sahəsində dəqiqlik və etibarlılığı təmin edən müasir ölçmə məhsulları təqdim edirik.",
     "explore": "Geodeziya avadanlıqlarını kəşf et",
     "secondTitle": "Yeni texnologiyalar əldə edərək geodeziya ölçmələrini asanlaşdır",
-    "get": "Əldə et",
+    "get": "Qiymət təklifi al",
     "more": "Daha çox"
   },
 
@@ -99,7 +99,7 @@
     "accesories": "Aksesuarlar",
     "software": "Proqram Təmİnatı",
     "products": "Məhsullar",
-    "get": "Əldə et",
+    "get": "Qiymət təklifi al",
     "description": "Məhsul haqqında",
     "broschure": "Broşür"
   },
@@ -118,7 +118,7 @@
   "Contact": {
     "locale": "az",
     "title": "Bizimlə Əlaqə",
-    "sendMessage": "Bizə mesaj göndərin",
+    "sendMessage": "Gəlin, layihənizi birlikdə planlayaq",
     "header": "Formu dolduraraq sizinlə əlaqə yaratmağımızı təmin edə bilərsiniz",
     "location": "Lokasiya",
     "phones": "Telefon nömrələrimiz",

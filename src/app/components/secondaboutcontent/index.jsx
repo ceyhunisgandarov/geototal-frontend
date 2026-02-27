@@ -6,7 +6,7 @@ import AboutService from "@/app/services/AboutService";
 import { useTranslations } from "next-intl";
 
 function SecondAboutUsContent() {
-  const t = useTranslations("AboutUs")
+  const t = useTranslations("AboutUs");
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -73,9 +73,15 @@ function SecondAboutUsContent() {
       ) : (
         <div className={style.whySection}>
           <div className={style.aboutText}>
-            <h4>{contentTitle}</h4>
-            <h2>{contentSecond}</h2>
-            <p>{text}</p>
+            <section>
+              <div>
+                <div>
+                  <h4>{contentTitle}</h4>
+                  <h2>{contentSecond}</h2>
+                </div>
+                <div className={style.aboutText} dangerouslySetInnerHTML={{ __html: text }} />
+              </div>
+            </section>
           </div>
 
           <div className={style.imageWrapper}>

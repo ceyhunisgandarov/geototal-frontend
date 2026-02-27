@@ -7,9 +7,10 @@ function CertificateGermany() {
       <div className={styles.subContainer}>
         <div className={styles.certificateWrap}>
           <ImageLightbox
-            src="/images/certificate/germany.jpg"
+            src="/images/certificate/servis.jpeg"
             style={styles.certificate}
           />
+          <hr/>
           <ImageLightbox
             src="/images/certificate/germany.jpg"
             style={styles.certificate}

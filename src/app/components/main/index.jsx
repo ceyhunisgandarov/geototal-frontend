@@ -9,11 +9,13 @@ import ClientArea from "../modernclients";
 import Projects from "../projects";
 import AboutSection from "../modernabout";
 import WhatsappButton from "../whatsapp";
+import StatsSection from "../stats/StatsSection";
 
 export default function MainSection({ page, locale }) {
   return (
     <Layout page={page} locale={locale}>
       <ModernCarousel />
+      <StatsSection />
       <AboutSection />
       <ModernService />
       <ModernContact />

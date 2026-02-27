@@ -182,7 +182,7 @@ export default function ModernCarousel() {
                 }
                 width={1500}
                 height={500}
-                className={styles.bgVideo}
+                className={styles.bgImg}
                 alt={slide.title}
               />
             )}
