@@ -15,7 +15,7 @@ export default function MainSection({ page, locale }) {
   return (
     <Layout page={page} locale={locale}>
       <ModernCarousel />
-      <StatsSection />
+      <StatsSection locale={locale} />
       <AboutSection />
       <ModernService />
       <ModernContact />
