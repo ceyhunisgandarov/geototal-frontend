@@ -1,43 +1,52 @@
 .mainSection {
   width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
   background-color: #ececec;
 }
 
 .whySection {
   width: 96%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px;
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
   gap: 40px;
-  max-width: 1440px;
-  margin: 0 auto; /* Ortalamak için */
-  padding: 100px;
-  box-sizing: border-box; /* Üst ve alt boşluk */
+}
+
+.aboutText {
+  width: 55%;
+  text-align: left;
 }
 
 .imageWrapper {
-  position: relative;
-  max-width: 500px;
+  position: sticky;
+  top: 120px;
+  width: 45%;
   flex-shrink: 0;
+
   display: flex;
-  align-items: right;
   justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
 }
 
 .aboutImage {
-  border-radius: 8px;
   width: 100%;
   height: auto;
+  display: block;
   object-fit: cover;
-  border: solid 1px black;
+  border-radius: 8px;
+  border: 1px solid black;
 }
 
 .projectCount {
   position: absolute;
-  bottom: -20px;
   right: 20px;
+  bottom: -20px;
   background: #ff4d30;
   color: white;
   padding: 20px;
@@ -45,33 +54,54 @@
   text-align: center;
 }
 
-.aboutText {
-  flex: 1;
-}
-
 .aboutText h4 {
-  text-transform: uppercase;
-  color: #ff4d30;
-  font-weight: bold;
   margin-bottom: 10px;
+  color: #ff4d30;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 
 .aboutText h2 {
-  font-size: 32px;
+  margin-bottom: 18px;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
-.aboutText p {
+.aboutText h3 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* dangerouslySetInnerHTML content */
+.aboutContent p {
+  margin-bottom: 20px;
   color: #666;
   text-align: justify;
   line-height: 20px;
-  margin-bottom: 20px;
 }
 
-.aboutText ul li {
-    color: #666;
-    line-height: 18px;
+.aboutContent br {
+  line-height: 10px;
+}
+
+.aboutContent ul {
+  margin-left: 15px;
+  list-style-type: disc;
+}
+
+.aboutContent ul li {
+  margin-bottom: 8px;
+  color: #666;
+  line-height: 18px;
+}
+
+.aboutContent h2 {
+  margin-top: 20px;
+  margin-bottom: 18px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .services {
@@ -88,10 +118,10 @@
 }
 
 .servicesSection {
-  text-align: center;
   max-width: 1440px;
   margin: 0 auto;
   padding-inline: 20px;
+  text-align: center;
 }
 
 .servicesSection h4 {
@@ -107,8 +137,8 @@
 }
 
 .serviceCard {
-  background: #f8f8f8;
   padding: 30px;
+  background: #f8f8f8;
   border-radius: 8px;
   text-align: left;
   transition: all 0.3s ease;
@@ -120,33 +150,10 @@
   color: white;
 }
 
-/* Mobil uyum */
-@media (max-width: 992px) {
-  .whySection {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding-inline: 10px; /* Sağ ve sol boşluk */
-    padding-block: 10px; /* Üst ve alt boşluk */
-  }
-
-  .imageWrapper {
-    max-width: 100%;
-  }
-
-  .services {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .servicesGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* === Skeleton Styles === */
+/* Skeleton */
 .skeletonImage {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
   background-size: 200% 100%;
@@ -155,8 +162,8 @@
 
 .skeletonProject {
   position: absolute;
-  bottom: -20px;
   right: 20px;
+  bottom: -20px;
   width: 120px;
   height: 70px;
   border-radius: 8px;
@@ -167,16 +174,11 @@
 
 .skeletonText {
   height: 18px;
-  border-radius: 4px;
   margin-bottom: 16px;
+  border-radius: 4px;
   background: linear-gradient(90deg, #e6e6e6 25%, #f2f2f2 50%, #e6e6e6 75%);
   background-size: 200% 100%;
   animation: shimmer 1.4s infinite;
-}
-
-.aboutText ul{
-  margin-left: 15px;
-  list-style-type: disc;
 }
 
 .skeletonText.short {
@@ -197,5 +199,69 @@
   }
   100% {
     background-position: -200% 0;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .whySection {
+    padding: 60px 30px;
+    gap: 30px;
+  }
+
+  .aboutText {
+    width: 55%;
+  }
+
+  .imageWrapper {
+    width: 45%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .whySection {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .imageWrapper {
+    margin: 0;
+    position: relative;
+    top: 0;
+  }
+
+  .imageWrapper,
+  .aboutText {
+    width: 100%;
+  }
+
+  .aboutText {
+    text-align: left;
+  }
+
+  .aboutText h4 {
+    font-size: 20px;
+  }
+
+  .aboutText h2,
+  .aboutContent h2 {
+    font-size: 26px;
+  }
+
+  .services {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectCount {
+    right: 15px;
+    bottom: -15px;
+    padding: 16px;
   }
 }

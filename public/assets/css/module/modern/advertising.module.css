@@ -1,6 +1,7 @@
 /* AdvertiseArea.module.css */
 .advertiseArea {
   position: relative;
+  width: 100%;
   padding: 100px 0;
   background: linear-gradient(
       lab(0% 0 0 / 0.4),

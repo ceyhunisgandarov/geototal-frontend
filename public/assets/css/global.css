@@ -1,8 +1,8 @@
-body,
-html {
+html,
+body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
-  width: 100%; /* 100vw yerine */
+  width: 100%;
   margin: 0;
   padding: 0;
   background-color: #fff;
@@ -10,37 +10,29 @@ html {
   min-height: 100vh;
 }
 
-/* Tüm sayfayı ortalamak için container */
-.wrapperr {
-  position: relative;
-  height: auto;
+/* bütün səhifə container */
+main {
   min-height: 100vh;
-  background-color: aquamarine;
-}
-
-.wrapper {
   display: flex;
-  justify-content: center; /* yatay ortala */
-  align-items: center; /* dikey ortala */
-  min-height: 100vh; /* ekranın tamamını kapla */
-  width: 100%;
-  box-sizing: border-box;
-  flex-direction: column; /* içeriğin dikey akışı */
-  text-align: center; /* metinleri ortala */
-}
-
-.wrapper {
-  width: 100vw;
-  box-sizing: border-box;
-  overflow: visible;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
 }
 
+/* main content */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* footer */
+footer {
+  margin-top: auto;
+}
+
+/* default cursor */
 h1,
 h2,
 h3,

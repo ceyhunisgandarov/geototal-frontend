@@ -2,6 +2,7 @@
    clientArea.module.css
 ============================= */
 .clientArea {
+  width: 100%;
   padding: 100px 20px;
   background: linear-gradient(
       lab(0% 0 0 / 0.4),
@@ -11,7 +12,7 @@
 }
 
 .wrapper {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;

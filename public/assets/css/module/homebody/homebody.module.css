@@ -2,10 +2,14 @@
   position: relative;
   background-color: rgb(249, 249, 249);
   padding: 100px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .content {
   position: relative;
+  max-width: 1440px;
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -98,7 +102,6 @@
 
 .iconImg {
   object-fit: contain;
-  width: 40px;  
-  height: 40px; 
+  width: 40px;
+  height: 40px;
 }
-

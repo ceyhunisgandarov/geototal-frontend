@@ -51,6 +51,13 @@ export default function AboutSection() {
       });
   }, []); // <-- boş array ekledik
 
+  const getFirstParagraph = (html) => {
+    if (!html) return "";
+
+    const match = html.match(/<p[\s\S]*?<\/p>/i);
+    return match ? match[0] : "";
+  };
+
   return (
     <section className={styles.aboutArea}>
       {loading ? (
@@ -88,7 +95,11 @@ export default function AboutSection() {
               <div className={styles.aboutText}>
                 <h3>{contentTitle}</h3>
 
-                <p>{text}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: getFirstParagraph(text),
+                  }}
+                />
 
                 <Link
                   href={`${t("locale")}/aboutus`}

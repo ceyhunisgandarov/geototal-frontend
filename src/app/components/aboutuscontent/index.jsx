@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 
 function AboutUsContent() {
   const t = useTranslations("AboutUs");
-
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,11 +16,11 @@ function AboutUsContent() {
         if (response.data.status.code === 200) {
           setContent(response.data.response);
         } else {
-          console.log("something went wrong-", response.data.status.message);
+          console.warn("Fallback: default info used");
         }
       })
-      .catch((error) => {
-        console.log("something went wrong-", error);
+      .catch((err) => {
+        console.error("Error fetching about info:", err);
       })
       .finally(() => {
         setTimeout(() => setLoading(false), 100);
@@ -57,43 +56,53 @@ function AboutUsContent() {
   }
 
   return (
-    <section
-      className={`${style.aboutSection} ${loading ? style.skeleton : ""}`}
-    >
+    <section className={style.mainSection}>
       {loading ? (
-        <>
-          <div className={style.aboutText}>
-            <div className={`${style.skeletonText} ${style.short}`}></div>
-            <div className={`${style.skeletonText} ${style.medium}`}></div>
-            <div className={`${style.skeletonText} ${style.long}`}></div>
-          </div>
-
+        <div className={style.whySection}>
           <div className={style.imageWrapper}>
             <div className={style.skeletonImage}></div>
             <div className={style.skeletonProject}></div>
           </div>
-        </>
+
+          <div className={style.aboutText}>
+            <div className={`${style.skeletonText} ${style.short}`}></div>
+            <div className={`${style.skeletonText} ${style.medium}`}></div>
+            <div className={`${style.skeletonText} ${style.long}`}></div>
+            <div className={`${style.skeletonText} ${style.long}`}></div>
+          </div>
+        </div>
       ) : (
-        <>
+        <div className={style.whySection}>
           <div className={style.imageWrapper}>
             <Image
-              src={content.imageUrl ?? "/images/aboutus.png"}
-              alt="Construction Workers"
+              src={content?.imageUrl || "/images/aboutus.png"}
+              alt="About us"
               width={500}
               height={500}
               className={style.aboutImage}
             />
             <div className={style.projectCount}>
-              <h2>{content.approximatelyProjectsCount}+</h2>
+              <h2>{content?.approximatelyProjectsCount || 0}+</h2>
               <p>Project</p>
             </div>
           </div>
+
           <div className={style.aboutText}>
-            <h4>{contentTitle}</h4>
-            <h2>{contentSecond}</h2>
-            <p>{text}</p>
+            <section>
+              <div>
+                <div>
+                  <h4>{contentTitle}</h4>
+                  <h2>{contentSecond}</h2>
+                </div>
+
+                <div
+                  className={style.aboutContent}
+                  dangerouslySetInnerHTML={{ __html: text }}
+                />
+              </div>
+            </section>
           </div>
-        </>
+        </div>
       )}
     </section>
   );

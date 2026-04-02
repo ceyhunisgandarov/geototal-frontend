@@ -23,7 +23,7 @@ function SecondAboutUsContent() {
         console.error("Error fetching about info:", err);
       })
       .finally(() => {
-        setTimeout(() => setLoading(false), 100); // smooth geçiş
+        setTimeout(() => setLoading(false), 100);
       });
   }, []);
 
@@ -72,6 +72,20 @@ function SecondAboutUsContent() {
         </div>
       ) : (
         <div className={style.whySection}>
+          <div className={style.imageWrapper}>
+            <Image
+              src={content?.imageUrl || "/images/aboutus.png"}
+              alt="Construction Workers"
+              width={500}
+              height={500}
+              className={style.aboutImage}
+            />
+            <div className={style.projectCount}>
+              <h2>{content?.approximatelyStaffsCount || 0}+</h2>
+              <p>Total Staff</p>
+            </div>
+          </div>
+
           <div className={style.aboutText}>
             <section>
               <div>
@@ -79,27 +93,12 @@ function SecondAboutUsContent() {
                   <h4>{contentTitle}</h4>
                   <h2>{contentSecond}</h2>
                 </div>
-                <div className={style.aboutText} dangerouslySetInnerHTML={{ __html: text }} />
+                <div
+                  className={style.aboutContent}
+                  dangerouslySetInnerHTML={{ __html: text }}
+                />
               </div>
             </section>
-          </div>
-
-          <div className={style.imageWrapper}>
-            <Image
-              src={
-                content.imageUrl && content.imageUrl
-                  ? content.imageUrl
-                  : content.imageUrl || "/images/aboutus.png"
-              }
-              alt="Construction Workers"
-              width={500}
-              height={500}
-              className={style.aboutImage}
-            />
-            <div className={style.projectCount}>
-              <h2>{content.approximatelyStaffsCount}+</h2>
-              <p>Total Staff</p>
-            </div>
           </div>
         </div>
       )}

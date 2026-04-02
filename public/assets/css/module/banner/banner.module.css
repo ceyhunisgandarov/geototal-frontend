@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  width: 100vw;
   height: 55vh;
   max-height: 350px;
   background-position: center;
