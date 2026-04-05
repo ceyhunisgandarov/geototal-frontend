@@ -4,6 +4,7 @@
 .clientArea {
   width: 100%;
   padding: 100px 20px;
+  box-sizing: border-box;
   background: linear-gradient(
       lab(0% 0 0 / 0.4),
       rgba(0, 0, 0, 0.4)

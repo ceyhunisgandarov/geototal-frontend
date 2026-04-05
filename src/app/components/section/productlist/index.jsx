@@ -10,7 +10,7 @@ import ProductService from "@/app/services/ProductService";
 function ProductList({ selectedCategory }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // loading state
+  const [loading, setLoading] = useState(true);
   const t = useTranslations("Products");
 
   useEffect(() => {
@@ -36,15 +36,12 @@ function ProductList({ selectedCategory }) {
     }
   }, [selectedCategory, products]);
 
-  // Skeleton array (placeholder) üret
   const skeletonArray = Array.from({ length: 6 });
 
   return (
     <div className={style.container2}>
       <h1 className={style.title2}>{t("explore")}</h1>
-      <p className={style.subtitle}>
-        {t("secondTitle")}
-      </p>
+      <p className={style.subtitle}>{t("secondTitle")}</p>
 
       <div className={style.grid2}>
         {loading
@@ -75,9 +72,11 @@ function ProductList({ selectedCategory }) {
                     alt={product.model}
                     width={300}
                     height={300}
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
                     className={style.productImage}
                   />
                 </div>
+
                 <h3 className={style.productName}>{product.brand}</h3>
                 <p className={style.desc2}>{product.model}</p>
                 <button className={style.btn}>{t("get")}</button>

@@ -1,12 +1,11 @@
 .container2 {
-  padding: 50px 0;
   max-width: 1440px;
   margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* container içeriği ortalar */
+  align-items: center;
   box-sizing: border-box;
 }
 
@@ -20,21 +19,15 @@
   font-size: 1rem;
   color: #666;
   margin-bottom: 40px;
-}
-
-.productImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  max-width: 700px;
 }
 
 .grid2 {
   display: grid;
-  gap: 30px; /* yatay ve dikey boşluk */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center; /* her grid item’ı ortalar */
   width: 100%;
-  max-width: 1200px; /* geniş ekranlarda container taşmasın */
+  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .card2 {
@@ -42,55 +35,55 @@
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
   text-align: center;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* grid içindeki minmax ile uyumlu */
-  max-width: 300px; /* büyük ekranlarda çok geniş olmasın */
-  box-sizing: border-box; /* padding taşmayı engeller */
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .card2:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .imageWrapper {
-  position: relative;
   width: 100%;
-  height: 80%;
+  aspect-ratio: 1 / 1;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.image2 {
-  object-fit: contain;
-  border-radius: 8px;
-  position: absolute;
-  top: 0;
-  left: 0;
+.productImage {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .productName {
   font-size: 1.1rem;
   font-weight: 600;
   margin: 10px 0 5px;
+  word-break: break-word;
 }
 
 .desc2 {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
   margin-bottom: 15px;
+  word-break: break-word;
 }
 
 .btn {
+  margin-top: auto;
   background: #fff;
   border: 1px solid #ccc;
   padding: 10px 14px;
@@ -105,13 +98,12 @@
   background: #f4f4f4;
 }
 
-/* Card Skeleton */
+/* Skeleton */
 .cardSkeleton {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
   width: 100%;
-  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,12 +113,11 @@
 
 .imageSkeleton {
   width: 100%;
-  padding-top: 100%; /* kare şeklinde */
+  aspect-ratio: 1 / 1;
   background: #ddd;
   border-radius: 8px;
   animation: pulse 1.5s infinite;
   margin-bottom: 15px;
-  position: relative;
 }
 
 .textSkeleton {
@@ -160,7 +151,6 @@
   margin-top: 10px;
 }
 
-/* Pulse Animation */
 @keyframes pulse {
   0% {
     background-color: #eee;
@@ -170,5 +160,64 @@
   }
   100% {
     background-color: #eee;
+  }
+}
+
+@media (max-width: 1200px) {
+  .grid2 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .container2 {
+    padding: 36px 16px;
+  }
+
+  .grid2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .title2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container2 {
+    padding: 30px 14px;
+  }
+
+  .title2 {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .grid2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card2,
+  .cardSkeleton {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .productName {
+    font-size: 1rem;
+  }
+
+  .desc2 {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
   }
 }

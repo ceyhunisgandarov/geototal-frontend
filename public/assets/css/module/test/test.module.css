@@ -1,48 +1,40 @@
 .container {
   position: relative;
+  width: 100%;
   max-width: 1440px;
-  height: 250px;
   margin: 0 auto;
   padding: 20px 40px;
+  box-sizing: border-box;
 }
 
 .container h1 {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
-  margin: 10px auto;
+  margin: 10px auto 24px;
 }
 
-.carouselScene {
-  height: 100%;
-  padding-left: 5px;
+.categoriesGrid {
+  display: grid;
+  gap: 20px;
   width: 100%;
-  overflow: hidden;
-}
-
-.carouselBody {
-  width: auto;
-  display: flex;
-  scroll-behavior: smooth;
-  height: calc(100% - 20px);
-  transition: transform 0.5s ease; /* ← burası smooth kayma efekti */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .categoryCard {
-  width: calc(20% - 10px);
-  flex: 0 0 auto;
   background: #fff;
-  margin: 10px 5px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
+  min-height: 190px;
+  padding: 20px 14px;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 .categoryCard:hover {
@@ -51,65 +43,83 @@
 
 .categoryIcon {
   width: 70%;
+  max-width: 90px;
   height: auto;
-  filter: drop-shadow(1px 1px 5px #0000002b) drop-shadow(2px 2px 5px #0000002b)
-    drop-shadow(3px 3px 5px #0000002b) drop-shadow(4px 4px 5px #0000002b);
-  }
-
-.arrow {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 50%;
-  transform: translateY(-50%);
-  background: white;
-  border: none;
-  font-size: 1rem;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  z-index: 10;
+  filter: drop-shadow(1px 1px 5px #0000002b)
+    drop-shadow(2px 2px 5px #0000002b)
+    drop-shadow(3px 3px 5px #0000002b)
+    drop-shadow(4px 4px 5px #0000002b);
 }
 
-.left {
-  left: 10px;
-}
-.right {
-  right: 10px;
-}
-
-@media (max-width: 1200px) {
-  .categoryCard {
-    width: calc(25% - 10px);
-  }
-}
-
-@media (max-width: 900px) {
-  .categoryCard {
-    width: calc(33.3% - 10px);
-  }
-}
-
-@media (max-width: 600px) {
-  .categoryCard {
-    width: calc(50% - 10px);
-  }
+.categoryCard p {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.3;
+  word-break: break-word;
 }
 
 .carouselBody,
 .categoryCard {
-  user-select: none; /* text seçimini engeller */
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-
-  -webkit-user-drag: none; /* image drag engelleme */
+  -webkit-user-drag: none;
 }
 
-.categoryCard.active {
-  border: 2px solid #000000; /* örnek aktif renk */
+.active {
+  border: 2px solid #000000;
   box-shadow: 0 6px 12px rgba(61, 61, 61, 0.2);
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 20px 24px;
+  }
+
+  .categoriesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .categoryCard {
+    min-height: 160px;
+    padding: 16px 10px;
+  }
+
+  .categoryCard p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 14px;
+  }
+
+  .container h1 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .categoriesGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .categoryCard {
+    min-height: 135px;
+    border-radius: 10px;
+    padding: 12px 8px;
+  }
+
+  .categoryIcon {
+    width: 60%;
+    max-width: 56px;
+  }
+
+  .categoryCard p {
+    margin-top: 8px;
+    font-size: 12px;
+  }
 }

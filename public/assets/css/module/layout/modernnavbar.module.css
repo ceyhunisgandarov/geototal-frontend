@@ -9,6 +9,7 @@
   z-index: 99;
   transition: all 0.3s ease;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 
 .container {
