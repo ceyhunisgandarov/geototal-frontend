@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "next-intl";
 import LoginService from "@/app/services/LoginService";
 import style from "../../../../../../public/assets/css/module/admin/login.module.css";
 import { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import MainService from "@/app/services/MainService";
 
 export default function LoginPage({ params }) {
   const router = useRouter();
+  const locale = useLocale();
   const { token } = params;
 
   const [userName, setUserName] = useState("");
@@ -64,7 +66,7 @@ export default function LoginPage({ params }) {
               sameSite: "strict",
             });
           }
-          router.push(`/az/${token}/admin`);
+          router.push(`/${locale}/${token}/admin`);
         } else if (response.data.status.code === 404) {
           setErrorMessage("User not found");
         } else if (response.data.status.code === 405) {

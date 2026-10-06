@@ -1,3 +1,4 @@
+//app/(routes)/[locale]/layout.jsx
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";

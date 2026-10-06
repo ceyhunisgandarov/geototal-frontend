@@ -7,6 +7,7 @@ import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
+import kyflag from "../../../../../public/images/flag/ky-flag.png";
 import { useTranslations } from "next-intl";
 
 export default function ModernNavbar({ page }) {
@@ -55,6 +56,7 @@ export default function ModernNavbar({ page }) {
     if (t("locale") === "az") setFlag(azflag);
     else if (t("locale") === "en") setFlag(enflag);
     else if (t("locale") === "ru") setFlag(ruflag);
+    else if (t("locale") === "ky") setFlag(kyflag);
     else console.error("Geçersiz dil: ", t("locale"));
   }, [t("locale")]);
 
@@ -165,7 +167,7 @@ export default function ModernNavbar({ page }) {
                 </div>
                 {languageMenu && (
                   <div className={styles.dropdownLocales}>
-                    <Link href={`/az/${page}`} onClick={dropdown}>
+                    <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
                           src={azflag}
@@ -176,7 +178,7 @@ export default function ModernNavbar({ page }) {
                         />
                       </div>
                     </Link>
-                    <Link href={`/en/${page}`} onClick={dropdown}>
+                    <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
                           src={enflag}
@@ -187,13 +189,24 @@ export default function ModernNavbar({ page }) {
                         />
                       </div>
                     </Link>
-                    <Link href={`/ru/${page}`} onClick={dropdown}>
+                    <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
                           src={ruflag}
                           width={300}
                           height={300}
                           alt="ru-flag"
+                          className={styles.flag}
+                        />
+                      </div>
+                    </Link>
+                    <Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                      <div className={styles.flagContainer}>
+                        <Image
+                          src={kyflag}
+                          width={300}
+                          height={300}
+                          alt="ky-flag"
                           className={styles.flag}
                         />
                       </div>
@@ -217,7 +230,7 @@ export default function ModernNavbar({ page }) {
               </div>
               {languageMenu && (
                 <div className={styles.dropdownLocales}>
-                  <Link href={`/az/${page}`} onClick={dropdown}>
+                  <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
                         src={azflag}
@@ -228,7 +241,7 @@ export default function ModernNavbar({ page }) {
                       />
                     </div>
                   </Link>
-                  <Link href={`/en/${page}`} onClick={dropdown}>
+                  <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
                         src={enflag}
@@ -239,13 +252,24 @@ export default function ModernNavbar({ page }) {
                       />
                     </div>
                   </Link>
-                  <Link href={`/ru/${page}`} onClick={dropdown}>
+                  <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
                         src={ruflag}
                         width={300}
                         height={300}
                         alt="ru-flag"
+                        className={styles.flag}
+                      />
+                    </div>
+                  </Link>
+                  <Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                    <div className={styles.flagContainer}>
+                      <Image
+                        src={kyflag}
+                        width={300}
+                        height={300}
+                        alt="ky-flag"
                         className={styles.flag}
                       />
                     </div>

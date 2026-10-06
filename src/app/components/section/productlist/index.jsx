@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import style from "../../../../../public/assets/css/module/products/productpage.module.css";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ProductService from "@/app/services/ProductService";
 
@@ -11,6 +11,7 @@ function ProductList({ selectedCategory }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const locale = useLocale();
   const t = useTranslations("Products");
 
   useEffect(() => {
@@ -58,7 +59,7 @@ function ProductList({ selectedCategory }) {
             ))
           : filteredProducts.map((product) => (
               <Link
-                href={`/${t("locale")}/products/${product.id}`}
+                href={`/${locale}/products/${product.id}`}
                 key={product.id}
                 className={style.card2}
               >

@@ -10,6 +10,7 @@ import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
+import kyflag from "../../../../../public/images/flag/ky-flag.png";
 import LogoService from "@/app/services/LogoService";
 
 function NewNavbar({ page, locale }) {
@@ -42,6 +43,7 @@ function NewNavbar({ page, locale }) {
     if (locale === "az") setFlag(azflag);
     else if (locale === "en") setFlag(enflag);
     else if (locale === "ru") setFlag(ruflag);
+    else if (locale === "ky") setFlag(kyflag);
   }, [locale]);
 
   return (
@@ -85,9 +87,10 @@ function NewNavbar({ page, locale }) {
             <Image src={flag} alt="flag.png" className={style.flag} />
             {languageMenu && (
               <div className={style.dropdownLocales}>
-                <Link href={`/az/${page}`} onClick={toggleDropdown}><Image src={azflag} alt="az" className={style.flag} /></Link>
-                <Link href={`/en/${page}`} onClick={toggleDropdown}><Image src={enflag} alt="en" className={style.flag} /></Link>
-                <Link href={`/ru/${page}`} onClick={toggleDropdown}><Image src={ruflag} alt="ru" className={style.flag} /></Link>
+                <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={azflag} alt="az" className={style.flag} /></Link>
+                <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={enflag} alt="en" className={style.flag} /></Link>
+                <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={ruflag} alt="ru" className={style.flag} /></Link>
+<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={kyflag} alt="ky" className={style.flag} /></Link>
               </div>
             )}
           </div>

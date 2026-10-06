@@ -19,6 +19,7 @@ function ProductsAdmin() {
     descriptionAz: "",
     descriptionEn: "",
     descriptionRu: "",
+    descriptionKy: "",
     bestseller: false,
     stock: 0,
   });
@@ -32,7 +33,7 @@ function ProductsAdmin() {
       .then((response) => {
         if (response.data.status.code === 200) {
           setProducts(response.data.response);
-          setImageFiles(response.data.response.images);
+
         } else {
           console.log("something went wrong-", response.data.status.message);
         }
@@ -78,6 +79,9 @@ function ProductsAdmin() {
   };
 
   const openModal = (product = null) => {
+    setPdfFile(null);
+    setOldImageUrls([]);
+    setUpdateId(product?.id || 0);
     if (product) {
       // Backend’den gelen ürün
       setSelectedProduct(product);
@@ -86,10 +90,11 @@ function ProductsAdmin() {
       setReqProduct({
         brand: product.brand || "",
         model: product.model || "",
-        category: product.category || "",
+        category: ({TOTAL_STATION: "TS", AUTO_LEVEL: "AL", ACCESSORIES: "ACC", CONTROLLER: "CONT", SOFTWARE: "SOFT", LASER_SCANNER: "LS"})[product.category] || product.category || "",
         descriptionAz: product.descriptionAz || "",
         descriptionEn: product.descriptionEn || "",
         descriptionRu: product.descriptionRu || "",
+        descriptionKy: product.descriptionKy || "",
         bestseller: product.bestseller || false,
         stock: product.stock || 0,
       });
@@ -101,7 +106,7 @@ function ProductsAdmin() {
           name: img,
         }));
         setImageFiles(imagesWithPreview);
-        setOldImageUrls(product.images);
+
       }
     } else {
       // Yeni ürün ekleme
@@ -113,6 +118,7 @@ function ProductsAdmin() {
         descriptionAz: "",
         descriptionEn: "",
         descriptionRu: "",
+        descriptionKy: "",
         bestseller: false,
         stock: 0,
       });
@@ -259,6 +265,11 @@ function ProductsAdmin() {
                     descriptionRu: e.target.value,
                   })
                 }
+              />
+              <textarea
+                placeholder="Description (Ky)"
+                value={reqProduct.descriptionKy}
+                onChange={(e) => setReqProduct({...reqProduct, descriptionKy: e.target.value})}
               />
               <label>
                 Bestseller:

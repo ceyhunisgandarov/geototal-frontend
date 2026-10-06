@@ -30,7 +30,6 @@ const addOrUpdateCertificate = (requestBody, image, id) => {
 
 const deleteCertificate = (id) => {
   const token = Cookies.get("Authorization");
-  console.log(token)
   return createAxiosInstance().delete(
     `admin/delete/certificate/${id}`,
     {

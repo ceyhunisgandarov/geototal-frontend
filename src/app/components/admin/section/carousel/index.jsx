@@ -11,12 +11,18 @@ function AdminCarousel() {
   const [carouselId, setCarouselId] = useState(0);
   const [currentItem, setCurrentItem] = useState(null);
   const [formData, setFormData] = useState({
+    slogan: "",
+    sloganEn: "",
+    sloganRu: "",
+    sloganKy: "",
     title: "",
     description: "",
     titleEn: "",
     titleRu: "",
+    titleKy: "",
     descriptionEn: "",
     descriptionRu: "",
+    descriptionKy: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -45,8 +51,10 @@ function AdminCarousel() {
           description: null,
           titleEn: null,
           titleRu: null,
+          titleKy: null,
           descriptionEn: null,
           descriptionRu: null,
+          descriptionKy: null,
         };
   });
 
@@ -61,15 +69,21 @@ function AdminCarousel() {
 
     setCurrentItem(item || null);
     setFormData({
+      slogan: isNew ? "" : item.slogan ?? "",
+      sloganEn: isNew ? "" : item.sloganEn ?? "",
+      sloganRu: isNew ? "" : item.sloganRu ?? "",
+      sloganKy: isNew ? "" : item.sloganKy ?? "",
       title: isNew ? "" : item.title || "",
       description: isNew ? "" : item.description || "",
       titleEn: isNew ? "" : item.titleEn || "",
       titleRu: isNew ? "" : item.titleRu || "",
+      titleKy: isNew ? "" : item.titleKy || "",
       descriptionEn: isNew ? "" : item.descriptionEn || "",
       descriptionRu: isNew ? "" : item.descriptionRu || "",
+      descriptionKy: isNew ? "" : item.descriptionKy || "",
     });
     setCarouselImage(null); // Modal açıldığında eski resim sıfırlanır
-    setCarouselId(id + 1);
+    setCarouselId(isNew ? id + 1 : item.id);
     setModalOpen(true);
   };
 
@@ -219,6 +233,21 @@ function AdminCarousel() {
                 />
                 <label htmlFor="description">Description RU</label>
               </div>
+
+              <div className={style.formGroup}>
+                <input name="titleKy" value={formData.titleKy} onChange={handleChange} />
+                <label>Title KY</label>
+              </div>
+              <div className={style.formGroup}>
+                <textarea name="descriptionKy" value={formData.descriptionKy} onChange={handleChange} />
+                <label>Description KY</label>
+              </div>
+              {[['slogan', 'AZ'], ['sloganEn', 'EN'], ['sloganRu', 'RU'], ['sloganKy', 'KY']].map(([name, language]) => (
+                <div className={style.formGroup} key={name}>
+                  <input id={name} name={name} value={formData[name]} onChange={handleChange} />
+                  <label htmlFor={name}>Slogan {language}</label>
+                </div>
+              ))}
 
               <button type="submit">Save</button>
               <button type="button" onClick={() => setModalOpen(false)}>

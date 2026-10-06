@@ -34,3 +34,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Environment values (only safe examples belong in Git)
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Private keys and local secrets
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+/secrets/
+*.log

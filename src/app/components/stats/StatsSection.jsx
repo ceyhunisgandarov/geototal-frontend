@@ -29,6 +29,15 @@ export default function StatsSection({ locale = "az" }) {
         { value: "5000+ га", label: "съёмки с БПЛА" },
       ],
     },
+    ky: {
+      title: "Биздин тажрыйба сандар менен",
+      desc: "Геодезия, топография жана БПЛА менен жүргүзүлгөн иштердин жыйынтыктары.",
+      items: [
+        { value: "15+", label: "тажрыйба жылдары" },
+        { value: "30+", label: "аткарылган долбоорлор" },
+        { value: "5000+ га", label: "БПЛА менен тартылган аянт" },
+      ],
+    },
   };
 
   const { title, desc, items } = content[locale] || content.az;

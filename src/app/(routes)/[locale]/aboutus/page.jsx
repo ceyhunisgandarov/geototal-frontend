@@ -2,8 +2,7 @@ import AboutUsContainer from "@/app/containers/aboutus";
 import { useTranslations } from "next-intl";
 
 function AboutUsPage() {
-
-  const t = useTranslations("Navbar")
+  const t = useTranslations("Navbar");
 
   return (
     <div>

@@ -5,6 +5,7 @@ import logo from "../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../public/images/flag/en-flag.png";
 import ruflag from "../../../../../public/images/flag/ru-flag.png";
+import kyflag from "../../../../../public/images/flag/ky-flag.png";
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -58,6 +59,7 @@ function Navbar({ page, locale }) {
     if (t("locale") === "az") setFlag(azflag);
     else if (t("locale") === "en") setFlag(enflag);
     else if (t("locale") === "ru") setFlag(ruflag);
+    else if (t("locale") === "ky") setFlag(kyflag);
     else console.error("Geçersiz dil: ", t("locale"));
   }, [t("locale")]);
 
@@ -141,7 +143,7 @@ function Navbar({ page, locale }) {
           </div>
           {languageMenu && (
             <div className={style.dropdownLocales}>
-              <Link href={`/az/${page}`} onClick={dropdown}>
+              <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
                     src={azflag}
@@ -152,7 +154,7 @@ function Navbar({ page, locale }) {
                   />
                 </div>
               </Link>
-              <Link href={`/en/${page}`} onClick={dropdown}>
+              <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
                     src={enflag}
@@ -163,13 +165,24 @@ function Navbar({ page, locale }) {
                   />
                 </div>
               </Link>
-              <Link href={`/ru/${page}`} onClick={dropdown}>
+              <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
                     src={ruflag}
                     width={300}
                     height={300}
                     alt="ru-flag"
+                    className={style.flag}
+                  />
+                </div>
+              </Link>
+<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                <div className={style.flagContainer}>
+                  <Image
+                    src={kyflag}
+                    width={300}
+                    height={300}
+                    alt="ky-flag"
                     className={style.flag}
                   />
                 </div>

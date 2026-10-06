@@ -1,3 +1,4 @@
+//app/components/main/index.jsx
 "use client";
 import Layout from "../layout";
 import HomeBody from "../homebody";

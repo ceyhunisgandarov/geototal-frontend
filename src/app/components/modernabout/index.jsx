@@ -1,7 +1,9 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
+
 import Link from "next/link";
 import styles from "../../../../public/assets/css/module/modern/about.module.css";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import AboutService from "@/app/services/AboutService";
@@ -12,28 +14,10 @@ export default function AboutSection() {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  let contentTitle = "";
-  let text = "";
+  const locale = useLocale();
+  const contentTitle = localizedText(content, "title", locale);
+  const text = localizedText(content, "description", locale);
 
-  if (content) {
-    switch (t("locale")) {
-      case "az":
-        contentTitle = content.title;
-        text = content.description;
-        break;
-      case "en":
-        contentTitle = content.titleEn;
-        text = content.descriptionEn;
-        break;
-      case "ru":
-        contentTitle = content.titleRu;
-        text = content.descriptionRu;
-        break;
-      default:
-        contentTitle = "error";
-        text = "error";
-    }
-  }
   useEffect(() => {
     AboutService.getAboutInfo("first")
       .then((response) => {

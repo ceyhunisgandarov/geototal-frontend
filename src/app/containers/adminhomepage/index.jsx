@@ -1,4 +1,5 @@
 "use client";
+import BlogAdmin from "@/app/components/admin/section/blog";
 import AdminCarousel from "@/app/components/admin/section/carousel";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -92,6 +93,7 @@ function AdminHomePage({ page }) {
           <BannerAdmin page="service" />
           <ServiceAdmin />
         </div>
+        {divId === "blog" && <BlogAdmin />}
         <div
           style={{ display: divId === "contact" ? "block" : "none" }}
           id="contact"

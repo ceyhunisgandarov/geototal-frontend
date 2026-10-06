@@ -1,9 +1,11 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
+
 
 import Link from "next/link";
 import styles from "../../../../public/assets/css/module/carousel/modern.module.css";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import CarouselService from "@/app/services/CarouselService";
 import Image from "next/image";
 
@@ -60,7 +62,7 @@ export default function ModernCarousel() {
     }
   }, [carouselIndex]);
 
-  const locale = t("locale");
+  const locale = useLocale();
 
   // TOUCH / MOUSE SWIPE HANDLER
   const handleTouchStart = (e) => {
@@ -109,24 +111,6 @@ export default function ModernCarousel() {
       onMouseLeave={handleTouchEnd} // mouse kaybolunca swipe sonlansın
     >
       {carousel.map((slide, index) => {
-        const carouselElement = {
-          az: {
-            title: slide.title,
-            slogan: slide.slogan,
-            description: slide.description,
-          },
-          en: {
-            title: slide.titleEn,
-            slogan: slide.sloganEn,
-            description: slide.descriptionEn,
-          },
-          ru: {
-            title: slide.titleRu,
-            slogan: slide.sloganRu,
-            description: slide.descriptionRu,
-          },
-        };
-
         const isActive = index === carouselIndex;
 
         return (
@@ -198,10 +182,10 @@ export default function ModernCarousel() {
               }`}
             >
               <div className={styles.textContent}>
-                <h3>{carouselElement[locale]?.title}</h3>
-                <h1>{carouselElement[locale]?.slogan}</h1>
+                <h3>{localizedText(slide, "title", locale)}</h3>
+                <h1>{localizedText(slide, "slogan", locale)}</h1>
                 <div className={styles.pContent}>
-                  <p>{carouselElement[locale]?.description}</p>
+                  <p>{localizedText(slide, "description", locale)}</p>
                 </div>
                 <div className={styles.bannerBtn}>
                   <Link

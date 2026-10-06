@@ -1,8 +1,10 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
+
 import { useEffect, useRef, useState } from "react";
 import style from "../../../../../public/assets/css/module/icon/icon.module.css";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 function Icon({
@@ -13,21 +15,9 @@ function Icon({
   service,
   background,
 }) {
-  const [serviceName, setServiceName] = useState("");
-
   const t = useTranslations("Navbar");
-
-  useEffect(() => {
-    if (t("locale") === "az") {
-      setServiceName(service.serviceName);
-    } else if (t("locale") === "en") {
-      setServiceName(service.serviceNameEn);
-    } else if (t("locale") === "ru") {
-      setServiceName(service.serviceNameRu);
-    } else {
-      setServiceName("");
-    }
-  });
+  const locale = useLocale();
+  const serviceName = localizedText(service, "serviceName", locale);
 
   const iconRef = useRef(null);
 
@@ -62,7 +52,7 @@ function Icon({
         background === "light" ? style.light : style.dark
       }`}
     >
-      <Image src={service.serviceImageUrl} width={200} height={200}/>
+      <Image src={service.serviceImageUrl} width={200} height={200} alt={serviceName}/>
       <div className={style.contentElement} style={{ zIndex: "2" }}>
         <p className={style.serviceTitle}>{serviceName}</p>
       </div>

@@ -1,15 +1,17 @@
 // components/BookingArea.jsx
+import { localizedText } from "@/lib/localizedText";
 import { useEffect, useState } from "react";
 import styles from "../../../../public/assets/css/module/modern/contact.module.css";
 import Image from "next/image";
 import ServicesService from "@/app/services/ServicesService";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import MainService from "@/app/services/MainService";
 
 export default function ModernContact() {
   const [services, setServices] = useState([]);
   const [message, setMessage] = useState("");
   const t = useTranslations("ServiceForm");
+  const locale = useLocale();
 
   useEffect(() => {
     getServiceList();
@@ -29,14 +31,7 @@ export default function ModernContact() {
       });
   };
 
-  const getServiceName = (service) => {
-    const locale = t("locale");
-    return locale === "az"
-      ? service.serviceName
-      : locale === "en"
-      ? service.serviceNameEn
-      : service.serviceNameRu;
-  };
+  const getServiceName = (service) => localizedText(service, "serviceName", locale);
 
   const handleSubmit = (e) => {
     e.preventDefault();

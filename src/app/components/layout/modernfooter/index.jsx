@@ -1,12 +1,13 @@
+'use client'
 import { useTranslations } from "next-intl";
 import styles from "../../../../../public/assets/css/module/layout/modernfooter.module.css";
 import { FaInstagram, FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
 
-export default function ModernFooter() {
+export default function ModernFooter({locale}) {
   const t = useTranslations("Footer");
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} key={locale}>
       {/* TOP AREA */}
       <div className={styles.footerTop}>
         <div className={styles.container}>

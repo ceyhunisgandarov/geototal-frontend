@@ -9,10 +9,43 @@ import { useLocale, useTranslations } from "next-intl";
 
 function ProductComponent({ id }) {
   const t = useTranslations("Product");
+  const locale = useLocale();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState("");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  const localizedText = (item, field, locale, fallbackField = `${field}Az`) => {
+    if (!item) return "";
+
+    const normalizedLocale = locale?.toLowerCase().split("-")[0];
+
+    const fieldsByLocale = {
+      az: [`${field}Az`],
+      en: [`${field}En`],
+      ru: [`${field}Ru`],
+      ky: [`${field}Ky`, `${field}KY`],
+    };
+
+    const requestedFields =
+      fieldsByLocale[normalizedLocale] ?? fieldsByLocale.az;
+
+    const fallbackFields = [fallbackField, `${field}Az`, `${field}En`];
+
+    const candidateFields = [
+      ...new Set([...requestedFields, ...fallbackFields]),
+    ];
+
+    for (const fieldName of candidateFields) {
+      const value = item[fieldName];
+
+      if (typeof value === "string" && value.trim()) {
+        return value;
+      }
+    }
+
+    return "";
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -162,7 +195,9 @@ function ProductComponent({ id }) {
       <div className={styles.productBottomDetails}>
         <div className={styles.detailSection}>
           <h3>{t("description")}</h3>
-          <p className={styles.description}>{product.descriptionAz}</p>
+          <p className={styles.description}>
+            {localizedText(product, "description", locale, "descriptionAz")}
+          </p>
         </div>
         <div className={styles.broschure}>
           <button

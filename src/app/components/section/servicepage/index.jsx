@@ -1,4 +1,5 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
 import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/service/servicepage.module.css";
 import ServicesService from "@/app/services/ServicesService";
@@ -59,12 +60,7 @@ export default function ServicesSection({ service }) {
     );
   }
 
-  const serviceName =
-    locale === "az"
-      ? aService.serviceName
-      : locale === "en"
-      ? aService.serviceNameEn
-      : aService.serviceNameRu;
+  const serviceName = localizedText(aService, "serviceName", locale);
 
   const sortedParts = [...aService.serviceParts].sort((a, b) => {
     if (!a.id) return 1;
@@ -79,14 +75,7 @@ export default function ServicesSection({ service }) {
       {sortedParts.map((part, index) => {
         if (!part) return null;
 
-        const textKey =
-          locale === "az"
-            ? "serviceTextAz"
-            : locale === "en"
-            ? "serviceTextEn"
-            : "serviceTextRu";
-
-        const partText = part[textKey] || "";
+        const partText = localizedText(part, "serviceText", locale, "serviceTextAz");
         const imageSrc = part.serviceImageUrl || "/placeholder.png";
         const sectionClass = index % 2 === 0 ? style.dark : style.gray;
 

@@ -1,9 +1,11 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
+
 import Image from "next/image";
 import style from "../../../../public/assets/css/module/aboutussection/aboutuscontent.module.css";
 import { useEffect, useState } from "react";
 import AboutService from "@/app/services/AboutService";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 function AboutUsContent() {
   const t = useTranslations("AboutUs");
@@ -27,33 +29,10 @@ function AboutUsContent() {
       });
   }, []);
 
-  let contentTitle = "";
-  let contentSecond = "";
-  let text = "";
-
-  if (content) {
-    switch (t("locale")) {
-      case "az":
-        contentTitle = content.title;
-        contentSecond = content.secondTitle;
-        text = content.description;
-        break;
-      case "en":
-        contentTitle = content.titleEn;
-        contentSecond = content.secondTitleEn;
-        text = content.descriptionEn;
-        break;
-      case "ru":
-        contentTitle = content.titleRu;
-        contentSecond = content.secondTitleRu;
-        text = content.descriptionRu;
-        break;
-      default:
-        contentTitle = "error";
-        contentSecond = "error";
-        text = "error";
-    }
-  }
+  const locale = useLocale();
+  const contentTitle = localizedText(content, "title", locale);
+  const contentSecond = localizedText(content, "secondTitle", locale);
+  const text = localizedText(content, "description", locale);
 
   return (
     <section className={style.mainSection}>

@@ -14,6 +14,7 @@ function ServiceAdmin() {
     serviceName: "",
     serviceNameEn: "",
     serviceNameRu: "",
+    serviceNameKy: "",
     pathName: "",
     serviceImageFile: null,
     serviceParts: [],
@@ -36,10 +37,12 @@ function ServiceAdmin() {
 
   const openAddModal = () => {
     setIsAdd(true);
+    setId(0);
     setCurrentService({
       serviceName: "",
       serviceNameEn: "",
       serviceNameRu: "",
+      serviceNameKy: "",
       pathName: "",
       serviceImageFile: null,
       serviceParts: [],
@@ -53,6 +56,7 @@ function ServiceAdmin() {
       serviceName: service.serviceName,
       serviceNameEn: service.serviceNameEn,
       serviceNameRu: service.serviceNameRu,
+      serviceNameKy: service.serviceNameKy,
       pathName: service.pathName || "",
       serviceImageFile: null,
       serviceParts: service.serviceParts || [],
@@ -74,6 +78,7 @@ function ServiceAdmin() {
           serviceTextAz: "",
           serviceTextEn: "",
           serviceTextRu: "",
+          serviceTextKy: "",
           serviceImageFile: null,
         },
       ],
@@ -114,14 +119,17 @@ function ServiceAdmin() {
         serviceName: currentService.serviceName,
         serviceNameEn: currentService.serviceNameEn,
         serviceNameRu: currentService.serviceNameRu,
+        serviceNameKy: currentService.serviceNameKy,
         pathName: currentService.pathName,
       };
 
       const reqServiceParts = currentService.serviceParts.map((part) => ({
+        id: part.id,
         partName: part.partName,
         serviceTextAz: part.serviceTextAz,
         serviceTextEn: part.serviceTextEn,
         serviceTextRu: part.serviceTextRu,
+        serviceTextKy: part.serviceTextKy,
       }));
 
       const servicePartImages = currentService.serviceParts.map(
@@ -211,6 +219,12 @@ function ServiceAdmin() {
               />
 
               <input
+                type="text"
+                placeholder="Service Name KY"
+                value={currentService.serviceNameKy ?? ""}
+                onChange={(e) => setCurrentService((prev) => ({...prev, serviceNameKy: e.target.value}))}
+              />
+              <input
                 type="file"
                 accept=".svg, .png, .jpg"
                 onChange={(e) => setCurrentService((prev) => ({ ...prev, serviceImageFile: e.target.files[0] }))}
@@ -240,6 +254,11 @@ function ServiceAdmin() {
                   placeholder="Service Text RU"
                   value={part.serviceTextRu}
                   onChange={(e) => updatePartField(index, "serviceTextRu", e.target.value)}
+                />
+                <textarea
+                  placeholder="Service Text KY"
+                  value={part.serviceTextKy ?? ""}
+                  onChange={(e) => updatePartField(index, "serviceTextKy", e.target.value)}
                 />
                 <label className={style.imageUploadLabel}>
                   {part.serviceImageFile ? (

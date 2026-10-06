@@ -1,3 +1,4 @@
+//app/(routes)/[locale]/page.jsx
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import HomeContainer from "@/app/containers/homepage";

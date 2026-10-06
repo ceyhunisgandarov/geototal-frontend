@@ -1,8 +1,9 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
 import ProjectService from "@/app/services/ProjectService";
 import { useEffect, useState } from "react";
 import styles from "../../../../../public/assets/css/module/projects/aproject.module.css";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import ReferenceLetter from "../reference";
 import { useRouter } from "next/navigation";
@@ -10,16 +11,11 @@ import { useRouter } from "next/navigation";
 function ProjectSection({ project }) {
   const t = useTranslations("Projects");
   const [projectContent, setProjectContent] = useState({});
-  const router = useRouter()
-  let contentFromDb = projectContent.worksDescription;
-
+  const router = useRouter();
+  const locale = useLocale();
+  const contentFromDb = localizedText(projectContent, "worksDescription", locale);
+  const feedback = localizedText(projectContent, "feedBack", locale);
   const isLoading = !projectContent || !projectContent.projectName;
-
-  if (t("locale") === "en") {
-    contentFromDb = projectContent.worksDescriptionEn;
-  } else if (t("locale") === "ru") {
-    contentFromDb = projectContent.worksDescriptionRu;
-  }
 
   useEffect(() => {
     ProjectService.getProject(project)
@@ -28,7 +24,7 @@ function ProjectSection({ project }) {
           console.log(response.data.response);
           setProjectContent(response.data.response);
         } else if (response.data.status.code === 404) {
-          router.replace("/404")
+          router.replace("/404");
         } else {
           console.log("Something went wrong: ", response.data.status.message);
         }
@@ -84,12 +80,12 @@ function ProjectSection({ project }) {
             </div>
           </div>
 
-          {projectContent.feedBack !== "null" && (
+          {feedback && feedback !== "null" && (
             <>
               <hr />
               <div className={styles.feedback}>
                 <span></span>
-                <p>{projectContent.feedBack}</p>
+                <p>{feedback}</p>
               </div>
             </>
           )}

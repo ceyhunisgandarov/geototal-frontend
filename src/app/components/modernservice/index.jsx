@@ -1,13 +1,15 @@
 "use client";
+import { localizedText } from "@/lib/localizedText";
 import Link from "next/link";
 import styles from "../../../../public/assets/css/module/modern/service.module.css";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ServicesService from "@/app/services/ServicesService";
 
 export default function ModernService() {
   const t = useTranslations("HomeService");
+  const locale = useLocale();
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -56,14 +58,14 @@ export default function ModernService() {
                 <div className={styles.itemContent}>
                   <Image
                     src={item.serviceImageUrl}
-                    alt={item.serviceNameEn}
+                    alt={localizedText(item, "serviceName", locale)}
                     className={styles.image}
                     width={300}
                     height={300}
                   />
 
                   <div className={styles.hover}>
-                    <Service service={item} locale={t("locale")} />
+                    <Service service={item} locale={locale} />
                   </div>
                 </div>
               </div>
@@ -76,21 +78,7 @@ export default function ModernService() {
 
 function Service({ service, locale }) {
   const t = useTranslations("HomeService");
-  let titleService;
-
-  switch (locale) {
-    case "az":
-      titleService = service.serviceName;
-      break;
-    case "en":
-      titleService = service.serviceNameEn;
-      break;
-    case "ru":
-      titleService = service.serviceNameRu;
-      break;
-    default:
-      titleService = "error";
-  }
+  const titleService = localizedText(service, "serviceName", locale);
 
   return (
     <div className={styles.hoverText}>

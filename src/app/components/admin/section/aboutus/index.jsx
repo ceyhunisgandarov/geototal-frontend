@@ -7,18 +7,21 @@ import AboutService from "@/app/services/AboutService";
 function AboutUsAdmin() {
   const [firstContent, setFirstContent] = useState({});
   const [secondContent, setSecondContent] = useState({});
-  const [aboutImage, setAboutImage] = useState([]);
+  const [aboutImage, setAboutImage] = useState(null);
   const [stepAbout, setStepAbout] = useState("");
   const [reqAbout, setReqAbout] = useState({
     title: "",
     titleEn: "",
     titleRu: "",
+    titleKy: "",
     secondTitle: "",
     secondTitleEn: "",
     secondTitleRu: "",
+    secondTitleKy: "",
     description: "",
     descriptionEn: "",
     descriptionRu: "",
+    descriptionKy: "",
     approximatelyProjectsCount: 0,
     approximatelyStaffsCount: 0,
   });
@@ -121,12 +124,20 @@ function AboutUsAdmin() {
             <h3>{firstContent.secondTitleRu}</h3>
             <p>{firstContent.descriptionRu}</p>
           </div>
+          <div className={style.itemContainer}>
+            <div className={style.locale}>KY</div>
+            <h2>{firstContent.titleKy}</h2>
+            <h3>{firstContent.secondTitleKy}</h3>
+            <p>{firstContent.descriptionKy}</p>
+          </div>
           <p>
             Completed Project Count {firstContent.approximatelyProjectsCount}+
           </p>
         </div>
         <button
           onClick={() => {
+            setReqAbout(Object.fromEntries(Object.keys(reqAbout).map((key) => [key, firstContent[key] ?? (key.startsWith("approximately") ? 0 : "")])));
+            setAboutImage(null);
             setOpenModal(true);
             setStepAbout("first");
           }}
@@ -180,10 +191,18 @@ function AboutUsAdmin() {
             <h3>{secondContent.secondTitleRu}</h3>
             <p>{secondContent.descriptionRu}</p>
           </div>
+          <div className={style.itemContainer}>
+            <div className={style.locale}>KY</div>
+            <h2>{secondContent.titleKy}</h2>
+            <h3>{secondContent.secondTitleKy}</h3>
+            <p>{secondContent.descriptionKy}</p>
+          </div>
           <p>Staff Count {secondContent.approximatelyStaffsCount}+</p>
         </div>
         <button
           onClick={() => {
+            setReqAbout(Object.fromEntries(Object.keys(reqAbout).map((key) => [key, secondContent[key] ?? (key.startsWith("approximately") ? 0 : "")])));
+            setAboutImage(null);
             setOpenModal(true);
             setStepAbout("second");
           }}
@@ -223,6 +242,12 @@ function AboutUsAdmin() {
               value={reqAbout.titleRu}
               onChange={handleInputChange}
             />
+            <input
+              name="titleKy"
+              placeholder="Title (KY)"
+              value={reqAbout.titleKy}
+              onChange={handleInputChange}
+            />
             {/* Second Title */}
             <input
               name="secondTitle"
@@ -242,6 +267,12 @@ function AboutUsAdmin() {
               value={reqAbout.secondTitleRu}
               onChange={handleInputChange}
             />
+            <input
+              name="secondTitleKy"
+              placeholder="Second Title (KY)"
+              value={reqAbout.secondTitleKy}
+              onChange={handleInputChange}
+            />
             {/* Description */}
             <textarea
               name="description"
@@ -259,6 +290,12 @@ function AboutUsAdmin() {
               name="descriptionRu"
               placeholder="Description (RU)"
               value={reqAbout.descriptionRu}
+              onChange={handleInputChange}
+            />
+            <textarea
+              name="descriptionKy"
+              placeholder="Description (KY)"
+              value={reqAbout.descriptionKy}
               onChange={handleInputChange}
             />
             <input

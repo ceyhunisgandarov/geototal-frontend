@@ -22,14 +22,15 @@ const addOrUpdateService = (reqService, serviceImage, reqServiceParts, servicePa
   }
 
   // ServiceParts JSON olarak ekle
-  if (reqServiceParts && reqServiceParts.length > 0) {
+  if (reqServiceParts) {
     formData.append("serviceParts", JSON.stringify(reqServiceParts));
   }
 
   // ServicePart resimlerini ekle
   if (servicePartImages && servicePartImages.length > 0) {
     servicePartImages.forEach((file, index) => {
-      if (file) formData.append(`servicePartImages`, file);
+      // Preserve part indices when only some images are replaced.
+      formData.append("servicePartImages", file || new Blob([]), file?.name || "unchanged");
     });
   }
 

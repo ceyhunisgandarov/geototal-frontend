@@ -4,6 +4,9 @@ import style from "../../../../../../public/assets/css/module/admin/navbar.modul
 import logo from "../../../../../../public/images/Geototal_loqo.png";
 import azflag from "../../../../../../public/images/flag/az-flag.png";
 import enflag from "../../../../../../public/images/flag/en-flag.png";
+import { usePathname, useRouter } from "next/navigation";
+import { switchLocalePath } from "@/lib/locales";
+import kyflag from "../../../../../../public/images/flag/ky-flag.png";
 import ruflag from "../../../../../../public/images/flag/ru-flag.png";
 
 import { useTranslations } from "next-intl";
@@ -14,6 +17,13 @@ import { useLocale } from "next-intl";
 function AdminNavbar({ handleClick }) {
   const t = useTranslations("Navbar");
   const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const selectLocale = (language, event) => {
+    event.stopPropagation();
+    setLanguageMenu(false);
+    router.replace(switchLocalePath(pathname, language));
+  };
 
   const [flag, setFlag] = useState(azflag);
   const [languageMenu, setLanguageMenu] = useState(false);
@@ -63,6 +73,7 @@ function AdminNavbar({ handleClick }) {
     if (locale === "az") setFlag(azflag);
     else if (locale === "en") setFlag(enflag);
     else if (locale === "ru") setFlag(ruflag);
+    else if (locale === "ky") setFlag(kyflag);
     else console.error("Geçersiz dil: ", locale);
   }, [locale]);
 
@@ -163,6 +174,7 @@ function AdminNavbar({ handleClick }) {
                 Contact Us
               </div>
             </li>
+            <li><div className={style.menuLink} onClick={() => handleClick("blog")}>Blog</div></li>
           </ul>
         </div>
 
@@ -178,39 +190,12 @@ function AdminNavbar({ handleClick }) {
           </div>
           {languageMenu && (
             <div className={style.dropdownLocales}>
-              <div onClick={dropdown}>
-                <div className={style.flagContainer}>
-                  <Image
-                    src={azflag}
-                    width={300}
-                    height={300}
-                    alt="az-flag"
-                    className={style.flag}
-                  />
-                </div>
-              </div>
-              <div onClick={dropdown}>
-                <div className={style.flagContainer}>
-                  <Image
-                    src={enflag}
-                    width={300}
-                    height={300}
-                    alt="en-flag"
-                    className={style.flag}
-                  />
-                </div>
-              </div>
-              <div onClick={dropdown}>
-                <div className={style.flagContainer}>
-                  <Image
-                    src={ruflag}
-                    width={300}
-                    height={300}
-                    alt="ru-flag"
-                    className={style.flag}
-                  />
-                </div>
-              </div>
+              {[["az", azflag], ["en", enflag], ["ru", ruflag], ["ky", kyflag]].map(([language, image]) => (
+                <button type="button" key={language} aria-label={language.toUpperCase()}
+                  onClick={(event) => selectLocale(language, event)}>
+                  <Image src={image} width={300} height={300} alt={`${language}-flag`} className={style.flag} />
+                </button>
+              ))}
             </div>
           )}
         </div>

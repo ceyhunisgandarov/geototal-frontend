@@ -10,6 +10,7 @@ export default function ProjectForm({ path = "new" }) {
     worksDescription: "",
     worksDescriptionEn: "",
     worksDescriptionRu: "",
+    worksDescriptionKy: "",
     workDate: "",
     referenceName: "",
     referenceNameEn: "",
@@ -46,12 +47,13 @@ export default function ProjectForm({ path = "new" }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await ProjectService.addOrUpdateProject(
+      const result = await ProjectService.addOrUpdateProject(
         form,
         imageFile,
         path,
         referenceLetter
       );
+      if (result.data.status.code !== 200) throw new Error("Project save failed");
       alert("Project saved successfully!");
     } catch (err) {
       console.error("Project save error:", err);
@@ -126,6 +128,12 @@ export default function ProjectForm({ path = "new" }) {
             value={form.worksDescriptionRu}
             onChange={handleChange}
           />
+        </div>
+
+        <div className={styles.fieldFull}>
+          <label className={styles.label}>Description (KY)</label>
+          <textarea className={styles.textarea} name="worksDescriptionKy"
+            value={form.worksDescriptionKy ?? ""} onChange={handleChange} />
         </div>
 
         {/* Work Date */}
