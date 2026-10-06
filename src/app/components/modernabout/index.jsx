@@ -65,11 +65,10 @@ export default function AboutSection() {
             <div className={styles.colImage}>
               <div className={styles.aboutImage}>
                 <Image
-                  src={content.imageUrl}
-                  alt="About Koffee Shop"
+                  src={content?.imageUrl || "/images/default-about.jpg"}
+                  alt="About"
                   width={600}
                   height={600}
-                  className={styles.image}
                 />
               </div>
             </div>
