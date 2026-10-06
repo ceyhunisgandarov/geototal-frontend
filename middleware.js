@@ -1,49 +1,62 @@
-// import createMiddleware from 'next-intl/middleware';
-// import { routing } from './src/i18n/routing';
+import createMiddleware from 'next-intl/middleware';
+import {routing} from './src/i18n/routing';
 
-// export default createMiddleware(routing);
+const handleI18nRouting = createMiddleware(routing);
 
-// export const config = {
-//   matcher: ['/', '/(az|en|ru|ky)/:path*']
-// };
-
-import createMiddleware from "next-intl/middleware";
-import { NextResponse } from "next/server";
-import { routing } from "./src/i18n/routing";
-
-const intlMiddleware = createMiddleware(routing);
+const ALL_LOCALES = ['az', 'en', 'ru', 'ky'];
 
 export default function middleware(request) {
-  const host = request.headers.get("host") || "";
+  // Port varsa kaldırır: localhost:3000 vb.
+  const host = (request.headers.get('host') || '')
+    .split(':')[0]
+    .toLowerCase();
+
   const pathname = request.nextUrl.pathname;
 
-  // Varsayılan: tüm diller
-  let allowedLocales = ["az", "en", "ru", "ky"];
-  let defaultLocale = "en";
+  let allowedLocales = ALL_LOCALES;
+  let defaultLocale = 'en';
 
-  if (host.endsWith(".az")) {
-    allowedLocales = ["az", "en", "ru"];
-    defaultLocale = "az";
-  } else if (host.endsWith(".kg")) {
-    allowedLocales = ["ky", "ru"];
-    defaultLocale = "ky";
+  // .az domain
+  if (host.endsWith('.az')) {
+    allowedLocales = ['az', 'en', 'ru'];
+    defaultLocale = 'az';
   }
 
-  // URL'deki locale'i al
-  const locale = pathname.split("/")[1];
+  // .kg domain
+  else if (host.endsWith('.kg')) {
+    allowedLocales = ['ky', 'ru'];
+    defaultLocale = 'ky';
+  }
 
-  // Eğer locale varsa ama bu domain için izinli değilse yönlendir
+  // URL'deki dili bul
+  // Örn: /az/products -> az
+  const pathnameLocale = pathname.split('/')[1];
+
+  // Domain için yasak bir locale açılmışsa
   if (
-    ["az", "en", "ru", "ky"].includes(locale) &&
-    !allowedLocales.includes(locale)
+    ALL_LOCALES.includes(pathnameLocale) &&
+    !allowedLocales.includes(pathnameLocale)
   ) {
-    const newPath = pathname.replace(`/${locale}`, `/${defaultLocale}`);
-    return NextResponse.redirect(new URL(newPath, request.url));
+    const url = request.nextUrl.clone();
+
+    const restOfPath =
+      pathname.replace(`/${pathnameLocale}`, '') || '/';
+
+    url.pathname =
+      restOfPath === '/'
+        ? `/${defaultLocale}`
+        : `/${defaultLocale}${restOfPath}`;
+
+    return Response.redirect(url);
   }
 
-  return intlMiddleware(request);
+  // Normal next-intl işlemi
+  return handleI18nRouting(request);
 }
 
 export const config = {
-  matcher: ["/", "/(az|en|ru|ky)/:path*"],
+  matcher: [
+    '/',
+    '/(az|en|ru|ky)/:path*'
+  ]
 };
