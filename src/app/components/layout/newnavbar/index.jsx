@@ -90,9 +90,9 @@ function NewNavbar({ page, locale }) {
             {languageMenu && (
               <div className={style.dropdownLocales}>
                 {availableLocales.includes("az") && (<Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={azflag} alt="az" className={style.flag} /></Link>)}
+                {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={kyflag} alt="ky" className={style.flag} /></Link>)}
                 <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={enflag} alt="en" className={style.flag} /></Link>
                 <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={ruflag} alt="ru" className={style.flag} /></Link>
-{availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={kyflag} alt="ky" className={style.flag} /></Link>)}
               </div>
             )}
           </div>

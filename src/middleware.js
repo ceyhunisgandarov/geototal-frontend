@@ -1,7 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
-import { routing } from './src/i18n/routing';
-import { getDomainLocales, getRequestHost, supportedLocales, switchLocalePath } from './src/lib/locales';
+import { routing } from './i18n/routing';
+import { getDomainLocales, getRequestHost, supportedLocales, switchLocalePath } from './lib/locales';
 
 export default function middleware(request) {
   const domain = getDomainLocales(getRequestHost(request.headers));

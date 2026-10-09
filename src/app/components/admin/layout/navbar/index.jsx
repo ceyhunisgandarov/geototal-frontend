@@ -192,7 +192,7 @@ function AdminNavbar({ handleClick }) {
           </div>
           {languageMenu && (
             <div className={style.dropdownLocales}>
-              {[["az", azflag], ["en", enflag], ["ru", ruflag], ["ky", kyflag]].filter(([language]) => availableLocales.includes(language)).map(([language, image]) => (
+              {[["az", azflag], ["ky", kyflag], ["en", enflag], ["ru", ruflag]].filter(([language]) => availableLocales.includes(language)).map(([language, image]) => (
                 <button type="button" key={language} aria-label={language.toUpperCase()}
                   onClick={(event) => selectLocale(language, event)}>
                   <Image src={image} width={300} height={300} alt={`${language}-flag`} className={style.flag} />

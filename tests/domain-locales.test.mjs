@@ -9,7 +9,7 @@ import * as locales from '../src/lib/locales.js';
 const require = createRequire(import.meta.url);
 const { NextRequest } = require('next/server');
 const babel = require('next/dist/compiled/babel/core');
-const code = babel.transformSync(readFileSync(new URL('../middleware.js', import.meta.url), 'utf8'), {
+const code = babel.transformSync(readFileSync(new URL('../src/middleware.js', import.meta.url), 'utf8'), {
   presets: [[require.resolve('next/babel'), { 'transform-runtime': false }]], filename: 'middleware.js',
   caller: { name: 'test', supportsStaticESM: false }
 }).code;
@@ -42,3 +42,22 @@ test('host normalization, proxy and non-country hosts', () => {
   assert.equal(locales.getDomainLocales(locales.getRequestHost(new Headers({'x-forwarded-host':'geototal.kg',host:'localhost:3000'}))).defaultLocale, 'ky');
   for (const host of ['localhost:3000', 'geototal.com', 'geototal.az.example.com']) assert.deepEqual(locales.getDomainLocales(host).locales, ['az', 'en', 'ru', 'ky']);
 });
+
+// The entry page must also use the host when it handles a request directly.
+for (const [host, expected] of [['geototal.kg', '/ky'], ['geototal.az', '/az'], ['localhost:3000', '/az']]) {
+  test(`${host}: entry page redirects to domain default`, () => {
+    const entryCode = babel.transformSync(readFileSync(new URL('../src/app/page.jsx', import.meta.url), 'utf8'), {
+      presets: [[require.resolve('next/babel'), { 'transform-runtime': false }]], filename: 'page.jsx',
+      caller: { name: 'test', supportsStaticESM: false }
+    }).code;
+    const entryModule = { exports: {} };
+    vm.runInNewContext(entryCode, { module: entryModule, exports: entryModule.exports, require(name) {
+      if (name === 'next/headers') return { headers: () => new Headers({ host }) };
+      if (name === 'next/navigation') return { redirect: (url) => { throw new Error(`redirect:${url}`); } };
+      if (name === '@/lib/locales') return locales;
+      if (name.startsWith('@babel/runtime/')) return require(`next/dist/compiled/${name}`);
+      return require(name);
+    }});
+    assert.throws(() => entryModule.exports.default(), { message: `redirect:${expected}` });
+  });
+}

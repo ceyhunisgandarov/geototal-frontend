@@ -181,6 +181,17 @@ export default function ModernNavbar({ page }) {
                         />
                       </div>
                     </Link>)}
+                    {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                      <div className={styles.flagContainer}>
+                        <Image
+                          src={kyflag}
+                          width={300}
+                          height={300}
+                          alt="ky-flag"
+                          className={styles.flag}
+                        />
+                      </div>
+                    </Link>)}
                     <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
@@ -203,17 +214,6 @@ export default function ModernNavbar({ page }) {
                         />
                       </div>
                     </Link>
-                    {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
-                      <div className={styles.flagContainer}>
-                        <Image
-                          src={kyflag}
-                          width={300}
-                          height={300}
-                          alt="ky-flag"
-                          className={styles.flag}
-                        />
-                      </div>
-                    </Link>)}
                   </div>
                 )}
               </div>
@@ -244,6 +244,17 @@ export default function ModernNavbar({ page }) {
                       />
                     </div>
                   </Link>)}
+                  {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                    <div className={styles.flagContainer}>
+                      <Image
+                        src={kyflag}
+                        width={300}
+                        height={300}
+                        alt="ky-flag"
+                        className={styles.flag}
+                      />
+                    </div>
+                  </Link>)}
                   <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
@@ -266,17 +277,6 @@ export default function ModernNavbar({ page }) {
                       />
                     </div>
                   </Link>
-                  {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
-                    <div className={styles.flagContainer}>
-                      <Image
-                        src={kyflag}
-                        width={300}
-                        height={300}
-                        alt="ky-flag"
-                        className={styles.flag}
-                      />
-                    </div>
-                  </Link>)}
                 </div>
               )}
             </div>
