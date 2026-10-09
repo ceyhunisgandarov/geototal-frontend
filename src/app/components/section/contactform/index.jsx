@@ -71,7 +71,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <h4>{t("location")}:</h4>
-                  <p className={styles.textLineHeight}>{contactInfo.address || "Not provided"}</p>
+                  <p className={styles.textLineHeight}>{t("locale") === "ky" ? t("addressKy") : (contactInfo.address || "Not provided")}</p>
                 </div>
               </div>
 

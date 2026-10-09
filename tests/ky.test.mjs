@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {createRequire} from "node:module";
 import vm from "node:vm";
-import {localizedText} from "../src/lib/localizedText.js";
+import {localizedText, localizedProjectName} from "../src/lib/localizedText.js";
 import {resolveLocale, switchLocalePath} from "../src/lib/locales.js";
 const require = createRequire(import.meta.url);
 const babel = require("next/dist/compiled/babel/core");
@@ -47,7 +47,7 @@ function mount(file, services, props={}, locale="ky") {
   if(name==="react")return react;
   if(name==="next-intl")return {useLocale:()=>locale,useTranslations:()=>key=>key==="locale"?locale:key};
   if(name==="next/navigation")return {useRouter:()=>({push(){},replace(){}})};
-  if(name==="@/lib/localizedText")return {localizedText};
+  if(name==="@/lib/localizedText")return {localizedText, localizedProjectName};
   if(name.includes("/services/"))return {__esModule:true,default:new Proxy({}, {get(_,method){return (...args)=>{calls.push({method,args});const value=services[method];return Promise.resolve(typeof value==="function"?value(...args):value??{data:{status:{code:200}}});};}})};
   if(name.endsWith(".css"))return new Proxy({}, {get:(_,key)=>String(key)});
   if(name==="next/image"||name==="next/link"||name.startsWith("../"))return name;
@@ -131,3 +131,19 @@ for(const locale of ["az","en","ru","ky"]) {
   const h=mount("src/app/components/section/productlist/index.jsx",{getProducts:response([fixture])},{},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.props?.href===`/${locale}/products/7`));
  });
 }
+
+test("Customer project titles are Kyrgyz-only and preserve unknown names", () => {
+ const p={path:"hadrut-restoration",projectName:"Original title"};
+ assert.equal(localizedProjectName(p,"ky"),"Карабах аймагы, Ходжавенд району, Хадрут шаарчасын калыбына келтирүү");
+ for(const lang of ["az","en","ru"]) assert.equal(localizedProjectName(p,lang),"Original title");
+ assert.equal(localizedProjectName({path:"unknown",projectName:"Name"},"ky"),"Name");
+ assert.equal(localizedProjectName({...p,projectNameKy:"Future CMS title"},"ky"),"Future CMS title");
+});
+
+
+test("Statistics uses active KY context even when a stale AZ prop is passed", () => {
+ const h=mount("src/app/components/stats/StatsSection.jsx",{}, {locale:"az"}, "ky");
+ const tree=h.render();
+ assert.ok(nodes(tree).some(n=>text(n)==="Биздин тажрыйба сандарда"));
+ assert.ok(nodes(tree).some(n=>text(n)==="жылдык тажрыйба"));
+});

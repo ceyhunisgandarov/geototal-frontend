@@ -57,7 +57,7 @@ export default function ModernFooter({locale}) {
 
       {/* BOTTOM */}
       <div className={styles.footerBottom}>
-        <p>© {new Date().getFullYear()} Geototal LLC. All rights reserved.
+        <p>© {new Date().getFullYear()} Geototal LLC. {t("rights")}
 </p>
       </div>
     </footer>

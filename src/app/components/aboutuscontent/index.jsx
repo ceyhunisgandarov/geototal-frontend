@@ -62,7 +62,7 @@ function AboutUsContent() {
             />
             <div className={style.projectCount}>
               <h2>{content?.approximatelyProjectsCount || 0}+</h2>
-              <p>Project</p>
+              <p>{t("projectsCount")}</p>
             </div>
           </div>
 

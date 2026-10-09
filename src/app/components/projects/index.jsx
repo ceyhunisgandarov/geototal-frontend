@@ -1,4 +1,5 @@
 "use client";
+import { localizedProjectName } from "@/lib/localizedText";
 import Image from "next/image";
 import styles from "../../../../public/assets/css/module/modern/projects.module.css";
 import { useTranslations } from "next-intl";
@@ -75,7 +76,7 @@ export default function Projects() {
                 <div className={styles.blogImage}>
                   <Image
                     src={project.imageUrl}
-                    alt={project.projectName}
+                    alt={localizedProjectName(project, t("locale"))}
                     fill
                     className={styles.image}
                   />
@@ -83,7 +84,7 @@ export default function Projects() {
 
                 <div className={styles.blogText}>
                   <span>{project.workDate.split("-")[0]}</span>
-                  <h4>{project.projectName}</h4>
+                  <h4>{localizedProjectName(project, t("locale"))}</h4>
                   <Link
                     href={`/${t("locale")}/projects/${project.path}`}
                     className={styles.link}

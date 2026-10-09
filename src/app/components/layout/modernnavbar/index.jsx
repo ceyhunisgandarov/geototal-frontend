@@ -65,6 +65,7 @@ export default function ModernNavbar({ page }) {
   return (
     <>
       <header
+        data-locale={t("locale")}
         className={`${styles.header} ${
           !isMobile &&
           (page === ""

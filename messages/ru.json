@@ -74,6 +74,8 @@
   },
 
   "AboutUs": {
+    "projectsCount": "Project",
+    "staffCount": "Total Staff",
     "locale": "ru",
     "members": "Наша команда",
     "more": "Более"
@@ -148,6 +150,7 @@
   },
 
   "Footer": {
+    "rights": "All rights reserved.",
     "aboutus": "О нас",
     "description": "Мы специализируемся на топографических съемках и геодезических услугах.",
     "descriptionSecond": "Предоставляем точные и быстрые решения для ваших проектов.",

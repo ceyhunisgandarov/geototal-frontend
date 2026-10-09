@@ -74,6 +74,8 @@
   },
 
   "AboutUs": {
+    "projectsCount": "Project",
+    "staffCount": "Total Staff",
     "locale": "en",
     "members": "Our Team",
     "more": "More"
@@ -148,6 +150,7 @@
   },
 
   "Footer": {
+    "rights": "All rights reserved.",
     "aboutus": "About Us",
     "description": "We specialize in topographic surveys and geodesy services.",
     "descriptionSecond": "Providing accurate and fast solutions for your projects.",

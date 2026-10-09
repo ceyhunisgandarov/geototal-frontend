@@ -57,6 +57,8 @@
   },
 
   "AboutUs": {
+    "projectsCount": "Project",
+    "staffCount": "Total Staff",
     "locale": "az",
     "members": "Komandamız",
     "more": "Daha çox"
@@ -148,6 +150,7 @@
   },
 
   "Footer": {
+    "rights": "All rights reserved.",
     "aboutus": "Haqqımızda",
     "description": "Biz topoqrafik ölçmələr və geodeziya xidmətləri üzrə ixtisaslaşmışıq.",
     "descriptionSecond": "Layihələriniz üçün dəqiq və sürətli həllər təqdim edirik.",

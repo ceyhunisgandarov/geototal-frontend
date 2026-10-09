@@ -1,6 +1,9 @@
+"use client";
+import { useLocale } from "next-intl";
 import styles from "../../../../public/assets/css/module/stats/section.module.css";
 
-export default function StatsSection({ locale = "az" }) {
+export default function StatsSection() {
+  const locale = useLocale();
   const content = {
     az: {
       title: "Təcrübəmiz rəqəmlərlə",
@@ -30,12 +33,12 @@ export default function StatsSection({ locale = "az" }) {
       ],
     },
     ky: {
-      title: "Биздин тажрыйба сандар менен",
-      desc: "Геодезия, топография жана БПЛА менен жүргүзүлгөн иштердин жыйынтыктары.",
+      title: "Биздин тажрыйба сандарда",
+      desc: "Геодезия, топография жана дрон менен съёмка боюнча жыйынтыктарыбыз.",
       items: [
-        { value: "15+", label: "тажрыйба жылдары" },
-        { value: "30+", label: "аткарылган долбоорлор" },
-        { value: "5000+ га", label: "БПЛА менен тартылган аянт" },
+        { value: "15+", label: "жылдык тажрыйба" },
+        { value: "30+", label: "долбоор" },
+        { value: "5000+ га", label: "дрон менен аэрофотограмметриялык съёмка" },
       ],
     },
   };

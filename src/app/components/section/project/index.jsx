@@ -1,5 +1,5 @@
 "use client";
-import { localizedText } from "@/lib/localizedText";
+import { localizedText, localizedProjectName } from "@/lib/localizedText";
 import ProjectService from "@/app/services/ProjectService";
 import { useEffect, useState } from "react";
 import styles from "../../../../../public/assets/css/module/projects/aproject.module.css";
@@ -60,7 +60,7 @@ function ProjectSection({ project }) {
       ) : (
         <>
           <h1 className={styles.title}>
-            {projectContent.projectName}{" "}
+            {localizedProjectName(projectContent, locale)}{" "}
             {projectContent.customer && ` - ${projectContent.customer}`}
           </h1>
 

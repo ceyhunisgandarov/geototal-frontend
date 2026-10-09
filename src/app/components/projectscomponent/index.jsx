@@ -1,4 +1,5 @@
 "use client";
+import { localizedProjectName } from "@/lib/localizedText";
 import styles from "../../../../public/assets/css/module/projects/project.module.css";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -52,14 +53,14 @@ function ProjectsComponent() {
                   <div className={styles.projectImage}>
                     <Image
                       src={project.imageUrl || "/assets/img/placeholder.png"}
-                      alt={project.projectName || "Project image"}
+                      alt={localizedProjectName(project, t("locale")) || "Project image"}
                       width={300}
                       height={240}
                       className={styles.image}
                     />
                   </div>
                   <div className={styles.projectInfo}>
-                    <h3>{project.projectName} {project.customer && `- ${project.customer}`}</h3>
+                    <h3>{localizedProjectName(project, t("locale"))} {project.customer && `- ${project.customer}`}</h3>
                   </div>
                 </article>
               </Link>

@@ -72,7 +72,6 @@ export default function AboutSection() {
                 />
               </div>
             </div>
-
             {/* Content */}
             <div className={styles.colContent}>
               <div className={styles.aboutText}>

@@ -61,7 +61,7 @@ function SecondAboutUsContent() {
             />
             <div className={style.projectCount}>
               <h2>{content?.approximatelyStaffsCount || 0}+</h2>
-              <p>Total Staff</p>
+              <p>{t("staffCount")}</p>
             </div>
           </div>
 
