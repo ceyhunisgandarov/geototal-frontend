@@ -67,6 +67,8 @@ export default function AboutSection() {
                 <Image
                   src={content?.imageUrl || "/images/default-about.jpg"}
                   alt="About"
+                  className={styles.image}
+                  sizes="(max-width: 991px) 95vw, 570px"
                   width={600}
                   height={600}
                 />

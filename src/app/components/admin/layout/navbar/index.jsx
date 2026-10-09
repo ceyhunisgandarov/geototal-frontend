@@ -1,4 +1,5 @@
 "use client";
+import { useDomainLocales } from "@/i18n/domain-locales";
 import LogoService from "@/app/services/LogoService";
 import style from "../../../../../../public/assets/css/module/admin/navbar.module.css";
 import logo from "../../../../../../public/images/Geototal_loqo.png";
@@ -15,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 
 function AdminNavbar({ handleClick }) {
+  const availableLocales = useDomainLocales();
   const t = useTranslations("Navbar");
   const locale = useLocale();
   const pathname = usePathname();
@@ -190,7 +192,7 @@ function AdminNavbar({ handleClick }) {
           </div>
           {languageMenu && (
             <div className={style.dropdownLocales}>
-              {[["az", azflag], ["en", enflag], ["ru", ruflag], ["ky", kyflag]].map(([language, image]) => (
+              {[["az", azflag], ["en", enflag], ["ru", ruflag], ["ky", kyflag]].filter(([language]) => availableLocales.includes(language)).map(([language, image]) => (
                 <button type="button" key={language} aria-label={language.toUpperCase()}
                   onClick={(event) => selectLocale(language, event)}>
                   <Image src={image} width={300} height={300} alt={`${language}-flag`} className={style.flag} />

@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "../../../../public/assets/css/reset.css";
 import "../../../../public/assets/css/global.css";
-import Script from "next/script";
+import { headers } from "next/headers";
+import { getDomainLocales, getRequestHost } from "@/lib/locales";
+import { DomainLocalesProvider } from "@/i18n/domain-locales";
 
 import WhatsappButton from "@/app/components/whatsapp";
 
@@ -20,6 +22,7 @@ export const viewport = {
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = params;
+  const domain = getDomainLocales(getRequestHost(headers()));
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -31,7 +34,9 @@ export default async function LocaleLayout({ children, params }) {
     <html>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <DomainLocalesProvider locales={domain.locales}>
+            {children}
+          </DomainLocalesProvider>
         </NextIntlClientProvider>
         <WhatsappButton />
       </body>

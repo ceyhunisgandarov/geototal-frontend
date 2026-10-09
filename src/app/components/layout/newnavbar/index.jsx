@@ -1,4 +1,5 @@
 "use client";
+import { useDomainLocales } from "@/i18n/domain-locales";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +15,7 @@ import kyflag from "../../../../../public/images/flag/ky-flag.png";
 import LogoService from "@/app/services/LogoService";
 
 function NewNavbar({ page, locale }) {
+  const availableLocales = useDomainLocales();
   const t = useTranslations("Navbar");
   const [flag, setFlag] = useState(azflag);
   const [languageMenu, setLanguageMenu] = useState(false);
@@ -87,10 +89,10 @@ function NewNavbar({ page, locale }) {
             <Image src={flag} alt="flag.png" className={style.flag} />
             {languageMenu && (
               <div className={style.dropdownLocales}>
-                <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={azflag} alt="az" className={style.flag} /></Link>
+                {availableLocales.includes("az") && (<Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={azflag} alt="az" className={style.flag} /></Link>)}
                 <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={enflag} alt="en" className={style.flag} /></Link>
                 <Link href={`/ru/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={ruflag} alt="ru" className={style.flag} /></Link>
-<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={kyflag} alt="ky" className={style.flag} /></Link>
+{availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={toggleDropdown}><Image src={kyflag} alt="ky" className={style.flag} /></Link>)}
               </div>
             )}
           </div>

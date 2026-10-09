@@ -1,4 +1,5 @@
 "use client";
+import { useDomainLocales } from "@/i18n/domain-locales";
 import styles from "../../../../../public/assets/css/module/layout/modernnavbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import kyflag from "../../../../../public/images/flag/ky-flag.png";
 import { useTranslations } from "next-intl";
 
 export default function ModernNavbar({ page }) {
+  const availableLocales = useDomainLocales();
   const [isSticky, setIsSticky] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -168,7 +170,7 @@ export default function ModernNavbar({ page }) {
                 </div>
                 {languageMenu && (
                   <div className={styles.dropdownLocales}>
-                    <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                    {availableLocales.includes("az") && (<Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
                           src={azflag}
@@ -178,7 +180,7 @@ export default function ModernNavbar({ page }) {
                           className={styles.flag}
                         />
                       </div>
-                    </Link>
+                    </Link>)}
                     <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
@@ -201,7 +203,7 @@ export default function ModernNavbar({ page }) {
                         />
                       </div>
                     </Link>
-                    <Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                    {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                       <div className={styles.flagContainer}>
                         <Image
                           src={kyflag}
@@ -211,7 +213,7 @@ export default function ModernNavbar({ page }) {
                           className={styles.flag}
                         />
                       </div>
-                    </Link>
+                    </Link>)}
                   </div>
                 )}
               </div>
@@ -231,7 +233,7 @@ export default function ModernNavbar({ page }) {
               </div>
               {languageMenu && (
                 <div className={styles.dropdownLocales}>
-                  <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                  {availableLocales.includes("az") && (<Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
                         src={azflag}
@@ -241,7 +243,7 @@ export default function ModernNavbar({ page }) {
                         className={styles.flag}
                       />
                     </div>
-                  </Link>
+                  </Link>)}
                   <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
@@ -264,7 +266,7 @@ export default function ModernNavbar({ page }) {
                       />
                     </div>
                   </Link>
-                  <Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+                  {availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                     <div className={styles.flagContainer}>
                       <Image
                         src={kyflag}
@@ -274,7 +276,7 @@ export default function ModernNavbar({ page }) {
                         className={styles.flag}
                       />
                     </div>
-                  </Link>
+                  </Link>)}
                 </div>
               )}
             </div>

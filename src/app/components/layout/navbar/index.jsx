@@ -1,4 +1,5 @@
 "use client";
+import { useDomainLocales } from "@/i18n/domain-locales";
 import LogoService from "@/app/services/LogoService";
 import style from "../../../../../public/assets/css/module/layout/navbar.module.css";
 import logo from "../../../../../public/images/Geototal_loqo.png";
@@ -13,6 +14,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function Navbar({ page, locale }) {
+  const availableLocales = useDomainLocales();
   const t = useTranslations("Navbar");
 
   const [dateTime, setDateTime] = useState(null); // SSR sırasında null
@@ -143,7 +145,7 @@ function Navbar({ page, locale }) {
           </div>
           {languageMenu && (
             <div className={style.dropdownLocales}>
-              <Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+              {availableLocales.includes("az") && (<Link href={`/az/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
                     src={azflag}
@@ -153,7 +155,7 @@ function Navbar({ page, locale }) {
                     className={style.flag}
                   />
                 </div>
-              </Link>
+              </Link>)}
               <Link href={`/en/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
@@ -176,7 +178,7 @@ function Navbar({ page, locale }) {
                   />
                 </div>
               </Link>
-<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
+{availableLocales.includes("ky") && (<Link href={`/ky/${(page || "").replace(/^\/+/, "")}`} onClick={dropdown}>
                 <div className={style.flagContainer}>
                   <Image
                     src={kyflag}
@@ -186,7 +188,7 @@ function Navbar({ page, locale }) {
                     className={style.flag}
                   />
                 </div>
-              </Link>
+              </Link>)}
             </div>
           )}
         </div>
