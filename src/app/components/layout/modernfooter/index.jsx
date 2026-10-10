@@ -1,9 +1,11 @@
 'use client'
+import { useDomainContact } from "@/i18n/domain-contact";
 import { useTranslations } from "next-intl";
 import styles from "../../../../../public/assets/css/module/layout/modernfooter.module.css";
 import { FaInstagram, FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
 
 export default function ModernFooter({locale}) {
+  const domainContact = useDomainContact();
   const t = useTranslations("Footer");
 
   return (
@@ -22,9 +24,10 @@ export default function ModernFooter({locale}) {
             {/* Contact */}
             <div className={styles.widget}>
               <h3>{t("contactus")}</h3>
-              <span className={styles.info}>📧 office@geototal.az</span>
-              <span className={styles.info}>📞 (+994 55 2053403)</span>
-              <span className={styles.info}>📍 {t("address")}</span>             {/* Nərimanov r., Əhməd Rəcəbli küç., 27b */}
+              {domainContact && <p>{domainContact.companyName}</p>}
+              <span className={styles.info}>📧 {domainContact?.emailAddress[0] || "office@geototal.az"}</span>
+              <span className={styles.info}>📞 {domainContact?.whatsappNumber || "(+994 55 2053403)"}</span>
+              <span className={styles.info}>📍 {domainContact?.address || t("address")}</span>             {/* Nərimanov r., Əhməd Rəcəbli küç., 27b */}
             </div>
 
             {/* Hours */}

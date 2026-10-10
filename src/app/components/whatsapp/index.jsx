@@ -1,11 +1,13 @@
 "use client";
 
+import { useDomainContact } from "@/i18n/domain-contact";
 import React, { useEffect, useState } from "react";
 import styles from "../../../../public/assets/css/module/whatsapp/index.module.css";
 import { FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 
 export default function WhatsappButton() {
+  const domainContact = useDomainContact();
   const [ripples, setRipples] = useState([]);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function WhatsappButton() {
       ))}
 
       <Link
-        href="https://wa.me/+994552053403" // kendi numaranı buraya yaz
+        href={domainContact?.whatsappUrl || "https://wa.me/+994552053403"}
         target="_blank"
         rel="noopener noreferrer"
         className={styles.whatsappBtn}

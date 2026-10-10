@@ -1,10 +1,12 @@
 'use client';
 
+import { useDomainContact } from "@/i18n/domain-contact";
 import { useEffect, useState } from "react";
 import style from "../../../../public/assets/css/module/timeside/time.module.css";
 import Link from "next/link";
 
 function TimeSide() {
+  const domainContact = useDomainContact();
   const [dateTime, setDateTime] = useState('');
 
   useEffect(() => {
@@ -28,8 +30,8 @@ function TimeSide() {
   return (
     <div className={style.container}>
       <div className={style.dateTimeContainer}>{dateTime}</div>
-      <Link href="mailto:office@geototal.az" className={style.emailLink}>
-        office@geototal.az
+      <Link href={`mailto:${domainContact?.emailAddress[0] || "office@geototal.az"}`} className={style.emailLink}>
+        {domainContact?.emailAddress[0] || "office@geototal.az"}
       </Link>
     </div>
   );

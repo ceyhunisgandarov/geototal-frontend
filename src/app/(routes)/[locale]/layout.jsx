@@ -9,6 +9,9 @@ import { headers } from "next/headers";
 import { getDomainLocales, getRequestHost } from "@/lib/locales";
 import { DomainLocalesProvider } from "@/i18n/domain-locales";
 
+import { getDomainContact } from "@/lib/domain-contact";
+import { DomainContactProvider } from "@/i18n/domain-contact";
+
 import WhatsappButton from "@/app/components/whatsapp";
 
 export function generateMetadata({ params }) {
@@ -22,7 +25,9 @@ export const viewport = {
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = params;
-  const domain = getDomainLocales(getRequestHost(headers()));
+  const host = getRequestHost(headers());
+  const domain = getDomainLocales(host);
+  const contact = getDomainContact(host);
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -35,10 +40,12 @@ export default async function LocaleLayout({ children, params }) {
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <DomainLocalesProvider locales={domain.locales}>
-            {children}
+            <DomainContactProvider contact={contact}>
+              {children}
+              <WhatsappButton />
+            </DomainContactProvider>
           </DomainLocalesProvider>
         </NextIntlClientProvider>
-        <WhatsappButton />
       </body>
     </html>
   );

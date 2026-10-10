@@ -1,5 +1,6 @@
 "use client";
 
+import { useDomainContact } from "@/i18n/domain-contact";
 import { useEffect, useState } from "react";
 import styles from "../../../../../public/assets/css/module/contact/contactform.module.css";
 import { MapPin, Phone, Mail } from "lucide-react";
@@ -7,8 +8,9 @@ import ContactService from "@/app/services/ContactService";
 import { useTranslations } from "next-intl";
 
 export default function ContactForm() {
+  const domainContact = useDomainContact();
   const t = useTranslations("Contact");
-  const [contactInfo, setContactInfo] = useState({
+  const [contactInfo, setContactInfo] = useState(domainContact || {
     address: "",
     phoneNumbers: [],
     emailAddress: [],
@@ -22,9 +24,14 @@ export default function ContactForm() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!domainContact);
 
   useEffect(() => {
+    if (domainContact) {
+      setContactInfo(domainContact);
+      setLoading(false);
+      return;
+    }
     ContactService.getContact()
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -37,7 +44,7 @@ export default function ContactForm() {
         console.log("something went wrong -", error);
       })
       .finally(() => setLoading(false)); // ✅ skeleton kapanır
-  }, []);
+  }, [domainContact]);
 
   const handleChange = (e) => {
     setFormData({
@@ -70,8 +77,9 @@ export default function ContactForm() {
                   <MapPin className={styles.icon} />
                 </div>
                 <div>
+                  {domainContact && <h4>{domainContact.companyName}</h4>}
                   <h4>{t("location")}:</h4>
-                  <p className={styles.textLineHeight}>{t("locale") === "ky" ? t("addressKy") : (contactInfo.address || "Not provided")}</p>
+                  <p className={styles.textLineHeight}>{domainContact?.address || (t("locale") === "ky" ? t("addressKy") : (contactInfo.address || "Not provided"))}</p>
                 </div>
               </div>
 
@@ -179,9 +187,9 @@ export default function ContactForm() {
 
       <div className={styles.mapSection}>
         <iframe
-          title="Geototal MMC"
+          title={domainContact?.companyName || "Geototal MMC"}
           src={
-            // contactInfo.googleEmbeddedLink ||
+            domainContact ? `https://maps.google.com/maps?q=${encodeURIComponent(domainContact.address)}&output=embed` :
             "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.8668100718696!2d49.85841687623314!3d40.41180127144044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d9037dce47f%3A0x114f450925aafefa!2sGeoTotal%20MMC!5e0!3m2!1saz!2saz!4v1756750063193!5m2!1saz!2saz"
           }
           width="100%"

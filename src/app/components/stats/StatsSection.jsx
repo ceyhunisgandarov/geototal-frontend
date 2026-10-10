@@ -9,36 +9,36 @@ export default function StatsSection() {
       title: "Təcrübəmiz rəqəmlərlə",
       desc: "Geodeziya, topoqrafiya və UAV (dron) çəkilişləri üzrə nəticələrimiz.",
       items: [
-        { value: "15+", label: "il təcrübə" },
-        { value: "30+", label: "layihə" },
-        { value: "5000 ha+", label: "PUA ilə aerofotogrammetrik ölçmə" },
+        { value: "20+", label: "il təcrübə" },
+        { value: "50+", label: "layihə" },
+        { value: "10000 ha+", label: "PUA ilə aerofotogrammetrik ölçmə" },
       ],
     },
     en: {
       title: "Our Impact in Numbers",
       desc: "Results across surveying, topography and UAV mapping.",
       items: [
-        { value: "15+", label: "years of experience" },
-        { value: "30+", label: "projects delivered" },
-        { value: "5000+ ha", label: "drone survey coverage" },
+        { value: "20+", label: "years of experience" },
+        { value: "50+", label: "projects delivered" },
+        { value: "10000+ ha", label: "drone survey coverage" },
       ],
     },
     ru: {
       title: "Наш опыт в цифрах",
       desc: "Результаты в геодезии, топографии и БПЛА-съёмке.",
       items: [
-        { value: "15+", label: "лет опыта" },
-        { value: "30+", label: "реализованных проектов" },
-        { value: "5000+ га", label: "съёмки с БПЛА" },
+        { value: "20+", label: "лет опыта" },
+        { value: "50+", label: "реализованных проектов" },
+        { value: "10000+ га", label: "съёмки с БПЛА" },
       ],
     },
     ky: {
       title: "Биздин тажрыйба сандарда",
       desc: "Геодезия, топография жана дрон менен съёмка боюнча жыйынтыктарыбыз.",
       items: [
-        { value: "15+", label: "жылдык тажрыйба" },
-        { value: "30+", label: "долбоор" },
-        { value: "5000+ га", label: "дрон менен аэрофотограмметриялык съёмка" },
+        { value: "20+", label: "жылдык тажрыйба" },
+        { value: "50+", label: "долбоор" },
+        { value: "10000+ га", label: "дрон менен аэрофотограмметриялык съёмка" },
       ],
     },
   };

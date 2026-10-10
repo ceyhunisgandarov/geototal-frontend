@@ -1,4 +1,5 @@
 import test from "node:test";
+import {getDomainContact} from "../src/lib/domain-contact.js";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {createRequire} from "node:module";
@@ -35,7 +36,7 @@ for (const locale of ["az","en","ru","ky"]) test(`locale path preserves admin an
 
 // Exercise real JSX form handlers and submitted objects with in-memory API doubles.
 // No application server, cookies, external API or real credentials are used.
-function mount(file, services, props={}, locale="ky") {
+function mount(file, services, props={}, locale="ky", contact=null) {
  let state=[],cursor=0,effects=[],first=true,effectCursor=0,effectDeps=[];
  const calls=[];
  const react={
@@ -45,6 +46,7 @@ function mount(file, services, props={}, locale="ky") {
  };
  const loader=(name)=>{
   if(name==="react")return react;
+  if(name==="@/i18n/domain-contact")return {useDomainContact:()=>contact};
   if(name==="next-intl")return {useLocale:()=>locale,useTranslations:()=>key=>key==="locale"?locale:key};
   if(name==="next/navigation")return {useRouter:()=>({push(){},replace(){}})};
   if(name==="@/lib/localizedText")return {localizedText, localizedProjectName};
@@ -146,4 +148,21 @@ test("Statistics uses active KY context even when a stale AZ prop is passed", ()
  const tree=h.render();
  assert.ok(nodes(tree).some(n=>text(n)==="Биздин тажрыйба сандарда"));
  assert.ok(nodes(tree).some(n=>text(n)==="жылдык тажрыйба"));
+});
+
+for (const host of ["geototal.kg", "geototal.az"]) {
+ test(`Product WhatsApp destination follows ${host} in Russian`, async () => {
+  const h=mount("src/app/components/productcomponent/index.jsx",{getProduct:response(fixture)},{id:7},"ru",getDomainContact(host));
+  h.render();const tree=await h.ready();
+  const expected=host.endsWith(".kg")?"https://wa.me/996703448444?text=":"https://wa.me/+994552053403?text=";
+  assert.ok(nodes(tree).some(n=>n.props?.href?.startsWith(expected)));
+ });
+}
+test("Kyrgyz contact page displays branch data without requesting Azerbaijan contacts", async () => {
+ const contact=getDomainContact("geototal.kg");
+ const h=mount("src/app/components/section/contactform/index.jsx",{}, {}, "en",contact);
+ h.render();const tree=await h.ready();
+ for(const value of [contact.companyName,contact.address,...contact.phoneNumbers,...contact.emailAddress]) assert.ok(text(tree).includes(value));
+ assert.equal(h.calls.length,0);
+ assert.ok(decodeURIComponent(find(tree,n=>n.type==="iframe").props.src).includes(contact.address));
 });

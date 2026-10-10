@@ -1,4 +1,5 @@
 "use client";
+import { useDomainContact } from "@/i18n/domain-contact";
 import { useEffect, useState } from "react";
 import styles from "../../../../public/assets/css/module/product/product.module.css";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
 function ProductComponent({ id }) {
+  const domainContact = useDomainContact();
   const t = useTranslations("Product");
   const locale = useLocale();
   const [product, setProduct] = useState(null);
@@ -117,7 +119,7 @@ function ProductComponent({ id }) {
     return null;
   }
 
-  const whatsappLink = `https://wa.me/+994552053403?text=${encodeURIComponent(
+  const whatsappLink = `${domainContact?.whatsappUrl || "https://wa.me/+994552053403"}?text=${encodeURIComponent(
     `Salam, mən ${product.brand} ${product.model} məhsulunu əldə etmək istiyirəm. Zəhmət olmasa ətraflı məlumat verərdiniz.`
   )}`;
 
