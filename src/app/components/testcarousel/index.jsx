@@ -25,7 +25,7 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
 
   return (
     <div className={style.container}>
-      <h1>{t("categories")}</h1>
+      <h2>{t("categories")}</h2>
 
       <div className={style.categoriesGrid}>
         {categories.map((cat, i) => (
@@ -39,7 +39,7 @@ const CategoryCarousel = ({ onSelectedCategory }) => {
             <Image
               className={style.categoryIcon}
               src={cat.icon}
-              alt={cat.name}
+              alt=""
               width={80}
               height={80}
             />

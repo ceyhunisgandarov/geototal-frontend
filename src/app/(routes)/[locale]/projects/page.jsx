@@ -1,7 +1,6 @@
-const { default: ProjectsContainer } = require("@/app/containers/projects");
-
-function ProjectsPage() {
-  return <ProjectsContainer page="projects" />;
+import Container from "@/app/containers/projects";
+import {getList,getDetail,getAbout} from "@/lib/server-content";
+export default async function Page({params}) {
+ const data=await getList('projects');
+ return <Container page="projects" initialData={data} />;
 }
-
-export default ProjectsPage;

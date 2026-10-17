@@ -8,17 +8,18 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AboutService from "@/app/services/AboutService";
 
-export default function AboutSection() {
+export default function AboutSection({initialData} = {}) {
   const t = useTranslations("AboutUs");
 
-  const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState(initialData ?? null);
+  const [loading, setLoading] = useState(initialData === undefined);
 
   const locale = useLocale();
   const contentTitle = localizedText(content, "title", locale);
   const text = localizedText(content, "description", locale);
 
   useEffect(() => {
+    if(initialData !== undefined) {setContent(initialData ?? null); return;}
     AboutService.getAboutInfo("first")
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -33,7 +34,7 @@ export default function AboutSection() {
       .finally(() => {
         setTimeout(() => setLoading(false), 100); // smooth geçiş
       });
-  }, []); // <-- boş array ekledik
+  }, [initialData]); // <-- boş array ekledik
 
   const getFirstParagraph = (html) => {
     if (!html) return "";
@@ -66,7 +67,7 @@ export default function AboutSection() {
               <div className={styles.aboutImage}>
                 <Image
                   src={content?.imageUrl || "/images/default-about.jpg"}
-                  alt="About"
+                  alt={contentTitle || "GeoTotal" }
                   className={styles.image}
                   sizes="(max-width: 991px) 95vw, 570px"
                   width={600}
@@ -77,7 +78,7 @@ export default function AboutSection() {
             {/* Content */}
             <div className={styles.colContent}>
               <div className={styles.aboutText}>
-                <h3>{contentTitle}</h3>
+                <h2>{contentTitle}</h2>
 
                 <div
                   dangerouslySetInnerHTML={{
@@ -86,7 +87,7 @@ export default function AboutSection() {
                 />
 
                 <Link
-                  href={`${t("locale")}/aboutus`}
+                  href={`/${t("locale")}/aboutus`}
                   className={styles.defaultBtn}
                 >
                   {t("more")}

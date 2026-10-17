@@ -8,16 +8,18 @@ import Image from "next/image";
 import ReferenceLetter from "../reference";
 import { useRouter } from "next/navigation";
 
-function ProjectSection({ project }) {
+function ProjectSection({ project, initialData }) {
   const t = useTranslations("Projects");
-  const [projectContent, setProjectContent] = useState({});
+  const [projectContent, setProjectContent] = useState(initialData ?? {});
   const router = useRouter();
   const locale = useLocale();
   const contentFromDb = localizedText(projectContent, "worksDescription", locale);
+  const referenceName = localizedText(projectContent, "referenceName", locale);
   const feedback = localizedText(projectContent, "feedBack", locale);
   const isLoading = !projectContent || !projectContent.projectName;
 
   useEffect(() => {
+    if(initialData !== undefined) {setProjectContent(initialData); return;}
     ProjectService.getProject(project)
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -32,7 +34,7 @@ function ProjectSection({ project }) {
       .catch((error) => {
         console.log("Internal error: ", error);
       });
-  }, []);
+  }, [initialData]);
 
   return (
     <div className={styles.container}>
@@ -72,7 +74,7 @@ function ProjectSection({ project }) {
             <div className={styles.imageWrapper}>
               <Image
                 src={projectContent.imageUrl}
-                alt={projectContent.path}
+                alt={localizedProjectName(projectContent, locale) || projectContent.customer || "GeoTotal"}
                 width={300}
                 height={300}
                 className={styles.image}
@@ -84,7 +86,7 @@ function ProjectSection({ project }) {
             <>
               <hr />
               <div className={styles.feedback}>
-                <span></span>
+                <span>{referenceName}</span>
                 <p>{feedback}</p>
               </div>
             </>

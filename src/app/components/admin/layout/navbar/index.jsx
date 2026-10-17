@@ -32,43 +32,48 @@ function AdminNavbar({ handleClick }) {
   const [logoDb, setLogoDb] = useState(logo);
   const [showModal, setShowModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [saving, setSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const dropdown = () => setLanguageMenu((prev) => !prev);
 
   useEffect(() => {
-    refreshLogo;
+    refreshLogo().catch(() => setErrorMessage("Loqo yüklənmədi."));
   }, []);
 
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
 
-  const refreshLogo = () => {
-    LogoService.getLogo()
-      .then((res) => {
-        const data = res.data.response;
-        if (data?.url) {
-          setLogoDb(data.url);
-        }
-      })
-      .catch(console.log);
+  const refreshLogo = async () => {
+    const res = await LogoService.getLogo();
+    if (res.data?.status?.code !== 200 || !res.data.response?.url) {
+      throw new Error("Loqo yüklənmədi.");
+    }
+    setLogoDb(res.data.response.url);
   };
 
-  const handleSave = () => {
-    if (!selectedFile) return;
+  const openLogoModal = () => {
+    setSelectedFile(null);
+    setErrorMessage("");
+    setShowModal(true);
+  };
 
-    LogoService.changeLogo({ description: "logo.jpg" }, selectedFile)
-      .then((res) => {
-        if (res.data.status.code === 200) {
-          refreshLogo;
-        } else {
-          setErrorMessage(res.data.status.message);
-        }
-      })
-      .catch((err) => {
-        console.log("Logo change error", err);
-        setErrorMessage("Unexpected error occurred");
-      })
-      .finally(() => setShowModal(false));
+  const handleSave = async () => {
+    if (!selectedFile || saving) return;
+    setSaving(true);
+    setErrorMessage("");
+    try {
+      const res = await LogoService.changeLogo({ description: "logo.jpg" }, selectedFile);
+      if (res.data?.status?.code !== 200) {
+        throw new Error(res.data?.status?.message || "Loqo saxlanmadı.");
+      }
+      await refreshLogo();
+      setSelectedFile(null);
+      setShowModal(false);
+    } catch (err) {
+      setErrorMessage(err.message || "Loqo saxlanmadı.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   useEffect(() => {
@@ -90,7 +95,7 @@ function AdminNavbar({ handleClick }) {
         <div className={style.logoContainer}>
           <div
             className={style.logoContainer}
-            onClick={() => setShowModal(true)}
+            onClick={openLogoModal}
           >
             <Image
               src={logoDb}
@@ -106,14 +111,15 @@ function AdminNavbar({ handleClick }) {
               <div className={style.modalContent}>
                 <h3>Change Logo</h3>
                 <input
+                  disabled={saving}
                   type="file"
                   accept="image/*"
                   onChange={handleFileChange}
                 />
                 <div className={style.modalActions}>
-                  <button onClick={() => setShowModal(false)}>Cancel</button>
-                  <button onClick={handleSave} disabled={!selectedFile}>
-                    Save
+                  <button disabled={saving} onClick={() => setShowModal(false)}>Cancel</button>
+                  <button onClick={handleSave} disabled={!selectedFile || saving}>
+                    {saving ? "Saxlanır…" : "Save"}
                   </button>
                 </div>
               </div>
@@ -122,7 +128,7 @@ function AdminNavbar({ handleClick }) {
 
           {/* Error alert */}
           {errorMessage && (
-            <div className={style.errorAlert}>{errorMessage}</div>
+            <div role="alert" className={style.errorAlert}>{errorMessage}</div>
           )}
         </div>
 
@@ -176,6 +182,7 @@ function AdminNavbar({ handleClick }) {
                 Contact Us
               </div>
             </li>
+            <li><div className={style.menuLink} onClick={() => handleClick("references")}>References</div></li>
             <li><div className={style.menuLink} onClick={() => handleClick("blog")}>Blog</div></li>
           </ul>
         </div>

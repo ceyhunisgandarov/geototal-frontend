@@ -1,14 +1,6 @@
-import ServicesContainer from "@/app/containers/services";
-import { useTranslations } from "next-intl";
-
-function ServicesPage() {
-  const t = useTranslations("Navbar");
-
-  return (
-    <div>
-      <ServicesContainer page="services" locale={t("locale")} />
-    </div>
-  );
+import Container from "@/app/containers/services";
+import {getList,getDetail,getAbout} from "@/lib/server-content";
+export default async function Page({params}) {
+ const data=await getList('services');
+ return <Container page="services" locale={params.locale} initialData={data} />;
 }
-
-export default ServicesPage;

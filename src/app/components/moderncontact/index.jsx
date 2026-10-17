@@ -73,15 +73,15 @@ export default function ModernContact() {
   };
 
   return (
-    <section className={styles.bookingArea}>
+    <section id="service-inquiry" className={styles.bookingArea}>
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
           <div className={styles.sectionTitle}>
-            <h1>{t("contactTitle")}</h1>
+            <h2>{t("contactTitle")}</h2>
             <span className={styles.icon}>
               <Image
                 src="/images/icons/mail-icon.png"
-                alt="koffee"
+                alt=""
                 width={50}
                 height={40}
               />

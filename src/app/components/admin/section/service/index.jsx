@@ -6,6 +6,10 @@ import ServicesService from "@/app/services/ServicesService";
 import AdminIcon from "../icon"; // AdminIcon default export olmalıdır
 
 function ServiceAdmin() {
+  const [deleteError, setDeleteError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
+  const [saveError, setSaveError] = useState("");
+  const [saving, setSaving] = useState(false);
   const [services, setServices] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isAdd, setIsAdd] = useState(true);
@@ -35,7 +39,19 @@ function ServiceAdmin() {
     }
   };
 
+  const deleteService = async (service) => {
+    if (deletingId !== null || !confirm(`“${service.serviceName}” xidməti və bütün hissələri silinsin?`)) return;
+    setDeletingId(service.id); setDeleteError("");
+    try {
+      const {data} = await ServicesService.deleteService(service.id);
+      if (data?.status?.code !== 200) { setDeleteError(data?.status?.message || "Xidmət silinmədi."); return; }
+      setServices(items => items.filter(item => item.id !== service.id));
+    } catch (error) { setDeleteError(error?.response?.data?.status?.message || "Serverlə əlaqə alınmadı. Yenidən cəhd edin."); }
+    finally { setDeletingId(null); }
+  };
+
   const openAddModal = () => {
+    setSaveError("");
     setIsAdd(true);
     setId(0);
     setCurrentService({
@@ -51,6 +67,7 @@ function ServiceAdmin() {
   };
 
   const openUpdateModal = (service) => {
+    setSaveError("");
     setIsAdd(false);
     setCurrentService({
       serviceName: service.serviceName,
@@ -59,7 +76,7 @@ function ServiceAdmin() {
       serviceNameKy: service.serviceNameKy,
       pathName: service.pathName || "",
       serviceImageFile: null,
-      serviceParts: service.serviceParts || [],
+      serviceParts: (service.serviceParts || []).map(part => ({ ...part, serviceImageFile: null })),
     });
     setId(service.id);
     setModalOpen(true);
@@ -74,7 +91,7 @@ function ServiceAdmin() {
       serviceParts: [
         ...prev.serviceParts,
         {
-          partName: "",
+          partName: "", partNameEn: "", partNameRu: "", partNameKy: "",
           serviceTextAz: "",
           serviceTextEn: "",
           serviceTextRu: "",
@@ -93,27 +110,31 @@ function ServiceAdmin() {
   };
 
   const updatePartField = (index, field, value) => {
-    setCurrentService((prev) => {
-      const parts = [...prev.serviceParts];
-      parts[index][field] = value;
-      return { ...prev, serviceParts: parts };
-    });
+    setCurrentService((prev) => ({
+      ...prev,
+      serviceParts: prev.serviceParts.map((part, i) =>
+        i === index ? { ...part, [field]: value } : part
+      ),
+    }));
   };
 
   const handleSubmit = async () => {
+    if (saving) return;
+    setSaveError("");
     if (!currentService.serviceName || !currentService.serviceNameEn || !currentService.serviceNameRu || !currentService.pathName) {
-      alert("All service fields are required!");
+      setSaveError("Xidmətin AZ, EN, RU adlarını və səhifə ünvanını doldurun.");
       return;
     }
 
     for (let i = 0; i < currentService.serviceParts.length; i++) {
       const part = currentService.serviceParts[i];
       if (!part.partName || !part.serviceTextAz || !part.serviceTextEn || !part.serviceTextRu) {
-        alert(`All fields of Part ${i + 1} are required!`);
+        setSaveError(`${i + 1}-ci hissənin adını və AZ, EN, RU mətnlərini doldurun.`);
         return;
       }
     }
 
+    setSaving(true);
     try {
       const reqService = {
         serviceName: currentService.serviceName,
@@ -126,6 +147,7 @@ function ServiceAdmin() {
       const reqServiceParts = currentService.serviceParts.map((part) => ({
         id: part.id,
         partName: part.partName,
+        partNameEn: part.partNameEn, partNameRu: part.partNameRu, partNameKy: part.partNameKy,
         serviceTextAz: part.serviceTextAz,
         serviceTextEn: part.serviceTextEn,
         serviceTextRu: part.serviceTextRu,
@@ -147,15 +169,16 @@ function ServiceAdmin() {
       );
 
       if (response.data.status.code === 200) {
-        alert(`${isAdd ? "Added" : "Updated"} successfully!`);
         fetchServices();
         closeModal();
       } else {
-        alert("Something went wrong: " + response.data.status.message);
+        setSaveError(response.data.status.message || "Xidmət saxlanmadı.");
       }
     } catch (error) {
       console.error("Submit error:", error);
-      alert("Submit failed. Check console for details.");
+      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -166,6 +189,7 @@ function ServiceAdmin() {
         <button onClick={openAddModal}>Add Service</button>
       </div>
 
+      {deleteError && <p role="alert" style={{color:"#b91c1c"}}>{deleteError}</p>}
       <div className={style.servicesWrap}>
         {services.map((service) => (
           <div key={service.id} className={style.serviceCard}>
@@ -174,7 +198,8 @@ function ServiceAdmin() {
               name={service.serviceName}
               background="light"
             />
-            <button onClick={() => openUpdateModal(service)}>Update</button>
+            <button disabled={deletingId !== null} onClick={() => openUpdateModal(service)}>Update</button>
+            <button disabled={deletingId !== null} onClick={() => deleteService(service)}>Delete Service</button>
           </div>
         ))}
       </div>
@@ -240,6 +265,12 @@ function ServiceAdmin() {
                   value={part.partName}
                   onChange={(e) => updatePartField(index, "partName", e.target.value)}
                 />
+                {["En", "Ru", "Ky"].map(language => (
+                  <label key={language}>Part Name ({language.toUpperCase()})
+                    <input name={`partName${language}`} maxLength={255} value={part[`partName${language}`] ?? ""}
+                      onChange={e => updatePartField(index, `partName${language}`, e.target.value)} />
+                  </label>
+                ))}
                 <textarea
                   placeholder="Service Text AZ"
                   value={part.serviceTextAz}
@@ -283,9 +314,10 @@ function ServiceAdmin() {
               <button type="button" onClick={addPart}>Add Part</button>
             )}
 
+            {saveError && <p role="alert" style={{color: "#b91c1c", margin: "8px 0"}}>{saveError}</p>}
             <div className={style.modalActions}>
-              <button onClick={handleSubmit}>{isAdd ? "Add" : "Update"}</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button disabled={saving} onClick={handleSubmit}>{isAdd ? "Add" : "Update"}</button>
+              <button disabled={saving} onClick={closeModal}>Cancel</button>
             </div>
           </div>
         </div>

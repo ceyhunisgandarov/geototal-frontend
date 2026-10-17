@@ -5,6 +5,8 @@ import style from "../../../../../../public/assets/css/module/admin/contact.modu
 import { useEffect, useState } from "react";
 
 function ContactInfoSection() {
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [contactInfo, setContactInfo] = useState({
     id: "",
     address: "",
@@ -59,11 +61,22 @@ function ContactInfoSection() {
     });
   };
 
-  const handleSave = () => {
-    ContactService.addOrUpdateContact(contactInfo)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    setEditMode(false);
+  const handleSave = async () => {
+    if (saving) return;
+    setSaving(true);
+    setSaveError("");
+    try {
+      const response = await ContactService.addOrUpdateContact(contactInfo);
+      if (response.data?.status?.code !== 200) {
+        setSaveError(response.data?.status?.message || "Məlumat saxlanmadı. Yenidən cəhd edin.");
+        return;
+      }
+      setEditMode(false);
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) return <p>Loading...</p>;
@@ -76,7 +89,7 @@ function ContactInfoSection() {
         name="address"
         value={contactInfo.address}
         onChange={handleInputChange}
-        disabled={!editMode}
+        disabled={!editMode || saving}
       />
 
       <label>Telefon Numaraları</label>
@@ -88,7 +101,7 @@ function ContactInfoSection() {
             onChange={(e) =>
               handleListChange("phoneNumbers", idx, e.target.value)
             }
-            disabled={!editMode}
+            disabled={!editMode || saving}
           />
           {editMode && (
             <>
@@ -123,7 +136,7 @@ function ContactInfoSection() {
             onChange={(e) =>
               handleListChange("emailAddress", idx, e.target.value)
             }
-            disabled={!editMode}
+            disabled={!editMode || saving}
           />
           {editMode && (
             <>
@@ -155,7 +168,7 @@ function ContactInfoSection() {
         name="mailAddressForSend"
         value={contactInfo.mailAddressForSend}
         onChange={handleInputChange}
-        disabled={!editMode}
+        disabled={!editMode || saving}
       />
 
       <label>Google Embedded Link</label>
@@ -164,15 +177,16 @@ function ContactInfoSection() {
         name="googleEmbeddedLink"
         value={contactInfo.googleEmbeddedLink}
         onChange={handleInputChange}
-        disabled={!editMode}
+        disabled={!editMode || saving}
       />
 
+      {saveError && <p role="alert" style={{color: "#b91c1c", margin: "8px 0"}}>{saveError}</p>}
       {!editMode ? (
-        <button className={style.editButton} onClick={() => setEditMode(true)}>
+        <button className={style.editButton} onClick={() => { setSaveError(""); setEditMode(true); }}>
           Düzenle
         </button>
       ) : (
-        <button className={style.saveButton} onClick={handleSave}>
+        <button className={style.saveButton} disabled={saving} onClick={handleSave}>
           Kaydet
         </button>
       )}

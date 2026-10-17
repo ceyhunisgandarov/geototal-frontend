@@ -8,7 +8,7 @@
   color: white;
 }
 
-.wrapper h2 {
+.wrapper > h1 {
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
@@ -85,7 +85,7 @@
 }
 
 /* Başlık ve metin */
-.left h3 {
+.left h2 {
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -234,3 +234,8 @@
     transform: translateX(100%);
   }
 }
+
+.inquiry {max-width:1000px;padding:32px 20px;line-height:1.6;text-align:center;}
+.inquiry h2 {font-size:1.5rem;margin-bottom:12px;}
+.inquiryLinks {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:20px;}
+.inquiryLinks a {color:inherit;text-decoration:underline;text-underline-offset:4px;}

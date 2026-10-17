@@ -27,7 +27,7 @@
   text-align: center;
 }
 
-.sectionTitle h1 {
+.sectionTitle h2 {
   font-size: 42px;
   margin-bottom: 10px;
 }
@@ -141,7 +141,7 @@
   transform: translateY(0);
 }
 
-.hoverText h1 {
+.hoverText h3 {
   font-size: 22px;
   margin-bottom: 10px;
 }

@@ -31,11 +31,12 @@ const blogs = [
   },
 ];
 
-export default function Projects() {
+export default function Projects({initialData} = {}) {
   const t = useTranslations("ProjectsHome");
-  const [randomProjects, setRandomProjects] = useState([]);
+  const [randomProjects, setRandomProjects] = useState(initialData?.slice(0,3) ?? []);
 
   useEffect(() => {
+    if(initialData !== undefined) {setRandomProjects(initialData?.slice(0,3) ?? []); return;}
     ProjectService.getProjects()
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -51,17 +52,17 @@ export default function Projects() {
       .catch((error) => {
         console.log("Something went wrong - ", error);
       });
-  }, []);
+  }, [initialData]);
 
   return (
     <section className={styles.blogArea}>
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
-          <h1>{t("title")}</h1>
+          <h2>{t("title")}</h2>
           <span>
             <Image
               src="/images/icons/projects-icon.png"
-              alt="icon"
+              alt=""
               width={50}
               height={50}
             />

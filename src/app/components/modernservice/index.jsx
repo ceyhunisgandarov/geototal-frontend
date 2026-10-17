@@ -7,14 +7,15 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ServicesService from "@/app/services/ServicesService";
 
-export default function ModernService() {
+export default function ModernService({initialData} = {}) {
   const t = useTranslations("HomeService");
   const locale = useLocale();
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState(initialData?.slice(0,4) ?? []);
 
   useEffect(() => {
+    if(initialData !== undefined) {setServices(initialData?.slice(0,4) ?? []); return;}
     refreshServices();
-  }, []);
+  }, [initialData]);
 
   const refreshServices = () => {
     ServicesService.getServices()
@@ -35,11 +36,11 @@ export default function ModernService() {
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
           <div className={styles.sectionTitle}>
-            <h1>{t("title")}</h1>
+            <h2>{t("title")}</h2>
             <span className={styles.icon}>
               <Image
                 src="/images/icons/card-icon.svg"
-                alt="koffee"
+                alt=""
                 width={40}
                 height={40}
                 className={styles.iconImg}
@@ -82,7 +83,7 @@ function Service({ service, locale }) {
 
   return (
     <div className={styles.hoverText}>
-      <h1>{titleService}</h1>
+      <h3>{titleService}</h3>
       <Link href={`/${locale}/services/${service.pathName}`}>
         <span className={styles.price}>{t("more")}</span>
       </Link>

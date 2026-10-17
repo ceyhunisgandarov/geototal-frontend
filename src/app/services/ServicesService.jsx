@@ -45,19 +45,9 @@ const addOrUpdateService = (reqService, serviceImage, reqServiceParts, servicePa
   });
 };
 
-const deleteService = (id) => {
-//   const token = Cookies.get("Authorization");
-
-//   return createAxiosInstance().delete(
-//     `admin/delete/member/${id}`,
-//     {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "multipart/form-data",
-//       },
-//     }
-//   );
-};
+const deleteService = (id) => createAxiosInstance().delete(`admin/delete/service/${id}`, {
+  headers: {Authorization: `Bearer ${Cookies.get("Authorization")}`},
+});
 
 export default {
   getServices,

@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 import ServicesService from "@/app/services/ServicesService";
 import { useTranslations } from "next-intl";
 
-function ServiceBody() {
+function ServiceBody({initialData} = {}) {
   const t = useTranslations("Navbar");
 
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState(initialData ?? []);
+  const [loading, setLoading] = useState(initialData === undefined);
 
   useEffect(() => {
+    if(initialData !== undefined) {setServices(initialData); return;}
     refreshServices();
-  }, []);
+  }, [initialData]);
 
   const refreshServices = () => {
     ServicesService.getServices()

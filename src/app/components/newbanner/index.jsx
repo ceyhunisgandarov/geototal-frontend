@@ -1,4 +1,5 @@
 "use client";
+import { carouselHref } from "@/lib/carouselLink";
 import { localizedText } from "@/lib/localizedText";
 import { useLocale } from "next-intl";
 import Link from "next/link";
@@ -25,12 +26,12 @@ export default function Banner({ carousel, t, active }) {
           <p className={`${styles.subtitle} ${active ? styles.active : ""}`}>
             {localizedText(carousel, "description", locale)}
           </p>
-          <Link
-            href={`/${t("locale")}/${carousel.link}`}
+          {carouselHref(carousel.link, locale) && <Link
+            href={carouselHref(carousel.link, locale)}
             className={`${styles.btnMore} ${active ? styles.active : ""}`}
           >
             {t("more")}
-          </Link>
+          </Link>}
         </div>
       )}
       <div className={styles.overlay}></div>

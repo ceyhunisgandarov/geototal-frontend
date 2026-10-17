@@ -1,8 +1,9 @@
 import createAxiosInstance from "@/app/axios/http-common";
+import { bannerPageKey } from "@/lib/bannerPage";
 import Cookies from "js-cookie";
 
 const getBanner = (name) => {
-  return createAxiosInstance().get(`user/header/${name}`);
+  return createAxiosInstance().get(`user/header/${bannerPageKey(name)}`);
 };
 
 const addOrUpdateBanner = (reqBanner, bannerImage, id) => {

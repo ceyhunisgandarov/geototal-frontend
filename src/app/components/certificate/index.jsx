@@ -1,11 +1,13 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { localizedText } from "@/lib/localizedText";
+import { useLocale, useTranslations } from "next-intl";
 import styles from "../../../../public/assets/css/module/aboutussection/certificate.module.css";
 import { useEffect, useState } from "react";
 import CertificateService from "@/app/services/CertificateService";
 import ImageLightbox from "../lightbox";
 
 export default function CertificateSection() {
+  const locale = useLocale();
   const [certificates, setCertificates] = useState([]);
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Navbar");
@@ -47,9 +49,9 @@ export default function CertificateSection() {
             ))
           : certificates.map((cert) => (
               <div key={cert.id} className={styles.certificateWrapper}>
-                <p className={styles.name}>{cert.description}</p>
+                <p className={styles.name}>{localizedText(cert, "description", locale)}</p>
                 <div className={styles.imageWrapper}>
-                  <ImageLightbox src={cert.imageUrl} style={styles.image} />
+                  <ImageLightbox alt={localizedText(cert, "title", locale)} src={cert.imageUrl} style={styles.image} />
                 </div>
               </div>
             ))}

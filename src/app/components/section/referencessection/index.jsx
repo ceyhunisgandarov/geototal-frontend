@@ -1,11 +1,15 @@
 'use client'
 
+import Image from "next/image";
+import {useLocale} from "next-intl";
+import {contentLabels} from "@/lib/content-labels";
 import ReferenceService from "@/app/services/ReferenceService";
 import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/aboutuspage/reference.module.css"
 
 
 function ReferencesSection() {
+  const labels=contentLabels(useLocale());
   const [references, setReferences] = useState([])
   const [errorMessage, setErrorMessage] = useState("")
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,7 +34,7 @@ function ReferencesSection() {
           <div key={reference.id} className={style.imageItem}>
             <Image
               src={reference.pathName}
-              alt="reference"
+              alt={labels.reference}
               fill
               className={style.image}
               onClick={() => setSelectedImage(reference.pathName)}
@@ -45,7 +49,7 @@ function ReferencesSection() {
           <div className={style.modalContent}>
             <Image
               src={selectedImage}
-              alt="big"
+              alt={labels.reference}
               width={1200}
               height={800}
               className={style.modalImage}

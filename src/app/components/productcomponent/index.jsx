@@ -8,13 +8,13 @@ import ProductService from "@/app/services/ProductService";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
-function ProductComponent({ id }) {
+function ProductComponent({ id, initialData }) {
   const domainContact = useDomainContact();
   const t = useTranslations("Product");
   const locale = useLocale();
-  const [product, setProduct] = useState(null);
-  const [activeImage, setActiveImage] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState(initialData ?? null);
+  const [activeImage, setActiveImage] = useState(initialData?.images?.[0] || "");
+  const [loading, setLoading] = useState(initialData === undefined);
   const router = useRouter();
 
   const localizedText = (item, field, locale, fallbackField = `${field}Az`) => {
@@ -50,6 +50,7 @@ function ProductComponent({ id }) {
   };
 
   useEffect(() => {
+    if(initialData !== undefined) {setProduct(initialData); setActiveImage(initialData?.images?.[0] || ""); return;}
     setLoading(true);
     ProductService.getProduct(id)
       .then((response) => {
@@ -67,7 +68,7 @@ function ProductComponent({ id }) {
       })
       .catch(() => router.replace("/404"))
       .finally(() => setLoading(false));
-  }, [id, router]);
+  }, [id, router, initialData]);
 
   const getCategoryKey = (category) => {
     switch (category) {
@@ -153,7 +154,7 @@ function ProductComponent({ id }) {
         <div className={styles.productGallery}>
           <Image
             src={activeImage}
-            alt={product.model}
+            alt={[product.brand, product.model].filter(Boolean).join(" ")}
             width={600}
             height={600}
             className={styles.mainImg}
@@ -171,7 +172,7 @@ function ProductComponent({ id }) {
                 >
                   <Image
                     src={image}
-                    alt={product.model}
+                    alt={[product.brand, product.model].filter(Boolean).join(" ")}
                     width={100}
                     height={100}
                     className={styles.thumbImg}
@@ -186,8 +187,7 @@ function ProductComponent({ id }) {
             {t("home")} &gt; {t("products")} &gt;{" "}
             {t(getCategoryKey(product.category))}
           </nav>
-          <h1 className={styles.title}>{product.brand}</h1>
-          <h2 className={styles.title2}>{product.model}</h2>
+          <h1 className={styles.title}>{product.brand}<span className={styles.title2} style={{display:"block"}}>{product.model}</span></h1>
           <Link href={whatsappLink} className={styles.link}>
             <button className={styles.btnAdd}>{t("get")}</button>
           </Link>
@@ -196,7 +196,7 @@ function ProductComponent({ id }) {
 
       <div className={styles.productBottomDetails}>
         <div className={styles.detailSection}>
-          <h3>{t("description")}</h3>
+          <h2>{t("description")}</h2>
           <p className={styles.description}>
             {localizedText(product, "description", locale, "descriptionAz")}
           </p>

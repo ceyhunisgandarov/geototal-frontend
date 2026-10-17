@@ -1,7 +1,3 @@
-export function generateMetadata({ params }) {
-  return { title: `${params.locale === "ky" ? "Биз жөнүндө" : "About Us"} - Geototal` };
-}
-
-export default function AboutUsLayout({ children }) {
-  return <main>{children}</main>;
-}
+import {staticMetadata} from "@/lib/server-seo";
+export function generateMetadata({params}) {return staticMetadata(params.locale,"aboutus","aboutus");}
+export default function PageLayout({children}) {return children;}

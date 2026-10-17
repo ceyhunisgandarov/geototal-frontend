@@ -1,15 +1,6 @@
-"use client";
-
-import ProjectContainer from "@/app/containers/project";
-import { useParams } from "next/navigation";
-
-function ProjectPage() {
-  const params = useParams();
-  const { locale, path } = params;
-
-  return (
-    <ProjectContainer page={`/projects/${path}/`} project={path} />
-  );
+import Container from "@/app/containers/project";
+import {getList,getDetail,getAbout} from "@/lib/server-content";
+export default async function Page({params}) {
+ const data=await getDetail('project',params.path);
+ return <Container page={`projects/${params.path}`} project={params.path} initialData={data} />;
 }
-
-export default ProjectPage;

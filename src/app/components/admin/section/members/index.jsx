@@ -5,6 +5,8 @@ import style from "../../../../../../public/assets/css/module/admin/members.modu
 import MemberService from "@/app/services/MemberService";
 
 function MembersAdmin() {
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [members, setMembers] = useState([]);
   const [modal, setModal] = useState(false);
   const [updateId, setUpdateId] = useState(null);
@@ -12,7 +14,7 @@ function MembersAdmin() {
 
   const [reqMember, setReqMember] = useState({
     email: "",
-    jobTitle: "",
+    jobTitle: "", jobTitleEn: "", jobTitleRu: "", jobTitleKy: "",
     fullName: "",
   });
 
@@ -45,20 +47,19 @@ function MembersAdmin() {
     setMemberImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    MemberService.addOrUpdatMember(reqMember, memberImage, updateId)
-      .then((response) => {
-        if (response.data.status.code === 200) {
-          refreshMembers();
-          setModal(false); // modalı kapat
-          setUpdateId(null); // temizle
-          setReqMember({ email: "", jobTitle: "", fullName: "" }); // formu temizle
-        } else {
-          console.log("something went wrong - ", response.data.status.message);
-        }
-      })
-      .catch((error) => console.log("something went wrong-", error));
+    if (saving) return;
+    setSaving(true); setSaveError("");
+    try {
+      const response = await MemberService.addOrUpdatMember(reqMember, memberImage, updateId);
+      if (response.data?.status?.code !== 200) {
+        setSaveError(response.data?.status?.message || "Komanda üzvü saxlanmadı."); return;
+      }
+      refreshMembers(); setModal(false);
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || "Serverlə əlaqə alınmadı. Yenidən cəhd edin.");
+    } finally { setSaving(false); }
   };
 
   const handleDelete = (id) => {
@@ -103,12 +104,14 @@ function MembersAdmin() {
                 <button
                   className={style.blueButton}
                   onClick={() => {
+                    setMemberImage(null); setSaveError("");
                     setModal(true);
                     setUpdateId(member.id);
                     setReqMember({
                       email: member.email,
                       fullName: member.fullName,
                       jobTitle: member.jobTitle,
+                      jobTitleEn: member.jobTitleEn ?? "", jobTitleRu: member.jobTitleRu ?? "", jobTitleKy: member.jobTitleKy ?? "",
                     });
                   }}
                 >
@@ -125,7 +128,7 @@ function MembersAdmin() {
           ))}
       </div>
 
-      <button className={style.addButton} onClick={() => setModal(true)}>
+      <button className={style.addButton} onClick={() => { setUpdateId(null); setMemberImage(null); setSaveError(""); setReqMember({email:"", fullName:"", jobTitle:"", jobTitleEn:"", jobTitleRu:"", jobTitleKy:""}); setModal(true); }}>
         ADD NEW MEMBER
       </button>
 
@@ -151,18 +154,26 @@ function MembersAdmin() {
               <input
                 type="text"
                 name="jobTitle"
-                placeholder="Job Title"
+                placeholder="Job Title (AZ)"
                 value={reqMember.jobTitle}
                 onChange={handleChange}
               />
+              {["En", "Ru", "Ky"].map(language => (
+                <label key={language}>Job Title ({language.toUpperCase()})
+                  <input name={`jobTitle${language}`} maxLength={255}
+                    value={reqMember[`jobTitle${language}`]} onChange={handleChange} />
+                </label>
+              ))}
               <input type="file" onChange={handleImageChange} />
+              {saveError && <p role="alert" style={{color: "#b91c1c"}}>{saveError}</p>}
               <div className={style.modalButtons}>
-                <button type="submit" className={style.blueButton}>
+                <button disabled={saving} type="submit" className={style.blueButton}>
                   Save
                 </button>
                 <button
                   type="button"
                   className={style.deleteButton}
+                  disabled={saving}
                   onClick={() => setModal(false)}
                 >
                   Cancel

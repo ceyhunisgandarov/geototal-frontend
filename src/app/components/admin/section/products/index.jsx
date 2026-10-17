@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import ProductService from "@/app/services/ProductService";
 
 function ProductsAdmin() {
+  const [deletingId, setDeletingId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [products, setProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -32,7 +36,7 @@ function ProductsAdmin() {
     ProductService.getProducts()
       .then((response) => {
         if (response.data.status.code === 200) {
-          setProducts(response.data.response);
+          setProducts(response.data.response || []);
 
         } else {
           console.log("something went wrong-", response.data.status.message);
@@ -41,44 +45,45 @@ function ProductsAdmin() {
       .catch((error) => console.log("something went wrong-", error));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Selected Product:", selectedProduct);
-    console.log("New/Updated Images:", imageFiles);
-    console.log("Old Images (to be replaced):", oldImageUrls);
-
-    ProductService.addOrUpdateProduct(
-      reqProduct,
-      imageFiles,
-      pdfFile,
-      oldImageUrls,
-      updateId
-    )
-      .then((response) => {
-        if (response.data.status.code === 200) {
-          refreshProducts();
-        } else {
-          console.log("something went wrong-", response.data.status.message);
-        }
-      })
-      .catch((error) => console.log("something went wrong-", error))
-      .finally(() => setShowModal(false)); // ✅ düzeltildi
+    if (saving) return;
+    setSaving(true);
+    setSaveError("");
+    try {
+      const response = await ProductService.addOrUpdateProduct(reqProduct, imageFiles, pdfFile, oldImageUrls, updateId);
+      if (response.data?.status?.code !== 200) {
+        setSaveError(response.data?.status?.message || "Məlumat saxlanmadı. Yenidən cəhd edin.");
+        return;
+      }
+      refreshProducts(); setShowModal(false);
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const deleteProduct = (id) => {
-    if (confirm("Are you sure you want to delete this product?")) {
-      ProductService.deleteProduct(id).then((response) => {
-        if (response.data.status.code === 200) {
-          refreshProducts();
-        } else {
-          console.log("something went wrong-", response.data.status.message);
-        }
-      });
+  const deleteProduct = async (id) => {
+    if (deletingId !== null || !confirm("Bu qeydi silmək istəyirsiniz?")) return;
+    setDeletingId(id);
+    setDeleteError("");
+    try {
+      const { data } = await ProductService.deleteProduct(id);
+      if (data?.status?.code !== 200) {
+        setDeleteError(data?.status?.message || "Qeyd silinmədi.");
+        return;
+      }
+      setProducts(items => items.filter(item => item.id !== id));
+    } catch (error) {
+      setDeleteError(error?.response?.data?.status?.message || "Serverlə əlaqə alınmadı. Yenidən cəhd edin.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
   const openModal = (product = null) => {
+    setSaveError("");
     setPdfFile(null);
     setOldImageUrls([]);
     setUpdateId(product?.id || 0);
@@ -131,6 +136,8 @@ function ProductsAdmin() {
 
   return (
     <div className={style.container2}>
+      {deleteError && <p role="alert" style={{color: "#b91c1c"}}>{deleteError}</p>}
+      {products.length === 0 && <p>Hələ qeyd yoxdur.</p>}
       <div className={style.grid2}>
         {products.map((product) => (
           <div key={product.id} className={style.card2}>
@@ -159,6 +166,7 @@ function ProductsAdmin() {
               </button>
               <button
                 className={style.deleteButton}
+                disabled={deletingId !== null}
                 onClick={() => deleteProduct(product.id)}
               >
                 Delete Product
@@ -406,13 +414,15 @@ function ProductsAdmin() {
                   </div>
                 )}
               </div>
+              {saveError && <p role="alert" style={{color: "#b91c1c", margin: "8px 0"}}>{saveError}</p>}
               <div className={style.btnContainer}>
-                <button type="submit" className={style.addButton}>
+                <button type="submit" disabled={saving} className={style.addButton}>
                   Save
                 </button>
                 <button
                   type="button"
                   className={style.deleteButton}
+                  disabled={saving}
                   onClick={() => setShowModal(false)}
                 >
                   Cancel

@@ -1,18 +1,22 @@
 "use client";
+import Link from "next/link";
+import {contentLabels,partHeading} from "@/lib/content-labels";
 import { localizedText } from "@/lib/localizedText";
 import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/service/servicepage.module.css";
 import ServicesService from "@/app/services/ServicesService";
 import { useLocale } from "next-intl";
 
-export default function ServicesSection({ service }) {
-  const [aService, setAService] = useState(null);
-  const [loading, setLoading] = useState(true);
+export default function ServicesSection({ service, initialData }) {
+  const [error, setError] = useState("");
+  const [aService, setAService] = useState(initialData ?? null);
+  const [loading, setLoading] = useState(initialData === undefined);
   const locale = useLocale();
 
   useEffect(() => {
+    if(initialData !== undefined) {setAService(initialData); return;}
     refreshService();
-  }, []);
+  }, [initialData]);
 
   const refreshService = async () => {
     try {
@@ -20,14 +24,16 @@ export default function ServicesSection({ service }) {
       if (response.data.status.code === 200) {
         setAService(response.data.response);
       } else {
-        console.log("Something went wrong:", response.data.status.message);
+        setError(response.data.status.code === 404 ? "Xidmət tapılmadı." : "Xidmət yüklənmədi.");
       }
     } catch (error) {
-      console.log("Something went wrong:", error);
+      setError("Xidmət yüklənmədi. Yenidən cəhd edin.");
     } finally {
       setLoading(false);
     }
   };
+
+  if (!loading && error) return <p role="alert">{error}</p>;
 
   // ✅ Skeleton (minimum 2 part)
   if (loading || !aService || !aService.serviceParts) {
@@ -60,6 +66,7 @@ export default function ServicesSection({ service }) {
     );
   }
 
+  const labels=contentLabels(locale);
   const serviceName = localizedText(aService, "serviceName", locale);
 
   const sortedParts = [...aService.serviceParts].sort((a, b) => {
@@ -70,11 +77,12 @@ export default function ServicesSection({ service }) {
 
   return (
     <div className={style.wrapper}>
-      <h2>{serviceName}</h2>
+      <h1>{serviceName}</h1>
 
       {sortedParts.map((part, index) => {
         if (!part) return null;
 
+        const heading=partHeading(localizedText(part,"partName",locale),serviceName,locale,index);
         const partText = localizedText(part, "serviceText", locale, "serviceTextAz");
         const imageSrc = part.serviceImageUrl || "/placeholder.png";
         const sectionClass = index % 2 === 0 ? style.dark : style.gray;
@@ -87,14 +95,14 @@ export default function ServicesSection({ service }) {
               }`}
             >
               <div className={style.left}>
-                <h3>{part.partName || "No Name"}</h3>
+                <h2>{heading}</h2>
                 <p>{partText}</p>
               </div>
               <div className={style.right}>
                 {imageSrc ? (
                   <img
                     src={imageSrc}
-                    alt={part.partName || "Service Part"}
+                    alt={heading}
                     className={style.image}
                   />
                 ) : null}
@@ -103,6 +111,14 @@ export default function ServicesSection({ service }) {
           </div>
         );
       })}
+      <section className={style.inquiry}>
+        <h2>{labels.inquiry}</h2>
+        <p>{labels.inquiryText}</p>
+        <nav className={style.inquiryLinks}>
+          <Link href={`/${locale}#service-inquiry`}>{labels.request}</Link>
+          <Link href={`/${locale}/services`}>{labels.allServices}</Link>
+        </nav>
+      </section>
     </div>
   );
 }

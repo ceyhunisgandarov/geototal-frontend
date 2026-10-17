@@ -1,3 +1,4 @@
+import {staticMetadata} from "@/lib/server-seo";
 //app/(routes)/[locale]/layout.jsx
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -14,8 +15,8 @@ import { DomainContactProvider } from "@/i18n/domain-contact";
 
 import WhatsappButton from "@/app/components/whatsapp";
 
-export function generateMetadata({ params }) {
-  return { title: `${params.locale === "ky" ? "Башкы бет" : "Main Page"} - Geototal` };
+export function generateMetadata({params}) {
+ return staticMetadata(params.locale,"home");
 }
 
 export const viewport = {
@@ -36,8 +37,7 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages({ locale });
 
   return (
-    <html>
-      <body>
+    <>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <DomainLocalesProvider locales={domain.locales}>
             <DomainContactProvider contact={contact}>
@@ -46,7 +46,6 @@ export default async function LocaleLayout({ children, params }) {
             </DomainContactProvider>
           </DomainLocalesProvider>
         </NextIntlClientProvider>
-      </body>
-    </html>
+    </>
   );
 }

@@ -11,6 +11,7 @@ function AdminCarousel() {
   const [carouselId, setCarouselId] = useState(0);
   const [currentItem, setCurrentItem] = useState(null);
   const [formData, setFormData] = useState({
+    link: "",
     slogan: "",
     sloganEn: "",
     sloganRu: "",
@@ -26,6 +27,9 @@ function AdminCarousel() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
+  const [saveError, setSaveError] = useState("");
 
   const [carouselImage, setCarouselImage] = useState(null);
 
@@ -41,7 +45,7 @@ function AdminCarousel() {
       .catch((error) => console.log("something went wrong-", error));
   };
 
-  const filledData = Array.from({ length: 4 }, (_, index) => {
+  const filledData = Array.from({ length: Math.max(4, carouselData.length) }, (_, index) => {
     return carouselData[index]
       ? carouselData[index]
       : {
@@ -58,10 +62,22 @@ function AdminCarousel() {
         };
   });
 
-  const handleDelete = (id) => {
-    CarouselService.deleteCarousel(id)
-      .then(() => fetchCarousel())
-      .catch((err) => console.log(err));
+  const handleDelete = async (id) => {
+    if (deletingId !== null || !confirm("Bu slaydı silmək istəyirsiniz?")) return;
+    setDeletingId(id);
+    setDeleteError("");
+    try {
+      const { data } = await CarouselService.deleteCarousel(id);
+      if (data?.status?.code !== 200) {
+        setDeleteError(data?.status?.message || "Slaydı silmək mümkün olmadı.");
+        return;
+      }
+      setCarouselData((items) => items.filter((item) => item.id !== id));
+    } catch {
+      setDeleteError("Slaydı silmək mümkün olmadı. Yenidən cəhd edin.");
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   const handleOpenModal = (item, id) => {
@@ -69,6 +85,7 @@ function AdminCarousel() {
 
     setCurrentItem(item || null);
     setFormData({
+      link: isNew ? "" : item.link ?? "",
       slogan: isNew ? "" : item.slogan ?? "",
       sloganEn: isNew ? "" : item.sloganEn ?? "",
       sloganRu: isNew ? "" : item.sloganRu ?? "",
@@ -82,8 +99,9 @@ function AdminCarousel() {
       descriptionRu: isNew ? "" : item.descriptionRu || "",
       descriptionKy: isNew ? "" : item.descriptionKy || "",
     });
+    setSaveError("");
     setCarouselImage(null); // Modal açıldığında eski resim sıfırlanır
-    setCarouselId(isNew ? id + 1 : item.id);
+    setCarouselId(isNew ? 0 : item.id);
     setModalOpen(true);
   };
 
@@ -103,21 +121,29 @@ function AdminCarousel() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(carouselId);
-
-    CarouselService.addOrUpdateCarousel(formData, carouselImage, carouselId)
-      .then(() => {
-        fetchCarousel();
-        setModalOpen(false);
-      })
-      .catch((err) => console.log(err));
+    if (loading) return;
+    setLoading(true);
+    setSaveError("");
+    try {
+      const { data } = await CarouselService.addOrUpdateCarousel(formData, carouselImage, carouselId);
+      if (data?.status?.code !== 200) {
+        setSaveError(data?.status?.message || "Slaydı saxlamaq mümkün olmadı.");
+        return;
+      }
+      fetchCarousel();
+      setModalOpen(false);
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className={style.container}>
+      {deleteError && <p role="alert">{deleteError}</p>}
       <div className={style.containerSlide}>
         {filledData.map((item, idx) => (
           <div key={idx} className={style.cardCarousel}>
@@ -149,7 +175,9 @@ function AdminCarousel() {
                   <button onClick={() => handleOpenModal(item, idx)}>
                     Edit
                   </button>
-                  <button onClick={() => handleDelete(item.id)}>Delete</button>
+                  <button disabled={deletingId !== null} onClick={() => handleDelete(item.id)}>
+                    {deletingId === item.id ? "Silinir…" : "Delete"}
+                  </button>
                 </>
               ) : (
                 <button onClick={() => handleOpenModal(item, idx)}>Add</button>
@@ -249,8 +277,15 @@ function AdminCarousel() {
                 </div>
               ))}
 
-              <button type="submit">Save</button>
-              <button type="button" onClick={() => setModalOpen(false)}>
+              <div className={style.formGroup}>
+                <label htmlFor="carousel-link">Link (istəyə bağlı)</label>
+                <input id="carousel-link" name="link" value={formData.link}
+                  onChange={handleChange} placeholder="services/geodesy və ya https://example.com" />
+                <small>Saytdaxili səhifə ünvanı və ya tam https:// linki. Boş saxlasanız keçid düyməsi görünməyəcək.</small>
+              </div>
+              {saveError && <p role="alert" style={{color: "#b91c1c", margin: "8px 0"}}>{saveError}</p>}
+              <button type="submit" disabled={loading}>Save</button>
+              <button type="button" disabled={loading} onClick={() => setModalOpen(false)}>
                 Cancel
               </button>
             </form>

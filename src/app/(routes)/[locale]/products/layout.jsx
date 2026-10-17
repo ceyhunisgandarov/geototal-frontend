@@ -1,7 +1,3 @@
-export function generateMetadata({ params }) {
-  return { title: `${params.locale === "ky" ? "Продукттар" : "Products"} - Geototal` };
-}
-
-export default function ProductsLayout({ children }) {
-  return <main>{children}</main>;
-}
+import {staticMetadata} from "@/lib/server-seo";
+export function generateMetadata({params}) {return staticMetadata(params.locale,"products","products");}
+export default function PageLayout({children}) {return children;}

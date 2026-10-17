@@ -111,13 +111,13 @@
 /* TEXT */
 /* ===================== */
 
-.bannerContent h3 {
+.bannerContent .eyebrow {
   font-family: sans-serif;
   font-size: 40px;
   margin-bottom: 20px;
 }
 
-.bannerContent h1 {
+.bannerContent h2 {
   font-size: 50px;
   margin-bottom: 25px;
 }
@@ -145,8 +145,8 @@
   padding: 0 auto;
 }
 
-.secondBannerContent h3,
-.thirdBannerContent h3 {
+.secondBannerContent .eyebrow,
+.thirdBannerContent .eyebrow {
   font-family: sans-serif;
   font-size: 40px;
   margin-bottom: 20px;
@@ -305,11 +305,11 @@
     min-height: 80vh;
   }
 
-  .bannerContent h1 {
+  .bannerContent h2 {
     font-size: 30px;
   }
 
-  .bannerContent h3 {
+  .bannerContent .eyebrow {
     font-size: 32px;
   }
 }
@@ -344,8 +344,8 @@
     display: none;
   }
 
-  .secondBannerContent h3,
-  .thirdBannerContent h3 {
+  .secondBannerContent .eyebrow,
+  .thirdBannerContent .eyebrow {
     font-size: 28px;
   }
 }

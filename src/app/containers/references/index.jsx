@@ -1,3 +1,4 @@
+import PageHeading from "@/app/components/pageheading";
 import Layout from "@/app/components/layout";
 import LayoutSecond from "@/app/components/layout/layoutsecond";
 import Banner from "@/app/components/section/banner";
@@ -8,6 +9,7 @@ function ReferencesContainer({page, locale}) {
   return (
     <Layout page={page} locale={locale}>
       <Banner page={page} />
+      <PageHeading page="references" />
       <ReferencesSection />
     </Layout>
   );

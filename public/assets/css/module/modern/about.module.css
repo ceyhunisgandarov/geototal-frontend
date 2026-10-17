@@ -88,7 +88,7 @@
   word-break: break-word;
 }
 
-.aboutText h3 {
+.aboutText h2 {
   font-size: 36px;
   margin-bottom: 20px;
   font-weight: 600;
@@ -138,7 +138,7 @@
     max-width: 100%;
   }
 
-  .aboutText h3 {
+  .aboutText h2 {
     font-size: 30px;
   }
 
@@ -151,7 +151,7 @@
    MOBILE
 ================================ */
 @media (max-width: 767px) {
-  .aboutText h3 {
+  .aboutText h2 {
     font-size: 28px;
     margin-bottom: 12px;
   }

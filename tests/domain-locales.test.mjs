@@ -1,3 +1,4 @@
+import * as crawl from '../src/lib/crawl.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -14,15 +15,16 @@ const code = babel.transformSync(readFileSync(new URL('../src/middleware.js', im
   caller: { name: 'test', supportsStaticESM: false }
 }).code;
 const module = { exports: {} };
-vm.runInNewContext(code, { module, exports: module.exports, require(name) {
+vm.runInNewContext(code, { URL, module, exports: module.exports, require(name) {
   if (name === 'next-intl/middleware') return { __esModule: true, default: intlMiddleware.default };
   if (name.startsWith('@babel/runtime/')) return require(`next/dist/compiled/${name}`);
+  if (name.includes('/lib/crawl')) return crawl;
   if (name.includes('/lib/locales')) return locales;
   if (name.includes('/i18n/routing')) return { routing: { locales: locales.supportedLocales, defaultLocale: 'az' } };
   return require(name);
 }});
 const middleware = module.exports.default;
-for (const [host, lang, blocked] of [['geototal.az', 'az', 'ky'], ['www.geototal.kg', 'ky', 'az']]) {
+for (const [host, lang, blocked] of [['www.geototal.az', 'az', 'ky'], ['www.geototal.kg', 'ky', 'az']]) {
   test(`${host}: root ignores stale cookies and browser language`, () => {
     const response = middleware(new NextRequest(`https://${host}/`, {headers: {host, cookie: 'NEXT_LOCALE=ru', 'accept-language': 'en'}}));
     assert.equal(new URL(response.headers.get('location')).pathname, `/${lang}`);

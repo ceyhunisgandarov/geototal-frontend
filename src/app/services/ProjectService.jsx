@@ -5,7 +5,7 @@ const getProjects = () => {
   return createAxiosInstance().get("user/project/list");
 };
 
-const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
+const addOrUpdateProject = (reqProject, imageFile, projectId, referenceLetter) => {
   const token = Cookies.get("Authorization");
   const formData = new FormData();
 
@@ -17,11 +17,11 @@ const addOrUpdateProject = (reqProject, imageFile, path, referenceLetter) => {
     formData.append("referenceLetter", referenceLetter);
   }
 
-  const { id, imageUrl, ...cleanReqProject } = reqProject;
+  const { id, imageUrl, referenceLetter: existingLetter, ...cleanReqProject } = reqProject;
   formData.append("reqProject", JSON.stringify(cleanReqProject));
 
   return createAxiosInstance().put(
-    `admin/addOrUpdate/project/${path}`,
+    `admin/projects/${projectId ?? 0}`,
     formData,
     {
       headers: {

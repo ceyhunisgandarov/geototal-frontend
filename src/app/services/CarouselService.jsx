@@ -26,7 +26,15 @@ const addOrUpdateCarousel = (reqCarousel, carouselImage, id) => {
   );
 };
 
+const deleteCarousel = (id) => {
+  const token = Cookies.get("Authorization");
+  return createAxiosInstance().delete(`admin/delete/carousel/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
 export default {
   getCarouselData,
+  deleteCarousel,
   addOrUpdateCarousel,
 };

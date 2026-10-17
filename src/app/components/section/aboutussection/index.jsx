@@ -3,11 +3,11 @@ import AboutUsContent from "../../aboutuscontent";
 import Members from "../../members";
 import SecondAboutUsContent from "../../secondaboutcontent";
 
-function AboutUsSection() {
+function AboutUsSection({initialData} = {}) {
   return (
     <section className={style.container}>
-      <AboutUsContent />
-      <SecondAboutUsContent />
+      <AboutUsContent initialData={initialData?.[0]} />
+      <SecondAboutUsContent initialData={initialData?.[1]} />
       {/* <Members /> */}
     </section>
   );

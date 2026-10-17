@@ -1,4 +1,6 @@
 "use client";
+import {useLocale} from "next-intl";
+import {localizedText} from "@/lib/localizedText";
 import Image from "next/image";
 import style from "../../../../public/assets/css/module/aboutussection/members.module.css";
 import { useEffect, useState } from "react";
@@ -32,6 +34,7 @@ const defaultMembers = [
 ];
 
 function Members() {
+  const locale = useLocale();
   const [dbMembers, setDbMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -94,7 +97,7 @@ function Members() {
                   priority
                   className={style.memberImage}
                 />
-                <h5>{member.jobTitle}</h5>
+                <h5>{localizedText(member, "jobTitle", locale)}</h5>
                 <p>{member.fullName}</p>
                 <a
                   href={`mailto:${member.email}`}

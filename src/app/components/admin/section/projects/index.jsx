@@ -106,6 +106,8 @@ export default function ProjectsAdmin() {
               ×
             </button>
             <ProjectForm
+              key={selectedProject?.id ?? "new"}
+              onSaved={handleCloseForm}
               path={selectedProject ? selectedProject.path : "new"}
             />
           </div>

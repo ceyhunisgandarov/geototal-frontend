@@ -1,7 +1,3 @@
-export function generateMetadata({ params }) {
-  return { title: `${params.locale === "ky" ? "Биздин кардарлар" : "Certificates"} - Geototal` };
-}
-
-export default function CertificateUsLayout({ children }) {
-  return <main>{children}</main>;
-}
+import {staticMetadata} from "@/lib/server-seo";
+export function generateMetadata({params}) {return staticMetadata(params.locale,"references","aboutus/references");}
+export default function PageLayout({children}) {return children;}

@@ -29,16 +29,11 @@ const addOrUpdate = (reqLogo, image, id) => {
 const deleteLogo = (id) => {
   const token = Cookies.get("Authorization");
 
-  return createAxiosInstance().put(
-    `admin/delete/collaboration/${id}`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+  return createAxiosInstance().delete(`admin/delete/collaboration/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export default {

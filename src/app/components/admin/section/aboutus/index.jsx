@@ -5,6 +5,8 @@ import style from "../../../../../../public/assets/css/module/admin/aboutus.modu
 import AboutService from "@/app/services/AboutService";
 
 function AboutUsAdmin() {
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [firstContent, setFirstContent] = useState({});
   const [secondContent, setSecondContent] = useState({});
   const [aboutImage, setAboutImage] = useState(null);
@@ -67,17 +69,22 @@ function AboutUsAdmin() {
     setReqAbout((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = () => {
-    AboutService.addOrUpdateAboutInfo(reqAbout, aboutImage, stepAbout)
-      .then((response) => {
-        if (response.data.status.code === 200) {
-          refreshContent(stepAbout);
-        } else console.log("internal exception-", response.data.status.message);
-      })
-      .catch((error) => {
-        console.log("something went worng-", error);
-      });
-    setOpenModal(false);
+  const handleSubmit = async () => {
+    if (saving) return;
+    setSaving(true);
+    setSaveError("");
+    try {
+      const response = await AboutService.addOrUpdateAboutInfo(reqAbout, aboutImage, stepAbout);
+      if (response.data?.status?.code !== 200) {
+        setSaveError(response.data?.status?.message || "Məlumat saxlanmadı. Yenidən cəhd edin.");
+        return;
+      }
+      refreshContent(stepAbout); setOpenModal(false);
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleDelete = () => {
@@ -138,6 +145,7 @@ function AboutUsAdmin() {
           onClick={() => {
             setReqAbout(Object.fromEntries(Object.keys(reqAbout).map((key) => [key, firstContent[key] ?? (key.startsWith("approximately") ? 0 : "")])));
             setAboutImage(null);
+            setSaveError("");
             setOpenModal(true);
             setStepAbout("first");
           }}
@@ -203,6 +211,7 @@ function AboutUsAdmin() {
           onClick={() => {
             setReqAbout(Object.fromEntries(Object.keys(reqAbout).map((key) => [key, secondContent[key] ?? (key.startsWith("approximately") ? 0 : "")])));
             setAboutImage(null);
+            setSaveError("");
             setOpenModal(true);
             setStepAbout("second");
           }}
@@ -333,8 +342,9 @@ function AboutUsAdmin() {
             <label htmlFor="firstImageInput" className={style.imageButton}>
               {firstContent?.imageUrl || aboutImage ? "Change" : "Add"}
             </label>
-            <button onClick={handleSubmit}>Kaydet</button>
-            <button onClick={() => setOpenModal(false)}>Kapat</button>
+            {saveError && <p role="alert" style={{color: "#b91c1c", margin: "8px 0"}}>{saveError}</p>}
+            <button disabled={saving} onClick={handleSubmit}>Kaydet</button>
+            <button disabled={saving} onClick={() => setOpenModal(false)}>Kapat</button>
           </div>
         </div>
       )}

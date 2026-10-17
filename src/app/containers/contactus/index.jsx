@@ -1,3 +1,4 @@
+import PageHeading from "@/app/components/pageheading";
 import Layout from "@/app/components/layout";
 import LayoutSecond from "@/app/components/layout/layoutsecond";
 import Banner from "@/app/components/section/banner";
@@ -7,6 +8,7 @@ function ContactUsContainer({ page }) {
   return (
     <Layout page={page}>
       <Banner page={page} />
+      <PageHeading page="contact" />
       <ContactForm />
     </Layout>
   );

@@ -1,7 +1,3 @@
-export function generateMetadata({ params }) {
-  return { title: `${params.locale === "ky" ? "Долбоор" : "Project"} - Geototal` };
-}
-
-export default function ProjectLayout({ children }) {
-  return <main>{children}</main>;
-}
+import {detailMetadata} from "@/lib/server-seo";
+export async function generateMetadata({params}) {return detailMetadata(params.locale,"project",params.path);}
+export default function DetailLayout({children}) {return children;}

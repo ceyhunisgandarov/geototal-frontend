@@ -7,14 +7,14 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import ProductService from "@/app/services/ProductService";
 
-function ProductList({ selectedCategory }) {
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+function ProductList({ selectedCategory, initialData }) {
+  const [products, setProducts] = useState(initialData ?? []);
+  const [loading, setLoading] = useState(initialData === undefined);
   const locale = useLocale();
   const t = useTranslations("Products");
 
   useEffect(() => {
+    if(initialData !== undefined) {setProducts(initialData); return;}
     setLoading(true);
     ProductService.getProducts()
       .then((response) => {
@@ -26,22 +26,15 @@ function ProductList({ selectedCategory }) {
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [initialData]);
 
-  useEffect(() => {
-    if (selectedCategory) {
-      const filtered = products.filter((p) => p.category === selectedCategory);
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts(products);
-    }
-  }, [selectedCategory, products]);
+  const filteredProducts = selectedCategory ? products.filter(p => p.category === selectedCategory) : products;
 
   const skeletonArray = Array.from({ length: 6 });
 
   return (
     <div className={style.container2}>
-      <h1 className={style.title2}>{t("explore")}</h1>
+      <h2 className={style.title2}>{t("explore")}</h2>
       <p className={style.subtitle}>{t("secondTitle")}</p>
 
       <div className={style.grid2}>
@@ -70,7 +63,7 @@ function ProductList({ selectedCategory }) {
                         ? product.images[0]
                         : "/images/fallback.jpg"
                     }
-                    alt={product.model}
+                    alt={[product.brand, product.model].filter(Boolean).join(" ")}
                     width={300}
                     height={300}
                     sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"

@@ -1,4 +1,5 @@
 "use client";
+import {languageNames} from "@/lib/content-labels";
 import { useDomainLocales } from "@/i18n/domain-locales";
 import styles from "../../../../../public/assets/css/module/layout/modernnavbar.module.css";
 import Image from "next/image";
@@ -83,7 +84,7 @@ export default function ModernNavbar({ page }) {
               <Image
                 className={styles.logoImage}
                 src={logo}
-                alt="Logo"
+                alt="GeoTotal"
                 width={130}
                 height={60}
                 priority
@@ -164,7 +165,7 @@ export default function ModernNavbar({ page }) {
                     src={flag}
                     width={300}
                     height={300}
-                    alt="flag"
+                    alt={languageNames[t("locale")] || "Language"}
                     className={styles.flag}
                   />
                 </div>
@@ -176,7 +177,7 @@ export default function ModernNavbar({ page }) {
                           src={azflag}
                           width={300}
                           height={300}
-                          alt="az-flag"
+                          alt={languageNames.az}
                           className={styles.flag}
                         />
                       </div>
@@ -187,7 +188,7 @@ export default function ModernNavbar({ page }) {
                           src={kyflag}
                           width={300}
                           height={300}
-                          alt="ky-flag"
+                          alt={languageNames.ky}
                           className={styles.flag}
                         />
                       </div>
@@ -198,7 +199,7 @@ export default function ModernNavbar({ page }) {
                           src={enflag}
                           width={300}
                           height={300}
-                          alt="en-flag"
+                          alt={languageNames.en}
                           className={styles.flag}
                         />
                       </div>
@@ -209,7 +210,7 @@ export default function ModernNavbar({ page }) {
                           src={ruflag}
                           width={300}
                           height={300}
-                          alt="ru-flag"
+                          alt={languageNames.ru}
                           className={styles.flag}
                         />
                       </div>
@@ -227,7 +228,7 @@ export default function ModernNavbar({ page }) {
                   src={flag}
                   width={300}
                   height={300}
-                  alt="flag"
+                  alt={languageNames[t("locale")] || "Language"}
                   className={styles.flag}
                 />
               </div>
@@ -239,7 +240,7 @@ export default function ModernNavbar({ page }) {
                         src={azflag}
                         width={300}
                         height={300}
-                        alt="az-flag"
+                        alt={languageNames.az}
                         className={styles.flag}
                       />
                     </div>
@@ -250,7 +251,7 @@ export default function ModernNavbar({ page }) {
                         src={kyflag}
                         width={300}
                         height={300}
-                        alt="ky-flag"
+                        alt={languageNames.ky}
                         className={styles.flag}
                       />
                     </div>
@@ -261,7 +262,7 @@ export default function ModernNavbar({ page }) {
                         src={enflag}
                         width={300}
                         height={300}
-                        alt="en-flag"
+                        alt={languageNames.en}
                         className={styles.flag}
                       />
                     </div>
@@ -272,7 +273,7 @@ export default function ModernNavbar({ page }) {
                         src={ruflag}
                         width={300}
                         height={300}
-                        alt="ru-flag"
+                        alt={languageNames.ru}
                         className={styles.flag}
                       />
                     </div>

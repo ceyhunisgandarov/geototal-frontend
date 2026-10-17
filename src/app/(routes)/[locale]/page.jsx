@@ -1,9 +1,6 @@
-//app/(routes)/[locale]/page.jsx
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import HomeContainer from "@/app/containers/homepage";
-
-export default function HomePage() {
-  const t = useTranslations("Home");
-  return <HomeContainer page="" locale={`${t("locale")}`} />;
+import {getList,getAbout} from "@/lib/server-content";
+export default async function HomePage({params}) {
+ const [services,projects,products,about]=await Promise.all([getList('services'),getList('projects'),getList('products'),getAbout('first')]);
+ return <HomeContainer page="" locale={params.locale} initialData={{services,projects,products,about}} />;
 }

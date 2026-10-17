@@ -1,10 +1,10 @@
 import Layout from "@/app/components/layout";
 import ProductComponent from "@/app/components/productcomponent";
 
-function ProductContainer({ id, page }) {
+function ProductContainer({ id, page, initialData }) {
   return (
     <Layout page={page}>
-      <ProductComponent id={id} />
+      <ProductComponent key={id} id={id} initialData={initialData} />
     </Layout>
   );
 }

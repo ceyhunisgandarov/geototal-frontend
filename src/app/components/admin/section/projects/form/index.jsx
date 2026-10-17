@@ -4,8 +4,13 @@ import { useState, useEffect } from "react";
 import styles from "../../../../../../../public/assets/css/module/admin/formproject.module.css";
 import ProjectService from "@/app/services/ProjectService";
 
-export default function ProjectForm({ path = "new" }) {
+export default function ProjectForm({ path = "new", onSaved }) {
   const [form, setForm] = useState({
+    id: 0,
+    customer: "",
+    projectNameKy: "",
+    referenceNameKy: "",
+    feedBackKy: "",
     projectName: "",
     worksDescription: "",
     worksDescriptionEn: "",
@@ -21,22 +26,29 @@ export default function ProjectForm({ path = "new" }) {
     path: "",
   });
 
+  const [loading, setLoading] = useState(path !== "new");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [loadFailed, setLoadFailed] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [referenceLetter, setReferenceLetter] = useState(null);
 
-  // Eğer path yeni değilse projeyi yükle
   useEffect(() => {
-    if (path !== "new") {
-      ProjectService.getProject(path)
-        .then((response) => {
-          if (response.data.status.code === 200) {
-            setForm(response.data.response);
-          } else {
-            console.error("Project load failed:", response);
-          }
-        })
-        .catch((err) => console.error("Project load error:", err));
-    }
+    if (path === "new") return;
+    let cancelled = false;
+    setLoading(true);
+    setLoadFailed(false);
+    ProjectService.getProject(path)
+      .then(({ data }) => {
+        if (cancelled) return;
+        if (data?.status?.code !== 200 || !data.response?.id) throw new Error("Layihə yüklənmədi.");
+        setForm(data.response);
+      })
+      .catch(() => {
+        if (!cancelled) { setLoadFailed(true); setError("Layihə yüklənmədi. Formu yenidən açın."); }
+      })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, [path]);
 
   const handleChange = (e) => {
@@ -46,23 +58,35 @@ export default function ProjectForm({ path = "new" }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading || saving || loadFailed) return;
+    setSaving(true);
+    setError("");
     try {
       const result = await ProjectService.addOrUpdateProject(
         form,
         imageFile,
-        path,
+        form.id ?? 0,
         referenceLetter
       );
-      if (result.data.status.code !== 200) throw new Error("Project save failed");
-      alert("Project saved successfully!");
+      if (result.data.status.code !== 200 || !result.data.response?.id) {
+        throw new Error(result.data.status.message || "Layihə saxlanmadı.");
+      }
+      setForm(result.data.response);
+      setImageFile(null);
+      setReferenceLetter(null);
+      if (onSaved) onSaved();
     } catch (err) {
       console.error("Project save error:", err);
-      alert("Failed to save project. Check console for details.");
+      setError(err.message || "Layihə saxlanmadı.");
+    } finally {
+      setSaving(false);
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {error && <p role="alert">{error}</p>}
+      <fieldset disabled={loading || saving || loadFailed} style={{border: 0, padding: 0}}>
       <div className={styles.grid}>
         {/* Project Name */}
         <div className={styles.field}>
@@ -73,6 +97,12 @@ export default function ProjectForm({ path = "new" }) {
             value={form.projectName}
             onChange={handleChange}
           />
+        </div>
+
+        <div className={styles.fieldFull}>
+          <label className={styles.label}>Project Name (KY)</label>
+          <input className={styles.input} name="projectNameKy"
+            value={form.projectNameKy ?? ""} onChange={handleChange} />
         </div>
 
         {/* Path */}
@@ -187,6 +217,12 @@ export default function ProjectForm({ path = "new" }) {
           />
         </div>
 
+        <div className={styles.fieldFull}>
+          <label className={styles.label}>Reference (KY)</label>
+          <input className={styles.input} name="referenceNameKy"
+            value={form.referenceNameKy ?? ""} onChange={handleChange} />
+        </div>
+
         {/* Feedbacks */}
         <div className={styles.fieldFull}>
           <label className={styles.label}>Feedback (AZ)</label>
@@ -216,6 +252,12 @@ export default function ProjectForm({ path = "new" }) {
           />
         </div>
 
+        <div className={styles.fieldFull}>
+          <label className={styles.label}>Feedback (KY)</label>
+          <textarea className={styles.textarea} name="feedBackKy"
+            value={form.feedBackKy ?? ""} onChange={handleChange} />
+        </div>
+
         {/****** Reference letter image ******/}
         <div className={styles.field}>
           <label className={styles.label}>Reference Letter</label>
@@ -228,8 +270,9 @@ export default function ProjectForm({ path = "new" }) {
       </div>
 
       <div className={styles.actions}>
-        <button type="submit">Save Project</button>
+        <button type="submit" disabled={loading || saving || loadFailed}>{saving ? "Saxlanır…" : "Save Project"}</button>
       </div>
+      </fieldset>
     </form>
   );
 }

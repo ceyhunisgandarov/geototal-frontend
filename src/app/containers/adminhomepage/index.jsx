@@ -1,4 +1,6 @@
 "use client";
+import BranchContactAdmin from "@/app/components/admin/section/branchcontact";
+import ReferencesAdmin from "@/app/components/admin/section/references";
 import BlogAdmin from "@/app/components/admin/section/blog";
 import AdminCarousel from "@/app/components/admin/section/carousel";
 import { useEffect, useState } from "react";
@@ -83,23 +85,26 @@ function AdminHomePage({ page }) {
           style={{ display: divId === "product" ? "block" : "none" }}
           id="product"
         >
-          <BannerAdmin page="product" />
+          <BannerAdmin page="products" />
           <ProductsAdmin />
         </div>
         <div
           style={{ display: divId === "service" ? "block" : "none" }}
           id="service"
         >
-          <BannerAdmin page="service" />
+          <BannerAdmin page="services" />
           <ServiceAdmin />
         </div>
+        {divId === "references" && <ReferencesAdmin />}
         {divId === "blog" && <BlogAdmin />}
         <div
           style={{ display: divId === "contact" ? "block" : "none" }}
           id="contact"
         >
           <BannerAdmin page="contact" />
+          <h2>Azərbaycan (AZ) əlaqə məlumatları</h2>
           <ContactInfoSection />
+          <BranchContactAdmin />
         </div>
       </div>
     </AdminLayout>

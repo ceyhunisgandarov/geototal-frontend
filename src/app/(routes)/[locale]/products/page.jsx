@@ -1,15 +1,6 @@
-import ProductsContainer from "@/app/containers/products";
-import { useTranslations } from "next-intl";
-
-function ProductsPage() {
-
-  const t = useTranslations("Navbar");
-
-  return (
-    <div>
-      <ProductsContainer page="products" locale={t("locale")}/>
-    </div>
-  );
+import Container from "@/app/containers/products";
+import {getList,getDetail,getAbout} from "@/lib/server-content";
+export default async function Page({params}) {
+ const data=await getList('products');
+ return <Container page="products" locale={params.locale} initialData={data} />;
 }
-
-export default ProductsPage;

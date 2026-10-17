@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import AboutService from "@/app/services/AboutService";
 import { useLocale, useTranslations } from "next-intl";
 
-function AboutUsContent() {
+function AboutUsContent({initialData} = {}) {
   const t = useTranslations("AboutUs");
-  const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState(initialData ?? null);
+  const [loading, setLoading] = useState(initialData === undefined);
 
   useEffect(() => {
+    if(initialData !== undefined) {setContent(initialData); return;}
     AboutService.getAboutInfo("first")
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -27,7 +28,7 @@ function AboutUsContent() {
       .finally(() => {
         setTimeout(() => setLoading(false), 100);
       });
-  }, []);
+  }, [initialData]);
 
   const locale = useLocale();
   const contentTitle = localizedText(content, "title", locale);
@@ -55,7 +56,7 @@ function AboutUsContent() {
           <div className={style.imageWrapper}>
             <Image
               src={content?.imageUrl || "/images/aboutus.png"}
-              alt="About us"
+              alt={contentTitle || contentSecond || "GeoTotal"}
               width={500}
               height={500}
               className={style.aboutImage}

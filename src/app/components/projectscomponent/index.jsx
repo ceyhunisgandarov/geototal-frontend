@@ -7,12 +7,13 @@ import ProjectService from "@/app/services/ProjectService";
 import Image from "next/image";
 import Link from "next/link";
 
-function ProjectsComponent() {
+function ProjectsComponent({initialData} = {}) {
   const t = useTranslations("Projects");
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(initialData ?? []);
+  const [loading, setLoading] = useState(initialData === undefined);
 
   useEffect(() => {
+    if(initialData !== undefined) {setProjects(initialData); return;}
     const fetchProjects = async () => {
       try {
         const response = await ProjectService.getProjects();
@@ -28,7 +29,7 @@ function ProjectsComponent() {
       }
     };
     fetchProjects();
-  }, []);
+  }, [initialData]);
 
   
 

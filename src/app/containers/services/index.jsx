@@ -4,11 +4,11 @@ import ServiceBody from "@/app/components/servicebody";
 
 const imageDrone = "/images/drone-works.jpeg";
 
-function ServicesContainer({ page, locale }) {
+function ServicesContainer({ page, locale, initialData }) {
   return (
     <Layout page={page} locale={locale}>
       <Banner page={page} />
-      <ServiceBody/>
+      <ServiceBody initialData={initialData} />
     </Layout>
   );
 }

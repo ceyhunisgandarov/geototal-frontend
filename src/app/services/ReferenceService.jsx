@@ -13,7 +13,7 @@ const addReference = (image) => {
     formData.append("referenceImage", image);
   }
 
-  return createAxiosInstance().put(
+  return createAxiosInstance().post(
     `admin/add/reference`,
     formData,
     {
@@ -28,16 +28,9 @@ const addReference = (image) => {
 const deleteReference = (id) => {
   const token = Cookies.get("Authorization");
 
-  return createAxiosInstance().put(
-    `admin/delete/reference/${id}`,
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    }
-  );
+  return createAxiosInstance().delete(`admin/delete/reference/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export default {

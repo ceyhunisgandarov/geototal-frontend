@@ -4,7 +4,7 @@ import style from "../../../../public/assets/css/module/homebody/homebody.module
 import Card from "../elements/card";
 import ProductService from "@/app/services/ProductService";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const more = {
   id: 999,
@@ -12,11 +12,12 @@ const more = {
   module: "",
 };
 
-export default function HomeBody() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // <-- Skeleton için
+export default function HomeBody({initialData} = {}) {
+  const [products, setProducts] = useState(initialData ? [...initialData.filter(p=>p.bestseller),...initialData.filter(p=>!p.bestseller)].slice(0,7) : []);
+  const [loading, setLoading] = useState(initialData === undefined); // <-- Skeleton için
   const [cardCount, setCardCount] = useState(7);
 
+  const locale = useLocale();
   const t = useTranslations("Products")
   const contentRef = useRef(null);
 
@@ -28,8 +29,9 @@ export default function HomeBody() {
   };
 
   useEffect(() => {
+    if(initialData !== undefined) {setProducts(initialData ? [...initialData.filter(p=>p.bestseller),...initialData.filter(p=>!p.bestseller)].slice(0,7) : []); return;}
     refreshProduct();
-  }, []);
+  }, [initialData]);
 
   const refreshProduct = () => {
     setLoading(true); // Skeleton başlasın
@@ -79,11 +81,11 @@ export default function HomeBody() {
     <div className={style.wrapper}>
       <div ref={contentRef} className={style.content}>
         <div className={style.sectionTitle}>
-          <h1>{t("title")}</h1>
+          <h2>{t("title")}</h2>
           <span className={style.icon}>
             <Image
               src="/images/icons/products-icon.png"
-              alt="koffee"
+              alt=""
               width={40}
               height={40}
               className={style.iconImg}
@@ -99,9 +101,9 @@ export default function HomeBody() {
             : products
                 .slice(0, cardCount)
                 .map((product, key) => (
-                  <Card product={product} key={key} more={false} locale={t("locale")}/>
+                  <Card product={product} key={key} more={false} locale={locale}/>
                 ))}
-          {!loading && <Card product={more} more={true} moreText={t("more")} locale={t("locale")}/>}
+          {!loading && <Card product={more} more={true} moreText={t("more")} locale={locale}/>}
         </div>
       </div>
     </div>

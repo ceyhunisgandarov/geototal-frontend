@@ -6,16 +6,17 @@ import styles from "../../../../../../public/assets/css/module/certificate/style
 import Image from "next/image";
 
 function CertificateAdmin() {
+  const [deletingId, setDeletingId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
   const [certificates, setCertificates] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
   const [image, setImage] = useState(null);
   const [id, setId] = useState(null);
 
-  const [certificateData, setCertificateData] = useState({
-    title: "",
-    description: "",
-  });
+  const [certificateData, setCertificateData] = useState({ title: "", description: "", titleEn: "", titleRu: "", titleKy: "", descriptionEn: "", descriptionRu: "", descriptionKy: "" });
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     refreshCertificates();
@@ -25,7 +26,7 @@ function CertificateAdmin() {
     CertificateService.getCertificateList()
       .then((res) => {
         if (res.data.status.code === 200) {
-          setCertificates(res.data.response);
+          setCertificates(res.data.response || []);
         }
       })
       .catch(() => {
@@ -34,33 +35,35 @@ function CertificateAdmin() {
   };
 
   const resetForm = () => {
-    setCertificateData({ title: "", description: "" });
+    setCertificateData({ title: "", description: "", titleEn: "", titleRu: "", titleKy: "", descriptionEn: "", descriptionRu: "", descriptionKy: "" });
     setImage(null);
     setId(null);
     setShowForm(false);
   };
 
-  const handleSubmit = () => {
-    CertificateService.addOrUpdateCertificate(certificateData, image, id)
-      .then((res) => {
-        if (res.data.status.code === 200) {
-          setAlert({
-            type: "success",
-            message: "Certificate saved successfully",
-          });
-          refreshCertificates();
-          resetForm();
-        } else {
-          setAlert({ type: "error", message: res.data.status.message });
-        }
-      })
-      .catch(() => {
-        setAlert({ type: "error", message: "Internal server error" });
-      });
+  const handleSubmit = async () => {
+    if (saving) return;
+    setSaving(true); setSaveError("");
+    try {
+      const res = await CertificateService.addOrUpdateCertificate(certificateData, image, id);
+      if (res.data?.status?.code !== 200) {
+        setSaveError(res.data?.status?.message || "Sertifikat saxlanmadı."); return;
+      }
+      refreshCertificates(); resetForm();
+    } catch (error) {
+      setSaveError(error?.response?.data?.status?.message || "Serverlə əlaqə alınmadı. Yenidən cəhd edin.");
+    } finally { setSaving(false); }
   };
 
   const handleEdit = (cert) => {
+    setImage(null); setSaveError("");
     setCertificateData({
+      titleEn: cert.titleEn ?? "",
+      titleRu: cert.titleRu ?? "",
+      titleKy: cert.titleKy ?? "",
+      descriptionEn: cert.descriptionEn ?? "",
+      descriptionRu: cert.descriptionRu ?? "",
+      descriptionKy: cert.descriptionKy ?? "",
       title: cert.title,
       description: cert.description,
     });
@@ -68,12 +71,22 @@ function CertificateAdmin() {
     setShowForm(true);
   };
 
-  const handleDelete = (id) => {
-    if (!confirm("Are you sure?")) return;
-
-    CertificateService.deleteCertificate(id).then(() => {
-      refreshCertificates();
-    });
+  const handleDelete = async (id) => {
+    if (deletingId !== null || !confirm("Bu qeydi silmək istəyirsiniz?")) return;
+    setDeletingId(id);
+    setDeleteError("");
+    try {
+      const { data } = await CertificateService.deleteCertificate(id);
+      if (data?.status?.code !== 200) {
+        setDeleteError(data?.status?.message || "Qeyd silinmədi.");
+        return;
+      }
+      setCertificates(items => items.filter(item => item.id !== id));
+    } catch (error) {
+      setDeleteError(error?.response?.data?.status?.message || "Serverlə əlaqə alınmadı. Yenidən cəhd edin.");
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   return (
@@ -86,11 +99,13 @@ function CertificateAdmin() {
         </div>
       )}
 
-      <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+      <button className={styles.addBtn} onClick={() => { resetForm(); setSaveError(""); setShowForm(true); }}>
         + Add Certificate
       </button>
 
       {/* GRID */}
+      {deleteError && <p role="alert" style={{color: "#b91c1c"}}>{deleteError}</p>}
+      {certificates.length === 0 && <p>Hələ qeyd yoxdur.</p>}
       <div className={styles.grid}>
         {certificates.map((cert) => (
           <div key={cert.id} className={styles.card}>
@@ -109,6 +124,7 @@ function CertificateAdmin() {
             <div className={styles.actions}>
               <button onClick={() => handleEdit(cert)}>Update</button>
               <button
+                disabled={deletingId !== null}
                 onClick={() => handleDelete(cert.id)}
                 className={styles.delete}
               >
@@ -124,7 +140,7 @@ function CertificateAdmin() {
         <div className={styles.form}>
           <input
             type="text"
-            placeholder="Title"
+            placeholder="Title (AZ)"
             value={certificateData.title}
             onChange={(e) =>
               setCertificateData({ ...certificateData, title: e.target.value })
@@ -132,7 +148,7 @@ function CertificateAdmin() {
           />
 
           <textarea
-            placeholder="Description"
+            placeholder="Description (AZ)"
             value={certificateData.description}
             onChange={(e) =>
               setCertificateData({
@@ -142,11 +158,22 @@ function CertificateAdmin() {
             }
           />
 
+          {["En", "Ru", "Ky"].map(language => (
+            <div key={language}>
+              <label>Title ({language.toUpperCase()})</label>
+              <input name={`title${language}`} maxLength={255} value={certificateData[`title${language}`]}
+                onChange={e => setCertificateData(prev => ({...prev, [`title${language}`]: e.target.value}))} />
+              <label>Description ({language.toUpperCase()})</label>
+              <textarea name={`description${language}`} maxLength={255} value={certificateData[`description${language}`]}
+                onChange={e => setCertificateData(prev => ({...prev, [`description${language}`]: e.target.value}))} />
+            </div>
+          ))}
           <input type="file" onChange={(e) => setImage(e.target.files[0])} />
 
+          {saveError && <p role="alert" style={{color: "#b91c1c"}}>{saveError}</p>}
           <div className={styles.formActions}>
-            <button onClick={handleSubmit}>Save</button>
-            <button onClick={resetForm} className={styles.cancel}>
+            <button disabled={saving} onClick={handleSubmit}>Save</button>
+            <button disabled={saving} onClick={resetForm} className={styles.cancel}>
               Cancel
             </button>
           </div>

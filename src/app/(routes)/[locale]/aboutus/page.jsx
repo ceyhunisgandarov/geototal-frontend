@@ -1,14 +1,6 @@
-import AboutUsContainer from "@/app/containers/aboutus";
-import { useTranslations } from "next-intl";
-
-function AboutUsPage() {
-  const t = useTranslations("Navbar");
-
-  return (
-    <div>
-      <AboutUsContainer page="aboutus" locale={t("locale")} />
-    </div>
-  );
+import Container from "@/app/containers/aboutus";
+import {getList,getDetail,getAbout} from "@/lib/server-content";
+export default async function Page({params}) {
+ const data=await Promise.all([getAbout('first'),getAbout('second')]);
+ return <Container page="aboutus" locale={params.locale} initialData={data} />;
 }
-
-export default AboutUsPage;

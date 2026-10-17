@@ -1,4 +1,5 @@
 "use client";
+import { carouselHref } from "@/lib/carouselLink";
 import { localizedText } from "@/lib/localizedText";
 
 
@@ -153,7 +154,7 @@ export default function ModernCarousel() {
                 width={1500}
                 height={500}
                 className={styles.bgImg}
-                alt={slide.title}
+                alt=""
               />
             )}
 
@@ -167,7 +168,7 @@ export default function ModernCarousel() {
                 width={1500}
                 height={500}
                 className={styles.bgImg}
-                alt={slide.title}
+                alt=""
               />
             )}
 
@@ -182,18 +183,18 @@ export default function ModernCarousel() {
               }`}
             >
               <div className={styles.textContent}>
-                <h3>{localizedText(slide, "title", locale)}</h3>
-                <h1>{localizedText(slide, "slogan", locale)}</h1>
+                <p className={styles.eyebrow}>{localizedText(slide, "title", locale)}</p>
+                <h2>{localizedText(slide, "slogan", locale)}</h2>
                 <div className={styles.pContent}>
                   <p>{localizedText(slide, "description", locale)}</p>
                 </div>
                 <div className={styles.bannerBtn}>
-                  <Link
+                  {carouselHref(slide.link, locale) && <Link
                     className={styles.bannerLink}
-                    href={`${locale}/${slide.link}`}
+                    href={carouselHref(slide.link, locale)}
                   >
                     <span>{t("more")}</span>
-                  </Link>
+                  </Link>}
                 </div>
               </div>
             </div>
