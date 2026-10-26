@@ -23,7 +23,7 @@ test('Canonical origin cannot be supplied by arbitrary host',()=>{
 });
 test('Detail metadata uses record text and preserves same path in every language',()=>{
  const m=pageMetadata({host:'www.geototal.az',locale:'az',page:'services',path:'services/lidar',title:'LiDAR çəkilişi',description:'<p>LiDAR\n xidməti</p>'});
- assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages.en,'https://www.geototal.az/en/services/lidar');assert.equal(cleanDescription('a'.repeat(300)).length,180);
+ assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages.en,'https://www.geototal.az/en/services/lidar');assert.equal(cleanDescription('a'.repeat(300)).length,300);
 });
 function server(fetch){
  const source=readFileSync(new URL('../src/lib/server-seo.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('export function','function').replaceAll('export async function','async function');
@@ -40,4 +40,21 @@ test('Product and project descriptions match API field names',async()=>{
 });
 test('API failure is not hidden behind successful detail metadata',async()=>{
  const f=server(async()=>{throw Error('timeout')});await assert.rejects(()=>f('az','service','missing'),/temporarily unavailable/);
+});
+
+test('Automatic summaries end at sentence boundaries instead of cutting words',()=>{
+ const first='GeoTotal provides accurate surveying services.';
+ assert.equal(cleanDescription(first+' '+('Further technical information '.repeat(20))+'.'),first);
+ const long='This is '+('a detailed description '.repeat(12))+'.';
+ assert.equal(cleanDescription(long),long);
+});
+test('Explicit SEO description is preserved and whitespace falls back to body',()=>{
+ const custom='Complete custom description '.repeat(10).trim()+'.';
+ assert.equal(pageMetadata({seoDescription:custom,description:'Body.'}).description,custom);
+ assert.equal(pageMetadata({seoDescription:'  ',description:'Body.'}).description,'Body.');
+});
+for(const locale of ['az','en','ru','ky']) test(`Explicit ${locale} metadata comes from its own field`,async()=>{
+ const suffix=locale[0].toUpperCase()+locale.slice(1);
+ const f=server(async()=>({ok:true,json:async()=>({status:{code:200},response:{brand:'Device',model:'One',seoDescriptionAz:'AZ only.',['seoDescription'+suffix]:'Selected description.',descriptionAz:'Body text.'}})}));
+ assert.equal((await f(locale,'product','7')).description,'Selected description.');
 });

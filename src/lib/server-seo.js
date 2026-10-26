@@ -16,5 +16,7 @@ export async function detailMetadata(locale,kind,id) {
  const record=await getDetail(kind,id);
  const title=kind==='service'?localizedText(record,'serviceName',locale):kind==='project'?localizedText(record,'projectName',locale):[record?.brand,record?.model].filter(Boolean).join(' ');
  const description=kind==='service'?localizedText(record?.serviceParts?.slice().sort((a,b)=>a.id-b.id)[0],'serviceText',locale,'serviceTextAz'):kind==='project'?localizedText(record,'worksDescription',locale):localizedText(record,'description',locale,'descriptionAz');
- return pageMetadata({host:getRequestHost(headers()),locale,page,path,title,description});
+ const suffix = {az:'Az',en:'En',ru:'Ru',ky:'Ky'}[locale] || 'Az';
+ const seoDescription = record?.[`seoDescription${suffix}`];
+ return pageMetadata({host:getRequestHost(headers()),locale,page,path,title,description,seoDescription});
 }

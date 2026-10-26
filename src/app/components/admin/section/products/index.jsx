@@ -21,6 +21,11 @@ function ProductsAdmin() {
     model: "",
     category: "",
     descriptionAz: "",
+      seoDescriptionAz: "",
+      seoDescriptionEn: "",
+      seoDescriptionRu: "",
+      seoDescriptionKy: "",
+
     descriptionEn: "",
     descriptionRu: "",
     descriptionKy: "",
@@ -97,6 +102,11 @@ function ProductsAdmin() {
         model: product.model || "",
         category: ({TOTAL_STATION: "TS", AUTO_LEVEL: "AL", ACCESSORIES: "ACC", CONTROLLER: "CONT", SOFTWARE: "SOFT", LASER_SCANNER: "LS"})[product.category] || product.category || "",
         descriptionAz: product.descriptionAz || "",
+      seoDescriptionAz: product.seoDescriptionAz ?? "",
+      seoDescriptionEn: product.seoDescriptionEn ?? "",
+      seoDescriptionRu: product.seoDescriptionRu ?? "",
+      seoDescriptionKy: product.seoDescriptionKy ?? "",
+
         descriptionEn: product.descriptionEn || "",
         descriptionRu: product.descriptionRu || "",
         descriptionKy: product.descriptionKy || "",
@@ -121,6 +131,11 @@ function ProductsAdmin() {
         model: "",
         category: "",
         descriptionAz: "",
+      seoDescriptionAz: "",
+      seoDescriptionEn: "",
+      seoDescriptionRu: "",
+      seoDescriptionKy: "",
+
         descriptionEn: "",
         descriptionRu: "",
         descriptionKy: "",
@@ -224,6 +239,19 @@ function ProductsAdmin() {
                 }
               />
 
+<div style={{gridColumn: "1 / -1", width: "100%"}}>
+ <h3>SEO təsviri</h3>
+ <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
+ {['Az', 'En', 'Ru', 'Ky'].map(language => (
+  <label key={language} style={{display: "block", marginBottom: 12}}>
+   SEO təsviri ({language.toUpperCase()})
+   <textarea name={`seoDescription${language}`} rows={3} style={{display: "block", width: "100%"}}
+    value={reqProduct[`seoDescription${language}`] ?? ""}
+    onChange={e => setReqProduct(previous => ({...previous, [`seoDescription${language}`]: e.target.value}))} />
+   <small>{(reqProduct[`seoDescription${language}`] ?? "").length} simvol · Qısa təsvir tövsiyə olunur; mətn avtomatik kəsilmir.</small>
+  </label>
+ ))}
+</div>
               <select
                 value={reqProduct.category} // <-- burayı değiştir
                 onChange={(e) =>

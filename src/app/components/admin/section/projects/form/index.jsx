@@ -9,6 +9,8 @@ export default function ProjectForm({ path = "new", onSaved }) {
     id: 0,
     customer: "",
     projectNameKy: "",
+    projectNameEn: "",
+    projectNameRu: "",
     referenceNameKy: "",
     feedBackKy: "",
     projectName: "",
@@ -105,6 +107,14 @@ export default function ProjectForm({ path = "new", onSaved }) {
             value={form.projectNameKy ?? ""} onChange={handleChange} />
         </div>
 
+
+        {['En', 'Ru'].map(language => (
+          <div className={styles.fieldFull} key={language}>
+            <label className={styles.label}>Project Name ({language.toUpperCase()})</label>
+            <input className={styles.input} name={`projectName${language}`}
+              value={form[`projectName${language}`] ?? ""} onChange={handleChange} />
+          </div>
+        ))}
         {/* Path */}
         <div className={styles.field}>
           <label className={styles.label}>Project Slug (path)</label>
@@ -127,6 +137,19 @@ export default function ProjectForm({ path = "new", onSaved }) {
           />
         </div>
 
+<div style={{gridColumn: "1 / -1", width: "100%"}}>
+ <h3>SEO təsviri</h3>
+ <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
+ {['Az', 'En', 'Ru', 'Ky'].map(language => (
+  <label key={language} style={{display: "block", marginBottom: 12}}>
+   SEO təsviri ({language.toUpperCase()})
+   <textarea name={`seoDescription${language}`} rows={3} style={{display: "block", width: "100%"}}
+    value={form[`seoDescription${language}`] ?? ""}
+    onChange={e => setForm(previous => ({...previous, [`seoDescription${language}`]: e.target.value}))} />
+   <small>{(form[`seoDescription${language}`] ?? "").length} simvol · Qısa təsvir tövsiyə olunur; mətn avtomatik kəsilmir.</small>
+  </label>
+ ))}
+</div>
         {/* Description AZ */}
         <div className={styles.fieldFull}>
           <label className={styles.label}>Description (AZ)</label>

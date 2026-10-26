@@ -41,10 +41,24 @@ export function seoSite(host = '', locale = 'az') {
  const kg = ['geototal.kg', 'www.geototal.kg'].includes(hostname) || (['localhost', '127.0.0.1', ''].includes(hostname) && locale === 'ky');
  return kg ? {origin:'https://www.geototal.kg', locales:['ky','en','ru'], defaultLocale:'ky', country:{en:'Kyrgyzstan',ru:'Кыргызстан',ky:'Кыргызстан'}} : {origin:'https://www.geototal.az',locales:['az','en','ru'],defaultLocale:'az',country:{az:'Azərbaycan',en:'Azerbaijan',ru:'Азербайджан'}};
 }
-export function cleanDescription(value) {
- return typeof value === 'string' ? value.replace(/<[^>]*>/g, ' ').replace(/\s+/g,' ').trim().slice(0, 180) : '';
+export function cleanDescription(value, summarize = true) {
+ if (typeof value !== 'string') return '';
+ const text = value.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+  .replace(/<[^>]*>/g, ' ').replace(/&nbsp;|&#160;/gi, ' ')
+  .replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#39;/g, "'")
+  .replace(/\s+/g, ' ').trim();
+ if (!summarize || text.length <= 180) return text;
+ // A complete sentence is preferable to enforcing an arbitrary character cap.
+ const sentences = Array.from(new Intl.Segmenter(undefined, {granularity: 'sentence'}).segment(text), part => part.segment.trim());
+ let result = sentences[0] || text;
+ for (const sentence of sentences.slice(1)) {
+  if (result.length + sentence.length + 1 > 180) break;
+  result += ' ' + sentence;
+ }
+ return result;
 }
-export function pageMetadata({host,locale='az',page='home',path='',title,description}) {
+export function pageMetadata({host,locale='az',page='home',path='',title,description,seoDescription}) {
  const site=seoSite(host,locale);
  const language=site.locales.includes(locale)?locale:site.defaultLocale;
  const texts=copy[language][page] || copy[language].home;
@@ -54,7 +68,7 @@ export function pageMetadata({host,locale='az',page='home',path='',title,descrip
  languages['x-default']=url(site.defaultLocale);
  return {
   title: `${title || texts[0]} | GeoTotal${page==='home' ? ' '+site.country[language] : ''}`,
-  description:cleanDescription(description) || texts[1],
+  description:cleanDescription(seoDescription, false) || cleanDescription(description) || texts[1],
   alternates:{canonical:url(language),languages}
  };
 }

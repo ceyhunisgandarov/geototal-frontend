@@ -16,6 +16,11 @@ function ServiceAdmin() {
   const [id, setId] = useState(0);
   const [currentService, setCurrentService] = useState({
     serviceName: "",
+      seoDescriptionAz: "",
+      seoDescriptionEn: "",
+      seoDescriptionRu: "",
+      seoDescriptionKy: "",
+
     serviceNameEn: "",
     serviceNameRu: "",
     serviceNameKy: "",
@@ -56,6 +61,11 @@ function ServiceAdmin() {
     setId(0);
     setCurrentService({
       serviceName: "",
+      seoDescriptionAz: "",
+      seoDescriptionEn: "",
+      seoDescriptionRu: "",
+      seoDescriptionKy: "",
+
       serviceNameEn: "",
       serviceNameRu: "",
       serviceNameKy: "",
@@ -71,6 +81,11 @@ function ServiceAdmin() {
     setIsAdd(false);
     setCurrentService({
       serviceName: service.serviceName,
+      seoDescriptionAz: service.seoDescriptionAz ?? "",
+      seoDescriptionEn: service.seoDescriptionEn ?? "",
+      seoDescriptionRu: service.seoDescriptionRu ?? "",
+      seoDescriptionKy: service.seoDescriptionKy ?? "",
+
       serviceNameEn: service.serviceNameEn,
       serviceNameRu: service.serviceNameRu,
       serviceNameKy: service.serviceNameKy,
@@ -138,6 +153,11 @@ function ServiceAdmin() {
     try {
       const reqService = {
         serviceName: currentService.serviceName,
+        seoDescriptionAz: currentService.seoDescriptionAz,
+        seoDescriptionEn: currentService.seoDescriptionEn,
+        seoDescriptionRu: currentService.seoDescriptionRu,
+        seoDescriptionKy: currentService.seoDescriptionKy,
+
         serviceNameEn: currentService.serviceNameEn,
         serviceNameRu: currentService.serviceNameRu,
         serviceNameKy: currentService.serviceNameKy,
@@ -209,6 +229,19 @@ function ServiceAdmin() {
           <div className={style.customModal} onClick={(e) => e.stopPropagation()}>
             <h2>{isAdd ? "Add Service" : "Update Service"}</h2>
 
+<div style={{gridColumn: "1 / -1", width: "100%"}}>
+ <h3>SEO təsviri</h3>
+ <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
+ {['Az', 'En', 'Ru', 'Ky'].map(language => (
+  <label key={language} style={{display: "block", marginBottom: 12}}>
+   SEO təsviri ({language.toUpperCase()})
+   <textarea name={`seoDescription${language}`} rows={3} style={{display: "block", width: "100%"}}
+    value={currentService[`seoDescription${language}`] ?? ""}
+    onChange={e => setCurrentService(previous => ({...previous, [`seoDescription${language}`]: e.target.value}))} />
+   <small>{(currentService[`seoDescription${language}`] ?? "").length} simvol · Qısa təsvir tövsiyə olunur; mətn avtomatik kəsilmir.</small>
+  </label>
+ ))}
+</div>
             <div className={style.formGroup}>
               <input
                 type="text"

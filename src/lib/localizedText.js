@@ -10,5 +10,5 @@ export function localizedText(record, field, locale, azField = field) {
 }
 
 export function localizedProjectName(project, locale) {
-  return locale === "ky" ? localizedText(project, "projectName", locale) : project?.projectName || "";
+  return localizedText(project, "projectName", locale);
 }
