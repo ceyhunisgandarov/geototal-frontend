@@ -1,0 +1,35 @@
+{
+  "type": "project",
+  "path": "tugh-restoration",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "Tuğ və ətraf kəndlərin bərpası layihəsində LiDAR və topoqrafik ölçmələr",
+    "worksDescription": "<p><strong>Yer:</strong> Xocavənd rayonu Tuğ kəndi və layihəyə daxil olan ətraf kəndlər</p><p><strong>Layihə üzrə şirkət:</strong> SP Architects</p><h2>Görülən işlər</h2><p>DJI Matrice 350 RTK və Zenmuse L2 sistemi ilə ərazinin lazer skanlaması aparılıb. Toplanmış məlumatlar DJI Terra proqramında emal edilib, nöqtə buludu təsnif olunub və relyef haqqında məlumatlar hazırlanıb. Ağacların koordinatları və sayı müəyyən edilib.</p><h2>Nəticə</h2><p>LiDAR məlumatları əsasında ərazinin 3D modeli hazırlanıb. Bərpa layihəsinin işlənməsi üçün ərazi məlumatları, ağacların koordinatları və say hesabatı formalaşdırılıb.</p><p><a href=\"/az/services/lidar\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "Tuğ kəndinin bərpası üçün LiDAR ölçmələri | GeoTotal",
+    "seoDescriptionAz": "Tuğ və ətraf kəndlərin bərpası layihəsində dronla LiDAR çəkilişi, relyefin ölçülməsi, 3D model və ağacların koordinatlarının müəyyən edilməsi.",
+    "projectNameEn": "LiDAR and topographic surveys for the restoration of Tugh and surrounding villages",
+    "worksDescriptionEn": "<p><strong>Location:</strong> Tugh village and surrounding project villages, Khojavend district</p><p><strong>Project company:</strong> SP Architects</p><h2>Work performed</h2><p>GeoTotal performed drone LiDAR and topographic surveying for the restoration project. DJI Matrice 350 RTK and Zenmuse L2 were used for laser scanning. Data were processed in DJI Terra, the point cloud was classified and terrain information prepared. Tree coordinates and counts were determined.</p><h2>Results</h2><p>A 3D model was produced from LiDAR data. Terrain information, tree coordinates and a count report supported restoration planning.</p><p><a href=\"/en/services/lidar\">Related services</a></p>",
+    "seoTitleEn": "LiDAR and topographic surveys for the restoration of Tugh and surrounding villages | GeoTotal",
+    "seoDescriptionEn": "A 3D model was produced from LiDAR data.",
+    "projectNameRu": "LiDAR и топографическая съёмка для восстановления Туга и окружающих сёл",
+    "worksDescriptionRu": "<p><strong>Место:</strong> Село Туг и окружающие сёла проекта, Ходжавендский район</p><p><strong>Компания по проекту:</strong> SP Architects</p><h2>Выполненные работы</h2><p>GeoTotal выполнила воздушную LiDAR-съёмку и топографические работы для проекта восстановления. Лазерное сканирование проводилось DJI Matrice 350 RTK и Zenmuse L2. Данные обработаны в DJI Terra, облако точек классифицировано, подготовлена информация о рельефе. Определены координаты и количество деревьев.</p><h2>Результат</h2><p>По данным LiDAR создана 3D-модель. Для разработки восстановления подготовлены сведения о территории, координаты деревьев и количественный отчёт.</p><p><a href=\"/ru/services/lidar\">Связанные услуги</a></p>",
+    "seoTitleRu": "LiDAR и топографическая съёмка для восстановления Туга и окружающих сёл | GeoTotal",
+    "seoDescriptionRu": "По данным LiDAR создана 3D-модель.",
+    "projectNameKy": "Туг жана айланасындагы айылдарды калыбына келтирүү үчүн LiDAR жана топографиялык өлчөөлөр",
+    "worksDescriptionKy": "<p><strong>Жайгашкан жери:</strong> Хожавенд районунун Туг айылы жана долбоордогу айланасындагы айылдар</p><p><strong>Долбоор боюнча компания:</strong> SP Architects</p><h2>Аткарылган иштер</h2><p>GeoTotal калыбына келтирүү долбоору үчүн дрондук LiDAR жана топографиялык өлчөөлөрдү жүргүзгөн. Лазердик сканерлөө DJI Matrice 350 RTK жана Zenmuse L2 менен аткарылган. Маалыматтар DJI Terra программасында иштетилип, чекиттер булуту классификацияланып, рельеф жөнүндө маалымат даярдалган. Дарактардын координаталары жана саны аныкталган.</p><h2>Натыйжа</h2><p>LiDAR маалыматтарынан 3D модель түзүлгөн. Калыбына келтирүүнү пландоо үчүн жер маалыматтары, дарактардын координаталары жана сандык отчёт даярдалган.</p><p><a href=\"/ky/services/lidar\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "Туг жана айланасындагы айылдарды калыбына келтирүү үчүн LiDAR жана топографиялык өлчөөлөр | GeoTotal",
+    "seoDescriptionKy": "LiDAR маалыматтарынан 3D модель түзүлгөн."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

@@ -62,3 +62,15 @@ for (const locale of ["az", "en", "ru", "ky"]) test(`Homepage product cards use 
  assert.equal(cards.length,2);
  assert.ok(cards.every(n=>n.props.locale===locale));
 });
+
+test('Project body H1 headings become H2 while the page keeps one H1',()=>{
+ const h=mount('src/app/components/section/project/index.jsx',{}, {initialData:{projectName:'Project',worksDescription:'<H1 class="intro">Overview</H1><p>Content</p><h2>Results</h2>',imageUrl:'/image.png'}},'az');
+ const tree=h.render();assert.equal(nodes(tree).filter(n=>n.type==='h1').length,1);
+ const html=find(tree,n=>n.props?.dangerouslySetInnerHTML).props.dangerouslySetInnerHTML.__html;
+ assert.equal(html,'<h2 class="intro">Overview</h2><p>Content</p><h2>Results</h2>');
+});
+test('Product cards identify the device and catalog decoration has empty alt',()=>{
+ const file='src/app/components/elements/card/index.jsx';const product={id:7,brand:'Geomax',model:'Zoom50',images:['/device.png']};
+ const tree=mount(file,{}, {product,locale:'az'}).render();assert.equal(find(tree,n=>n.type==='next/image').props.alt,'Geomax Zoom50');
+ const more=mount(file,{}, {product,locale:'az',more:true}).render();assert.equal(find(more,n=>n.type==='next/image').props.alt,'');
+});

@@ -13,7 +13,9 @@ function ProjectSection({ project, initialData }) {
   const [projectContent, setProjectContent] = useState(initialData ?? {});
   const router = useRouter();
   const locale = useLocale();
-  const contentFromDb = localizedText(projectContent, "worksDescription", locale);
+  // The page title owns H1; headings embedded in project body start at H2.
+  const contentFromDb = localizedText(projectContent, "worksDescription", locale)
+    .replace(/<h1(?=[\s>])/gi, "<h2").replace(/<\/h1\s*>/gi, "</h2>");
   const referenceName = localizedText(projectContent, "referenceName", locale);
   const feedback = localizedText(projectContent, "feedBack", locale);
   const isLoading = !projectContent || !projectContent.projectName;

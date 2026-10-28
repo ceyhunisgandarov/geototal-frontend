@@ -1,0 +1,35 @@
+{
+  "type": "project",
+  "path": "azersu",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "Azərsu inzibati binası layihəsində geodeziya işləri",
+    "worksDescription": "<p><strong>Yer:</strong> Bakı</p><p><strong>Layihə üzrə şirkət:</strong> HALLA Engineering &amp; Construction Corp.</p><h2>Görülən işlər</h2><p>Ərazinin sərhədləri plan sənədləri ilə müqayisə edilib, su və kanalizasiya xətlərinin koordinatları dəqiqləşdirilib. Bina girişləri, dayanacaq və yol əlaqələri üzrə ölçmələr aparılıb. Bina oxları yerə köçürülüb, mərtəbə hündürlükləri verilib və konstruktiv elementlərin mövqeyi yoxlanılıb.</p><h2>Nəticə</h2><p>İcra ölçmələri əsasında texniki hesabat hazırlanıb. Rəqəmsal topoqrafik plan və koordinat cədvəlləri sifarişçiyə təqdim edilib.</p><p><a href=\"/az/services/control-and-outsourcing\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "Azərsu inzibati binası geodeziya işləri | GeoTotal",
+    "seoDescriptionAz": "Azərsu inzibati binasında topoqrafik planalma, bina oxlarının yerə köçürülməsi, tikinti nəzarəti və icra ölçmələri üzrə GeoTotal işləri.",
+    "projectNameEn": "Surveying at the Azersu administrative building",
+    "worksDescriptionEn": "<p><strong>Location:</strong> Baku</p><p><strong>Project company:</strong> HALLA Engineering &amp; Construction Corp.</p><h2>Work performed</h2><p>GeoTotal performed site topographic surveys, setting out and construction surveying supervision. Site boundaries were compared with planning documents and water and sewer coordinates checked. Entrances, parking and road connections were surveyed. Building axes were set out, floor levels transferred and structural positions verified.</p><h2>Results</h2><p>As-built measurements supported a technical report. Digital topographic plans and coordinate schedules were delivered to the client.</p><p><a href=\"/en/services/control-and-outsourcing\">Related services</a></p>",
+    "seoTitleEn": "Surveying at the Azersu administrative building | GeoTotal",
+    "seoDescriptionEn": "As-built measurements supported a technical report.",
+    "projectNameRu": "Геодезические работы в административном здании Azersu",
+    "worksDescriptionRu": "<p><strong>Место:</strong> Баку</p><p><strong>Компания по проекту:</strong> HALLA Engineering &amp; Construction Corp.</p><h2>Выполненные работы</h2><p>GeoTotal выполняла топографическую съёмку, вынос проекта в натуру и контроль строительства. Границы участка сравнивались с планами, уточнялись координаты водопровода и канализации. Проведены измерения входов, парковки и дорожных связей. Вынесены оси здания, переданы отметки этажей и проверены положения конструкций.</p><h2>Результат</h2><p>По исполнительным измерениям подготовлен технический отчёт. Заказчику переданы цифровой топографический план и ведомости координат.</p><p><a href=\"/ru/services/control-and-outsourcing\">Связанные услуги</a></p>",
+    "seoTitleRu": "Геодезические работы в административном здании Azersu | GeoTotal",
+    "seoDescriptionRu": "По исполнительным измерениям подготовлен технический отчёт.",
+    "projectNameKy": "Azersu административдик имаратындагы геодезиялык иштер",
+    "worksDescriptionKy": "<p><strong>Жайгашкан жери:</strong> Баку</p><p><strong>Долбоор боюнча компания:</strong> HALLA Engineering &amp; Construction Corp.</p><h2>Аткарылган иштер</h2><p>GeoTotal топографиялык съёмка, долбоорду жерге көчүрүү жана курулуш көзөмөлүн аткарган. Аянттын чектери пландарга салыштырылып, суу жана канализация координаталары такталган. Кире бериштер, унаа токтотуучу жай жана жол байланыштары өлчөнгөн. Имараттын октору көчүрүлүп, кабат бийиктиктери берилген жана конструкциялардын абалы текшерилген.</p><h2>Натыйжа</h2><p>Аткаруу өлчөөлөрүнүн негизинде техникалык отчёт даярдалган. Кардарга санариптик топографиялык план жана координата таблицалары берилген.</p><p><a href=\"/ky/services/control-and-outsourcing\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "Azersu административдик имаратындагы геодезиялык иштер | GeoTotal",
+    "seoDescriptionKy": "Аткаруу өлчөөлөрүнүн негизинде техникалык отчёт даярдалган."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

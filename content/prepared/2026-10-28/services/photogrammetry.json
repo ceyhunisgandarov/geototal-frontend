@@ -1,0 +1,61 @@
+{
+  "type": "service",
+  "path": "photogrammetry",
+  "source": "GeoTotal_Xidmet_Metnleri_AZ-1.docx",
+  "request": {
+    "serviceName": "Fotoqrammetriya və rəqəmsal xəritəçəkmə",
+    "seoTitleAz": "Fotoqrammetriya və rəqəmsal xəritəçəkmə | GeoTotal",
+    "seoDescriptionAz": "Dronla uzununa və eninə örtməni təmin edən aerofotoşəkillər çəkilir.",
+    "serviceNameEn": "Photogrammetry and digital mapping",
+    "seoTitleEn": "Photogrammetry and digital mapping | GeoTotal",
+    "seoDescriptionEn": "Drone imagery is captured with the required forward and side overlap.",
+    "serviceNameRu": "Фотограмметрия и цифровое картографирование",
+    "seoTitleRu": "Фотограмметрия и цифровое картографирование | GeoTotal",
+    "seoDescriptionRu": "Аэрофотосъёмка дроном выполняется с необходимым продольным и поперечным перекрытием.",
+    "serviceNameKy": "Фотограмметрия жана санариптик карта түзүү",
+    "seoTitleKy": "Фотограмметрия жана санариптик карта түзүү | GeoTotal",
+    "seoDescriptionKy": "Дрон менен узунунан жана туурасынан талап кылынган кабатталууну камсыз кылган сүрөттөр тартылат."
+  },
+  "parts": [
+    {
+      "partName": "İş üsulu",
+      "serviceTextAz": "<p>Dronla uzununa və eninə örtməni təmin edən aerofotoşəkillər çəkilir. Texniki tapşırığa uyğun olaraq RTK və ya PPK məlumatlarından, yerüstü dayaq nöqtələrindən istifadə edilir. Şəkillər fotoqrammetrik proqram təminatında emal olunaraq ortofoto və üçölçülü məlumatlar hazırlanır.</p>",
+      "partNameEn": "Method",
+      "serviceTextEn": "<p>Drone imagery is captured with the required forward and side overlap. RTK or PPK data and ground control points are used as specified in the technical brief. Photogrammetric processing produces orthophotos and three-dimensional data.</p>",
+      "partNameRu": "Метод работы",
+      "serviceTextRu": "<p>Аэрофотосъёмка дроном выполняется с необходимым продольным и поперечным перекрытием. По техническому заданию применяются данные RTK или PPK и наземные опорные точки. Фотограмметрическая обработка позволяет получить ортофотопланы и трёхмерные данные.</p>",
+      "partNameKy": "Иш ыкмасы",
+      "serviceTextKy": "<p>Дрон менен узунунан жана туурасынан талап кылынган кабатталууну камсыз кылган сүрөттөр тартылат. Техникалык тапшырмага ылайык RTK же PPK маалыматтары жана жер үстүндөгү таяныч чекиттер колдонулат. Фотограмметриялык иштетүү аркылуу ортофото жана үч өлчөмдүү маалымат даярдалат.</p>"
+    },
+    {
+      "partName": "Dəqiqlik və keyfiyyətə nəzarət",
+      "serviceTextAz": "<p>Uçuş hündürlüyü və görüntünün yerüstü piksel ölçüsü (GSD) tələb olunan nəticəyə uyğun seçilir. GSD ölçmə dəqiqliyi ilə eyni göstərici deyil. Nəticələrin plan və hündürlük üzrə dəqiqliyi müstəqil nəzarət nöqtələri ilə qiymətləndirilir.</p>",
+      "partNameEn": "Accuracy and quality control",
+      "serviceTextEn": "<p>Flight altitude and ground sampling distance (GSD) are selected for the required result. GSD is not the same as measurement accuracy. Horizontal and vertical accuracy are assessed using independent check points.</p>",
+      "partNameRu": "Точность и контроль качества",
+      "serviceTextRu": "<p>Высота полёта и размер проекции пикселя на местность (GSD) выбираются под требуемый результат. GSD не равен точности измерений. Точность в плане и по высоте оценивается по независимым контрольным точкам.</p>",
+      "partNameKy": "Тактык жана сапатты көзөмөлдөө",
+      "serviceTextKy": "<p>Учуу бийиктиги жана пикселдин жердеги өлчөмү (GSD) керектүү натыйжага жараша тандалат. GSD өлчөө тактыгына барабар эмес. Пландык жана бийиктик тактыгы көз карандысыз контролдук чекиттер менен бааланат.</p>"
+    },
+    {
+      "partName": "Təhvil verilən materiallar",
+      "serviceTextAz": "<p>Razılaşdırılmış tərkibdə GeoTIFF formatında ortofoto, sıx nöqtə buludu, rəqəmsal səth modeli, 3D model və həcm hesablamaları təqdim olunur. Rəqəmsal relyef modelinin hazırlanması yer səthinin görüntülərdə görünməsindən və əlavə yerüstü ölçmələrin yetərliliyindən asılıdır.</p>",
+      "partNameEn": "Deliverables",
+      "serviceTextEn": "<p>Agreed deliverables include a GeoTIFF orthophoto, dense point cloud, digital surface model, 3D model and volume calculations. Producing a digital terrain model depends on the visibility of the ground in the imagery and the adequacy of supplementary ground measurements.</p>",
+      "partNameRu": "Передаваемые материалы",
+      "serviceTextRu": "<p>Передаются согласованные материалы: ортофотоплан GeoTIFF, плотное облако точек, цифровая модель поверхности, 3D-модель и расчёты объёмов. Возможность построения цифровой модели рельефа зависит от видимости земли на снимках и достаточности дополнительных наземных измерений.</p>",
+      "partNameKy": "Тапшырылуучу материалдар",
+      "serviceTextKy": "<p>Макулдашылган курамда GeoTIFF ортофотосу, тыгыз чекиттер булуту, беттин санариптик модели, 3D модель жана көлөм эсептөөлөрү берилет. Рельефтин санариптик моделин түзүү жер бетинин сүрөттөрдө көрүнүшүнө жана кошумча жер үстүндөгү өлчөөлөрдүн жетиштүүлүгүнө көз каранды.</p>"
+    }
+  ],
+  "reviewNotes": [],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

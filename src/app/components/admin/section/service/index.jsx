@@ -6,6 +6,7 @@ import ServicesService from "@/app/services/ServicesService";
 import AdminIcon from "../icon"; // AdminIcon default export olmalıdır
 
 function ServiceAdmin() {
+  const [reviewNotes,setReviewNotes]=useState([]);
   const [deleteError, setDeleteError] = useState("");
   const [deletingId, setDeletingId] = useState(null);
   const [saveError, setSaveError] = useState("");
@@ -16,10 +17,10 @@ function ServiceAdmin() {
   const [id, setId] = useState(0);
   const [currentService, setCurrentService] = useState({
     serviceName: "",
-      seoDescriptionAz: "",
-      seoDescriptionEn: "",
-      seoDescriptionRu: "",
-      seoDescriptionKy: "",
+      seoDescriptionAz: "", seoTitleAz: "",
+      seoDescriptionEn: "", seoTitleEn: "",
+      seoDescriptionRu: "", seoTitleRu: "",
+      seoDescriptionKy: "", seoTitleKy: "",
 
     serviceNameEn: "",
     serviceNameRu: "",
@@ -61,10 +62,10 @@ function ServiceAdmin() {
     setId(0);
     setCurrentService({
       serviceName: "",
-      seoDescriptionAz: "",
-      seoDescriptionEn: "",
-      seoDescriptionRu: "",
-      seoDescriptionKy: "",
+      seoDescriptionAz: "", seoTitleAz: "",
+      seoDescriptionEn: "", seoTitleEn: "",
+      seoDescriptionRu: "", seoTitleRu: "",
+      seoDescriptionKy: "", seoTitleKy: "",
 
       serviceNameEn: "",
       serviceNameRu: "",
@@ -81,10 +82,10 @@ function ServiceAdmin() {
     setIsAdd(false);
     setCurrentService({
       serviceName: service.serviceName,
-      seoDescriptionAz: service.seoDescriptionAz ?? "",
-      seoDescriptionEn: service.seoDescriptionEn ?? "",
-      seoDescriptionRu: service.seoDescriptionRu ?? "",
-      seoDescriptionKy: service.seoDescriptionKy ?? "",
+      seoDescriptionAz: service.seoDescriptionAz ?? "", seoTitleAz: service.seoTitleAz ?? "",
+      seoDescriptionEn: service.seoDescriptionEn ?? "", seoTitleEn: service.seoTitleEn ?? "",
+      seoDescriptionRu: service.seoDescriptionRu ?? "", seoTitleRu: service.seoTitleRu ?? "",
+      seoDescriptionKy: service.seoDescriptionKy ?? "", seoTitleKy: service.seoTitleKy ?? "",
 
       serviceNameEn: service.serviceNameEn,
       serviceNameRu: service.serviceNameRu,
@@ -100,7 +101,7 @@ function ServiceAdmin() {
   const closeModal = () => setModalOpen(false);
 
   const addPart = () => {
-    if (currentService.serviceParts.length >= 3) return;
+    if (currentService.serviceParts.length >= 12) return;
     setCurrentService((prev) => ({
       ...prev,
       serviceParts: [
@@ -153,10 +154,10 @@ function ServiceAdmin() {
     try {
       const reqService = {
         serviceName: currentService.serviceName,
-        seoDescriptionAz: currentService.seoDescriptionAz,
-        seoDescriptionEn: currentService.seoDescriptionEn,
-        seoDescriptionRu: currentService.seoDescriptionRu,
-        seoDescriptionKy: currentService.seoDescriptionKy,
+        seoDescriptionAz: currentService.seoDescriptionAz, seoTitleAz: currentService.seoTitleAz,
+        seoDescriptionEn: currentService.seoDescriptionEn, seoTitleEn: currentService.seoTitleEn,
+        seoDescriptionRu: currentService.seoDescriptionRu, seoTitleRu: currentService.seoTitleRu,
+        seoDescriptionKy: currentService.seoDescriptionKy, seoTitleKy: currentService.seoTitleKy,
 
         serviceNameEn: currentService.serviceNameEn,
         serviceNameRu: currentService.serviceNameRu,
@@ -228,8 +229,23 @@ function ServiceAdmin() {
         <div className={style.customModalOverlay} onClick={closeModal}>
           <div className={style.customModal} onClick={(e) => e.stopPropagation()}>
             <h2>{isAdd ? "Add Service" : "Update Service"}</h2>
+            {reviewNotes.length>0 && <p style={{background:"#fff3cd",padding:12}}>{reviewNotes.join(" ")}</p>}
+      <label>Hazırlanmış xidmət mətnini aç <input type="file" accept="application/json,.json" onChange={async e=>{
+             try {const data=JSON.parse(await e.target.files[0].text());if(data.type!=='service' || data.path!==currentService.pathName || !Array.isArray(data.parts) || data.parts.length>12)throw Error();
+              const allowed=['serviceName','serviceNameEn','serviceNameRu','serviceNameKy',...['Az','En','Ru','Ky'].flatMap(l=>['seoTitle'+l,'seoDescription'+l])];
+              const values=Object.fromEntries(allowed.filter(k=>typeof data.request[k]==='string').map(k=>[k,data.request[k]]));
+              const existing=[...currentService.serviceParts].sort((a,b)=>(a.id||0)-(b.id||0));
+              const keys=['partName','partNameEn','partNameRu','partNameKy','serviceTextAz','serviceTextEn','serviceTextRu','serviceTextKy'];
+              const parts=data.parts.map((part,i)=>({...existing[i],...Object.fromEntries(keys.map(k=>[k,typeof part[k]==='string'?part[k]:''])),serviceImageFile:null}));
+              setCurrentService(previous=>({...previous,...values,serviceParts:parts}));setSaveError('');setReviewNotes(data.reviewNotes || []);
+             }catch{setSaveError('Bu xidmətə uyğun hazırlıq faylı seçin.');}
+            }}/></label>
+
 
 <div style={{gridColumn: "1 / -1", width: "100%"}}>
+<h3>SEO başlığı</h3>
+ {['Az','En','Ru','Ky'].map(language => <label key={language} style={{display:'block'}}>SEO başlığı ({language.toUpperCase()})
+ <input value={currentService[`seoTitle${language}`] ?? ''} onChange={e=>setCurrentService(previous=>({...previous,[`seoTitle${language}`]:e.target.value}))} /></label>)}
  <h3>SEO təsviri</h3>
  <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
  {['Az', 'En', 'Ru', 'Ky'].map(language => (
@@ -343,7 +359,7 @@ function ServiceAdmin() {
               </div>
             ))}
 
-            {currentService.serviceParts.length < 3 && (
+            {currentService.serviceParts.length < 12 && (
               <button type="button" onClick={addPart}>Add Part</button>
             )}
 

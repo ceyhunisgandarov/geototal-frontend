@@ -1,0 +1,36 @@
+{
+  "type": "project",
+  "path": "panorama",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "Panorama Park layihəsində geodeziya işləri",
+    "worksDescription": "<p><strong>Layihə üzrə şirkət:</strong> Qorqud Assosiasiyası MMC</p><h2>Görülən işlər</h2><p>İstinad şəbəkəsi qurularaq koordinat sisteminə bağlanıb. Binaların, yolların və abadlıq sahələrinin icra ölçmələri aparılıb. Layihə oxları yerə köçürülüb, hündürlük nişanları verilib, kommunikasiya xətləri plan üzərində göstərilib. Tikinti prosesində nəzarət ölçmələri və deformasiya müşahidələri yerinə yetirilib.</p><h2>Nəticə</h2><p>Ərazinin üçölçülü relyef modeli hazırlanıb. Topoqrafik plan və xəritələr DWG, DXF və KMZ formatlarında təqdim edilib.</p><p><a href=\"/az/services/control-and-outsourcing\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "Panorama Park topoqrafik planalma | GeoTotal",
+    "seoDescriptionAz": "Panorama Park yaşayış kompleksində topoqrafik ölçmələr, geodeziya istinad şəbəkəsi, icra ölçmələri və rəqəmsal relyef modeli.",
+    "projectNameEn": "Surveying at Panorama Park",
+    "worksDescriptionEn": "<p><strong>Project company:</strong> Qorqud Assosiasiyası MMC</p><h2>Work performed</h2><p>GeoTotal provided topographic surveys and construction surveying support. A control network was connected to the coordinate system. Buildings, roads and landscaped areas were surveyed as built. Design axes and elevation marks were set out, utilities mapped, and construction checks and deformation observations performed.</p><h2>Results</h2><p>A 3D terrain model was created. Topographic plans and maps were delivered in DWG, DXF and KMZ formats.</p><p><a href=\"/en/services/control-and-outsourcing\">Related services</a></p>",
+    "seoTitleEn": "Surveying at Panorama Park | GeoTotal",
+    "seoDescriptionEn": "A 3D terrain model was created.",
+    "projectNameRu": "Геодезические работы в Panorama Park",
+    "worksDescriptionRu": "<p><strong>Компания по проекту:</strong> Qorqud Assosiasiyası MMC</p><h2>Выполненные работы</h2><p>GeoTotal выполняла топографическую съёмку и геодезическое обеспечение строительства. Опорная сеть привязана к системе координат. Проведена исполнительная съёмка зданий, дорог и благоустройства. Вынесены оси и отметки, нанесены коммуникации, выполнены контрольные измерения и наблюдения за деформациями.</p><h2>Результат</h2><p>Создана трёхмерная модель рельефа. Топографические планы и карты переданы в форматах DWG, DXF и KMZ.</p><p><a href=\"/ru/services/control-and-outsourcing\">Связанные услуги</a></p>",
+    "seoTitleRu": "Геодезические работы в Panorama Park | GeoTotal",
+    "seoDescriptionRu": "Создана трёхмерная модель рельефа.",
+    "projectNameKy": "Panorama Park долбоорундагы геодезиялык иштер",
+    "worksDescriptionKy": "<p><strong>Долбоор боюнча компания:</strong> Qorqud Assosiasiyası MMC</p><h2>Аткарылган иштер</h2><p>GeoTotal топографиялык съёмка жана курулуштун геодезиялык камсыздоосун жүргүзгөн. Таяныч тармагы координата системасына байланыштырылган. Имараттар, жолдор жана көрктөндүрүү аймактары аткаруу өлчөөлөрүнөн өткөн. Октор жана бийиктик белгилери берилген, коммуникациялар планга түшүрүлгөн, контролдук өлчөөлөр жана деформация байкоолору жүргүзүлгөн.</p><h2>Натыйжа</h2><p>Рельефтин үч өлчөмдүү модели түзүлгөн. Топографиялык пландар жана карталар DWG, DXF жана KMZ форматтарында берилген.</p><p><a href=\"/ky/services/control-and-outsourcing\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "Panorama Park долбоорундагы геодезиялык иштер | GeoTotal",
+    "seoDescriptionKy": "Рельефтин үч өлчөмдүү модели түзүлгөн."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır.",
+    "Mənbədə yer göstərilmədiyinə görə yer sətri daxil edilməyib."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

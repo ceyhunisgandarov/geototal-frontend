@@ -76,6 +76,7 @@
   list-style-type: disc;
 }
 
+.textContent h2,
 .textContent h3 {
   font-size: 20px;
   font-weight: 700;

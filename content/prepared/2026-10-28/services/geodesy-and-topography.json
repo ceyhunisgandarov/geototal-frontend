@@ -1,0 +1,73 @@
+{
+  "type": "service",
+  "path": "geodesy-and-topography",
+  "source": "GeoTotal_Xidmet_Metnleri_AZ-1.docx",
+  "request": {
+    "serviceName": "Geodeziya və topoqrafiya xidmətləri",
+    "seoTitleAz": "Geodeziya və topoqrafiya xidmətləri | GeoTotal",
+    "seoDescriptionAz": "Ərazinin xüsusiyyətlərinə və texniki tapşırığa uyğun olaraq GNSS RTK, elektron taxeometr və nivelir ilə ölçmələr aparılır.",
+    "serviceNameEn": "Geodetic and topographic surveying",
+    "seoTitleEn": "Geodetic and topographic surveying | GeoTotal",
+    "seoDescriptionEn": "GNSS RTK, total stations and levels are selected according to the terrain and the technical brief.",
+    "serviceNameRu": "Геодезические и топографические работы",
+    "seoTitleRu": "Геодезические и топографические работы | GeoTotal",
+    "seoDescriptionRu": "В зависимости от местности и технического задания применяются GNSS RTK, электронные тахеометры и нивелиры.",
+    "serviceNameKy": "Геодезия жана топография кызматтары",
+    "seoTitleKy": "Геодезия жана топография кызматтары | GeoTotal",
+    "seoDescriptionKy": "Жердин өзгөчөлүгүнө жана техникалык тапшырмага жараша GNSS RTK, электрондук тахеометр жана нивелир колдонулат."
+  },
+  "parts": [
+    {
+      "partName": "İş üsulu",
+      "serviceTextAz": "<p>Ərazinin xüsusiyyətlərinə və texniki tapşırığa uyğun olaraq GNSS RTK, elektron taxeometr və nivelir ilə ölçmələr aparılır. Geodeziya istinad şəbəkəsi qurulur, relyef, tikililər və görünən kommunikasiya elementləri ölçülərək topoqrafik planda göstərilir.</p>",
+      "partNameEn": "Method",
+      "serviceTextEn": "<p>GNSS RTK, total stations and levels are selected according to the terrain and the technical brief. A survey control network is established; terrain, structures and visible utility features are surveyed and shown on the topographic plan.</p>",
+      "partNameRu": "Метод работы",
+      "serviceTextRu": "<p>В зависимости от местности и технического задания применяются GNSS RTK, электронные тахеометры и нивелиры. Создаётся геодезическая опорная сеть, выполняется съёмка рельефа, сооружений и видимых элементов коммуникаций для отображения на топографическом плане.</p>",
+      "partNameKy": "Иш ыкмасы",
+      "serviceTextKy": "<p>Жердин өзгөчөлүгүнө жана техникалык тапшырмага жараша GNSS RTK, электрондук тахеометр жана нивелир колдонулат. Геодезиялык таяныч тармагы түзүлүп, рельеф, курулуштар жана коммуникациялардын көрүнгөн элементтери өлчөнүп, топографиялык планга түшүрүлөт.</p>"
+    },
+    {
+      "partName": "Dəqiqlik və keyfiyyətə nəzarət",
+      "serviceTextAz": "<p>Ölçmə dəqiqliyi topoqrafik planın miqyasına və layihənin tələblərinə uyğun müəyyən edilir. Plan və hündürlük üzrə ölçmə xətaları nəzarət ölçmələri ilə qiymətləndirilir. Koordinat və hündürlük sistemləri işə başlamazdan əvvəl sifarişçi ilə razılaşdırılır.</p>",
+      "partNameEn": "Accuracy and quality control",
+      "serviceTextEn": "<p>The required accuracy is determined by the plan scale and project requirements. Horizontal and vertical errors are assessed through check measurements. Coordinate and height reference systems are agreed with the client before work starts.</p>",
+      "partNameRu": "Точность и контроль качества",
+      "serviceTextRu": "<p>Требуемая точность определяется масштабом плана и требованиями проекта. Ошибки в плане и по высоте оцениваются контрольными измерениями. Системы координат и высот согласовываются с заказчиком до начала работ.</p>",
+      "partNameKy": "Тактык жана сапатты көзөмөлдөө",
+      "serviceTextKy": "<p>Талап кылынган тактык пландын масштабына жана долбоордун талаптарына жараша аныкталат. Пландык жана бийиктик каталары контролдук өлчөөлөр менен бааланат. Координата жана бийиктик системалары иш башталганга чейин кардар менен макулдашылат.</p>"
+    },
+    {
+      "partName": "Təhvil verilən materiallar",
+      "serviceTextAz": "<p>Razılaşdırılmış tərkibdə 1:500, 1:1000 və ya 1:2000 miqyaslı topoqrafik plan, DWG və PDF faylları, koordinat və hündürlük cədvəlləri, rəqəmsal relyef modeli və horizontallar təqdim olunur.</p>",
+      "partNameEn": "Deliverables",
+      "serviceTextEn": "<p>The agreed deliverables may include topographic plans at 1:500, 1:1000 or 1:2000, DWG and PDF files, coordinate and elevation schedules, a digital terrain model and contours.</p>",
+      "partNameRu": "Передаваемые материалы",
+      "serviceTextRu": "<p>В согласованном составе передаются топографические планы масштаба 1:500, 1:1000 или 1:2000, файлы DWG и PDF, ведомости координат и высот, цифровая модель рельефа и горизонтали.</p>",
+      "partNameKy": "Тапшырылуучу материалдар",
+      "serviceTextKy": "<p>Макулдашылган курамда 1:500, 1:1000 же 1:2000 масштабындагы топографиялык план, DWG жана PDF файлдары, координата жана бийиктик таблицалары, рельефтин санариптик модели жана горизонталдар берилет.</p>"
+    },
+    {
+      "partName": "Layihə nümunəsi",
+      "serviceTextAz": "<p>160 MVt gücündə günəş elektrik stansiyası və giriş yolu layihəsi üzrə təxminən 400 hektar ərazidə və yol dəhlizində topoqrafik ölçmələr aparılıb. GNSS və dronla LiDAR ölçmələri əsasında 1:1000 miqyaslı topoqrafik plan, rəqəmsal relyef və səth modelləri hazırlanıb, relyef 0,5 metr kəsim hündürlüyü ilə horizontallarla təsvir edilib.</p>",
+      "partNameEn": "Project example",
+      "serviceTextEn": "<p>For a 160 MW solar power plant and its access road, topographic surveying covered approximately 400 hectares and the road corridor. GNSS and drone LiDAR data were used to prepare a 1:1000 plan, terrain and surface models, and contours at a 0.5 m interval.</p>",
+      "partNameRu": "Пример проекта",
+      "serviceTextRu": "<p>Для солнечной электростанции мощностью 160 МВт и подъездной дороги топографические работы охватили около 400 гектаров и дорожный коридор. По данным GNSS и воздушного LiDAR подготовлены план масштаба 1:1000, модели рельефа и поверхности, горизонтали с сечением 0,5 м.</p>",
+      "partNameKy": "Долбоордун мисалы",
+      "serviceTextKy": "<p>Кубаттуулугу 160 МВт болгон күн электр станциясы жана кирүүчү жолу үчүн болжол менен 400 гектар аянтта жана жол тилкесинде топографиялык өлчөөлөр жүргүзүлгөн. GNSS жана дрондук LiDAR маалыматтарынан 1:1000 масштабындагы план, рельеф жана бет моделдери, 0,5 м кесилиш бийиктигиндеги горизонталдар даярдалган.</p>"
+    }
+  ],
+  "reviewNotes": [
+    "Günəş stansiyası nümunəsi: 160 MVt, təxminən 400 ha, 1:1000, 0,5 m və 5,5 sm RMSE göstəricilərini layihə hesabatı ilə təsdiqləyin."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

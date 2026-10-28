@@ -5,6 +5,7 @@ import styles from "../../../../../../../public/assets/css/module/admin/formproj
 import ProjectService from "@/app/services/ProjectService";
 
 export default function ProjectForm({ path = "new", onSaved }) {
+  const [reviewNotes,setReviewNotes]=useState([]);
   const [form, setForm] = useState({
     id: 0,
     customer: "",
@@ -89,6 +90,14 @@ export default function ProjectForm({ path = "new", onSaved }) {
     <form className={styles.form} onSubmit={handleSubmit}>
       {error && <p role="alert">{error}</p>}
       <fieldset disabled={loading || saving || loadFailed} style={{border: 0, padding: 0}}>
+      {reviewNotes.length>0 && <p style={{background:"#fff3cd",padding:12}}>{reviewNotes.join(" ")}</p>}
+      <label>Hazırlanmış layihə mətnini aç <input type="file" accept="application/json,.json" onChange={async e=>{
+       try {const data=JSON.parse(await e.target.files[0].text());if(data.type!=='project' || data.path!==form.path)throw Error();
+        const allowed=['projectName','projectNameEn','projectNameRu','projectNameKy','worksDescription','worksDescriptionEn','worksDescriptionRu','worksDescriptionKy',...['Az','En','Ru','Ky'].flatMap(l=>['seoTitle'+l,'seoDescription'+l])];
+        const values=Object.fromEntries(allowed.filter(k=>typeof data.request[k]==='string').map(k=>[k,data.request[k]]));
+        setForm(previous=>({...previous,...values}));setError('');setReviewNotes(data.reviewNotes || []);
+       }catch{setError('Bu layihəyə uyğun hazırlıq faylı seçin.');}
+      }}/></label>
       <div className={styles.grid}>
         {/* Project Name */}
         <div className={styles.field}>
@@ -138,6 +147,9 @@ export default function ProjectForm({ path = "new", onSaved }) {
         </div>
 
 <div style={{gridColumn: "1 / -1", width: "100%"}}>
+<h3>SEO başlığı</h3>
+ {['Az','En','Ru','Ky'].map(language => <label key={language} style={{display:'block'}}>SEO başlığı ({language.toUpperCase()})
+ <input value={form[`seoTitle${language}`] ?? ''} onChange={e=>setForm(previous=>({...previous,[`seoTitle${language}`]:e.target.value}))} /></label>)}
  <h3>SEO təsviri</h3>
  <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
  {['Az', 'En', 'Ru', 'Ky'].map(language => (

@@ -1,0 +1,35 @@
+{
+  "type": "project",
+  "path": "aghbendrailway",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "Horadiz Ağbənd dəmir yolu layihəsində geodeziya işləri",
+    "worksDescription": "<p><strong>Yer:</strong> Horadiz–Ağbənd dəmir yolu dəhlizi</p><p><strong>Layihə üzrə şirkət:</strong> KALYON RSY</p><h2>Görülən işlər</h2><p>Mövcud relyef, hündürlük nişanları, tikililər, mühəndis kommunikasiya xətləri və digər yerüstü obyektlər ölçülərək plan üzərində göstərilib. Sahədə geodeziya istinad məntəqələri qurulub, plan və hündürlük əsasları yaradılıb.</p><h2>Nəticə</h2><p>Toplanmış topoqrafik məlumatlar layihələndirmə üçün təqdim edilib. Tikinti ölçmələrində istifadə olunması üçün koordinat bazası formalaşdırılıb.</p><p><a href=\"/az/services/control-and-outsourcing\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "Horadiz–Ağbənd dəmir yolu topoqrafiya işləri | GeoTotal",
+    "seoDescriptionAz": "Horadiz–Ağbənd dəmir yolu layihəsində topoqrafik planalma, relyefin ölçülməsi, geodeziya istinad məntəqələri və koordinat bazasının yaradılması.",
+    "projectNameEn": "Surveying for the Horadiz–Aghband railway",
+    "worksDescriptionEn": "<p><strong>Location:</strong> Horadiz–Aghband railway corridor</p><p><strong>Project company:</strong> KALYON RSY</p><h2>Work performed</h2><p>GeoTotal carried out topographic surveying and established survey control. Existing terrain, elevation marks, structures, utility lines and other above-ground objects were measured and mapped. Survey reference stations and horizontal and vertical control were established on site.</p><h2>Results</h2><p>Topographic information was supplied for design. A coordinate framework was created for use in construction measurements.</p><p><a href=\"/en/services/control-and-outsourcing\">Related services</a></p>",
+    "seoTitleEn": "Surveying for the Horadiz–Aghband railway | GeoTotal",
+    "seoDescriptionEn": "Topographic information was supplied for design.",
+    "projectNameRu": "Геодезические работы на железной дороге Горадиз–Агбенд",
+    "worksDescriptionRu": "<p><strong>Место:</strong> Коридор железной дороги Горадиз–Агбенд</p><p><strong>Компания по проекту:</strong> KALYON RSY</p><h2>Выполненные работы</h2><p>GeoTotal выполнила топографическую съёмку и создала геодезическую опорную основу. Измерены и нанесены на план рельеф, высотные отметки, сооружения, коммуникации и другие наземные объекты. На местности созданы опорные пункты, плановая и высотная основа.</p><h2>Результат</h2><p>Топографические сведения переданы для проектирования. Сформирована координатная база для строительных измерений.</p><p><a href=\"/ru/services/control-and-outsourcing\">Связанные услуги</a></p>",
+    "seoTitleRu": "Геодезические работы на железной дороге Горадиз–Агбенд | GeoTotal",
+    "seoDescriptionRu": "Топографические сведения переданы для проектирования.",
+    "projectNameKy": "Горадиз–Агбенд темир жолундагы геодезиялык иштер",
+    "worksDescriptionKy": "<p><strong>Жайгашкан жери:</strong> Горадиз–Агбенд темир жол тилкеси</p><p><strong>Долбоор боюнча компания:</strong> KALYON RSY</p><h2>Аткарылган иштер</h2><p>GeoTotal топографиялык съёмка жасап, геодезиялык таяныч негизин түзгөн. Рельеф, бийиктик белгилери, курулуштар, коммуникациялар жана жер үстүндөгү башка объекттер өлчөнүп, планга түшүрүлгөн. Аянтта таяныч пункттар, пландык жана бийиктик негиздер түзүлгөн.</p><h2>Натыйжа</h2><p>Топографиялык маалыматтар долбоорлоо үчүн берилген. Курулуш өлчөөлөрүндө колдонулуучу координаталык база түзүлгөн.</p><p><a href=\"/ky/services/control-and-outsourcing\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "Горадиз–Агбенд темир жолундагы геодезиялык иштер | GeoTotal",
+    "seoDescriptionKy": "Топографиялык маалыматтар долбоорлоо үчүн берилген."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

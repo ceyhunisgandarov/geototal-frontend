@@ -1,0 +1,61 @@
+{
+  "type": "service",
+  "path": "calibration",
+  "source": "GeoTotal_Xidmet_Metnleri_AZ-1.docx",
+  "request": {
+    "serviceName": "Geodeziya avadanlıqlarının kalibrlənməsi",
+    "seoTitleAz": "Geodeziya avadanlıqlarının kalibrlənməsi | GeoTotal",
+    "seoDescriptionAz": "Elektron taxeometr, nivelir və GNSS avadanlıqlarında cihazın növünə uyğun yoxlamalar və ölçmələr aparılır.",
+    "serviceNameEn": "Surveying equipment calibration",
+    "seoTitleEn": "Surveying equipment calibration | GeoTotal",
+    "seoDescriptionEn": "Checks and measurements appropriate to the instrument type are performed on total stations, levels and GNSS equipment.",
+    "serviceNameRu": "Калибровка геодезического оборудования",
+    "seoTitleRu": "Калибровка геодезического оборудования | GeoTotal",
+    "seoDescriptionRu": "Для электронных тахеометров, нивелиров и GNSS-оборудования выполняются проверки и измерения, соответствующие типу прибора.",
+    "serviceNameKy": "Геодезиялык жабдууларды калибрлөө",
+    "seoTitleKy": "Геодезиялык жабдууларды калибрлөө | GeoTotal",
+    "seoDescriptionKy": "Электрондук тахеометрлер, нивелирлер жана GNSS жабдуулары аспаптын түрүнө ылайык текшерилип, өлчөөлөр жүргүзүлөт."
+  },
+  "parts": [
+    {
+      "partName": "İş üsulu",
+      "serviceTextAz": "<p>Elektron taxeometr, nivelir və GNSS avadanlıqlarında cihazın növünə uyğun yoxlamalar və ölçmələr aparılır. Tətbiq olunan metoda uyğun olaraq bucaq, məsafə, hündürlük fərqi və koordinat ölçmələrinin nəticələri qiymətləndirilir.</p>",
+      "partNameEn": "Method",
+      "serviceTextEn": "<p>Checks and measurements appropriate to the instrument type are performed on total stations, levels and GNSS equipment. Depending on the method, angle, distance, height-difference and coordinate measurements are assessed.</p>",
+      "partNameRu": "Метод работы",
+      "serviceTextRu": "<p>Для электронных тахеометров, нивелиров и GNSS-оборудования выполняются проверки и измерения, соответствующие типу прибора. В зависимости от метода оцениваются результаты измерения углов, расстояний, превышений и координат.</p>",
+      "partNameKy": "Иш ыкмасы",
+      "serviceTextKy": "<p>Электрондук тахеометрлер, нивелирлер жана GNSS жабдуулары аспаптын түрүнө ылайык текшерилип, өлчөөлөр жүргүзүлөт. Колдонулган ыкмага жараша бурч, аралык, бийиктик айырмасы жана координата өлчөөлөрүнүн натыйжалары бааланат.</p>"
+    },
+    {
+      "partName": "Dəqiqlik və keyfiyyətə nəzarət",
+      "serviceTextAz": "<p>Ölçmə xətaları müəyyən edilir və uyğun hallarda istehsalçının texniki göstəriciləri ilə müqayisə olunur. Kalibrləmə zamanı tətbiq olunan etalonlar, ölçmə şəraiti və ölçmə qeyri müəyyənliyi nəticələrin qiymətləndirilməsində nəzərə alınır. Aşkar edilmiş xətalar və aparılmış tənzimləmələr sənədləşdirilir.</p>",
+      "partNameEn": "Accuracy and quality control",
+      "serviceTextEn": "<p>Measurement errors are determined and, where applicable, compared with the manufacturer&#x27;s specifications. Reference standards, measurement conditions and uncertainty are considered when assessing calibration results. Identified errors and adjustments are documented.</p>",
+      "partNameRu": "Точность и контроль качества",
+      "serviceTextRu": "<p>Определяются ошибки измерений и, в применимых случаях, сравниваются с характеристиками производителя. При оценке результатов учитываются эталоны, условия измерений и неопределённость. Выявленные ошибки и выполненные регулировки документируются.</p>",
+      "partNameKy": "Тактык жана сапатты көзөмөлдөө",
+      "serviceTextKy": "<p>Өлчөө каталары аныкталып, тиешелүү учурларда өндүрүүчүнүн техникалык көрсөткүчтөрү менен салыштырылат. Эталондор, өлчөө шарттары жана белгисиздик эске алынат. Табылган каталар жана жасалган жөндөөлөр документтештирилет.</p>"
+    },
+    {
+      "partName": "Təhvil verilən materiallar",
+      "serviceTextAz": "<p>Görülən xidmətə uyğun ölçmə protokolu, yoxlama hesabatı və ya kalibrləmə sertifikatı təqdim olunur. Sənədlərdə yoxlanılan parametrlər və ölçmə nəticələri göstərilir. Cihazın istifadəsi və növbəti yoxlanması üzrə tövsiyələr verilir.</p>",
+      "partNameEn": "Deliverables",
+      "serviceTextEn": "<p>Depending on the service performed, a measurement protocol, inspection report or calibration certificate is issued. Documents identify the parameters checked and the measurement results. Recommendations are provided for instrument use and subsequent checks.</p>",
+      "partNameRu": "Передаваемые материалы",
+      "serviceTextRu": "<p>В зависимости от оказанной услуги выдаётся протокол измерений, отчёт проверки или сертификат калибровки. В документах указываются проверенные параметры и результаты измерений. Предоставляются рекомендации по эксплуатации и последующим проверкам прибора.</p>",
+      "partNameKy": "Тапшырылуучу материалдар",
+      "serviceTextKy": "<p>Көрсөтүлгөн кызматка жараша өлчөө протоколу, текшерүү отчёту же калибрлөө сертификаты берилет. Документтерде текшерилген параметрлер жана өлчөө натыйжалары көрсөтүлөт. Аспапты колдонуу жана кийинки текшерүү боюнча сунуштар берилет.</p>"
+    }
+  ],
+  "reviewNotes": [],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

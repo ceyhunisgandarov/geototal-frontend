@@ -1,0 +1,35 @@
+{
+  "type": "project",
+  "path": "sofaz",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "SOFAZ Tower layihəsində geodeziya işləri",
+    "worksDescription": "<p><strong>Yer:</strong> Bakı</p><p><strong>Layihə üzrə şirkət:</strong> AZBESIX</p><h2>Görülən işlər</h2><p>İstinad şəbəkəsi koordinat sisteminə bağlanıb. Bina və ətraf infrastruktur üzrə icra ölçmələri aparılıb, layihə oxları yerə köçürülüb və hündürlük nişanları verilib. Mühəndis kommunikasiya xətləri müəyyən edilərək plan üzərində göstərilib.</p><h2>Nəticə</h2><p>1:500 və 1:1000 miqyaslı rəqəmsal topoqrafik planlar və ərazinin 3D relyef modeli hazırlanıb. Tikinti mərhələsində nəzarət ölçmələri ilə layihənin geodeziya təminatı həyata keçirilib.</p><p><a href=\"/az/services/control-and-outsourcing\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "SOFAZ Tower geodeziya və topoqrafiya işləri | GeoTotal",
+    "seoDescriptionAz": "SOFAZ Tower layihəsində geodeziya istinad şəbəkəsi, tikinti ölçmələri, 1:500 və 1:1000 topoqrafik planlar və 3D relyef modeli.",
+    "projectNameEn": "Surveying at SOFAZ Tower",
+    "worksDescriptionEn": "<p><strong>Location:</strong> Baku</p><p><strong>Project company:</strong> AZBESIX</p><h2>Work performed</h2><p>GeoTotal carried out topographic surveys, control-network establishment and construction surveying supervision. The control network was tied to the coordinate system. As-built measurements covered the building and surrounding infrastructure; design axes and elevation marks were set out and utilities mapped.</p><h2>Results</h2><p>Digital topographic plans at 1:500 and 1:1000 and a 3D terrain model were prepared. Check measurements supported construction surveying control.</p><p><a href=\"/en/services/control-and-outsourcing\">Related services</a></p>",
+    "seoTitleEn": "Surveying at SOFAZ Tower | GeoTotal",
+    "seoDescriptionEn": "Digital topographic plans at 1:500 and 1:1000 and a 3D terrain model were prepared.",
+    "projectNameRu": "Геодезические работы в SOFAZ Tower",
+    "worksDescriptionRu": "<p><strong>Место:</strong> Баку</p><p><strong>Компания по проекту:</strong> AZBESIX</p><h2>Выполненные работы</h2><p>GeoTotal выполняла топографическую съёмку, создание опорной сети и геодезический контроль строительства. Сеть привязана к системе координат. Проведена исполнительная съёмка здания и инфраструктуры, вынесены проектные оси и высоты, коммуникации отображены на плане.</p><h2>Результат</h2><p>Подготовлены цифровые топографические планы масштаба 1:500 и 1:1000 и 3D-модель рельефа. Контрольные измерения обеспечивали геодезическое сопровождение строительства.</p><p><a href=\"/ru/services/control-and-outsourcing\">Связанные услуги</a></p>",
+    "seoTitleRu": "Геодезические работы в SOFAZ Tower | GeoTotal",
+    "seoDescriptionRu": "Подготовлены цифровые топографические планы масштаба 1:500 и 1:1000 и 3D-модель рельефа.",
+    "projectNameKy": "SOFAZ Tower долбоорундагы геодезиялык иштер",
+    "worksDescriptionKy": "<p><strong>Жайгашкан жери:</strong> Баку</p><p><strong>Долбоор боюнча компания:</strong> AZBESIX</p><h2>Аткарылган иштер</h2><p>GeoTotal топографиялык съёмка, таяныч тармагын түзүү жана курулуштун геодезиялык көзөмөлүн аткарган. Тармак координата системасына байланыштырылган. Имараттын жана инфраструктуранын аткаруу өлчөөлөрү жүргүзүлүп, долбоордук октор менен бийиктиктер берилген, коммуникациялар планга түшүрүлгөн.</p><h2>Натыйжа</h2><p>1:500 жана 1:1000 масштабындагы санариптик топографиялык пландар жана рельефтин 3D модели даярдалган. Контролдук өлчөөлөр курулушту геодезиялык камсыздаган.</p><p><a href=\"/ky/services/control-and-outsourcing\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "SOFAZ Tower долбоорундагы геодезиялык иштер | GeoTotal",
+    "seoDescriptionKy": "1:500 жана 1:1000 масштабындагы санариптик топографиялык пландар жана рельефтин 3D модели даярдалган."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

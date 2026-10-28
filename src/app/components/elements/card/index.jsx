@@ -12,7 +12,7 @@ function Card({ product, more, moreText, locale }) {
         src={product?.images?.[0] ?? "/images/product-999.png"}
         width={1200}
         height={1200}
-        alt="product"
+        alt={more ? "" : [product?.brand, product?.model].filter(Boolean).join(" ")}
         className={style.image}
       />
       <div className={style.overlay}></div>

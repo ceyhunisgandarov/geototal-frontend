@@ -1,0 +1,73 @@
+{
+  "type": "service",
+  "path": "lidar",
+  "source": "GeoTotal_Xidmet_Metnleri_AZ-1.docx",
+  "request": {
+    "serviceName": "Dronla LiDAR çəkilişi və xəritəçəkmə",
+    "seoTitleAz": "Dronla LiDAR çəkilişi və xəritəçəkmə | GeoTotal",
+    "seoDescriptionAz": "DJI Matrice 350 RTK və Zenmuse L2 sistemi ilə havadan lazer skanlama aparılır.",
+    "serviceNameEn": "Drone LiDAR surveying and mapping",
+    "seoTitleEn": "Drone LiDAR surveying and mapping | GeoTotal",
+    "seoDescriptionEn": "Airborne laser scanning is carried out with the DJI Matrice 350 RTK and Zenmuse L2 system.",
+    "serviceNameRu": "LiDAR-съёмка и картографирование с дрона",
+    "seoTitleRu": "LiDAR-съёмка и картографирование с дрона | GeoTotal",
+    "seoDescriptionRu": "Воздушное лазерное сканирование выполняется системой DJI Matrice 350 RTK и Zenmuse L2.",
+    "serviceNameKy": "Дрон менен LiDAR тартуу жана карта түзүү",
+    "seoTitleKy": "Дрон менен LiDAR тартуу жана карта түзүү | GeoTotal",
+    "seoDescriptionKy": "Аба аркылуу лазердик сканерлөө DJI Matrice 350 RTK жана Zenmuse L2 системасы менен жүргүзүлөт."
+  },
+  "parts": [
+    {
+      "partName": "İş üsulu",
+      "serviceTextAz": "<p>DJI Matrice 350 RTK və Zenmuse L2 sistemi ilə havadan lazer skanlama aparılır. Məlumatlar GNSS istinad ölçmələri ilə əlaqələndirilir. Nöqtə buludu emal edilərək təsnif olunur, yer səthinə aid nöqtələr əsasında rəqəmsal relyef modeli hazırlanır.</p>",
+      "partNameEn": "Method",
+      "serviceTextEn": "<p>Airborne laser scanning is carried out with the DJI Matrice 350 RTK and Zenmuse L2 system. The data are tied to GNSS control measurements. The point cloud is processed and classified, and ground points are used to generate a digital terrain model.</p>",
+      "partNameRu": "Метод работы",
+      "serviceTextRu": "<p>Воздушное лазерное сканирование выполняется системой DJI Matrice 350 RTK и Zenmuse L2. Данные привязываются к опорным GNSS-измерениям. Облако точек обрабатывается и классифицируется, по точкам земной поверхности строится цифровая модель рельефа.</p>",
+      "partNameKy": "Иш ыкмасы",
+      "serviceTextKy": "<p>Аба аркылуу лазердик сканерлөө DJI Matrice 350 RTK жана Zenmuse L2 системасы менен жүргүзүлөт. Маалыматтар GNSS таяныч өлчөөлөрүнө байланыштырылат. Чекиттер булуту иштетилип, классификацияланат; жер бетинин чекиттеринен рельефтин санариптик модели түзүлөт.</p>"
+    },
+    {
+      "partName": "Dəqiqlik və keyfiyyətə nəzarət",
+      "serviceTextAz": "<p>Nəticələr emalda istifadə olunmayan müstəqil nəzarət nöqtələri ilə yoxlanılır. Plan və hündürlük üzrə dəqiqlik uçuş parametrləri, bitki örtüyü, relyef və GNSS ölçmə şəraitindən asılıdır. Əldə olunan göstəricilər keyfiyyətə nəzarət hesabatında göstərilir.</p>",
+      "partNameEn": "Accuracy and quality control",
+      "serviceTextEn": "<p>Results are checked against independent control points not used in processing. Horizontal and vertical accuracy depend on flight parameters, vegetation, terrain and GNSS observation conditions. Achieved results are recorded in the quality-control report.</p>",
+      "partNameRu": "Точность и контроль качества",
+      "serviceTextRu": "<p>Результаты проверяются по независимым контрольным точкам, не использованным при обработке. Точность в плане и по высоте зависит от параметров полёта, растительности, рельефа и условий GNSS-наблюдений. Полученные показатели отражаются в отчёте контроля качества.</p>",
+      "partNameKy": "Тактык жана сапатты көзөмөлдөө",
+      "serviceTextKy": "<p>Натыйжалар иштетүүдө колдонулбаган көз карандысыз контролдук чекиттер менен текшерилет. Пландык жана бийиктик тактыгы учуу параметрлерине, өсүмдүктөргө, рельефке жана GNSS шарттарына байланыштуу. Алынган көрсөткүчтөр сапатты көзөмөлдөө отчётунда берилет.</p>"
+    },
+    {
+      "partName": "Təhvil verilən materiallar",
+      "serviceTextAz": "<p>Texniki tapşırığa uyğun olaraq LAS və ya LAZ formatında nöqtə buludu, rəqəmsal relyef modeli (DTM), rəqəmsal səth modeli (DSM), horizontallar, topoqrafik plan və keyfiyyətə nəzarət hesabatı təqdim olunur.</p>",
+      "partNameEn": "Deliverables",
+      "serviceTextEn": "<p>Depending on the technical brief, deliverables include a LAS or LAZ point cloud, digital terrain model (DTM), digital surface model (DSM), contours, topographic plan and quality-control report.</p>",
+      "partNameRu": "Передаваемые материалы",
+      "serviceTextRu": "<p>По техническому заданию передаются облако точек LAS или LAZ, цифровая модель рельефа (DTM), цифровая модель поверхности (DSM), горизонтали, топографический план и отчёт контроля качества.</p>",
+      "partNameKy": "Тапшырылуучу материалдар",
+      "serviceTextKy": "<p>Техникалык тапшырмага ылайык LAS же LAZ форматындагы чекиттер булуту, рельефтин санариптик модели (DTM), беттин санариптик модели (DSM), горизонталдар, топографиялык план жана сапат отчёту тапшырылат.</p>"
+    },
+    {
+      "partName": "Layihə nümunəsi",
+      "serviceTextAz": "<p>160 MVt gücündə günəş elektrik stansiyası layihəsində təxminən 400 hektar ərazi və giriş yolu üzrə LiDAR ölçmələri aparılıb. Nəzarət nöqtələri üzrə hündürlük xətalarının kvadratik orta qiyməti (RMSE) təxminən 5,5 sm təşkil edib. Bu göstərici həmin layihənin yoxlama nəticəsidir.</p>",
+      "partNameEn": "Project example",
+      "serviceTextEn": "<p>LiDAR surveying for a 160 MW solar power plant covered approximately 400 hectares and the access road. The root mean square error (RMSE) of elevation differences at check points was approximately 5.5 cm. This is a reported result for that specific project, not a general accuracy guarantee.</p>",
+      "partNameRu": "Пример проекта",
+      "serviceTextRu": "<p>В проекте солнечной электростанции мощностью 160 МВт LiDAR-съёмка охватила около 400 гектаров и подъездную дорогу. Среднеквадратическая ошибка высот на контрольных точках составила около 5,5 см. Это результат проверки конкретного проекта, а не общая гарантия точности.</p>",
+      "partNameKy": "Долбоордун мисалы",
+      "serviceTextKy": "<p>160 МВт күн электр станциясынын долбоорунда болжол менен 400 гектар аянт жана кирүүчү жол LiDAR менен өлчөнгөн. Контролдук чекиттердеги бийиктик айырмаларынын орточо квадраттык катасы (RMSE) болжол менен 5,5 см болгон. Бул жалпы тактык кепилдиги эмес, ошол долбоордун текшерүү жыйынтыгы.</p>"
+    }
+  ],
+  "reviewNotes": [
+    "Günəş stansiyası nümunəsi: 160 MVt, təxminən 400 ha, 1:1000, 0,5 m və 5,5 sm RMSE göstəricilərini layihə hesabatı ilə təsdiqləyin."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

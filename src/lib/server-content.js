@@ -17,7 +17,7 @@ const request = cache(async (endpoint) => {
 
 export const getDetail = cache(async (kind,id) => {
  if(kind==='product' && (!/^[1-9][0-9]*$/.test(String(id)) || BigInt(id)>9223372036854775807n))notFound();
- const endpoints={service:'user/service/get/',project:'user/project/',product:'user/product/'};
+ const endpoints={service:'user/service/get/',project:'user/project/',product:'user/product/',blog:'user/blog/'};
  if(!endpoints[kind])throw new Error('Unknown content type');
  const data=await request(endpoints[kind]+encodeURIComponent(id));
  // Legacy service API returns 403 specifically for a missing service.
@@ -27,9 +27,10 @@ export const getDetail = cache(async (kind,id) => {
  return data.response;
 });
 export const getList = cache(async kind => {
- const endpoints={services:'user/service/get-list',projects:'user/project/list',products:'user/products'};
+ const endpoints={services:'user/service/get-list',projects:'user/project/list',products:'user/products',blogs:'user/blog/list'};
  if(!endpoints[kind])throw new Error('Unknown content list');
  const data=await request(endpoints[kind]);
+ if(kind==='blogs' && data?.status?.code===404 && data.status.message==='Blog list is empty')return [];
  if(kind==='projects' && data?.status?.code===404 && data.status.message==='Empty List')return [];
  if(data?.status?.code!==200 || !Array.isArray(data.response))throw new Error('Content service is temporarily unavailable');
  return data.response;
@@ -37,5 +38,11 @@ export const getList = cache(async kind => {
 export const getAbout = cache(async step => {
  const data=await request(`user/about/${step}`);
  if(data?.status?.code!==200 || !data.response)throw new Error('Content service is temporarily unavailable');
+ return data.response;
+});
+
+export const getContact = cache(async () => {
+ const data = await request('user/contact-info/get');
+ if(data?.status?.code !== 200 || !data.response) throw new Error('Contact service is temporarily unavailable');
  return data.response;
 });

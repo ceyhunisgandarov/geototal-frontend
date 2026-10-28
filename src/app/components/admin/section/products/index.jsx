@@ -21,10 +21,10 @@ function ProductsAdmin() {
     model: "",
     category: "",
     descriptionAz: "",
-      seoDescriptionAz: "",
-      seoDescriptionEn: "",
-      seoDescriptionRu: "",
-      seoDescriptionKy: "",
+      seoDescriptionAz: "", seoTitleAz: "",
+      seoDescriptionEn: "", seoTitleEn: "",
+      seoDescriptionRu: "", seoTitleRu: "",
+      seoDescriptionKy: "", seoTitleKy: "",
 
     descriptionEn: "",
     descriptionRu: "",
@@ -102,10 +102,10 @@ function ProductsAdmin() {
         model: product.model || "",
         category: ({TOTAL_STATION: "TS", AUTO_LEVEL: "AL", ACCESSORIES: "ACC", CONTROLLER: "CONT", SOFTWARE: "SOFT", LASER_SCANNER: "LS"})[product.category] || product.category || "",
         descriptionAz: product.descriptionAz || "",
-      seoDescriptionAz: product.seoDescriptionAz ?? "",
-      seoDescriptionEn: product.seoDescriptionEn ?? "",
-      seoDescriptionRu: product.seoDescriptionRu ?? "",
-      seoDescriptionKy: product.seoDescriptionKy ?? "",
+      seoDescriptionAz: product.seoDescriptionAz ?? "", seoTitleAz: product.seoTitleAz ?? "",
+      seoDescriptionEn: product.seoDescriptionEn ?? "", seoTitleEn: product.seoTitleEn ?? "",
+      seoDescriptionRu: product.seoDescriptionRu ?? "", seoTitleRu: product.seoTitleRu ?? "",
+      seoDescriptionKy: product.seoDescriptionKy ?? "", seoTitleKy: product.seoTitleKy ?? "",
 
         descriptionEn: product.descriptionEn || "",
         descriptionRu: product.descriptionRu || "",
@@ -131,10 +131,10 @@ function ProductsAdmin() {
         model: "",
         category: "",
         descriptionAz: "",
-      seoDescriptionAz: "",
-      seoDescriptionEn: "",
-      seoDescriptionRu: "",
-      seoDescriptionKy: "",
+      seoDescriptionAz: "", seoTitleAz: "",
+      seoDescriptionEn: "", seoTitleEn: "",
+      seoDescriptionRu: "", seoTitleRu: "",
+      seoDescriptionKy: "", seoTitleKy: "",
 
         descriptionEn: "",
         descriptionRu: "",
@@ -240,6 +240,9 @@ function ProductsAdmin() {
               />
 
 <div style={{gridColumn: "1 / -1", width: "100%"}}>
+<h3>SEO başlığı</h3>
+ {['Az','En','Ru','Ky'].map(language => <label key={language} style={{display:'block'}}>SEO başlığı ({language.toUpperCase()})
+ <input value={reqProduct[`seoTitle${language}`] ?? ''} onChange={e=>setReqProduct(previous=>({...previous,[`seoTitle${language}`]:e.target.value}))} /></label>)}
  <h3>SEO təsviri</h3>
  <p>Axtarış nəticələri üçün qısa, tamamlanmış cümlələr yazın. Boş qalsa, səhifənin mətnindən avtomatik hazırlanacaq.</p>
  {['Az', 'En', 'Ru', 'Ky'].map(language => (

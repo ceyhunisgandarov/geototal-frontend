@@ -1,0 +1,37 @@
+{
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "counts": {
+    "services": 5,
+    "projects": 13,
+    "blogs": 2,
+    "localizedVersions": 80
+  },
+  "published": false,
+  "files": [
+    "services/geodesy-and-topography.json",
+    "services/lidar.json",
+    "services/control-and-outsourcing.json",
+    "services/photogrammetry.json",
+    "services/calibration.json",
+    "projects/crescent.json",
+    "projects/hiltonbaku.json",
+    "projects/portbakuresidence.json",
+    "projects/marriott.json",
+    "projects/tugh-restoration.json",
+    "projects/portbakutowers.json",
+    "projects/gandjlikmall.json",
+    "projects/panorama.json",
+    "projects/sofaz.json",
+    "projects/ahmedbeyli-aghbend.json",
+    "projects/aghbendrailway.json",
+    "projects/azersu.json",
+    "projects/hadrut-restoration.json",
+    "blogs/tikintide-geodeziya-nezareti-autsorsinq.json",
+    "blogs/geodeziya-topoqrafiya-suni-intellekt.json"
+  ]
+}

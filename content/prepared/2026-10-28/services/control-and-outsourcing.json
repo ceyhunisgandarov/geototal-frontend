@@ -1,0 +1,71 @@
+{
+  "type": "service",
+  "path": "control-and-outsourcing",
+  "source": "GeoTotal_Xidmet_Metnleri_AZ-1.docx",
+  "request": {
+    "serviceName": "Tikintidə geodeziya nəzarəti və autsorsinq",
+    "seoTitleAz": "Tikintidə geodeziya nəzarəti və autsorsinq | GeoTotal",
+    "seoDescriptionAz": "Tikinti oxlarının yerə köçürülməsi, hündürlük nişanlarının ötürülməsi, konstruksiyaların mövqeyinin yoxlanması və icra ölçmələri aparılır.",
+    "serviceNameEn": "Construction surveying supervision and outsourcing",
+    "seoTitleEn": "Construction surveying supervision and outsourcing | GeoTotal",
+    "seoDescriptionEn": "Work includes setting out construction axes, transferring elevation marks, checking the position of structural elements and performing as-built surveys.",
+    "serviceNameRu": "Геодезический контроль строительства и аутсорсинг",
+    "seoTitleRu": "Геодезический контроль строительства и аутсорсинг | GeoTotal",
+    "seoDescriptionRu": "Выполняются вынос строительных осей, передача высотных отметок, проверка положения конструкций и исполнительная съёмка.",
+    "serviceNameKy": "Курулуштагы геодезиялык көзөмөл жана аутсорсинг",
+    "seoTitleKy": "Курулуштагы геодезиялык көзөмөл жана аутсорсинг | GeoTotal",
+    "seoDescriptionKy": "Курулуш окторун жерге көчүрүү, бийиктик белгилерин берүү, конструкциялардын абалын текшерүү жана аткарылган курулушту өлчөө жүргүзүлөт."
+  },
+  "parts": [
+    {
+      "partName": "İş üsulu",
+      "serviceTextAz": "<p>Tikinti oxlarının yerə köçürülməsi, hündürlük nişanlarının ötürülməsi, konstruksiyaların mövqeyinin yoxlanması və icra ölçmələri aparılır. Layihənin ehtiyacına uyğun daimi və ya mərhələli geodeziya xidməti təşkil olunur.</p>",
+      "partNameEn": "Method",
+      "serviceTextEn": "<p>Work includes setting out construction axes, transferring elevation marks, checking the position of structural elements and performing as-built surveys. A permanent or phased surveying service is organised to suit the project.</p>",
+      "partNameRu": "Метод работы",
+      "serviceTextRu": "<p>Выполняются вынос строительных осей, передача высотных отметок, проверка положения конструкций и исполнительная съёмка. В зависимости от проекта организуется постоянное или поэтапное геодезическое сопровождение.</p>",
+      "partNameKy": "Иш ыкмасы",
+      "serviceTextKy": "<p>Курулуш окторун жерге көчүрүү, бийиктик белгилерин берүү, конструкциялардын абалын текшерүү жана аткарылган курулушту өлчөө жүргүзүлөт. Долбоорго жараша туруктуу же этаптуу геодезиялык кызмат уюштурулат.</p>"
+    },
+    {
+      "partName": "Dəqiqlik və keyfiyyətə nəzarət",
+      "serviceTextAz": "<p>Ölçmə üsulları və yol verilən xətalar təsdiqlənmiş layihə sənədlərinə və texniki tələblərə uyğun müəyyən edilir. Faktiki koordinatlar, hündürlüklər və ölçülər layihə qiymətləri ilə müqayisə olunur. Aşkar edilmiş xətalar ölçmə sənədlərində göstərilir.</p>",
+      "partNameEn": "Accuracy and quality control",
+      "serviceTextEn": "<p>Surveying methods and permissible deviations are determined by the approved design documents and technical requirements. Actual coordinates, elevations and dimensions are compared with design values. Identified deviations are recorded in measurement documents.</p>",
+      "partNameRu": "Точность и контроль качества",
+      "serviceTextRu": "<p>Методы измерений и допустимые отклонения определяются утверждённой проектной документацией и техническими требованиями. Фактические координаты, отметки и размеры сравниваются с проектными значениями. Выявленные отклонения фиксируются в измерительной документации.</p>",
+      "partNameKy": "Тактык жана сапатты көзөмөлдөө",
+      "serviceTextKy": "<p>Өлчөө ыкмалары жана жол берилген четтөөлөр бекитилген долбоордук документтерге жана техникалык талаптарга ылайык аныкталат. Чыныгы координаталар, бийиктиктер жана өлчөмдөр долбоордук маанилерге салыштырылат. Табылган четтөөлөр өлчөө документтерине жазылат.</p>"
+    },
+    {
+      "partName": "Təhvil verilən materiallar",
+      "serviceTextAz": "<p>Razılaşdırılmış tərkibdə oxların yerə köçürülməsi sxemləri, icra planları, koordinat və hündürlük cədvəlləri, layihə ilə faktiki ölçmələrin müqayisə cədvəlləri və geodeziya hesabatları təqdim olunur.</p>",
+      "partNameEn": "Deliverables",
+      "serviceTextEn": "<p>Agreed deliverables include setting-out diagrams, as-built plans, coordinate and elevation schedules, design-versus-measured comparison tables and surveying reports.</p>",
+      "partNameRu": "Передаваемые материалы",
+      "serviceTextRu": "<p>В согласованном составе передаются разбивочные схемы, исполнительные планы, ведомости координат и высот, таблицы сравнения проектных и фактических значений, геодезические отчёты.</p>",
+      "partNameKy": "Тапшырылуучу материалдар",
+      "serviceTextKy": "<p>Макулдашылган курамда окторду жерге көчүрүү схемалары, аткаруу пландары, координата жана бийиктик таблицалары, долбоордук жана чыныгы өлчөөлөрдү салыштыруу таблицалары, геодезиялык отчёттор берилет.</p>"
+    },
+    {
+      "partName": "Layihə nümunəsi",
+      "serviceTextAz": "<p>JW Marriott Absheron Baku layihəsində tikinti oxlarının yerə köçürülməsi, təməl və daşıyıcı konstruksiyalara geodeziya nəzarəti, deformasiya və çökmə müşahidələri, həmçinin icra ölçmələri həyata keçirilib.</p>",
+      "partNameEn": "Project example",
+      "serviceTextEn": "<p>At the JW Marriott Absheron Baku project, work included setting out construction axes, surveying supervision of foundations and load-bearing structures, deformation and settlement observations, and as-built surveys.</p>",
+      "partNameRu": "Пример проекта",
+      "serviceTextRu": "<p>В проекте JW Marriott Absheron Baku выполнялись вынос строительных осей, геодезический контроль фундаментов и несущих конструкций, наблюдения за деформациями и осадками, исполнительные измерения.</p>",
+      "partNameKy": "Долбоордун мисалы",
+      "serviceTextKy": "<p>JW Marriott Absheron Baku долбоорунда курулуш окторун жерге көчүрүү, пайдубалдар менен көтөрүүчү конструкцияларды геодезиялык көзөмөлдөө, деформация жана чөгүүнү байкоо, аткаруу өлчөөлөрү жүргүзүлгөн.</p>"
+    }
+  ],
+  "reviewNotes": [],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

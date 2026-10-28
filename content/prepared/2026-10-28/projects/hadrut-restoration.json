@@ -1,0 +1,36 @@
+{
+  "type": "project",
+  "path": "hadrut-restoration",
+  "source": "GeoTotal_Layihe_Sehifeleri_SEO_AZ.docx",
+  "request": {
+    "projectName": "Hadrut qəsəbəsinin bərpası layihəsində LiDAR və topoqrafik ölçmələr",
+    "worksDescription": "<p><strong>Yer:</strong> Xocavənd rayonu Hadrut qəsəbəsi</p><p><strong>Layihə üzrə şirkət:</strong> SP Architects</p><h2>Görülən işlər</h2><p>DJI Matrice 350 RTK və Zenmuse L2 sistemi ilə relyef və mövcud vəziyyət barədə məlumatlar toplanıb. Məlumatlar DJI Terra proqramında emal edilib, nöqtə buludu təsnif olunub. Rəqəmsal relyef modeli (DTM), rəqəmsal səth modeli (DSM) və detallı 3D model hazırlanıb.</p><h2>Nəticə</h2><p>Bərpa və layihələndirmə işlərində istifadə üçün rəqəmsal topoqrafik planlar və ərazinin modelləri təqdim edilib.</p><p><a href=\"/az/services/lidar\">Əlaqəli xidmətlər</a></p>",
+    "seoTitleAz": "Hadrutun bərpası üçün LiDAR və topoqrafiya | GeoTotal",
+    "seoDescriptionAz": "Hadrut qəsəbəsinin bərpası layihəsində LiDAR çəkilişi, mövcud tikililərin topoqrafik planalması, DTM, DSM və 3D model hazırlanması.",
+    "projectNameEn": "LiDAR and topographic surveys for the restoration of Hadrut",
+    "worksDescriptionEn": "<p><strong>Location:</strong> Hadrut settlement, Khojavend district</p><p><strong>Project company:</strong> SP Architects</p><h2>Work performed</h2><p>For Hadrut&#x27;s restoration and redevelopment, GeoTotal surveyed existing buildings and performed drone LiDAR measurements. DJI Matrice 350 RTK and Zenmuse L2 captured terrain and existing-condition data. Processing in DJI Terra included point-cloud classification and the preparation of a digital terrain model (DTM), digital surface model (DSM) and detailed 3D model.</p><h2>Results</h2><p>Digital topographic plans and site models were delivered for restoration and design work.</p><p><a href=\"/en/services/lidar\">Related services</a></p>",
+    "seoTitleEn": "LiDAR and topographic surveys for the restoration of Hadrut | GeoTotal",
+    "seoDescriptionEn": "Digital topographic plans and site models were delivered for restoration and design work..",
+    "projectNameRu": "LiDAR и топографическая съёмка для восстановления Гадрута",
+    "worksDescriptionRu": "<p><strong>Место:</strong> Посёлок Гадрут, Ходжавендский район</p><p><strong>Компания по проекту:</strong> SP Architects</p><h2>Выполненные работы</h2><p>Для восстановления и реконструкции Гадрута GeoTotal выполнила топографическую съёмку существующих зданий и воздушные LiDAR-измерения. DJI Matrice 350 RTK и Zenmuse L2 использовались для сбора данных о рельефе и текущем состоянии. В DJI Terra проведена классификация облака точек, подготовлены цифровая модель рельефа (DTM), цифровая модель поверхности (DSM) и подробная 3D-модель.</p><h2>Результат</h2><p>Для восстановления и проектирования переданы цифровые топографические планы и модели территории.</p><p><a href=\"/ru/services/lidar\">Связанные услуги</a></p>",
+    "seoTitleRu": "LiDAR и топографическая съёмка для восстановления Гадрута | GeoTotal",
+    "seoDescriptionRu": "Для восстановления и проектирования переданы цифровые топографические планы и модели территории..",
+    "projectNameKy": "Гадрутту калыбына келтирүү үчүн LiDAR жана топографиялык өлчөөлөр",
+    "worksDescriptionKy": "<p><strong>Жайгашкан жери:</strong> Хожавенд районунун Гадрут конушу</p><p><strong>Долбоор боюнча компания:</strong> SP Architects</p><h2>Аткарылган иштер</h2><p>Гадрутту калыбына келтирүү жана кайра куруу үчүн GeoTotal учурдагы имараттарды топографиялык өлчөп, дрондук LiDAR иштерин жүргүзгөн. DJI Matrice 350 RTK жана Zenmuse L2 менен рельеф жана учурдагы абал жөнүндө маалымат топтолгон. DJI Terra программасында чекиттер булуту классификацияланып, рельефтин санариптик модели (DTM), беттин санариптик модели (DSM) жана деталдуу 3D модель даярдалган.</p><h2>Натыйжа</h2><p>Калыбына келтирүү жана долбоорлоо үчүн санариптик топографиялык пландар жана аймактын моделдери берилген.</p><p><a href=\"/ky/services/lidar\">Тиешелүү кызматтар</a></p>",
+    "seoTitleKy": "Гадрутту калыбына келтирүү үчүн LiDAR жана топографиялык өлчөөлөр | GeoTotal",
+    "seoDescriptionKy": "Калыбына келтирүү жана долбоорлоо үчүн санариптик топографиялык пландар жана аймактын моделдери берилген.."
+  },
+  "reviewNotes": [
+    "Layihə üzrə iş həcmi və şirkətin müqavilə rolu dərcdən əvvəl yoxlanmalıdır.",
+    "Rusca mətn Hadrut haqqındadır. Canlı mətn istifadəçi tərəfindən paneldə dəyişdiriləcək."
+  ],
+  "version": 1,
+  "languages": [
+    "az",
+    "en",
+    "ru",
+    "ky"
+  ],
+  "status": "prepared-not-published",
+  "preparedAt": "2026-10-28"
+}

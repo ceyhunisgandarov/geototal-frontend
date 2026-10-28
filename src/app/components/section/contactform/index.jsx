@@ -7,10 +7,10 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import ContactService from "@/app/services/ContactService";
 import { useTranslations } from "next-intl";
 
-export default function ContactForm() {
+export default function ContactForm({initialData} = {}) {
   const domainContact = useDomainContact();
   const t = useTranslations("Contact");
-  const [contactInfo, setContactInfo] = useState(domainContact || {
+  const [contactInfo, setContactInfo] = useState(domainContact || initialData || {
     address: "",
     phoneNumbers: [],
     emailAddress: [],
@@ -24,7 +24,7 @@ export default function ContactForm() {
     message: "",
   });
 
-  const [loading, setLoading] = useState(!domainContact);
+  const [loading, setLoading] = useState(!domainContact && !initialData);
 
   useEffect(() => {
     if (domainContact) {
@@ -32,6 +32,7 @@ export default function ContactForm() {
       setLoading(false);
       return;
     }
+    if (initialData) { setContactInfo(initialData); setLoading(false); return; }
     ContactService.getContact()
       .then((response) => {
         if (response.data.status.code === 200) {
@@ -44,7 +45,7 @@ export default function ContactForm() {
         console.log("something went wrong -", error);
       })
       .finally(() => setLoading(false)); // ✅ skeleton kapanır
-  }, [domainContact]);
+  }, [domainContact, initialData]);
 
   const handleChange = (e) => {
     setFormData({
@@ -92,7 +93,7 @@ export default function ContactForm() {
                   {contactInfo.phoneNumbers?.length ? (
                     contactInfo.phoneNumbers.map((number, idx) => (
                       <p className={styles.textLineHeight} key={idx}>
-                        {number}
+                        <a href={`tel:${number.replace(/[^+0-9]/g, "")}`}>{number}</a>
                       </p>
                     ))
                   ) : (
@@ -109,7 +110,7 @@ export default function ContactForm() {
                   <h4>{t("emails")}:</h4>
                   {contactInfo.emailAddress?.length ? (
                     contactInfo.emailAddress.map((email, idx) => (
-                      <p className={styles.textLineHeight} key={idx}>{email}</p>
+                      <p className={styles.textLineHeight} key={idx}><a href={`mailto:${email}`}>{email}</a></p>
                     ))
                   ) : (
                     <p>Not provided</p>

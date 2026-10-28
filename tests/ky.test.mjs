@@ -1,3 +1,4 @@
+import {insertBlogImage,blogSaveError} from "../src/lib/blog-editor.js";
 import {contentLabels,partHeading} from "../src/lib/content-labels.js";
 import {carouselHref} from "../src/lib/carouselLink.js";
 import test from "node:test";
@@ -48,7 +49,9 @@ function mount(file, services, props={}, locale="ky", contact=null) {
  };
  const loader=(name)=>{
   if(name==="@/lib/content-labels")return {contentLabels,partHeading};
+  if(name==="@/lib/blog-editor")return {insertBlogImage,blogSaveError};
   if(name==="react")return react;
+  if(name==="@/app/components/blog/body")return "BlogBody";
   if(name==="@/i18n/domain-contact")return {useDomainContact:()=>contact};
   if(name==="next-intl")return {useLocale:()=>locale,useTranslations:()=>key=>key==="locale"?locale:key};
   if(name==="next/navigation")return {useRouter:()=>({push(){},replace(){}})};
@@ -182,4 +185,25 @@ test("Project admin loads and submits all KY fields",async()=>{
  tree=h.render();await find(tree,n=>n.type==="form").props.onSubmit({preventDefault(){}});
  const sent=h.calls.find(c=>c.method==="addOrUpdateProject").args[0];
  for(const field of ["projectNameKy","referenceNameKy","feedBackKy"])assert.equal(sent[field],record[field]+" updated");
+});
+
+test("Prepared blog import keeps four languages and forces draft until explicitly published",async()=>{
+ const h=mount("src/app/components/admin/section/blog/index.jsx",{getBlogs:response([])});h.render();let t=await h.ready();
+ find(t,n=>n.type==="button"&&text(n)==="Add Blog").props.onClick();t=h.render();
+ const p=JSON.parse(readFileSync(new URL("content/prepared/2026-10-28/blogs/geodeziya-topoqrafiya-suni-intellekt.json",root),"utf8"));
+ p.request.published=true;
+ await find(t,n=>n.type==="input"&&n.props.accept==="application/json,.json").props.onChange({target:{files:[{text:async()=>JSON.stringify(p)}]}});t=h.render();
+ await find(t,n=>n.type==="form").props.onSubmit({preventDefault(){}});
+ const sent=h.calls.find(c=>c.method==="saveBlog").args[0];assert.equal(sent.published,false);assert.equal(sent.slug,p.request.slug);
+ for(const suffix of ["","En","Ru","Ky"])assert.equal(sent["description"+suffix],p.request["description"+suffix]);
+});
+
+test("Blog image upload inserts into the chosen language and survives save",async()=>{
+ const h=mount("src/app/components/admin/section/blog/index.jsx",{getBlogs:response([fixture]),uploadInlineImage:response("https://images.example/site.png")});h.render();let t=await h.ready();
+ find(t,n=>n.type==="button"&&text(n)==="Edit Blog").props.onClick();t=h.render();
+ find(t,n=>n.props?.name==="imageCaptionKy").props.onChange({target:{value:"Кыргызча сүрөт"}});t=h.render();
+ const target=nodes(t).filter(n=>n.type==="fieldset"&&text(n).includes("Description (KY)")).at(-1);
+ await find(target,n=>n.type==="input"&&n.props.type==="file").props.onChange({target:{files:[{type:"image/png",size:10}],value:"image.png"}});t=h.render();
+ await find(t,n=>n.type==="form").props.onSubmit({preventDefault(){}});
+ const saved=h.calls.find(c=>c.method==="saveBlog").args[0];assert.match(saved.descriptionKy,/!\[Кыргызча сүрөт\]\(https:\/\/images.example\/site.png\)/);assert.equal(saved.descriptionRu,"RU");
 });

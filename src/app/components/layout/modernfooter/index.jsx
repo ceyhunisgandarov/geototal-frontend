@@ -25,8 +25,8 @@ export default function ModernFooter({locale}) {
             <div className={styles.widget}>
               <h3>{t("contactus")}</h3>
               {domainContact && <p>{domainContact.companyName}</p>}
-              <span className={styles.info}>📧 {domainContact?.emailAddress[0] || "office@geototal.az"}</span>
-              <span className={styles.info}>📞 {domainContact?.whatsappNumber || "(+994 55 2053403)"}</span>
+              <a className={styles.info} href={`mailto:${domainContact?.emailAddress?.[0] || "office@geototal.az"}`}>📧 {domainContact?.emailAddress?.[0] || "office@geototal.az"}</a>
+              <a className={styles.info} href={`tel:${(domainContact?.whatsappNumber || "+994552053403").replace(/[^+0-9]/g, "")}`}>📞 {domainContact?.whatsappNumber || "(+994 55 2053403)"}</a>
               <span className={styles.info}>📍 {domainContact?.address || t("address")}</span>             {/* Nərimanov r., Əhməd Rəcəbli küç., 27b */}
             </div>
 

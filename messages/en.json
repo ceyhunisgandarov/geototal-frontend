@@ -2,12 +2,10 @@
   "Home": {
     "locale": "en"
   },
-
   "Carousel": {
     "locale": "en",
     "more": "More"
   },
-
   "Navbar": {
     "locale": "en",
     "home": "Home",
@@ -20,23 +18,21 @@
     "services": "Services",
     "contactus": "Contact Us",
     "more": "More",
-    "serv" : "Services"
+    "serv": "Services",
+    "blog": "Blog"
   },
-
   "HomePage": {
     "locale": "en",
     "service": "Services",
     "product": "Products",
     "projects": "Our Projects"
   },
-
   "HomeService": {
     "locale": "en",
     "title": "Services for You",
     "description": "We offer specially tailored geodetic and topographic services to ensure the accuracy and success of your project",
     "more": "More"
   },
-
   "ServiceForm": {
     "locale": "en",
     "contactTitle": "Let’s Get in Touch",
@@ -50,13 +46,11 @@
     "successMessage": "Your request has been sent successfully. We will contact you shortly.",
     "errorMessage": "An error occurred while sending your request. Please try again."
   },
-
   "Advertise": {
     "locale": "en",
     "title": "Precision Made Visible",
     "description": "Data generated from topographic surveys is transformed into realistic project models."
   },
-
   "Products": {
     "title": "Professional Surveying Instruments",
     "description": "We provide modern surveying products that ensure precision and reliability in geodesy and topography.",
@@ -65,14 +59,12 @@
     "get": "GET",
     "more": "More"
   },
-
   "ProjectsHome": {
     "locale": "en",
     "title": "Projects We Participate In",
     "more": "More",
     "description": "We are actively involved in a variety of infrastructure and construction projects in geodesy and topography, ensuring high precision and quality."
   },
-
   "AboutUs": {
     "projectsCount": "Project",
     "staffCount": "Total Staff",
@@ -80,7 +72,6 @@
     "members": "Our Team",
     "more": "More"
   },
-
   "Category": {
     "locale": "en",
     "categories": "CATEGORIES",
@@ -91,7 +82,6 @@
     "accesories": "Accessories",
     "software": "Software"
   },
-
   "Product": {
     "home": "Home",
     "products": "Products",
@@ -105,7 +95,6 @@
     "software": "Software",
     "broschure": "Brochure"
   },
-
   "Banner": {
     "locale": "en",
     "about": "About Us",
@@ -116,7 +105,6 @@
     "certificate": "Certificates",
     "references": "References"
   },
-
   "Contact": {
     "locale": "en",
     "title": "Get in touch",
@@ -132,23 +120,19 @@
     "message": "Your Message",
     "send": "Send"
   },
-
   "NotFound": {
     "title": "Page Not Found",
     "description": "Sorry, the page you are looking for does not exist.",
     "goHome": "Go Home"
   },
-
   "Admin": {
     "locale": "en"
   },
-
   "Projects": {
     "locale": "en",
     "projets": "PROJECTS",
     "all": "View all projects"
   },
-
   "Footer": {
     "rights": "All rights reserved.",
     "aboutus": "About Us",

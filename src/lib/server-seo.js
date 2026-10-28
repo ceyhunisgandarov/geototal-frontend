@@ -14,9 +14,10 @@ export async function detailMetadata(locale,kind,id) {
  const page=pages[kind];
  const path=`${page}/${encodeURIComponent(id)}`;
  const record=await getDetail(kind,id);
- const title=kind==='service'?localizedText(record,'serviceName',locale):kind==='project'?localizedText(record,'projectName',locale):[record?.brand,record?.model].filter(Boolean).join(' ');
+ const defaultTitle=kind==='service'?localizedText(record,'serviceName',locale):kind==='project'?localizedText(record,'projectName',locale):[record?.brand,record?.model].filter(Boolean).join(' ');
  const description=kind==='service'?localizedText(record?.serviceParts?.slice().sort((a,b)=>a.id-b.id)[0],'serviceText',locale,'serviceTextAz'):kind==='project'?localizedText(record,'worksDescription',locale):localizedText(record,'description',locale,'descriptionAz');
  const suffix = {az:'Az',en:'En',ru:'Ru',ky:'Ky'}[locale] || 'Az';
  const seoDescription = record?.[`seoDescription${suffix}`];
+ const title = record?.[`seoTitle${suffix}`]?.trim().replace(/\s*\|\s*GeoTotal\s*$/i, "") || defaultTitle;
  return pageMetadata({host:getRequestHost(headers()),locale,page,path,title,description,seoDescription});
 }
