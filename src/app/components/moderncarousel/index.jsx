@@ -175,9 +175,9 @@ export default function ModernCarousel() {
             {/* CONTENT */}
             <div
               className={`${
-                carouselIndex === 1
+                index === 1
                   ? styles.secondBannerContent
-                  : carouselIndex === 2
+                  : index === 2
                   ? styles.thirdBannerContent
                   : styles.bannerContent
               }`}

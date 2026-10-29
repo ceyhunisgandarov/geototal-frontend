@@ -103,7 +103,9 @@
   justify-content: center;
   color: #fff;
   padding: 50px;
-  max-width: 900px;
+  max-width: min(900px, 90vw);
+  min-width: 0;
+  overflow-wrap: anywhere;
   box-sizing: border-box;
 }
 
@@ -114,10 +116,12 @@
 .bannerContent .eyebrow {
   font-family: sans-serif;
   font-size: 40px;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
 .bannerContent h2 {
+  line-height: 1.25;
   font-size: 50px;
   margin-bottom: 25px;
 }
@@ -149,8 +153,15 @@
 .thirdBannerContent .eyebrow {
   font-family: sans-serif;
   font-size: 40px;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
+.secondBannerContent h2,
+.thirdBannerContent h2 {
+  line-height: 1.25;
+  margin-bottom: 25px;
+}
+
 /* ===================== */
 /* BUTTON */
 /* ===================== */
