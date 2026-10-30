@@ -150,7 +150,11 @@ export default function ModernNavbar({ page }) {
                 >
                   {t("services")}
                 </Link>
-<Link className={styles.mainLink} href={`/${t("locale")}/blog`}>{t("blog")}</Link>
+              </div>
+              <div className={styles.menuLink}>
+                <Link className={styles.mainLink} href={`/${t("locale")}/blog`}>
+                  {t("blog")}
+                </Link>
               </div>
               <div className={styles.menuLink}>
                 <Link

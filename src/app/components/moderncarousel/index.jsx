@@ -24,7 +24,7 @@ export default function ModernCarousel() {
   const isDragging = useRef(false);
 
   useEffect(() => {
-    const handleResize = () => setMobile(window.innerWidth <= 762);
+    const handleResize = () => setMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -184,7 +184,9 @@ export default function ModernCarousel() {
             >
               <div className={styles.textContent}>
                 <p className={styles.eyebrow}>{localizedText(slide, "title", locale)}</p>
-                <h2>{localizedText(slide, "slogan", locale)}</h2>
+                {localizedText(slide, "slogan", locale) && (
+                  <h2>{localizedText(slide, "slogan", locale)}</h2>
+                )}
                 <div className={styles.pContent}>
                   <p>{localizedText(slide, "description", locale)}</p>
                 </div>

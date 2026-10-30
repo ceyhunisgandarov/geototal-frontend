@@ -46,3 +46,9 @@ export const getContact = cache(async () => {
  if(data?.status?.code !== 200 || !data.response) throw new Error('Contact service is temporarily unavailable');
  return data.response;
 });
+
+export const getBranchContact = cache(async () => {
+ const data = await request('user/contact/branch/kg');
+ if(data?.status?.code !== 200 || !data.response) throw new Error('Contact service is temporarily unavailable');
+ return data.response;
+});

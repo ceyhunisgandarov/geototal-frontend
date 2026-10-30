@@ -1,7 +1,7 @@
 const copy = {
  az: {
   home: ['Geodeziya və Topoqrafiya Xidmətləri', 'GeoTotal Azərbaycanda geodeziya və topoqrafiya, dronla xəritəçəkmə, LiDAR çəkilişi və ölçmə avadanlıqlarının kalibrlənməsi xidmətləri təqdim edir.'],
-  services: ['Geodeziya və topoqrafiya xidmətləri', 'GeoTotal-ın geodeziya, topoqrafiya, fotoqrammetriya, LiDAR, kalibrlənmə və tikintidə geodeziya nəzarəti xidmətləri ilə tanış olun.'],
+  services: ['Xidmətlər: geodeziya, LiDAR və kalibrləmə', 'GeoTotal-ın geodeziya, topoqrafiya, fotoqrammetriya, LiDAR, kalibrlənmə və tikintidə geodeziya nəzarəti xidmətləri ilə tanış olun.'],
   projects: ['Geodeziya və topoqrafiya layihələri', 'GeoTotal-ın iştirak etdiyi layihələr, görülən ölçmə işləri və layihə məlumatları ilə tanış olun.'],
   aboutus: ['GeoTotal haqqında', 'GeoTotal şirkəti, geodeziya və topoqrafiya sahəsində fəaliyyəti, təcrübəsi və iş yanaşması haqqında məlumat alın.'],
   references: ['GeoTotal referansları', 'GeoTotal-ın referansları və əməkdaşlıq məlumatları ilə tanış olun.'],
@@ -10,7 +10,7 @@ const copy = {
  },
  en: {
   home: ['Geodesy and Topographic Surveying', 'GeoTotal provides geodetic and topographic surveying, drone mapping, LiDAR surveys and surveying equipment calibration.'],
-  services: ['Geodesy and Surveying Services', 'Explore GeoTotal services in geodesy, topography, photogrammetry, LiDAR, equipment calibration and construction surveying supervision.'],
+  services: ['Services: Surveying, LiDAR and Calibration', 'Explore GeoTotal services in geodesy, topography, photogrammetry, LiDAR, equipment calibration and construction surveying supervision.'],
   projects: ['Geodesy and Surveying Projects', 'Explore projects involving GeoTotal, surveying work and project information.'],
   aboutus: ['About GeoTotal', 'Learn about GeoTotal, our experience in geodesy and topographic surveying, and our approach to project work.'],
   references: ['GeoTotal References', 'Explore GeoTotal references and collaboration information.'],
@@ -19,7 +19,7 @@ const copy = {
  },
  ru: {
   home: ['Геодезия и топографическая съёмка', 'GeoTotal предлагает геодезические и топографические работы, картографирование с дронов, LiDAR-съёмку и калибровку геодезического оборудования.'],
-  services: ['Геодезические и топографические услуги', 'Услуги GeoTotal: геодезия, топография, фотограмметрия, LiDAR, калибровка оборудования и геодезический контроль строительства.'],
+  services: ['Услуги: геодезия, LiDAR и калибровка', 'Услуги GeoTotal: геодезия, топография, фотограмметрия, LiDAR, калибровка оборудования и геодезический контроль строительства.'],
   projects: ['Геодезические и топографические проекты', 'Ознакомьтесь с проектами с участием GeoTotal, выполненными измерительными работами и информацией о проектах.'],
   aboutus: ['О компании GeoTotal', 'Узнайте о компании GeoTotal, её опыте в геодезии и топографии и подходе к выполнению проектов.'],
   references: ['Референсы GeoTotal', 'Ознакомьтесь с референсами GeoTotal и информацией о сотрудничестве.'],
@@ -28,7 +28,7 @@ const copy = {
  },
  ky: {
   home: ['Геодезия жана топография кызматтары', 'GeoTotal геодезия, топография, дрон менен карта түзүү, LiDAR тартуу жана геодезиялык жабдууларды калибрлөө кызматтарын сунуштайт.'],
-  services: ['Геодезия жана топография кызматтары', 'GeoTotal компаниясынын геодезия, топография, фотограмметрия, LiDAR, калибрлөө жана курулуштагы геодезиялык көзөмөл кызматтары.'],
+  services: ['Кызматтар: геодезия, LiDAR жана калибрлөө', 'GeoTotal компаниясынын геодезия, топография, фотограмметрия, LiDAR, калибрлөө жана курулуштагы геодезиялык көзөмөл кызматтары.'],
   projects: ['Геодезия жана топография долбоорлору', 'GeoTotal катышкан долбоорлор, өлчөө иштери жана долбоорлор тууралуу маалымат менен таанышыңыз.'],
   aboutus: ['GeoTotal жөнүндө', 'GeoTotal компаниясы, геодезия жана топография тармагындагы тажрыйбасы жана ишке болгон мамилеси тууралуу маалымат.'],
   references: ['GeoTotal референстери', 'GeoTotal компаниясынын референстери жана кызматташтык тууралуу маалымат менен таанышыңыз.'],
