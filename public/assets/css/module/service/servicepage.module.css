@@ -239,3 +239,14 @@
 .inquiry h2 {font-size:1.5rem;margin-bottom:12px;}
 .inquiryLinks {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:20px;}
 .inquiryLinks a {color:inherit;text-decoration:underline;text-underline-offset:4px;}
+
+/* Service copy supports paragraphs, lists and descriptive Markdown links. */
+.richText { overflow-wrap: anywhere; }
+.richText p { margin: 0 0 1em; white-space: pre-line; }
+.richText a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.richText a:hover, .richText a:focus-visible { color: #ffd9ad; }
+.richText ul, .richText ol { padding-left: 1.5em; margin: 1em 0; }
+.richText ul { list-style: disc; }
+.richText ol { list-style: decimal; }
+.richText h3 { font-size: 1.2rem; margin: 1.4em 0 0.6em; }
+.richText img { max-width: 100%; height: auto; }

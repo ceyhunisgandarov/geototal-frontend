@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 import {contentLabels,partHeading} from "@/lib/content-labels";
 import { localizedText } from "@/lib/localizedText";
 import { useEffect, useState } from "react";
@@ -96,7 +97,12 @@ export default function ServicesSection({ service, initialData }) {
             >
               <div className={style.left}>
                 <h2>{heading}</h2>
-                <p>{partText}</p>
+                <div className={style.richText}>
+                  <ReactMarkdown skipHtml components={{
+                    h1: ({children}) => <h3>{children}</h3>,
+                    h2: ({children}) => <h3>{children}</h3>,
+                  }}>{partText}</ReactMarkdown>
+                </div>
               </div>
               <div className={style.right}>
                 {imageSrc ? (
