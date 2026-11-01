@@ -83,8 +83,8 @@ function Service({ service, locale }) {
 
   return (
     <div className={styles.hoverText}>
-      <h3>{titleService}</h3>
       <Link href={`/${locale}/services/${service.pathName}`}>
+        <h3>{titleService}</h3>
         <span className={styles.price}>{t("more")}</span>
       </Link>
     </div>
