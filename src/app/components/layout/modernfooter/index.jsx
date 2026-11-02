@@ -2,7 +2,7 @@
 import { useDomainContact } from "@/i18n/domain-contact";
 import { useTranslations } from "next-intl";
 import styles from "../../../../../public/assets/css/module/layout/modernfooter.module.css";
-import { FaInstagram, FaFacebook, FaTiktok, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaTiktok } from "react-icons/fa";
 
 export default function ModernFooter({locale}) {
   const domainContact = useDomainContact();
@@ -50,7 +50,6 @@ export default function ModernFooter({locale}) {
               <div className={styles.socials}>
                 <a href="https://www.facebook.com/geosurveyservice/?locale=az_AZ"><FaFacebook/></a>
                 <a href="https://www.instagram.com/geototal_mmc/"><FaInstagram/></a>
-                <a href=""><FaYoutube/></a>
                 <a href="https://www.tiktok.com/@geototal.az"><FaTiktok/></a>
               </div>
             </div>

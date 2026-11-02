@@ -51,8 +51,8 @@
     "description": "Topoqrafik ölçmələr əsasında formalaşan məlumatlar, real layihə modellərinə çevrilir."
   },
   "AboutUs": {
-    "projectsCount": "Project",
-    "staffCount": "Total Staff",
+    "projectsCount": "Layihə",
+    "staffCount": "Əməkdaş",
     "locale": "az",
     "members": "Komandamız",
     "more": "Daha çox"

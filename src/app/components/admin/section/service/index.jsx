@@ -197,7 +197,9 @@ function ServiceAdmin() {
       }
     } catch (error) {
       console.error("Submit error:", error);
-      setSaveError(error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
+      setSaveError(error?.response?.status === 401
+        ? "Giriş sessiyasının vaxtı bitib. Yenidən daxil olun; doldurulmuş mətnləri bu pəncərədə saxlayın."
+        : error?.response?.data?.status?.message || error?.response?.data?.message || "Serverlə əlaqə alınmadı. İnternet bağlantısını yoxlayıb yenidən cəhd edin.");
     } finally {
       setSaving(false);
     }
