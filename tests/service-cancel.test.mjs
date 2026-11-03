@@ -42,18 +42,18 @@ const text=n=>nodes(n).flatMap(x=>x.props?.children??[]).filter(x=>typeof x==="s
 const file="src/app/components/admin/section/service/index.jsx";
 const ok=response=>({data:{status:{code:200},response}});
 const record=()=>({id:7,serviceName:"AZ",serviceNameEn:"EN",serviceNameRu:"RU",pathName:"service",serviceParts:[{id:11,partName:"Original",serviceTextAz:"AZ",serviceTextEn:"EN",serviceTextRu:"RU",serviceTextKy:"KY",serviceImageUrl:"old-image"}]});
-async function setup(result=ok({})){const service=record();const h=mount(file,{getServices:ok([service]),addOrUpdateService:result});h.render();await h.ready();find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();return {h,service};}
-function reopen(h){find(h.render(),n=>n.type==="button"&&text(n)==="Cancel").props.onClick();find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();return h.render();}
+async function setup(result=ok({})){const service=record();const h=mount(file,{getServices:ok([service]),getService:ok(service),addOrUpdateService:result});h.render();await h.ready();await find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();return {h,service};}
+async function reopen(h){find(h.render(),n=>n.type==="button"&&text(n)==="Cancel").props.onClick();await find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();return h.render();}
 test("Cancel discards part text and file without mutating loaded service",async()=>{
  const {h,service}=await setup();let t=h.render();
  find(t,n=>n.props?.placeholder==="Part Name").props.onChange({target:{value:"Draft"}});
  find(t,n=>n.props?.placeholder==="Service Text KY").props.onChange({target:{value:"Draft KY"}});
  nodes(h.render()).filter(n=>n.props?.type==="file").at(-1).props.onChange({target:{files:[new Blob(["image"])]}});
  assert.equal(service.serviceParts[0].partName,"Original");assert.equal(service.serviceParts[0].serviceTextKy,"KY");assert.equal(service.serviceParts[0].serviceImageFile,undefined);
- t=reopen(h);assert.equal(find(t,n=>n.props?.placeholder==="Part Name").props.value,"Original");assert.equal(find(t,n=>n.props?.placeholder==="Service Text KY").props.value,"KY");assert.equal(find(t,n=>n.props?.alt==="Service Part").props.src,"old-image");assert.equal(h.calls.filter(c=>c.method==="addOrUpdateService").length,0);
+ t=await reopen(h);assert.equal(find(t,n=>n.props?.placeholder==="Part Name").props.value,"Original");assert.equal(find(t,n=>n.props?.placeholder==="Service Text KY").props.value,"KY");assert.equal(find(t,n=>n.props?.alt==="Service Part").props.src,"old-image");assert.equal(h.calls.filter(c=>c.method==="addOrUpdateService").length,0);
 });
 test("Cancel restores removed parts and discards added parts",async()=>{
- const {h}=await setup();find(h.render(),n=>n.type==="button"&&text(n)==="Delete Part").props.onClick();let t=reopen(h);assert.equal(find(t,n=>n.props?.placeholder==="Part Name").props.value,"Original");find(t,n=>n.type==="button"&&text(n)==="Add Part").props.onClick();assert.equal(nodes(h.render()).filter(n=>n.props?.placeholder==="Part Name").length,2);t=reopen(h);assert.equal(nodes(t).filter(n=>n.props?.placeholder==="Part Name").length,1);
+ const {h}=await setup();find(h.render(),n=>n.type==="button"&&text(n)==="Delete Part").props.onClick();let t=await reopen(h);assert.equal(find(t,n=>n.props?.placeholder==="Part Name").props.value,"Original");find(t,n=>n.type==="button"&&text(n)==="Add Part").props.onClick();assert.equal(nodes(h.render()).filter(n=>n.props?.placeholder==="Part Name").length,2);t=await reopen(h);assert.equal(nodes(t).filter(n=>n.props?.placeholder==="Part Name").length,1);
 });
 test("Saving modified part retains ID and sends draft without altering loaded record",async()=>{
  const {h,service}=await setup();find(h.render(),n=>n.props?.placeholder==="Service Text KY").props.onChange({target:{value:"New KY"}});const updates=nodes(h.render()).filter(n=>n.type==="button"&&text(n)==="Update");await updates.at(-1).props.onClick();const saved=h.calls.find(c=>c.method==="addOrUpdateService");assert.equal(saved.args[2][0].id,11);assert.equal(saved.args[2][0].serviceTextKy,"New KY");assert.equal(service.serviceParts[0].serviceTextKy,"KY");

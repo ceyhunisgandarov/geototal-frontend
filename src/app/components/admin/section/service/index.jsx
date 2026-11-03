@@ -11,6 +11,8 @@ function ServiceAdmin() {
   const [deletingId, setDeletingId] = useState(null);
   const [saveError, setSaveError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [opening, setOpening] = useState(false);
+  const [loadError, setLoadError] = useState("");
   const [services, setServices] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [isAdd, setIsAdd] = useState(true);
@@ -77,7 +79,18 @@ function ServiceAdmin() {
     setModalOpen(true);
   };
 
-  const openUpdateModal = (service) => {
+  const openUpdateModal = async (listedService) => {
+    if (opening) return;
+    setOpening(true); setLoadError("");
+    let service;
+    try {
+      const {data} = await ServicesService.getService(listedService.pathName);
+      if (data?.status?.code !== 200 || !data.response) throw new Error("load");
+      service = data.response;
+    } catch {
+      setLoadError("Xidmətin cari məlumatı yüklənmədi. Yenidən cəhd edin.");
+      return;
+    } finally { setOpening(false); }
     setSaveError("");
     setIsAdd(false);
     setCurrentService({
@@ -213,6 +226,7 @@ function ServiceAdmin() {
       </div>
 
       {deleteError && <p role="alert" style={{color:"#b91c1c"}}>{deleteError}</p>}
+      {loadError && <p role="alert" style={{color:"#b91c1c"}}>{loadError}</p>}
       <div className={style.servicesWrap}>
         {services.map((service) => (
           <div key={service.id} className={style.serviceCard}>
@@ -221,7 +235,7 @@ function ServiceAdmin() {
               name={service.serviceName}
               background="light"
             />
-            <button disabled={deletingId !== null} onClick={() => openUpdateModal(service)}>Update</button>
+            <button disabled={opening || deletingId !== null} onClick={() => openUpdateModal(service)}>Update</button>
             <button disabled={deletingId !== null} onClick={() => deleteService(service)}>Delete Service</button>
           </div>
         ))}

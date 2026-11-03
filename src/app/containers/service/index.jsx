@@ -8,7 +8,7 @@ function ServiceContainer({ page, service, initialData }) {
     <Layout page={page}>
       <Banner page="services" />
       <ServicePageContainer key={service} service={service} initialData={initialData} />
-      {service==="calibration" ? <CertificateGermany/> : ""}
+      {service==="kalibrasiya" ? <CertificateGermany/> : ""}
     </Layout>
   );
 }

@@ -8,7 +8,7 @@ import vm from 'node:vm';
 for(const [host,locales] of [['www.geototal.az',['az','en','ru']],['www.geototal.kg',['ky','en','ru']]]) {
  for(const locale of locales)test(`${host}/${locale}: page-specific metadata and matching alternates`,()=>{
   const titles=new Set();
-  for(const [page,path] of [['home',''],['services','services'],['projects','projects'],['aboutus','aboutus'],['references','aboutus/references'],['products','products'],['contact','contact']]) {
+  for(const [page,path] of [['home',''],['services','xidmetler'],['projects','layiheler'],['aboutus','haqqimizda'],['references','haqqimizda/references'],['products','mehsullar'],['contact','elaqe']]) {
    const m=pageMetadata({host,locale,page,path});assert.ok(m.description.length>20);assert.ok(!titles.has(m.title));titles.add(m.title);
    assert.equal(m.alternates.canonical,`https://${host}/${locale}${path?'/'+path:''}`);
    assert.deepEqual(Object.keys(m.alternates.languages),[...locales,'x-default']);
@@ -23,7 +23,7 @@ test('Canonical origin cannot be supplied by arbitrary host',()=>{
 });
 test('Detail metadata uses record text and preserves same path in every language',()=>{
  const m=pageMetadata({host:'www.geototal.az',locale:'az',page:'services',path:'services/lidar',title:'LiDAR çəkilişi',description:'<p>LiDAR\n xidməti</p>'});
- assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages.en,'https://www.geototal.az/en/services/lidar');assert.equal(cleanDescription('a'.repeat(300)).length,300);
+ assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages.en,'https://www.geototal.az/en/xidmetler/dron-xidmetleri');assert.equal(cleanDescription('a'.repeat(300)).length,300);
 });
 function server(fetch){
  const source=readFileSync(new URL('../src/lib/server-seo.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('export function','function').replaceAll('export async function','async function');

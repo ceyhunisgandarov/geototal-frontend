@@ -87,7 +87,7 @@ export default function AboutSection({initialData} = {}) {
                 />
 
                 <Link
-                  href={`/${t("locale")}/aboutus`}
+                  href={`/${t("locale")}/haqqimizda`}
                   className={styles.defaultBtn}
                 >
                   {t("more")}

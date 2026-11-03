@@ -30,11 +30,11 @@ for (const [host, lang, blocked] of [['www.geototal.az', 'az', 'ky'], ['www.geot
     assert.equal(new URL(response.headers.get('location')).pathname, `/${lang}`);
   });
   test(`${host}: blocked locale preserves detail path and query`, () => {
-    const response = middleware(new NextRequest(`https://${host}/${blocked}/products/7?q=test`, {headers: {host}}));
-    assert.equal(response.headers.get('location'), `https://${host}/${lang}/products/7?q=test`);
+    const response = middleware(new NextRequest(`https://${host}/${blocked}/mehsullar/7?q=test`, {headers: {host}}));
+    assert.equal(response.headers.get('location'), `https://${host}/${lang}/mehsullar/7?q=test`);
   });
   for (const allowed of [lang, 'en', 'ru']) test(`${host}: ${allowed} stays accessible`, () => {
-    const response = middleware(new NextRequest(`https://${host}/${allowed}/products/7`, {headers: {host}}));
+    const response = middleware(new NextRequest(`https://${host}/${allowed}/mehsullar/7`, {headers: {host}}));
     assert.equal(response.headers.get('location'), null);
     assert.ok(!response.headers.get('link')?.includes(`/${blocked}/`));
   });

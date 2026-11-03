@@ -122,7 +122,7 @@ export default function ServicesSection({ service, initialData }) {
         <p>{labels.inquiryText}</p>
         <nav className={style.inquiryLinks}>
           <Link href={`/${locale}#service-inquiry`}>{labels.request}</Link>
-          <Link href={`/${locale}/services`}>{labels.allServices}</Link>
+          <Link href={`/${locale}/xidmetler`}>{labels.allServices}</Link>
         </nav>
       </section>
     </div>

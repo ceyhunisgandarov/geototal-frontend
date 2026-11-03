@@ -102,7 +102,7 @@ export default function ModernNavbar({ page }) {
               <div className={styles.menuLink}>
                 <Link
                   className={styles.mainLink}
-                  href={`/${t("locale")}/aboutus`}
+                  href={`/${t("locale")}/haqqimizda`}
                 >
                   {t("aboutus")}
                 </Link>
@@ -111,7 +111,7 @@ export default function ModernNavbar({ page }) {
                     <li className={styles.dropDownMenu}>
                       <Link
                         className={styles.mainLink}
-                        href={`/${t("locale")}/aboutus`}
+                        href={`/${t("locale")}/haqqimizda`}
                       >
                         {t("company")}
                       </Link>
@@ -119,7 +119,7 @@ export default function ModernNavbar({ page }) {
                     <li className={styles.dropDownMenu}>
                       <Link
                         className={styles.mainLink}
-                        href={`/${t("locale")}/aboutus/references`}
+                        href={`/${t("locale")}/haqqimizda/references`}
                       >
                         {t("references")}
                       </Link>
@@ -130,7 +130,7 @@ export default function ModernNavbar({ page }) {
               <div className={styles.menuLink}>
                 <Link
                   className={styles.mainLink}
-                  href={`/${t("locale")}/projects`}
+                  href={`/${t("locale")}/layiheler`}
                 >
                   {t("projects")}
                 </Link>
@@ -138,7 +138,7 @@ export default function ModernNavbar({ page }) {
               <div className={styles.menuLink}>
                 <Link
                   className={styles.mainLink}
-                  href={`/${t("locale")}/products`}
+                  href={`/${t("locale")}/mehsullar`}
                 >
                   {t("products")}
                 </Link>
@@ -146,7 +146,7 @@ export default function ModernNavbar({ page }) {
               <div className={styles.menuLink}>
                 <Link
                   className={styles.mainLink}
-                  href={`/${t("locale")}/services`}
+                  href={`/${t("locale")}/xidmetler`}
                 >
                   {t("services")}
                 </Link>
@@ -159,7 +159,7 @@ export default function ModernNavbar({ page }) {
               <div className={styles.menuLink}>
                 <Link
                   className={styles.mainLink}
-                  href={`/${t("locale")}/contact`}
+                  href={`/${t("locale")}/elaqe`}
                 >
                   {t("contactus")}
                 </Link>
@@ -313,34 +313,34 @@ export default function ModernNavbar({ page }) {
             </Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/aboutus`}
+              href={`/${t("locale")}/haqqimizda`}
               onClick={() => setMenuOpen(false)}
             >
               {t("aboutus")}
             </Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/aboutus/references`}
+              href={`/${t("locale")}/haqqimizda/references`}
             >
               {t("references")}
             </Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/projects`}
+              href={`/${t("locale")}/layiheler`}
               onClick={() => setMenuOpen(false)}
             >
               {t("projects")}
             </Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/products`}
+              href={`/${t("locale")}/mehsullar`}
               onClick={() => setMenuOpen(false)}
             >
               {t("products")}
             </Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/services`}
+              href={`/${t("locale")}/xidmetler`}
               onClick={() => setMenuOpen(false)}
             >
               {t("services")}
@@ -348,7 +348,7 @@ export default function ModernNavbar({ page }) {
             <Link className={styles.mainLink} href={`/${t("locale")}/blog`} onClick={() => setMenuOpen(false)}>{t("blog")}</Link>
             <Link
               className={styles.mainLink}
-              href={`/${t("locale")}/contact`}
+              href={`/${t("locale")}/elaqe`}
               onClick={() => setMenuOpen(false)}
             >
               {t("contactus")}

@@ -28,5 +28,5 @@ export default function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/', '/(az|en|ru|ky)/:path*', '/services/:path*', '/projects/:path*', '/products/:path*', '/aboutus/:path*', '/contact/:path*', '/robots.txt', '/sitemap.xml']
+  matcher: ['/', '/(az|en|ru|ky)/:path*', '/services/:path*', '/projects/:path*', '/products/:path*', '/aboutus/:path*', '/contact/:path*', '/xidmetler/:path*', '/layiheler/:path*', '/mehsullar/:path*', '/haqqimizda/:path*', '/elaqe/:path*', '/blog/:path*', '/robots.txt', '/sitemap.xml']
 };

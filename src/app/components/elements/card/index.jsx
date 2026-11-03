@@ -6,7 +6,7 @@ function Card({ product, more, moreText, locale }) {
   return (
     <Link
       className={style.card}
-      href={more ? `/${locale}/products` : `/${locale}/products/${product.id}`}
+      href={more ? `/${locale}/mehsullar` : `/${locale}/mehsullar/${product.id}`}
     >
       <Image
         src={product?.images?.[0] ?? "/images/product-999.png"}

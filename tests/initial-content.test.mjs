@@ -53,7 +53,7 @@ test("Server-provided products render on the first pass and category selection s
  const rows=[{id:1,brand:"Leica",model:"TS",category:"TOTAL_STATION"},{id:2,brand:"Other",model:"GPS",category:"GNSS"}];const h=mount("src/app/components/section/productlist/index.jsx",{},{initialData:rows,selectedCategory:"GNSS"});assert.ok(text(h.render()).includes("GPS"));assert.ok(!text(h.render()).includes("Leica"));await h.ready();assert.equal(h.calls.length,0);
 });
 test("Server-provided projects render initial links without browser fetch",async()=>{
- const h=mount("src/app/components/projectscomponent/index.jsx",{},{initialData:[{id:7,projectName:"Bridge",path:"bridge"}]},"az");const t=h.render();assert.ok(text(t).includes("Bridge"));assert.ok(find(t,n=>n.props?.href==="/az/projects/bridge"));await h.ready();assert.equal(h.calls.length,0);
+ const h=mount("src/app/components/projectscomponent/index.jsx",{},{initialData:[{id:7,projectName:"Bridge",path:"bridge"}]},"az");const t=h.render();assert.ok(text(t).includes("Bridge"));assert.ok(find(t,n=>n.props?.href==="/az/layiheler/bridge"));await h.ready();assert.equal(h.calls.length,0);
 });
 
 for (const locale of ["az", "en", "ru", "ky"]) test(`Homepage product cards use routing locale ${locale}`, () => {

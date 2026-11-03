@@ -1,6 +1,7 @@
+import {publicPath,publicRouteNames} from './public-routes.js';
 import {seoSite} from './seo.js';
 
-export const publicPaths=['','services','projects','products','aboutus','aboutus/references','contact','blog'];
+export const publicPaths=['','services','projects','products','aboutus','aboutus/references','contact','blog'].map(publicPath);
 const escapeXml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 function segment(value) {
  if(typeof value!=='string' || !value.trim() || value!==value.trim() || ['.','..'].includes(value) || /[\/\\?#\u0000-\u001f]/.test(value))return null;
@@ -10,9 +11,9 @@ export function sitemapXml(host,{services,projects,products,blogs=[]}) {
  const site=seoSite(host);
  const paths=new Set(publicPaths);
  for(const [rows,prefix,key] of [[services,'services','pathName'],[projects,'projects','path']]) {
-  for(const row of rows){const slug=segment(row[key]);if(slug)paths.add(`${prefix}/${slug}`);}
+  for(const row of rows){const slug=segment(row[key]);if(slug)paths.add(`${publicPath(prefix)}/${slug}`);}
  }
- for(const product of products){const id=String(product.id);if(/^[1-9][0-9]*$/.test(id) && BigInt(id)<=9223372036854775807n)paths.add(`products/${id}`);}
+ for(const product of products){const id=String(product.id);if(/^[1-9][0-9]*$/.test(id) && BigInt(id)<=9223372036854775807n)paths.add(`mehsullar/${id}`);}
  if(paths.size*site.locales.length>50000)throw new Error('Sitemap must be split before exceeding 50000 URLs');
  const entries=[];
  for(const path of paths){
@@ -38,13 +39,13 @@ export function robotsText(host) {
 export function publicRedirect({host,protocol,pathname,search=''}) {
  const hostname=host.split(',')[0].trim().toLowerCase().replace(/:\d+$/,'').replace(/\.$/,'');
  const known=['geototal.az','www.geototal.az','geototal.kg','www.geototal.kg'].includes(hostname);
- const site=seoSite(host);let path=pathname;
+ const site=seoSite(host);let path=publicPath(pathname);
  const first=path.split('/')[1];
- const unprefixed=['services','projects','products','aboutus','contact','blog'].includes(first);
+ const unprefixed=[...Object.values(publicRouteNames),'blog'].includes(first);
  if(unprefixed)path=`/${site.defaultLocale}${path}`;
  // Country roots have a stable default; localhost retains next-intl's development behavior.
  if(known && path==='/')path=`/${site.defaultLocale}`;
  if(known && (hostname!==new URL(site.origin).hostname || protocol!=='https' || path!==pathname))return `${site.origin}${path}${search}`;
- if(!known && unprefixed)return `${path}${search}`;
+ if(!known && path!==pathname)return `${path}${search}`;
  return null;
 }

@@ -105,14 +105,14 @@ function Navbar({ page, locale }) {
               </Link>
             </li>
             <li>
-              <Link className={style.menuLink} href={`/${t("locale")}/aboutus`}>
+              <Link className={style.menuLink} href={`/${t("locale")}/haqqimizda`}>
                 {t("aboutus")}
               </Link>
             </li>
             <li>
               <Link
                 className={style.menuLink}
-                href={`/${t("locale")}/products`}
+                href={`/${t("locale")}/mehsullar`}
               >
                 {t("products")}
               </Link>
@@ -120,13 +120,13 @@ function Navbar({ page, locale }) {
             <li>
               <Link
                 className={style.menuLink}
-                href={`/${t("locale")}/services`}
+                href={`/${t("locale")}/xidmetler`}
               >
                 {t("services")}
               </Link>
             </li>
             <li>
-              <Link className={style.menuLink} href={`/${t("locale")}/contact`}>
+              <Link className={style.menuLink} href={`/${t("locale")}/elaqe`}>
                 {t("contactus")}
               </Link>
             </li>
@@ -217,7 +217,7 @@ function Navbar({ page, locale }) {
             </li>
             <li className={style.mobileMenuItem}>
               <Link
-                href={`/${t("locale")}/aboutus`}
+                href={`/${t("locale")}/haqqimizda`}
                 className={style.mobileLink}
               >
                 {t("aboutus")}
@@ -225,7 +225,7 @@ function Navbar({ page, locale }) {
             </li>
             <li className={style.mobileMenuItem}>
               <Link
-                href={`/${t("locale")}/products`}
+                href={`/${t("locale")}/mehsullar`}
                 className={style.mobileLink}
               >
                 {t("products")}
@@ -233,7 +233,7 @@ function Navbar({ page, locale }) {
             </li>
             <li className={style.mobileMenuItem}>
               <Link
-                href={`/${t("locale")}/services`}
+                href={`/${t("locale")}/xidmetler`}
                 className={style.mobileLink}
               >
                 {t("services")}
@@ -241,7 +241,7 @@ function Navbar({ page, locale }) {
             </li>
             <li className={style.mobileMenuItem}>
               <Link
-                href={`/${t("locale")}/contact`}
+                href={`/${t("locale")}/elaqe`}
                 className={style.mobileLink}
               >
                 {t("contactus")}

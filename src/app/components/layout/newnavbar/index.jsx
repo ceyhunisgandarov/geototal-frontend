@@ -71,16 +71,16 @@ function NewNavbar({ page, locale }) {
             <ul>
               <li><Link href={`/${t("locale")}/`} className={style.linkMenu}>{t("home")}</Link></li>
               <li className={style.dropdownWrapper}>
-                <Link href={`/${t("locale")}/aboutus`} className={style.linkMenu}>{t("aboutus")}</Link>
+                <Link href={`/${t("locale")}/haqqimizda`} className={style.linkMenu}>{t("aboutus")}</Link>
                 <ul className={style.dropdownMenu}>
-                  <li><Link href={`/${t("locale")}/aboutus`} className={style.dropdownLink}>{t("company")}</Link></li>
-                  <li><Link href={`/${t("locale")}/aboutus/references`} className={style.dropdownLink}>{t("references")}</Link></li>
-                  <li><Link href={`/${t("locale")}/aboutus/certificates`} className={style.dropdownLink}>{t("certificates")}</Link></li>
+                  <li><Link href={`/${t("locale")}/haqqimizda`} className={style.dropdownLink}>{t("company")}</Link></li>
+                  <li><Link href={`/${t("locale")}/haqqimizda/references`} className={style.dropdownLink}>{t("references")}</Link></li>
+                  <li><Link href={`/${t("locale")}/haqqimizda/certificates`} className={style.dropdownLink}>{t("certificates")}</Link></li>
                 </ul>
               </li>
-              <li><Link href={`/${t("locale")}/products`} className={style.linkMenu}>{t("products")}</Link></li>
-              <li><Link href={`/${t("locale")}/services`} className={style.linkMenu}>{t("services")}</Link></li>
-              <li><Link href={`/${t("locale")}/contact`} className={style.linkMenu}>{t("contactus")}</Link></li>
+              <li><Link href={`/${t("locale")}/mehsullar`} className={style.linkMenu}>{t("products")}</Link></li>
+              <li><Link href={`/${t("locale")}/xidmetler`} className={style.linkMenu}>{t("services")}</Link></li>
+              <li><Link href={`/${t("locale")}/elaqe`} className={style.linkMenu}>{t("contactus")}</Link></li>
             </ul>
           </div>
 
@@ -114,14 +114,14 @@ function NewNavbar({ page, locale }) {
             <li className={style.menuButton} onClick={() => setMobileAboutOpen((prev) => !prev)}>
               <p className={style.linkMobile}>{t("aboutus")}</p>
               <ul className={`${style.dropdownMenuMobile} ${mobileAboutOpen ? style.mobileDropdownOpen : ""}`}>
-                <li><Link href={`/${t("locale")}/aboutus`} className={style.dropdownLinkMobile}>{t("company")}</Link></li>
-                <li><Link href={`/${t("locale")}/aboutus/references`} className={style.dropdownLinkMobile}>{t("references")}</Link></li>
-                <li><Link href={`/${t("locale")}/aboutus/certificates`} className={style.dropdownLinkMobile}>{t("certificates")}</Link></li>
+                <li><Link href={`/${t("locale")}/haqqimizda`} className={style.dropdownLinkMobile}>{t("company")}</Link></li>
+                <li><Link href={`/${t("locale")}/haqqimizda/references`} className={style.dropdownLinkMobile}>{t("references")}</Link></li>
+                <li><Link href={`/${t("locale")}/haqqimizda/certificates`} className={style.dropdownLinkMobile}>{t("certificates")}</Link></li>
               </ul>
             </li>
-            <li className={style.menuButton}><Link href={`/${t("locale")}/products`} className={style.linkMobile}>{t("products")}</Link></li>
-            <li className={style.menuButton}><Link href={`/${t("locale")}/services`} className={style.linkMobile}>{t("services")}</Link></li>
-            <li className={style.menuButton}><Link href={`/${t("locale")}/contact`} className={style.linkMobile}>{t("contactus")}</Link></li>
+            <li className={style.menuButton}><Link href={`/${t("locale")}/mehsullar`} className={style.linkMobile}>{t("products")}</Link></li>
+            <li className={style.menuButton}><Link href={`/${t("locale")}/xidmetler`} className={style.linkMobile}>{t("services")}</Link></li>
+            <li className={style.menuButton}><Link href={`/${t("locale")}/elaqe`} className={style.linkMobile}>{t("contactus")}</Link></li>
           </ul>
         </div>
       </div>

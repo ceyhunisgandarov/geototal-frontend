@@ -87,7 +87,7 @@ export default function Projects({initialData} = {}) {
                   <span>{project.workDate.split("-")[0]}</span>
                   <h4>{localizedProjectName(project, t("locale"))}</h4>
                   <Link
-                    href={`/${t("locale")}/projects/${project.path}`}
+                    href={`/${t("locale")}/layiheler/${project.path}`}
                     className={styles.link}
                   >
                     <button className={styles.button}>{t("more")}</button>

@@ -1,3 +1,4 @@
+import {publicPath} from './public-routes.js';
 const copy = {
  az: {
   home: ['Geodeziya və Topoqrafiya Xidmətləri', 'GeoTotal Azərbaycanda geodeziya və topoqrafiya, dronla xəritəçəkmə, LiDAR çəkilişi və ölçmə avadanlıqlarının kalibrlənməsi xidmətləri təqdim edir.'],
@@ -62,7 +63,7 @@ export function pageMetadata({host,locale='az',page='home',path='',title,descrip
  const site=seoSite(host,locale);
  const language=site.locales.includes(locale)?locale:site.defaultLocale;
  const texts=copy[language][page] || copy[language].home;
- const suffix=path ? '/' + path.replace(/^\/+|\/+$/g,'') : '';
+ const suffix=path ? '/' + publicPath(path).replace(/^\/+|\/+$/g,'') : '';
  const url=lang=>`${site.origin}/${lang}${suffix}`;
  const languages=Object.fromEntries(site.locales.map(lang=>[lang,url(lang)]));
  languages['x-default']=url(site.defaultLocale);

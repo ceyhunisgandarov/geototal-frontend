@@ -46,7 +46,7 @@ function ProjectsComponent({initialData} = {}) {
             ))
           : projects.map((project) => (
               <Link
-                href={`/${t("locale")}/projects/${project.path}`}
+                href={`/${t("locale")}/layiheler/${project.path}`}
                 key={project.id}
                 className={styles.link}
               >

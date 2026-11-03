@@ -47,7 +47,7 @@ function Icon({
 
   return (
     <Link
-      href={`/${t("locale")}/services/${service.pathName}`}
+      href={`/${t("locale")}/xidmetler/${service.pathName}`}
       className={`${style.gridItem} ${
         background === "light" ? style.light : style.dark
       }`}

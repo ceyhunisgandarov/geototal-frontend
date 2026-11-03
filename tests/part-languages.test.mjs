@@ -48,9 +48,9 @@ const ok=response=>({data:{status:{code:200},response}});
 const part={id:2,partName:"AZ",partNameEn:"EN",partNameRu:"RU",partNameKy:"KY",serviceTextAz:"az",serviceTextEn:"en",serviceTextRu:"ru",serviceImageUrl:"image"};
 const service={id:1,serviceName:"AZ",serviceNameEn:"EN",serviceNameRu:"RU",pathName:"service",serviceParts:[part]};
 test("Part title translations hydrate, submit and Cancel restores them",async()=>{
- const h=mount("src/app/components/admin/section/service/index.jsx",{getServices:ok([service]),addOrUpdateService:{data:{status:{code:400,message:"retry"}}}});h.render();let t=await h.ready();find(t,n=>n.type==="button"&&text(n)==="Update").props.onClick();t=h.render();
+ const h=mount("src/app/components/admin/section/service/index.jsx",{getServices:ok([service]),getService:ok(service),addOrUpdateService:{data:{status:{code:400,message:"retry"}}}});h.render();let t=await h.ready();await find(t,n=>n.type==="button"&&text(n)==="Update").props.onClick();t=h.render();
  for(const l of ["En","Ru","Ky"]){const f=find(t,n=>n.props?.name==="partName"+l);assert.equal(f.props.value,l.toUpperCase());f.props.onChange({target:{value:"new "+l}});t=h.render();}
  await nodes(t).filter(n=>n.type==="button"&&text(n)==="Update").at(-1).props.onClick();const sent=h.calls.find(c=>c.method==="addOrUpdateService").args[2][0];for(const l of ["En","Ru","Ky"])assert.equal(sent["partName"+l],"new "+l);
- find(h.render(),n=>n.type==="button"&&text(n)==="Cancel").props.onClick();find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();assert.equal(find(h.render(),n=>n.props?.name==="partNameKy").props.value,"KY");
+ find(h.render(),n=>n.type==="button"&&text(n)==="Cancel").props.onClick();await find(h.render(),n=>n.type==="button"&&text(n)==="Update").props.onClick();assert.equal(find(h.render(),n=>n.props?.name==="partNameKy").props.value,"KY");
 });
 for(const locale of ["az","en","ru","ky"])test(`Service part public title uses ${locale}`,async()=>{const h=mount("src/app/components/section/servicepage/index.jsx",{getService:ok(service)},{service:"service"},locale);h.render();const t=await h.ready();assert.ok(nodes(t).some(n=>n.type==="h2"&&text(n)===locale.toUpperCase()));});

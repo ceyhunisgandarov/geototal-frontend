@@ -52,7 +52,7 @@ function ProductList({ selectedCategory, initialData }) {
             ))
           : filteredProducts.map((product) => (
               <Link
-                href={`/${locale}/products/${product.id}`}
+                href={`/${locale}/mehsullar/${product.id}`}
                 key={product.id}
                 className={style.card2}
               >

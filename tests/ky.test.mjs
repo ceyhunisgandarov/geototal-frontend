@@ -93,7 +93,7 @@ test("Product create sends KY",()=>{
 });
 test("Service edit carries part IDs and KY without RU overwrites",async()=>{
  const service={id:1,serviceName:"AZ",serviceNameEn:"EN",serviceNameRu:"RU",serviceNameKy:"KY",pathName:"service",serviceParts:[{id:2,partName:"part",serviceTextAz:"AZ",serviceTextEn:"EN",serviceTextRu:"RU",serviceTextKy:"part-KY"}]};
- const h=mount("src/app/components/admin/section/service/index.jsx",{getServices:response([service])});h.render();let t=await h.ready();find(t,n=>n.type==="button"&&text(n)==="Update").props.onClick();t=h.render();
+ const h=mount("src/app/components/admin/section/service/index.jsx",{getServices:response([service]),getService:response(service)});h.render();let t=await h.ready();await find(t,n=>n.type==="button"&&text(n)==="Update").props.onClick();t=h.render();
  find(t,n=>n.props?.placeholder==="Service Name RU").props.onChange({target:{value:"new-ru"}});t=h.render();assert.equal(find(t,n=>n.props?.placeholder==="Service Name KY").props.value,"KY");
  // Submit the modal button, keeping the edited state.
  t=h.render();const buttons=nodes(t).filter(n=>n.type==="button"&&text(n)==="Update");await buttons.at(-1).props.onClick();
@@ -121,7 +121,7 @@ for(const locale of ["az","en","ru","ky"]) {
  });
  test(`Service detail renders ${locale}`,async()=>{
   const record={serviceName:"AZ",serviceNameEn:"EN",serviceNameRu:"RU",serviceNameKy:"KY",serviceParts:[{id:1,partName:"part",serviceTextAz:"AZ",serviceTextEn:"EN",serviceTextRu:"RU",serviceTextKy:"KY"}]};
-  const h=mount("src/app/components/section/servicepage/index.jsx",{getService:response(record)},{service:"example"},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.type==="h1"&&text(n)===locale.toUpperCase()));assert.ok(nodes(tree).some(n=>n.type==="p"&&text(n)===locale.toUpperCase()));
+  const h=mount("src/app/components/section/servicepage/index.jsx",{getService:response(record)},{service:"example"},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.type==="h1"&&text(n)===locale.toUpperCase()));assert.ok(nodes(tree).some(n=>n.props?.skipHtml===true&&text(n)===locale.toUpperCase()));
  });
  test(`Project detail renders ${locale}`,async()=>{
   const record={projectName:"Project",worksDescription:"AZ",worksDescriptionEn:"EN",worksDescriptionRu:"RU",worksDescriptionKy:"KY",feedBack:"AZ",feedBackEn:"EN",feedBackRu:"RU",feedBackKy:"KY"};
@@ -138,7 +138,7 @@ for(const locale of ["az","en","ru","ky"]) {
   const h=mount("src/app/components/modernservice/index.jsx",{getServices:response([record])},{},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.props?.alt===locale.toUpperCase()));
  });
  test(`Product list links use ${locale}`,async()=>{
-  const h=mount("src/app/components/section/productlist/index.jsx",{getProducts:response([fixture])},{},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.props?.href===`/${locale}/products/7`));
+  const h=mount("src/app/components/section/productlist/index.jsx",{getProducts:response([fixture])},{},locale);h.render();const tree=await h.ready();assert.ok(nodes(tree).some(n=>n.props?.href===`/${locale}/mehsullar/7`));
  });
 }
 
