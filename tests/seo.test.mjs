@@ -11,8 +11,8 @@ for(const [host,locales] of [['www.geototal.az',['az','en','ru']],['www.geototal
   for(const [page,path] of [['home',''],['services','xidmetler'],['projects','layiheler'],['aboutus','haqqimizda'],['references','haqqimizda/references'],['products','mehsullar'],['contact','elaqe']]) {
    const m=pageMetadata({host,locale,page,path});assert.ok(m.description.length>20);assert.ok(!titles.has(m.title));titles.add(m.title);
    assert.equal(m.alternates.canonical,`https://${host}/${locale}${path?'/'+path:''}`);
-   assert.deepEqual(Object.keys(m.alternates.languages),[...locales,'x-default']);
-   assert.equal(m.alternates.languages['x-default'],`https://${host}/${locales[0]}${path?'/'+path:''}`);
+   assert.deepEqual(Object.keys(m.alternates.languages),['az-AZ','en-AZ','ru-AZ','ky-KG','en-KG','ru-KG','x-default']);
+   assert.equal(m.alternates.languages['x-default'],`https://www.geototal.az/az${path?'/'+path:''}`);
   }
  });
 }
@@ -23,7 +23,7 @@ test('Canonical origin cannot be supplied by arbitrary host',()=>{
 });
 test('Detail metadata uses record text and preserves same path in every language',()=>{
  const m=pageMetadata({host:'www.geototal.az',locale:'az',page:'services',path:'services/lidar',title:'LiDAR çəkilişi',description:'<p>LiDAR\n xidməti</p>'});
- assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages.en,'https://www.geototal.az/en/xidmetler/dron-xidmetleri');assert.equal(cleanDescription('a'.repeat(300)).length,300);
+ assert.equal(m.title,'LiDAR çəkilişi | GeoTotal');assert.equal(m.description,'LiDAR xidməti');assert.equal(m.alternates.languages['en-AZ'],'https://www.geototal.az/en/xidmetler/dron-xidmetleri');assert.equal(cleanDescription('a'.repeat(300)).length,300);
 });
 function server(fetch){
  const source=readFileSync(new URL('../src/lib/server-seo.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('export function','function').replaceAll('export async function','async function');

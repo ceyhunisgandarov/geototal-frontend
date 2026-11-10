@@ -1,3 +1,4 @@
+import {regionalAlternates,blogLanguages} from './regional-alternates.js';
 import {publicPath,publicRouteNames} from './public-routes.js';
 import {seoSite} from './seo.js';
 
@@ -18,15 +19,14 @@ export function sitemapXml(host,{services,projects,products,blogs=[]}) {
  const entries=[];
  for(const path of paths){
   const url=locale=>`${site.origin}/${locale}${path?'/'+path:''}`;
-  const alternates=[...site.locales.map(locale=>[locale,url(locale)]),['x-default',url(site.defaultLocale)]];
+  const alternates=Object.entries(regionalAlternates(path));
   for(const locale of site.locales)entries.push(`<url><loc>${escapeXml(url(locale))}</loc>${alternates.map(([lang,href])=>`<xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}"/>`).join('')}</url>`);
  }
  for(const blog of blogs) {
   const slug=segment(blog.slug);if(!slug || blog.published!==true)continue;
   const languages=site.locales.filter(l=>{const suffix={az:'',en:'En',ru:'Ru',ky:'Ky'}[l];return blog[`title${suffix}`]?.trim() && blog[`description${suffix}`]?.trim();});
   const url=l=>`${site.origin}/${l}/blog/${slug}`;
-  const alternates=languages.map(l=>[l,url(l)]);
-  if(languages.includes(site.defaultLocale))alternates.push(['x-default',url(site.defaultLocale)]);
+  const alternates=Object.entries(regionalAlternates(`blog/${slug}`,blogLanguages(blog)));
   for(const l of languages)entries.push(`<url><loc>${escapeXml(url(l))}</loc>${alternates.map(([lang,href])=>`<xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}"/>`).join('')}</url>`);
  }
  if(entries.length>50000)throw new Error("Sitemap must be split before exceeding 50000 URLs");

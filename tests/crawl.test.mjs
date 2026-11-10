@@ -11,7 +11,7 @@ for(const [host,first,excluded] of [['www.geototal.az','az','ky'],['www.geototal
  assert.ok(locs.includes(`https://${host}/en/layiheler/bridge%20%26%20road`));
  assert.ok(!xml.includes(`https://${host}/${excluded}/`));
  assert.ok(!locs.some(u=>u.includes('/admin')||u.includes('/login')||u.includes('/mehsullar/-1')));
- assert.ok(xml.includes(`hreflang="x-default" href="https://${host}/${first}/xidmetler/dron-xidmetleri"`));
+ assert.ok(xml.includes(`hreflang="x-default" href="https://www.geototal.az/az/xidmetler/dron-xidmetleri"`));
  assert.ok(!xml.includes('lastmod'));
  assert.ok(robotsText(host).includes(`Sitemap: https://${host}/sitemap.xml`));
 });

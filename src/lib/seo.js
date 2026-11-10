@@ -1,3 +1,4 @@
+import {regionalAlternates} from './regional-alternates.js';
 import {publicPath} from './public-routes.js';
 const copy = {
  az: {
@@ -65,8 +66,7 @@ export function pageMetadata({host,locale='az',page='home',path='',title,descrip
  const texts=copy[language][page] || copy[language].home;
  const suffix=path ? '/' + publicPath(path).replace(/^\/+|\/+$/g,'') : '';
  const url=lang=>`${site.origin}/${lang}${suffix}`;
- const languages=Object.fromEntries(site.locales.map(lang=>[lang,url(lang)]));
- languages['x-default']=url(site.defaultLocale);
+ const languages=regionalAlternates(path);
  return {
   title: `${title || texts[0]} | GeoTotal${page==='home' ? ' '+site.country[language] : ''}`,
   description:cleanDescription(seoDescription, false) || cleanDescription(description) || texts[1],

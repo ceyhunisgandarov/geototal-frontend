@@ -21,7 +21,7 @@ test('Prepared content has 80 complete localized versions and assets',()=>{
 test('Only published translated blog URLs enter sitemap and metadata alternates',()=>{
  const blogs=[{slug:'ready',published:true,title:'AZ',description:'AZ',titleEn:'EN',descriptionEn:'EN'},{slug:'draft',published:false,title:'Draft',description:'Draft'}];
  const xml=sitemapXml('www.geototal.az',{services:[],projects:[],products:[],blogs});assert.ok(xml.includes('/az/blog/ready'));assert.ok(xml.includes('/en/blog/ready'));assert.ok(!xml.includes('/ru/blog/ready'));assert.ok(!xml.includes('/blog/draft'));
- const m=blogMetadata('www.geototal.az','az',blogs[0]);assert.equal(m.alternates.canonical,'https://www.geototal.az/az/blog/ready');assert.equal(m.alternates.languages.ru,undefined);
+ const m=blogMetadata('www.geototal.az','az',blogs[0]);assert.equal(m.alternates.canonical,'https://www.geototal.az/az/blog/ready');assert.equal(m.alternates.languages['ru-AZ'],undefined);
 });
 test('Article Markdown escapes raw HTML and unsafe link schemes',()=>{
  const html=renderToStaticMarkup(React.createElement(Markdown,{skipHtml:true},'<script>alert(1)</script>\n\n[bad](javascript:alert%281%29)\n\n## Heading'));
