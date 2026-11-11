@@ -59,7 +59,7 @@
 .grid {
   display: grid;
   gap: 24px; /* kartlar arası boşluk */
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 @media (max-width: 992px) {
@@ -120,7 +120,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
@@ -133,7 +133,7 @@
   text-align: center;
   color: #fff;
   padding: 24px;
-  transform: translateY(20px);
+  transform: translateY(0);
   transition: transform 0.4s ease;
 }
 
@@ -163,4 +163,9 @@
 
 .link {
   text-decoration: none;
+  color: inherit;
+}
+.link:focus-visible {
+  outline: 3px solid #ffb400;
+  outline-offset: 6px;
 }

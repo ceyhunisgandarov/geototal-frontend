@@ -1,4 +1,5 @@
 "use client";
+import { publicContentHref } from "@/lib/public-routes";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import {contentLabels,partHeading} from "@/lib/content-labels";
@@ -99,6 +100,7 @@ export default function ServicesSection({ service, initialData }) {
                 <h2>{heading}</h2>
                 <div className={style.richText}>
                   <ReactMarkdown skipHtml components={{
+          a: ({href, children, title}) => <a href={publicContentHref(href)} title={title}>{children}</a>,
                     h1: ({children}) => <h3>{children}</h3>,
                     h2: ({children}) => <h3>{children}</h3>,
                   }}>{partText}</ReactMarkdown>

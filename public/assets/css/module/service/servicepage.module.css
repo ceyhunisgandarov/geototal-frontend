@@ -238,13 +238,30 @@
 .inquiry {max-width:1000px;padding:32px 20px;line-height:1.6;text-align:center;}
 .inquiry h2 {font-size:1.5rem;margin-bottom:12px;}
 .inquiryLinks {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:20px;}
-.inquiryLinks a {color:inherit;text-decoration:underline;text-underline-offset:4px;}
+.inquiryLinks a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid #a92129;
+  border-radius: 8px;
+  transition: background-color .2s ease;
+}
+.inquiryLinks a:first-child { background-color: #a92129; }
+.inquiryLinks a:hover { background-color: #841a20; }
+.inquiryLinks a:focus-visible { outline: 2px solid #ffd9ad; outline-offset: 4px; }
 
 /* Service copy supports paragraphs, lists and descriptive Markdown links. */
 .richText { overflow-wrap: anywhere; }
 .richText p { margin: 0 0 1em; white-space: pre-line; }
-.richText a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
-.richText a:hover, .richText a:focus-visible { color: #ffd9ad; }
+.richText a {
+  color: #ffd9ad;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.richText a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.richText a:focus-visible { outline: 2px solid #ffd9ad; outline-offset: 3px; border-radius: 2px; }
 .richText ul, .richText ol { padding-left: 1.5em; margin: 1em 0; }
 .richText ul { list-style: disc; }
 .richText ol { list-style: decimal; }

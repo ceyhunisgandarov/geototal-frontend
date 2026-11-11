@@ -192,7 +192,21 @@
 
 .body a {
   color: #a92129;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.body a:hover {
+  color: #841a20;
   text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.body a:focus-visible {
+  outline: 2px solid #a92129;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .body img {

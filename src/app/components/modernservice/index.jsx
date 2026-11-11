@@ -10,11 +10,11 @@ import ServicesService from "@/app/services/ServicesService";
 export default function ModernService({ initialData } = {}) {
   const t = useTranslations("HomeService");
   const locale = useLocale();
-  const [services, setServices] = useState(initialData?.slice(0, 4) ?? []);
+  const [services, setServices] = useState(initialData ?? []);
 
   useEffect(() => {
     if (initialData !== undefined) {
-      setServices(initialData?.slice(0, 4) ?? []);
+      setServices(initialData ?? []);
       return;
     }
     refreshServices();
@@ -24,7 +24,7 @@ export default function ModernService({ initialData } = {}) {
     ServicesService.getServices()
       .then((response) => {
         if (response.data.status.code === 200) {
-          setServices(response.data.response.slice(0, 4));
+          setServices(response.data.response);
         } else {
           console.log("Something wrong error-", response.data.status.message);
         }
@@ -86,11 +86,11 @@ function Service({ service, locale }) {
 
   return (
     <div className={styles.hoverText}>
-      <h3>{titleService}</h3>{" "}
       <Link
         href={`/${locale}/xidmetler/${service.pathName}`}
         className={styles.link}
       >
+        <h3>{titleService}</h3>
         <span className={styles.price}>{t("more")}</span>
       </Link>
     </div>
