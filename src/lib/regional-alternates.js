@@ -26,3 +26,19 @@ export function blogLanguages(record) {
   return record[`title${suffix}`]?.trim() && record[`description${suffix}`]?.trim();
  });
 }
+
+const hasText = value => typeof value === 'string' && Boolean(value.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim());
+// Do not use display fallbacks to advertise an untranslated page to search engines.
+export function contentLanguages(kind, record) {
+ if (!record) return [];
+ if (kind === 'blog') return blogLanguages(record);
+ return ['az','en','ru','ky'].filter(locale => {
+  const suffix = locale === 'az' ? '' : locale[0].toUpperCase()+locale.slice(1);
+  if (kind === 'service') return hasText(record['serviceName'+suffix]) &&
+   Array.isArray(record.serviceParts) && record.serviceParts.length > 0 &&
+   record.serviceParts.every(part => hasText(part['serviceText'+(suffix || 'Az')]));
+  if (kind === 'project') return hasText(record['projectName'+suffix]) && hasText(record['worksDescription'+suffix]);
+  if (kind === 'product') return hasText(record.brand || record.model) && hasText(record['description'+(suffix || 'Az')]);
+  return false;
+ });
+}

@@ -267,3 +267,9 @@
 .richText ol { list-style: decimal; }
 .richText h3 { font-size: 1.2rem; margin: 1.4em 0 0.6em; }
 .richText img { max-width: 100%; height: auto; }
+
+.regionalContext { max-width: 1000px; padding: 0 24px 28px; line-height: 1.7; }
+.regionalContext p { margin-bottom: 12px; }
+.regionalContext a { color: #ffd9ad; font-weight: 600; text-decoration: none; }
+.regionalContext a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.regionalContext a:focus-visible { outline: 2px solid #ffd9ad; outline-offset: 4px; }

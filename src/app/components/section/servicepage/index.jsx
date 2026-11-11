@@ -1,5 +1,6 @@
 "use client";
 import { publicContentHref } from "@/lib/public-routes";
+import {regionalServiceCopy} from "@/lib/regional-content";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import {contentLabels,partHeading} from "@/lib/content-labels";
@@ -9,7 +10,7 @@ import style from "../../../../../public/assets/css/module/service/servicepage.m
 import ServicesService from "@/app/services/ServicesService";
 import { useLocale } from "next-intl";
 
-export default function ServicesSection({ service, initialData }) {
+export default function ServicesSection({ service, initialData, region }) {
   const [error, setError] = useState("");
   const [aService, setAService] = useState(initialData ?? null);
   const [loading, setLoading] = useState(initialData === undefined);
@@ -71,6 +72,8 @@ export default function ServicesSection({ service, initialData }) {
   const labels=contentLabels(locale);
   const serviceName = localizedText(aService, "serviceName", locale);
 
+  const regional = region ? regionalServiceCopy(region, locale, serviceName) : null;
+
   const sortedParts = [...aService.serviceParts].sort((a, b) => {
     if (!a.id) return 1;
     if (!b.id) return -1;
@@ -79,7 +82,8 @@ export default function ServicesSection({ service, initialData }) {
 
   return (
     <div className={style.wrapper}>
-      <h1>{serviceName}</h1>
+      <h1>{regional?.title || serviceName}</h1>
+      {regional && <section className={style.regionalContext}><p>{regional.intro}</p><Link href={`/${locale}/elaqe`}>{regional.contact}</Link></section>}
 
       {sortedParts.map((part, index) => {
         if (!part) return null;

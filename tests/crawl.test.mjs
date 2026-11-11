@@ -4,6 +4,18 @@ import {sitemapXml,robotsText,publicRedirect} from '../src/lib/crawl.js';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const data={services:[{pathName:'dron-xidmetleri'},{pathName:'dron-xidmetleri'},{pathName:'../admin'},{pathName:null}],projects:[{path:'bridge & road'}],products:[{id:7},{id:-1},{id:'abc'}]};
+// List payloads contain full localized records, as required by the API contract.
+for (const service of data.services) Object.assign(service, {
+ serviceName:'Survey',serviceNameEn:'Survey',serviceNameRu:'Survey',serviceNameKy:'Survey',
+ serviceParts:[{serviceTextAz:'Text',serviceTextEn:'Text',serviceTextRu:'Text',serviceTextKy:'Text'}]
+});
+for (const project of data.projects) Object.assign(project, {
+ projectName:'Bridge',projectNameEn:'Bridge',projectNameRu:'Bridge',projectNameKy:'Bridge',
+ worksDescription:'Work',worksDescriptionEn:'Work',worksDescriptionRu:'Work',worksDescriptionKy:'Work'
+});
+for (const product of data.products) Object.assign(product, {
+ brand:'Device',descriptionAz:'Text',descriptionEn:'Text',descriptionRu:'Text',descriptionKy:'Text'
+});
 for(const [host,first,excluded] of [['www.geototal.az','az','ky'],['www.geototal.kg','ky','az']])test(`${host}: sitemap contains only own languages and valid public routes`,()=>{
  const xml=sitemapXml(host,data);const locs=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
  assert.equal(locs.length,33);assert.equal(new Set(locs).size,33);

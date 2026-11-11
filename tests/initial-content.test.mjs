@@ -1,3 +1,5 @@
+import * as publicRoutes from "../src/lib/public-routes.js";
+import * as regionalContent from "../src/lib/regional-content.js";
 import {contentLabels,partHeading} from "../src/lib/content-labels.js";
 import {localizedText, localizedProjectName} from "../src/lib/localizedText.js";
 import test from "node:test";
@@ -17,6 +19,8 @@ function mount(file, services, props={}, locale="ky", contact=null, confirmDelet
   useEffect(fn,deps){const i=effectCursor++;if(!deps||!effectDeps[i]||deps.some((value,index)=>value!==effectDeps[i][index]))effects.push(fn);effectDeps[i]=deps;},useRef(){return {current:null};}
  };
  const loader=(name)=>{
+  if(name==="@/lib/public-routes")return publicRoutes;
+  if(name==="@/lib/regional-content")return regionalContent;
   if(name==="@/lib/content-labels")return {contentLabels,partHeading};
   if(name==="@/lib/localizedText")return {localizedText, localizedProjectName};
   if(name==="react")return react;

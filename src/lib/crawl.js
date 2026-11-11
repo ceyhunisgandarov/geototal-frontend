@@ -1,4 +1,5 @@
-import {regionalAlternates,blogLanguages} from './regional-alternates.js';
+import {normalizedHost,hostRegion} from "./site-host.js";
+import {regionalAlternates,blogLanguages,contentLanguages} from './regional-alternates.js';
 import {publicPath,publicRouteNames} from './public-routes.js';
 import {seoSite} from './seo.js';
 
@@ -10,17 +11,16 @@ function segment(value) {
 }
 export function sitemapXml(host,{services,projects,products,blogs=[]}) {
  const site=seoSite(host);
- const paths=new Set(publicPaths);
- for(const [rows,prefix,key] of [[services,'services','pathName'],[projects,'projects','path']]) {
-  for(const row of rows){const slug=segment(row[key]);if(slug)paths.add(`${publicPath(prefix)}/${slug}`);}
+ const paths=new Map(publicPaths.map(path=>[path,['az','en','ru','ky']]));
+ for(const [rows,prefix,key,kind] of [[services,'services','pathName','service'],[projects,'projects','path','project']]) {
+  for(const row of rows){const slug=segment(row[key]);if(slug)paths.set(publicPath(`${prefix}/${slug}`),contentLanguages(kind,row));}
  }
- for(const product of products){const id=String(product.id);if(/^[1-9][0-9]*$/.test(id) && BigInt(id)<=9223372036854775807n)paths.add(`mehsullar/${id}`);}
- if(paths.size*site.locales.length>50000)throw new Error('Sitemap must be split before exceeding 50000 URLs');
+ for(const product of products){const id=String(product.id);if(/^[1-9][0-9]*$/.test(id) && BigInt(id)<=9223372036854775807n)paths.set(`mehsullar/${id}`,contentLanguages('product',product));}
  const entries=[];
- for(const path of paths){
+ for(const [path,available] of paths){
   const url=locale=>`${site.origin}/${locale}${path?'/'+path:''}`;
-  const alternates=Object.entries(regionalAlternates(path));
-  for(const locale of site.locales)entries.push(`<url><loc>${escapeXml(url(locale))}</loc>${alternates.map(([lang,href])=>`<xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}"/>`).join('')}</url>`);
+  const alternates=Object.entries(regionalAlternates(path,available));
+  for(const locale of site.locales.filter(l=>available.includes(l)))entries.push(`<url><loc>${escapeXml(url(locale))}</loc>${alternates.map(([lang,href])=>`<xhtml:link rel="alternate" hreflang="${lang}" href="${escapeXml(href)}"/>`).join('')}</url>`);
  }
  for(const blog of blogs) {
   const slug=segment(blog.slug);if(!slug || blog.published!==true)continue;
@@ -37,8 +37,8 @@ export function robotsText(host) {
  return `User-agent: *\nAllow: /\n\nSitemap: ${seoSite(host).origin}/sitemap.xml\n`;
 }
 export function publicRedirect({host,protocol,pathname,search=''}) {
- const hostname=host.split(',')[0].trim().toLowerCase().replace(/:\d+$/,'').replace(/\.$/,'');
- const known=['geototal.az','www.geototal.az','geototal.kg','www.geototal.kg'].includes(hostname);
+ const hostname=normalizedHost(host);
+ const known=Boolean(hostRegion(host));
  const site=seoSite(host);let path=publicPath(pathname);
  const first=path.split('/')[1];
  const unprefixed=[...Object.values(publicRouteNames),'blog'].includes(first);

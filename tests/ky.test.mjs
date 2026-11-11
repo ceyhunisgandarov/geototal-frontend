@@ -1,3 +1,5 @@
+import * as publicRoutes from "../src/lib/public-routes.js";
+import * as regionalContent from "../src/lib/regional-content.js";
 import {insertBlogImage,blogSaveError} from "../src/lib/blog-editor.js";
 import {contentLabels,partHeading} from "../src/lib/content-labels.js";
 import {carouselHref} from "../src/lib/carouselLink.js";
@@ -48,6 +50,8 @@ function mount(file, services, props={}, locale="ky", contact=null) {
   useEffect(fn,deps){const i=effectCursor++;if(!deps||!effectDeps[i]||deps.some((value,index)=>value!==effectDeps[i][index]))effects.push(fn);effectDeps[i]=deps;},useRef(){return {current:null};}
  };
  const loader=(name)=>{
+  if(name==="@/lib/public-routes")return publicRoutes;
+  if(name==="@/lib/regional-content")return regionalContent;
   if(name==="@/lib/content-labels")return {contentLabels,partHeading};
   if(name==="@/lib/blog-editor")return {insertBlogImage,blogSaveError};
   if(name==="react")return react;

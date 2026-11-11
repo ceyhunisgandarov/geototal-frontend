@@ -16,7 +16,7 @@ export default function MainSection({ page, locale, initialData }) {
   return (
     <Layout page={page} locale={locale}>
       <ModernCarousel />
-      <PageHeading page="home" />
+      <PageHeading page="home" region={initialData?.region} />
       <StatsSection locale={locale} />
       <AboutSection initialData={initialData?.about} />
       <ModernService initialData={initialData?.services} />

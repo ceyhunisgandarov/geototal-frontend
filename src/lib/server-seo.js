@@ -1,3 +1,4 @@
+import {contentLanguages} from "./regional-alternates.js";
 import {getDetail} from "./server-content";
 import 'server-only';
 import {headers} from 'next/headers';
@@ -19,5 +20,5 @@ export async function detailMetadata(locale,kind,id) {
  const suffix = {az:'Az',en:'En',ru:'Ru',ky:'Ky'}[locale] || 'Az';
  const seoDescription = record?.[`seoDescription${suffix}`];
  const title = record?.[`seoTitle${suffix}`]?.trim().replace(/\s*\|\s*GeoTotal\s*$/i, "") || defaultTitle;
- return pageMetadata({host:getRequestHost(headers()),locale,page,path,title,description,seoDescription});
+ return pageMetadata({host:getRequestHost(headers()),locale,page,path,title,description,seoDescription,availableLanguages:contentLanguages(kind,record),preserveTitle:Boolean(record?.[`seoTitle${suffix}`]?.trim())});
 }

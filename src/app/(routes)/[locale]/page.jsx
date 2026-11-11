@@ -32,7 +32,7 @@ export default async function HomePage({ params }) {
       <HomeContainer
         page=""
         locale={params.locale}
-        initialData={{ services, projects, products, about }}
+        initialData={{ services, projects, products, about, region: kg ? "KG" : "AZ" }}
       />
     </>
   );
