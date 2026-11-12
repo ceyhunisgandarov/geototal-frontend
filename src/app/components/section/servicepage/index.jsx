@@ -1,6 +1,6 @@
 "use client";
 import { publicContentHref } from "@/lib/public-routes";
-import {regionalServiceCopy} from "@/lib/regional-content";
+import {regionalServiceCopy, regionalServiceRecord} from "@/lib/regional-content";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import {contentLabels,partHeading} from "@/lib/content-labels";
@@ -74,7 +74,7 @@ export default function ServicesSection({ service, initialData, region }) {
 
   const regional = region ? regionalServiceCopy(region, locale, serviceName) : null;
 
-  const sortedParts = [...aService.serviceParts].sort((a, b) => {
+  const sortedParts = [...regionalServiceRecord(aService, region).serviceParts].sort((a, b) => {
     if (!a.id) return 1;
     if (!b.id) return -1;
     return a.id - b.id;

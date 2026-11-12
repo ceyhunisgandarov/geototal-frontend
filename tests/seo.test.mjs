@@ -1,4 +1,5 @@
-import {contentLanguages} from "../src/lib/regional-alternates.js";
+import {regionalServiceRecord} from '../src/lib/regional-content.js';
+import {contentRegionalLanguages} from "../src/lib/regional-alternates.js";
 import { contentLoader } from "./helpers/server-content.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -74,7 +75,7 @@ test("Detail metadata uses record text and preserves same path in every language
   );
   assert.equal(cleanDescription("a".repeat(300)).length, 300);
 });
-function server(fetch) {
+function server(fetch, host="www.geototal.az") {
   const source = readFileSync(
     new URL("../src/lib/server-seo.js", import.meta.url),
     "utf8"
@@ -87,10 +88,10 @@ function server(fetch) {
     fetch,
     process: { env: { NEXT_PUBLIC_API_BASE_URL: "http://api.test/geototal/" } },
     AbortSignal,
-    headers: () => new Headers({ host: "www.geototal.az" }),
+    headers: () => new Headers({ host }),
     getRequestHost: (h) => h.get("host"),
     pageMetadata,
-    contentLanguages,
+    contentRegionalLanguages, regionalServiceRecord, seoSite,
     localizedText,
   };
   vm.createContext(context);
@@ -193,3 +194,11 @@ for (const locale of ["az", "en", "ru", "ky"])
       "Selected description."
     );
   });
+
+for(const [host,country] of [['www.geototal.az','Azerbaijan'],['www.geototal.kg','Kyrgyzstan']]) test(`Detail metadata selects ${country} SEO and retains self canonical`, async()=>{
+ const row={serviceName:'Survey',serviceNameEn:'Survey',seoTitleEn:'Shared title',seoDescriptionEn:'Shared description',seoTitleAzerbaijanEn:'Azerbaijan survey',seoTitleKyrgyzstanEn:'Kyrgyzstan survey',seoDescriptionAzerbaijanEn:'Azerbaijan details.',seoDescriptionKyrgyzstanEn:'Kyrgyzstan details.',serviceParts:[{serviceTextAz:'Mətn',serviceTextEn:'Shared body'}]};
+ const detail=server(async()=>({ok:true,json:async()=>({status:{code:200},response:row})}),host);
+ const meta=await detail('en','service','geodesy-and-topography');
+ assert.equal(meta.title,`${country} survey | GeoTotal`);assert.equal(meta.description,`${country} details.`);assert.equal(new URL(meta.alternates.canonical).host,host);
+ assert.equal(row.seoTitleEn,'Shared title');
+});

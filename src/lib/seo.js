@@ -196,6 +196,6 @@ export function pageMetadata({
       cleanDescription(description) ||
       texts[1],
     alternates: { canonical: url(language), languages },
-    ...(availableLanguages && !availableLanguages.includes(language) ? {robots:{index:false,follow:true}} : {}),
+    ...(availableLanguages && !availableLanguages.includes(language) && !availableLanguages.includes(`${language}-${region}`) ? {robots:{index:false,follow:true}} : {}),
   };
 }

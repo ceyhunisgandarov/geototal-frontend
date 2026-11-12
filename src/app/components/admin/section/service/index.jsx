@@ -5,6 +5,13 @@ import style from "../../../../../../public/assets/css/module/admin/service.modu
 import ServicesService from "@/app/services/ServicesService";
 import AdminIcon from "../icon"; // AdminIcon default export olmalıdır
 
+const regions = [['Azerbaijan', 'Azərbaycan (.az)'], ['Kyrgyzstan', 'Qırğızıstan (.kg)']];
+const regionalFields = bases => regions.flatMap(([region]) => ['En', 'Ru'].flatMap(language => bases.map(base => `${base}${region}${language}`)));
+const regionalSeoFields = regionalFields(['seoTitle', 'seoDescription']);
+const regionalPartFields = regionalFields(['partName', 'serviceText']);
+// Undefined fields stay omitted so older clients and imports cannot erase regional copy.
+const regionalValues = (record, fields) => Object.fromEntries(fields.filter(key => typeof record?.[key] === 'string').map(key => [key, record[key]]));
+
 function ServiceAdmin() {
   const [reviewNotes,setReviewNotes]=useState([]);
   const [deleteError, setDeleteError] = useState("");
@@ -94,6 +101,7 @@ function ServiceAdmin() {
     setSaveError("");
     setIsAdd(false);
     setCurrentService({
+      ...regionalValues(service, regionalSeoFields),
       serviceName: service.serviceName,
       seoDescriptionAz: service.seoDescriptionAz ?? "", seoTitleAz: service.seoTitleAz ?? "",
       seoDescriptionEn: service.seoDescriptionEn ?? "", seoTitleEn: service.seoTitleEn ?? "",
@@ -166,6 +174,7 @@ function ServiceAdmin() {
     setSaving(true);
     try {
       const reqService = {
+        ...regionalValues(currentService, regionalSeoFields),
         serviceName: currentService.serviceName,
         seoDescriptionAz: currentService.seoDescriptionAz, seoTitleAz: currentService.seoTitleAz,
         seoDescriptionEn: currentService.seoDescriptionEn, seoTitleEn: currentService.seoTitleEn,
@@ -179,6 +188,7 @@ function ServiceAdmin() {
       };
 
       const reqServiceParts = currentService.serviceParts.map((part) => ({
+        ...regionalValues(part, regionalPartFields),
         id: part.id,
         partName: part.partName,
         partNameEn: part.partNameEn, partNameRu: part.partNameRu, partNameKy: part.partNameKy,
@@ -248,11 +258,11 @@ function ServiceAdmin() {
             {reviewNotes.length>0 && <p style={{background:"#fff3cd",padding:12}}>{reviewNotes.join(" ")}</p>}
       <label>Hazırlanmış xidmət mətnini aç <input type="file" accept="application/json,.json" onChange={async e=>{
              try {const data=JSON.parse(await e.target.files[0].text());if(data.type!=='service' || data.path!==currentService.pathName || !Array.isArray(data.parts) || data.parts.length>12)throw Error();
-              const allowed=['serviceName','serviceNameEn','serviceNameRu','serviceNameKy',...['Az','En','Ru','Ky'].flatMap(l=>['seoTitle'+l,'seoDescription'+l])];
+              const allowed=[...regionalSeoFields,'serviceName','serviceNameEn','serviceNameRu','serviceNameKy',...['Az','En','Ru','Ky'].flatMap(l=>['seoTitle'+l,'seoDescription'+l])];
               const values=Object.fromEntries(allowed.filter(k=>typeof data.request[k]==='string').map(k=>[k,data.request[k]]));
               const existing=[...currentService.serviceParts].sort((a,b)=>(a.id||0)-(b.id||0));
               const keys=['partName','partNameEn','partNameRu','partNameKy','serviceTextAz','serviceTextEn','serviceTextRu','serviceTextKy'];
-              const parts=data.parts.map((part,i)=>({...existing[i],...Object.fromEntries(keys.map(k=>[k,typeof part[k]==='string'?part[k]:''])),serviceImageFile:null}));
+              const parts=data.parts.map((part,i)=>({...existing[i],...regionalValues(part,regionalPartFields),...Object.fromEntries(keys.map(k=>[k,typeof part[k]==='string'?part[k]:''])),serviceImageFile:null}));
               setCurrentService(previous=>({...previous,...values,serviceParts:parts}));setSaveError('');setReviewNotes(data.reviewNotes || []);
              }catch{setSaveError('Bu xidmətə uyğun hazırlıq faylı seçin.');}
             }}/></label>
@@ -274,6 +284,16 @@ function ServiceAdmin() {
   </label>
  ))}
 </div>
+            <details className={style.regionalFields}>
+              <summary>Region üzrə SEO — Azərbaycan / Qırğızıstan</summary>
+              <p>EN və RU üçün ayrıca mətn yazın. Boş sahə ümumi SEO mətnindən istifadə edir. AZ və KY mətnləri yuxarıdakı sahələrdədir.</p>
+              {regions.map(([region, label]) => <fieldset key={region}><legend>{label}</legend>
+                {['En', 'Ru'].map(language => <div key={language}>
+                  <label>SEO başlığı ({language.toUpperCase()})<input name={`seoTitle${region}${language}`} value={currentService[`seoTitle${region}${language}`] ?? ''} onChange={e => setCurrentService(previous => ({...previous, [`seoTitle${region}${language}`]:e.target.value}))} /></label>
+                  <label>SEO təsviri ({language.toUpperCase()})<textarea name={`seoDescription${region}${language}`} value={currentService[`seoDescription${region}${language}`] ?? ''} onChange={e => setCurrentService(previous => ({...previous, [`seoDescription${region}${language}`]:e.target.value}))} /></label>
+                </div>)}
+              </fieldset>)}
+            </details>
             <div className={style.formGroup}>
               <input
                 type="text"
@@ -356,6 +376,16 @@ function ServiceAdmin() {
                   value={part.serviceTextKy ?? ""}
                   onChange={(e) => updatePartField(index, "serviceTextKy", e.target.value)}
                 />
+                <details className={style.regionalFields}>
+                  <summary>Bu hissənin region üzrə mətnləri</summary>
+                  <p>Boş sahədə yuxarıdakı ümumi mətn göstərilir. Fərqli başlıq və mətn daxil etdikdə yalnız seçilmiş ölkənin saytında görünəcək. Mətn Markdown formatını və keçidləri dəstəkləyir.</p>
+                  {regions.map(([region, label]) => <fieldset key={region}><legend>{label}</legend>
+                    {['En', 'Ru'].map(language => <div key={language}>
+                      <label>Bölmə başlığı ({language.toUpperCase()})<input name={`partName${region}${language}`} value={part[`partName${region}${language}`] ?? ''} onChange={e => updatePartField(index, `partName${region}${language}`, e.target.value)} /></label>
+                      <label>Mətn ({language.toUpperCase()})<textarea rows={10} name={`serviceText${region}${language}`} value={part[`serviceText${region}${language}`] ?? ''} onChange={e => updatePartField(index, `serviceText${region}${language}`, e.target.value)} /></label>
+                    </div>)}
+                  </fieldset>)}
+                </details>
                 <label className={style.imageUploadLabel}>
                   {part.serviceImageFile ? (
                     <img src={URL.createObjectURL(part.serviceImageFile)} alt="Service Part" className={style.thumbnail} />

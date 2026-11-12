@@ -78,3 +78,11 @@ test('Product cards identify the device and catalog decoration has empty alt',()
  const tree=mount(file,{}, {product,locale:'az'}).render();assert.equal(find(tree,n=>n.type==='next/image').props.alt,'Geomax Zoom50');
  const more=mount(file,{}, {product,locale:'az',more:true}).render();assert.equal(find(more,n=>n.type==='next/image').props.alt,'');
 });
+
+for (const [region, country] of [['AZ', 'Azerbaijan'], ['KG', 'Kyrgyzstan']]) for (const locale of ['en', 'ru']) test(`Regional service ${region}/${locale} renders its own initial content without mutating API data`, () => {
+ const suffix=locale==='en'?'En':'Ru';
+ const row={serviceName:'Surveying',serviceNameEn:'Surveying',serviceNameRu:'Survey',serviceParts:[{id:1,partName:'Shared heading',serviceTextAz:'Shared text',serviceTextEn:'Shared text',serviceTextRu:'Shared text',
+ ['partName'+country+suffix]:'Regional heading '+country,['serviceText'+country+suffix]:'Regional body '+country}]};
+ const h=mount('src/app/components/section/servicepage/index.jsx',{}, {service:'surveying',initialData:row,region},locale);
+ const output=text(h.render());assert.ok(output.includes('Regional body '+country));assert.ok(output.includes('Regional heading '+country));assert.ok(!output.includes('Shared text'));assert.equal(row.serviceParts[0].serviceTextEn,'Shared text');
+});

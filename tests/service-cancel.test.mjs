@@ -70,3 +70,21 @@ test("Service validation explains missing part and does not submit",async()=>{
 test("Service pending save blocks retry and success closes form",async()=>{
  let done;const p=new Promise(r=>done=r);const {h}=await setup(()=>p);const request=nodes(h.render()).filter(n=>n.type==="button"&&text(n)==="Update").at(-1).props.onClick();const button=nodes(h.render()).filter(n=>n.type==="button"&&text(n)==="Update").at(-1);assert.equal(button.props.disabled,true);assert.equal(find(h.render(),n=>n.type==="button"&&text(n)==="Cancel").props.disabled,true);await button.props.onClick();assert.equal(h.calls.filter(x=>x.method==="addOrUpdateService").length,1);done(ok({}));await request;assert.equal(nodes(h.render()).some(n=>n.type==="button"&&text(n)==="Cancel"),false);
 });
+
+test('Admin sends regional copy and retains part identity and shared text',async()=>{
+ const {h}=await setup();
+ for(const [name,value] of [['seoTitleAzerbaijanEn','AZ search title'],['seoDescriptionKyrgyzstanRu','KG search description'],['partNameAzerbaijanEn','AZ heading'],['serviceTextAzerbaijanEn','AZ body'],['serviceTextKyrgyzstanRu','KG body']]) {
+  find(h.render(),n=>n.props?.name===name).props.onChange({target:{value}});
+ }
+ await nodes(h.render()).filter(n=>n.type==='button'&&text(n)==='Update').at(-1).props.onClick();
+ const saved=h.calls.find(c=>c.method==='addOrUpdateService');
+ assert.equal(saved.args[0].seoTitleAzerbaijanEn,'AZ search title');assert.equal(saved.args[0].seoDescriptionKyrgyzstanRu,'KG search description');
+ const part=saved.args[2][0];assert.equal(part.id,11);assert.equal(part.serviceTextEn,'EN');assert.equal(part.serviceTextAzerbaijanEn,'AZ body');assert.equal(part.serviceTextKyrgyzstanRu,'KG body');assert.equal(part.partNameAzerbaijanEn,'AZ heading');
+});
+test('Cancel discards regional edits; an empty string explicitly resets an override',async()=>{
+ const {h}=await setup();find(h.render(),n=>n.props?.name==='serviceTextAzerbaijanEn').props.onChange({target:{value:'Draft'}});
+ await reopen(h);assert.equal(find(h.render(),n=>n.props?.name==='serviceTextAzerbaijanEn').props.value,'');
+ find(h.render(),n=>n.props?.name==='serviceTextAzerbaijanEn').props.onChange({target:{value:''}});
+ await nodes(h.render()).filter(n=>n.type==='button'&&text(n)==='Update').at(-1).props.onClick();
+ assert.equal(h.calls.find(c=>c.method==='addOrUpdateService').args[2][0].serviceTextAzerbaijanEn,'');
+});

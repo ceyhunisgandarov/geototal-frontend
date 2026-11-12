@@ -37,3 +37,21 @@ export function regionalServiceCopy(region, locale, name) {
    : `${name} — ${country}. Свяжитесь с GeoTotal, чтобы обсудить объект, состав работ и требования к результатам.`,
  };
 }
+
+// Resolve on a copy: the shared API/cache object must never leak one region into another.
+export function regionalServiceRecord(record, region) {
+ if (!record || !['AZ', 'KG'].includes(region)) return record;
+ const country = region === 'KG' ? 'Kyrgyzstan' : 'Azerbaijan';
+ const apply = (source, fields) => {
+  const result = {...source};
+  for (const field of fields) for (const language of ['En', 'Ru']) {
+   const value = source?.[`${field}${country}${language}`];
+   if (typeof value === 'string' && value.trim()) result[`${field}${language}`] = value;
+  }
+  return result;
+ };
+ return {
+  ...apply(record, ['seoTitle', 'seoDescription']),
+  serviceParts: record.serviceParts?.map(part => apply(part, ['partName', 'serviceText'])),
+ };
+}
