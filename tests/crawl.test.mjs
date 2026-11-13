@@ -18,9 +18,10 @@ for (const product of data.products) Object.assign(product, {
 });
 for(const [host,first,excluded] of [['www.geototal.az','az','ky'],['www.geototal.kg','ky','az']])test(`${host}: sitemap contains only own languages and valid public routes`,()=>{
  const xml=sitemapXml(host,data);const locs=[...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
- assert.equal(locs.length,33);assert.equal(new Set(locs).size,33);
+ const expectedCount=host.endsWith(".kg")?22:33;
+ assert.equal(locs.length,expectedCount);assert.equal(new Set(locs).size,expectedCount);
  assert.ok(locs.includes(`https://${host}/${first}/xidmetler/dron-xidmetleri`));
- assert.ok(locs.includes(`https://${host}/en/layiheler/bridge%20%26%20road`));
+ assert.ok(locs.includes(`https://${host}/ru/layiheler/bridge%20%26%20road`));
  assert.ok(!xml.includes(`https://${host}/${excluded}/`));
  assert.ok(!locs.some(u=>u.includes('/admin')||u.includes('/login')||u.includes('/mehsullar/-1')));
  assert.ok(xml.includes(`hreflang="x-default" href="https://www.geototal.az/az/xidmetler/dron-xidmetleri"`));

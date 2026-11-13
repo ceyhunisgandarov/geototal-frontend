@@ -7,7 +7,6 @@ const variants = [
  ['en-AZ','https://www.geototal.az','en'],
  ['ru-AZ','https://www.geototal.az','ru'],
  ['ky-KG','https://www.geototal.kg','ky'],
- ['en-KG','https://www.geototal.kg','en'],
  ['ru-KG','https://www.geototal.kg','ru'],
 ];
 export function regionalAlternates(path='', available=['az','en','ru','ky']) {

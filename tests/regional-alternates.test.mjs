@@ -6,11 +6,11 @@ import { sitemapXml } from "../src/lib/crawl.js";
 test("Country variants are reciprocal and retain their own canonical", () => {
   const path = "xidmetler/geodeziya-topoqrafiya-xidmetleri";
   const az = pageMetadata({ host: "www.geototal.az", locale: "en", path });
-  const kg = pageMetadata({ host: "www.geototal.kg", locale: "en", path });
+  const kg = pageMetadata({ host: "www.geototal.kg", locale: "ru", path });
   assert.deepEqual(az.alternates.languages, kg.alternates.languages);
   assert.equal(az.alternates.canonical, az.alternates.languages["en-AZ"]);
-  assert.equal(kg.alternates.canonical, kg.alternates.languages["en-KG"]);
-  assert.equal(Object.keys(az.alternates.languages).length, 7);
+  assert.equal(kg.alternates.canonical, kg.alternates.languages["ru-KG"]);
+  assert.equal(Object.keys(az.alternates.languages).length, 6);
 });
 test("Both sitemaps use metadata alternates, but list only own-domain locations", () => {
   for (const host of ["www.geototal.az", "www.geototal.kg"]) {
@@ -35,7 +35,6 @@ test("Missing blog translations never generate alternate URLs", () => {
   assert.deepEqual(az.alternates.languages, kg.alternates.languages);
   assert.deepEqual(Object.keys(az.alternates.languages), [
     "en-AZ",
-    "en-KG",
     "x-default",
   ]);
   const xml = sitemapXml("www.geototal.kg", {
@@ -44,10 +43,7 @@ test("Missing blog translations never generate alternate URLs", () => {
     products: [],
     blogs: [record],
   });
-  const entry = xml.match(
-    /<url><loc>https:\/\/www.geototal.kg\/en\/blog\/example<\/loc>(.*?)<\/url>/
-  )[1];
-  for (const [lang, url] of Object.entries(kg.alternates.languages))
-    assert.ok(entry.includes(`hreflang="${lang}" href="${url}"`));
-  assert.ok(!entry.includes("/ky/"));
+  assert.ok(!xml.includes('/en/blog/example'));
+  assert.ok(!xml.includes('en-KG'));
+  assert.ok(!xml.includes('https://www.geototal.kg/en/'));
 });

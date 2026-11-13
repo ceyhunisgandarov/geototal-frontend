@@ -40,6 +40,9 @@ export function publicRedirect({host,protocol,pathname,search=''}) {
  const hostname=normalizedHost(host);
  const known=Boolean(hostRegion(host));
  const site=seoSite(host);let path=publicPath(pathname);
+ // Retired KG English pages move to their same-language AZ equivalent.
+ // Normalize legacy public slugs first, so migration takes a single hop.
+ if(hostRegion(host)==='KG' && /^\/en(?:\/|$)/.test(path))return `https://www.geototal.az${path}${search}`;
  const first=path.split('/')[1];
  const unprefixed=[...Object.values(publicRouteNames),'blog'].includes(first);
  if(unprefixed)path=`/${site.defaultLocale}${path}`;

@@ -9,7 +9,7 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 for (const [host, locales] of [
   ["www.geototal.az", ["az", "en", "ru"]],
-  ["www.geototal.kg", ["ky", "en", "ru"]],
+  ["www.geototal.kg", ["ky", "ru"]],
 ]) {
   for (const locale of locales)
     test(`${host}/${locale}: page-specific metadata and matching alternates`, () => {
@@ -36,7 +36,6 @@ for (const [host, locales] of [
           "en-AZ",
           "ru-AZ",
           "ky-KG",
-          "en-KG",
           "ru-KG",
           "x-default",
         ]);

@@ -131,7 +131,7 @@ export function seoSite(host = "", locale = "az") {
   return kg
     ? {
         origin: "https://www.geototal.kg",
-        locales: ["ky", "en", "ru"],
+        locales: ["ky", "ru"],
         defaultLocale: "ky",
         country: { en: "Kyrgyzstan", ru: "Кыргызстан", ky: "Кыргызстан" },
       }

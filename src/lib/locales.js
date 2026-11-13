@@ -14,7 +14,7 @@ export function switchLocalePath(pathname, locale) {
 export function getDomainLocales(host = "") {
   const region = hostRegion(host);
   if (region === 'AZ') return { locales: ["az", "en", "ru"], defaultLocale: "az" };
-  if (region === 'KG') return { locales: ["ky", "en", "ru"], defaultLocale: "ky" };
+  if (region === 'KG') return { locales: ["ky", "ru"], defaultLocale: "ky" };
   return { locales: supportedLocales, defaultLocale: "az" };
 }
 

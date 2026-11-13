@@ -9,7 +9,7 @@ const service={pathName:'geodesy-and-topography',serviceName:'Ölçmə',serviceN
 const project={path:'bridge',projectName:'Körpü',worksDescription:'Mətn',projectNameRu:'Мост',worksDescriptionRu:'Текст'};
 const product={id:7,brand:'Geo',model:'One',descriptionEn:'Details',descriptionKy:'Маалымат'};
 const dataset={services:[service],projects:[project],products:[product]};
-for(const [host,locales,region] of [['www.geototal.az',['az','en','ru'],'AZ'],['www.geototal.kg',['ky','en','ru'],'KG']]) {
+for(const [host,locales,region] of [['www.geototal.az',['az','en','ru'],'AZ'],['www.geototal.kg',['ky','ru'],'KG']]) {
  for(const locale of locales) for(const [page,path] of [['home',''],['services','services/geodesy-and-topography'],['projects','projects/bridge'],['products','products/7']]) test(`${host}/${locale} ${page}: canonical and reciprocal alternates`,()=>{
   const meta=pageMetadata({host,locale,page,path});
   assert.equal(new URL(meta.alternates.canonical).host,host);
@@ -70,7 +70,8 @@ test('Old links preserve queries, reach final destination in one hop and leave A
   const result=publicRedirect({host,protocol:'https',pathname:'/en/services/geodesy-and-topography',search:'?source=link'});
   const url=new URL(result,`https://${host}`);
   assert.equal(url.pathname,'/en/xidmetler/geodeziya-topoqrafiya-xidmetleri');assert.equal(url.search,'?source=link');
-  assert.equal(publicRedirect({host,protocol:'https',pathname:url.pathname,search:url.search}),null);
+  assert.equal(url.host,host.endsWith('.kg')?'www.geototal.az':host);
+  assert.equal(publicRedirect({host:url.host,protocol:'https',pathname:url.pathname,search:url.search}),null);
   assert.equal(publicRedirect({host,protocol:'https',pathname:'/api/services/test'}),null);
  }
 });

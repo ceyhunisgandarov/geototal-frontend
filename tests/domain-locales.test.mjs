@@ -33,14 +33,14 @@ for (const [host, lang, blocked] of [['www.geototal.az', 'az', 'ky'], ['www.geot
     const response = middleware(new NextRequest(`https://${host}/${blocked}/mehsullar/7?q=test`, {headers: {host}}));
     assert.equal(response.headers.get('location'), `https://${host}/${lang}/mehsullar/7?q=test`);
   });
-  for (const allowed of [lang, 'en', 'ru']) test(`${host}: ${allowed} stays accessible`, () => {
+  for (const allowed of locales.getDomainLocales(host).locales) test(`${host}: ${allowed} stays accessible`, () => {
     const response = middleware(new NextRequest(`https://${host}/${allowed}/mehsullar/7`, {headers: {host}}));
     assert.equal(response.headers.get('location'), null);
     assert.ok(!response.headers.get('link')?.includes(`/${blocked}/`));
   });
 }
 test('host normalization, proxy and non-country hosts', () => {
-  assert.deepEqual(locales.getDomainLocales('WWW.GEOTOTAL.KG.:3000').locales, ['ky', 'en', 'ru']);
+  assert.deepEqual(locales.getDomainLocales('WWW.GEOTOTAL.KG.:3000').locales, ['ky', 'ru']);
   assert.equal(locales.getDomainLocales(locales.getRequestHost(new Headers({'x-forwarded-host':'geototal.kg',host:'localhost:3000'}))).defaultLocale, 'ky');
   for (const host of ['localhost:3000', 'geototal.com', 'geototal.az.example.com']) assert.deepEqual(locales.getDomainLocales(host).locales, ['az', 'en', 'ru', 'ky']);
 });
@@ -63,3 +63,25 @@ for (const [host, expected] of [['geototal.kg', '/ky'], ['geototal.az', '/az'], 
     assert.throws(() => entryModule.exports.default(), { message: `redirect:${expected}` });
   });
 }
+
+test('KG English migrates permanently to AZ in one hop, preserving paths and queries', () => {
+  for (const host of ['www.geototal.kg', 'geototal.kg']) {
+    for (const [path, target] of [
+      ['/en', '/en'],
+      ['/en/services/geodesy-and-topography', '/en/xidmetler/geodeziya-topoqrafiya-xidmetleri'],
+      ['/en/xidmetler/geodeziya-topoqrafiya-xidmetleri', '/en/xidmetler/geodeziya-topoqrafiya-xidmetleri'],
+      ['/en/layiheler/crescent', '/en/layiheler/crescent'],
+      ['/en/mehsullar/7', '/en/mehsullar/7'],
+      ['/en/blog/example', '/en/blog/example'],
+    ]) {
+      const response = middleware(new NextRequest(`https://${host}${path}?source=test`, {headers:{host}}));
+      assert.equal(response.status, 308);
+      assert.equal(response.headers.get('location'), `https://www.geototal.az${target}?source=test`);
+      const destination = middleware(new NextRequest(response.headers.get('location'), {headers:{host:'www.geototal.az'}}));
+      assert.equal(destination.headers.get('location'), null);
+    }
+  }
+});
+test('API paths on KG are not migrated', () => {
+  assert.equal(crawl.publicRedirect({host:'www.geototal.kg',protocol:'https',pathname:'/api/en/test'}),null);
+});
