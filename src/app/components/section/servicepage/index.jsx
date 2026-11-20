@@ -1,6 +1,7 @@
 "use client";
 import { publicContentHref } from "@/lib/public-routes";
 import {regionalServiceCopy, regionalServiceRecord} from "@/lib/regional-content";
+import {serviceReading, geodesyProjectCopy} from "@/lib/service-reading";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import {contentLabels,partHeading} from "@/lib/content-labels";
@@ -70,6 +71,7 @@ export default function ServicesSection({ service, initialData, region }) {
   }
 
   const labels=contentLabels(locale);
+  const evidence=geodesyProjectCopy(service, locale);
   const serviceName = localizedText(aService, "serviceName", locale);
 
   const regional = region ? regionalServiceCopy(region, locale, serviceName) : null;
@@ -88,8 +90,8 @@ export default function ServicesSection({ service, initialData, region }) {
       {sortedParts.map((part, index) => {
         if (!part) return null;
 
-        const heading=partHeading(localizedText(part,"partName",locale),serviceName,locale,index);
-        const partText = localizedText(part, "serviceText", locale, "serviceTextAz");
+        const originalHeading=partHeading(localizedText(part,"partName",locale),serviceName,locale,index);
+        const {heading, text: partText} = serviceReading(service, locale, originalHeading, localizedText(part, "serviceText", locale, "serviceTextAz"));
         const imageSrc = part.serviceImageUrl || "/placeholder.png";
         const sectionClass = index % 2 === 0 ? style.dark : style.gray;
 
@@ -123,6 +125,20 @@ export default function ServicesSection({ service, initialData, region }) {
           </div>
         );
       })}
+      {evidence && <section className={`${style.evidence} ${style.richText}`} aria-labelledby="geodesy-evidence">
+        <h2 id="geodesy-evidence">{evidence.title}</h2>
+        <p>{evidence.intro}</p>
+        <h3>{evidence.planningTitle}</h3>
+        <p>{evidence.planning}</p>
+        <h2>{evidence.projectsTitle}</h2>
+        <div className={style.projectEvidence}>
+          {evidence.projects.map(project => <article key={project.slug}>
+            <h3>{project.title}</h3>
+            <p>{project.text}</p>
+            <Link href={`/${locale}/layiheler/${project.slug}`}>{evidence.read}</Link>
+          </article>)}
+        </div>
+      </section>}
       <section className={style.inquiry}>
         <h2>{labels.inquiry}</h2>
         <p>{labels.inquiryText}</p>

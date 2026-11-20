@@ -1,5 +1,7 @@
 "use client";
 import { localizedText, localizedProjectName } from "@/lib/localizedText";
+import Link from "next/link";
+import {projectServiceLinks} from "@/lib/project-service-links";
 import ProjectService from "@/app/services/ProjectService";
 import { useEffect, useState } from "react";
 import styles from "../../../../../public/assets/css/module/projects/aproject.module.css";
@@ -13,6 +15,7 @@ function ProjectSection({ project, initialData }) {
   const [projectContent, setProjectContent] = useState(initialData ?? {});
   const router = useRouter();
   const locale = useLocale();
+  const related = projectServiceLinks(project, locale);
   // The page title owns H1; headings embedded in project body start at H2.
   const contentFromDb = localizedText(projectContent, "worksDescription", locale)
     .replace(/<h1(?=[\s>])/gi, "<h2").replace(/<\/h1\s*>/gi, "</h2>");
@@ -83,6 +86,11 @@ function ProjectSection({ project, initialData }) {
               />
             </div>
           </div>
+
+          {related && <section className={styles.relatedServices}>
+            <h2>{related.title}</h2>
+            <nav aria-label={related.title}>{related.items.map(item => <Link key={item.href} href={item.href}>{item.label}</Link>)}</nav>
+          </section>}
 
           {feedback && feedback !== "null" && (
             <>

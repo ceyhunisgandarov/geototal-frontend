@@ -1,3 +1,5 @@
+import * as serviceReading from "../src/lib/service-reading.js";
+import * as projectServiceLinks from "../src/lib/project-service-links.js";
 import * as publicRoutes from "../src/lib/public-routes.js";
 import * as regionalContent from "../src/lib/regional-content.js";
 import {contentLabels,partHeading} from "../src/lib/content-labels.js";
@@ -21,6 +23,8 @@ function mount(file, services, props={}, locale="ky", contact=null, confirmDelet
  const loader=(name)=>{
   if(name==="@/lib/public-routes")return publicRoutes;
   if(name==="@/lib/regional-content")return regionalContent;
+  if(name==="@/lib/service-reading")return serviceReading;
+  if(name==="@/lib/project-service-links")return projectServiceLinks;
   if(name==="@/lib/content-labels")return {contentLabels,partHeading};
   if(name==="@/lib/localizedText")return {localizedText, localizedProjectName};
   if(name==="react")return react;
@@ -85,4 +89,22 @@ for (const [region, country] of [['AZ', 'Azerbaijan'], ['KG', 'Kyrgyzstan']]) fo
  ['partName'+country+suffix]:'Regional heading '+country,['serviceText'+country+suffix]:'Regional body '+country}]};
  const h=mount('src/app/components/section/servicepage/index.jsx',{}, {service:'surveying',initialData:row,region},locale);
  const output=text(h.render());assert.ok(output.includes('Regional body '+country));assert.ok(output.includes('Regional heading '+country));assert.ok(!output.includes('Shared text'));assert.equal(row.serviceParts[0].serviceTextEn,'Shared text');
+});
+
+for (const locale of ['az','en','ru','ky']) test(`Geodesy evidence and project links render before effects in ${locale}`, async () => {
+ const row={serviceName:'Survey',serviceParts:[{id:1,partName:'CMS title',partNameEn:'CMS title',partNameRu:'CMS title',partNameKy:'CMS title',serviceTextAz:'Original CMS',serviceTextEn:'Original CMS',serviceTextRu:'Original CMS',serviceTextKy:'Original CMS'}]};
+ const original=JSON.stringify(row);
+ const h=mount('src/app/components/section/servicepage/index.jsx',{}, {service:'geodeziya-topoqrafiya-xidmetleri',initialData:row,region:locale==='ky'?'KG':'AZ'},locale);
+ const tree=h.render();const output=text(tree);
+ assert.ok(output.includes('Original CMS'));
+ assert.ok(output.includes('Matrice 350 RTK'));
+ for (const slug of ['crescent','hadrut-restoration']) assert.ok(nodes(tree).some(n=>n.props?.href===`/${locale}/layiheler/${slug}`));
+ assert.equal(nodes(tree).filter(n=>n.type==='h1').length,1);
+ assert.equal(JSON.stringify(row),original);
+ await h.ready();assert.equal(h.calls.length,0);
+});
+
+test('Other services do not inherit geodesy project evidence', () => {
+ const tree=mount('src/app/components/section/servicepage/index.jsx',{}, {service:'kalibrasiya',initialData:{serviceName:'Calibration',serviceParts:[]}},'az').render();
+ assert.ok(!nodes(tree).some(n=>n.props?.id==='geodesy-evidence'));
 });

@@ -1,3 +1,5 @@
+import * as serviceReading from "../src/lib/service-reading.js";
+import * as projectServiceLinks from "../src/lib/project-service-links.js";
 import * as publicRoutes from "../src/lib/public-routes.js";
 import * as regionalContent from "../src/lib/regional-content.js";
 import {contentLabels,partHeading} from "../src/lib/content-labels.js";
@@ -21,6 +23,8 @@ function mount(file, services, props={}, locale="ky", contact=null, confirmDelet
  const loader=(name)=>{
   if(name==="@/lib/public-routes")return publicRoutes;
   if(name==="@/lib/regional-content")return regionalContent;
+  if(name==="@/lib/service-reading")return serviceReading;
+  if(name==="@/lib/project-service-links")return projectServiceLinks;
   if(name==="@/lib/content-labels")return {contentLabels,partHeading};
   if(name==="@/lib/localizedText")return {localizedText};
   if(name==="react")return react;

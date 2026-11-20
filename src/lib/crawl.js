@@ -40,6 +40,9 @@ export function publicRedirect({host,protocol,pathname,search=''}) {
  const hostname=normalizedHost(host);
  const known=Boolean(hostRegion(host));
  const site=seoSite(host);let path=publicPath(pathname);
+ // Retired AZ homepage aliases have exact same-language replacements.
+ // Keep this narrow: other PHP paths and API routes must not become homepages.
+ if(hostRegion(host)==='AZ')path=path.replace(/^\/(en|ru)\/(?:home|index\.php)\/?$/, '/$1');
  // Retired KG English pages move to their same-language AZ equivalent.
  // Normalize legacy public slugs first, so migration takes a single hop.
  if(hostRegion(host)==='KG' && /^\/en(?:\/|$)/.test(path))return `https://www.geototal.az${path}${search}`;

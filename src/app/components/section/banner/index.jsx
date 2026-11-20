@@ -1,4 +1,5 @@
 "use client";
+import { publicPath } from "@/lib/public-routes";
 import { useEffect, useState } from "react";
 import style from "../../../../../public/assets/css/module/banner/banner.module.css";
 import BannerService from "@/app/services/BannerService";
@@ -74,7 +75,7 @@ function Banner({ page }) {
       ) : (
         <div className={style.overlay}>
           <p>
-            <Link href={`/${t("locale")}/${page}` } style={{all: "unset", cursor: "pointer" }}>{bannerHeader}</Link>
+            <Link href={publicPath(`/${t("locale")}/${page}`)} style={{all: "unset", cursor: "pointer" }}>{bannerHeader}</Link>
             <span className={style.underline}></span>
           </p>
         </div>

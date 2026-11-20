@@ -53,3 +53,24 @@ test('Sitemap route serves domain-specific XML with no shared cache',async()=>{
 test('API outage returns 503 instead of a truncated successful sitemap',async()=>{
  const r=await sitemapRoute(async()=>{throw Error('unavailable')})();assert.equal(r.status,503);assert.equal(r.headers.get('retry-after'),'300');assert.ok(!(await r.text()).includes('<urlset'));
 });
+
+
+test('Legacy AZ EN/RU homepages redirect directly, preserve queries and do not loop', () => {
+ for (const host of ['geototal.az','www.geototal.az']) for (const protocol of ['http','https']) {
+  for (const locale of ['en','ru']) for (const alias of ['home','index.php']) for (const slash of ['', '/']) {
+   const search='?utm_source=legacy&lang='+locale;
+   const target=publicRedirect({host,protocol,pathname:`/${locale}/${alias}${slash}`,search});
+   assert.equal(target,`https://www.geototal.az/${locale}${search}`);
+   const url=new URL(target);
+   assert.equal(publicRedirect({host:url.host,protocol:'https',pathname:url.pathname,search:url.search}),null);
+  }
+ }
+});
+
+test('Legacy homepage mapping does not absorb unrelated paths or change KG Russian routes', () => {
+ for (const pathname of ['/en/homepage','/en/home/extra','/ru/index.php/extra','/api/en/home','/en/api/index.php','/az/home']) {
+  assert.equal(publicRedirect({host:'www.geototal.az',protocol:'https',pathname}),null);
+ }
+ assert.equal(publicRedirect({host:'www.geototal.kg',protocol:'https',pathname:'/ru/home'}),null);
+ assert.equal(publicRedirect({host:'untrusted.example',protocol:'https',pathname:'/en/home'}),null);
+});

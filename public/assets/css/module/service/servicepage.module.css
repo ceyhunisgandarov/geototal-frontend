@@ -273,3 +273,10 @@
 .regionalContext a { color: #ffd9ad; font-weight: 600; text-decoration: none; }
 .regionalContext a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .regionalContext a:focus-visible { outline: 2px solid #ffd9ad; outline-offset: 4px; }
+
+.evidence { width: 100%; max-width: 1100px; padding: 32px 24px; box-sizing: border-box; line-height: 1.75; }
+.evidence h2 { font-size: 1.5rem; margin: 24px 0 16px; }
+.projectEvidence { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.projectEvidence article { padding: 20px; border: 1px solid #777; border-radius: 12px; }
+.projectEvidence h3 { margin-top: 0; }
+@media (max-width: 768px) { .projectEvidence { grid-template-columns: 1fr; } }
